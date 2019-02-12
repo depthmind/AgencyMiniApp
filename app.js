@@ -30,6 +30,35 @@ App({
             }
           })
         }
+        if (!res['scope.record']) {
+          // 设置询问
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success(res) {
+              wx.getLocation({
+                type: 'wgs84',
+                success(res) {
+                  const latitude = res.latitude
+                  const longitude = res.longitude
+                  const speed = res.speed
+                  const accuracy = res.accuracy
+                  console.log("latitude = " + latitude)
+                  console.log("longitude = " + longitude)
+                  console.log("speed = " + speed)
+                  console.log("accuracy = " + accuracy)
+                  wx.request({
+                    url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=JBEBZ-3HSCI-XYMGH-5IN3V-FLYDT-LRFEU&location=' + latitude + ',' + longitude,
+                    success(res) {
+                      console.log(res)
+                    }
+                  })
+                }
+              })    
+            },
+            fail() { },
+            complete() { }
+          })
+        }
       }
     })
   },
