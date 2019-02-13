@@ -3,6 +3,7 @@
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 .header {
   display: flex;
@@ -26,8 +27,10 @@
 .search {
   display: flex;
   height: 80%;
-  margin-top: 5rpx;
-  margin-left: 130rpx;
+  margin-top: 2rpx;
+  margin-left: 120rpx;
+  margin-right: 10rpx;
+  margin-bottom: 2rpx;
   background-color: white;
   border: 0rpx solid #000;
   border-radius:50rpx; 
@@ -43,4 +46,21 @@
 }
 .searchInputText {
   font-size: 30rpx;
+}
+
+.swiper-view {
+  display: flex;
+  height: 40%;
+  width: 100%;
+}
+
+.u-wrp-bnr {
+  width: 100%;
+  display: block;
+  position: relative;
+  background: #f0f0f0;
+}
+.u-img-slide {
+  width: 100%;
+  height: inherit;
 }

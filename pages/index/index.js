@@ -5,6 +5,13 @@ const app = getApp()
 Page({
   data: {
     location: "正在定位...",
+    "bnrUrl": [{
+      "url": "images/1.jpg"
+    }, {
+      "url": "images/2.jpg"
+    }, {
+      "url": "images/3.jpg"
+    }]
   },
   /**
    * 生命周期函数--监听页面加载
