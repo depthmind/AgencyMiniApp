@@ -1,2 +1,28 @@
-<!--pages/publish/publish.wxml-->
-<text>pages/publish/publish.wxml</text>
+<view class="">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      产品分类：{{array[index]}}
+    </view>
+  </picker>
+  <view>标题：</view>
+  <input placeholder="请输入标题"></input>
+  <view>内容描述</view>
+  <textarea placeholder="请描述信息内容"></textarea>
+  <button bindtap='chooseImage'>选择图片</button>
+  <image style="width: 100px; height: 100px; background-color: #eeeeee;" src="{{imagePath}}"></image>
+  <view>联系人
+    <input placeholder="联系人姓名"></input>
+  </view>
+  <view>联系方式
+    <input placeholder="联系方式"></input>
+  </view>
+  <view>是否置顶
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{items}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" />
+        {{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <button>提交审核</button>
+</view>

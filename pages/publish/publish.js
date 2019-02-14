@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    array: ['美国', '中国', '巴西', '日本'],  
+    index: 0,
+    items: [
+      { name: 'top', value: '是' },
+      { name: 'notTop', value: '否', checked: 'true' },
+    ]
   },
 
   /**
@@ -19,7 +24,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this;
+    // wx.request({
+    //   url: '', //查询分类信息
+    //   success(res) {
+    //     console.log(res.data)
+    //     that.setData
+    //   }
+    // })
   },
 
   /**
@@ -62,5 +74,36 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 选择产品分类
+   */
+  bindPickerChange: function (e) {
+    console.log("选择产品分类")
+    console.log(e)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+  chooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        that.setData({
+          imagePath: tempFilePaths
+        })
+      }
+    })
+  },
+
+  radioChange: function (e) {
+    console.log(e.detail.value)
   }
 })

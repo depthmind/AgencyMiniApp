@@ -66,3 +66,31 @@ App({
     userInfo: null
   }
 })
+
+
+  // "tabBar":{
+  //   "list": [{
+  //     "selectedIconPath": "",
+  //     "iconPath": "",
+  //     "pagePath": "pages/index/index",
+  //     "text": "首页" 
+  //   },
+  //   {
+  //     "selectedIconPath": "",
+  //     "iconPath": "",
+  //     "pagePath": "pages/publish/publish",
+  //     "text": "发布"  
+  //   },
+  //   {
+  //     "selectedIconPath": "",
+  //     "iconPath": "",
+  //     "pagePath": "pages/agency/agency",
+  //     "text": "代理商"
+  //   },
+  //   {
+  //     "selectedIconPath": "",
+  //     "iconPath": "",
+  //     "pagePath": "pages/mine/mine",
+  //     "text": "我的"
+  //   }]
+  // },
