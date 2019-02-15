@@ -10,7 +10,8 @@ Page({
     items: [
       { name: 'top', value: '是' },
       { name: 'notTop', value: '否', checked: 'true' },
-    ]
+    ],
+    imagePath: '/images/photo.png'
   },
 
   /**

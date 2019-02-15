@@ -1,1 +1,68 @@
-/* pages/publish/publish.wxss */
+.title {
+  font-size: 32rpx; 
+  color: #000000;
+}
+
+button{
+	background:#ff7419;
+	color:#fff;
+	border: none;
+	line-height:2.2;
+	margin:20rpx 40rpx;
+	font-size: 32rpx;
+	border-radius: 100rpx;
+}
+
+.message{
+	float:none;
+	width:100%;
+	flex-direction:row-reverse;
+	zoom:1;
+	overflow:hidden;
+	padding: 30rpx 20rpx 0;
+	background: #fff;
+	border-radius: 16rpx;
+	box-shadow: 0 0 10rpx #e4e4e4;
+	box-sizing: border-box;
+	position:relative;
+}
+
+.form{
+	background: #fff;
+	border-radius: 20rpx;
+	padding: 20rpx 40rpx;
+	margin:40rpx 10%;
+	box-sizing: border-box;
+	box-shadow: 0 3px 5px #bdbdbd;
+}
+.form .form-item{
+	box-sizing: border-box;
+	width:100%;
+	border-bottom: 2rpx solid #dedede;
+	position:relative;
+	font-size:28rpx;
+}
+.form .form-item .label{
+	position:absolute;
+	left:0;
+	line-height:80rpx;
+}
+.form .form-item .label text,
+.textarea-label text{
+	color: red;
+}
+.form .form-item input{
+	height: 80rpx;
+	padding-left: 100rpx;
+}
+.form .form-item textarea{
+	height: 130rpx;
+	border: 2rpx solid #dedede;
+	width:100%;
+	padding: 10rpx;
+	box-sizing: border-box;
+	z-index: 1;
+}
+.textarea-label{
+	line-height: 80rpx;
+}

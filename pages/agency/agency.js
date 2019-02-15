@@ -19,7 +19,22 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this
+    var longitude = wx.getStorageSync("longitude")
+    var latitude = wx.getStorageSync("latitude")
+    var markers = [{
+      iconPath: '/images/address.png',
+      id: 0,
+      latitude: latitude,
+      longitude: longitude,
+      width: 50,
+      height: 50
+    }]
+    that.setData({
+      longitude: longitude,
+      latitude: latitude,
+      markers: markers
+    })
   },
 
   /**
@@ -62,5 +77,27 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  chooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        that.setData({
+          imagePath: tempFilePaths
+        })
+      }
+    })
+  },
+
+  chooseAddress: function () {
+    wx.navigateTo({
+      url: '/pages/map/map',
+    })
   }
 })

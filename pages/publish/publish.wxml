@@ -1,22 +1,48 @@
 <view class="">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <view class="picker">
-      产品分类：{{array[index]}}
+
+  <view class='message'>
+    <view class='form'>
+      <form bindsubmit="formSubmit">
+        <view class='form-item'>
+        <text class='label'>类目</text> 
+          <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <text>{{array[index]}}</text>
+            <view>
+              {{array[index]}}
+            </view>
+          </picker> -->
+          <input placeholder="请输入标题"></input>
+        </view>
+        <view class='form-item'>
+            <text class='label'>标题<text>*</text></text> 
+            <input placeholder="请输入标题"></input>
+        </view>
+        <view class='form-item'>
+          <text class='textarea-label'>内容描述<text>*</text></text>
+          <textarea style="display: {{textareadisplay}};" name="requirement" placeholder='请描述信息内容' value='{{requirement}}'></textarea>
+        </view>
+        <view class='form-item'>
+          <text class='label' style='position:static;'>上传图片<text>*</text></text> 
+          <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
+            <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item'>
+            <text class='label'>姓名</text> 
+            <input placeholder="联系人姓名"></input>
+        </view>
+        <view class='form-item'>
+            <text class='label'>电话</text> 
+            <input placeholder="联系人电话"></input>
+        </view>
+      </form>
     </view>
-  </picker>
-  <view>标题：</view>
-  <input placeholder="请输入标题"></input>
-  <view>内容描述</view>
-  <textarea placeholder="请描述信息内容"></textarea>
-  <button bindtap='chooseImage'>选择图片</button>
-  <image style="width: 100px; height: 100px; background-color: #eeeeee;" src="{{imagePath}}"></image>
-  <view>联系人
-    <input placeholder="联系人姓名"></input>
   </view>
-  <view>联系方式
-    <input placeholder="联系方式"></input>
-  </view>
-  <view>是否置顶
+    <!-- <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
+      <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
+    </view> -->
+  <view class='title'>是否置顶</view>
+  <view>
     <radio-group class="radio-group" bindchange="radioChange">
       <label class="radio" wx:for="{{items}}">
         <radio value="{{item.name}}" checked="{{item.checked}}" />

@@ -1,2 +1,22 @@
-<!--pages/agency/agency.wxml-->
-<text>pages/agency/agency.wxml</text>
+<view class="container">
+  <view>
+    <view>代理商名称</view>
+    <input></input>
+  </view>
+  <view>
+    <view>详细地址</view>
+    <text bindtap='chooseAddress'>></text>
+  </view>
+  <view>显示区域</view>
+  <!--三级选择-->
+  <view>
+    <view>服务工号</view>
+    <input></input>
+  </view>
+  <view>
+    <view>代理商logo</view>
+    <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
+      <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
+    </view>
+  </view>
+</view>

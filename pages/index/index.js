@@ -36,10 +36,12 @@ Page({
             const accuracy = res.accuracy
             console.log("latitude = " + latitude)
             console.log("longitude = " + longitude)
+            wx.setStorageSync("latitude", latitude)
+            wx.setStorageSync("longitude", longitude)
             console.log("speed = " + speed)
             console.log("accuracy = " + accuracy)
             wx.request({
-              url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=JBEBZ-3HSCI-XYMGH-5IN3V-FLYDT-LRFEU&location=' + latitude + ',' + longitude,
+              url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
               success(res) {
                 console.log(res)
               }
