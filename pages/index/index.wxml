@@ -1,21 +1,69 @@
 <!--index.wxml-->
 <view class="container_index">
-  <view class='header'>
-    <view class="location" bindtap='{{changeLocation}}'>
-      <text class='location-text'>{{location}}</text>
+  <view class='exceptProduct'>
+    <view class='header'>
+      <view class="location" bindtap='{{changeLocation}}'>
+        <text class='location-text'>{{location}}</text>
+      </view>
+      <view class='search'>
+        <icon class="searchcion" size='20' type='search'></icon>
+        <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText'></input>
+      </view>
     </view>
-    <view class='search'>
-      <icon class="searchcion" size='20' type='search'></icon>
-      <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText'></input>
+    <view style='display:flex;justify-content: center;margin:20rpx'>
+      <view class='swiper-view'>
+        <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
+          <block wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="index">
+            <swiper-item class="swiper-item">
+              <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
+              <view class='u-text-slide'>轮播图信息</view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
     </view>
   </view>
-  <view class='swiper-view'>
-    <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
-      <block wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="*this">
-        <swiper-item>
-          <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
-        </swiper-item>
-      </block>
-    </swiper>
+  <view class='flexRowContainer'>
+    <view class='flexRowSon'>合伙人</view>
+    <view class='flexRowSon'>厂家招商信息</view>
   </view>
+  <view style='display:flex;justify-content:center;font-size: 30rpx;'>推荐产品</view>
+  <view class='products'>
+    <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">
+      <text class='name'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+    </view>
+  </view>
+
+
+
+
+
+  <view class="productType-tab">
+    <view wx:for="{{infoTypes}}" wx:key="{{infoTypes.id}}">
+      <view class="productType-tab-item {{currentTab==item.id? 'active': ''}} " data-current="{{item.id}} " bindtap="clickTab">{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class='products'>
+    <view wx:for="{{infoList}}" wx:key="{{infoList.id}}">
+      <view class='product-item'>
+        <text class='name'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- <swiper current="{{currentTab-1}} " duration="300 " bindchange="swiperTab">
+    <swiper-item>
+      <scroll-view scroll-y='true' class='scrollView'>
+        <view class='products'>
+          <view wx:for="{{infoList}}" wx:key="{{infoList.id}}">
+            <view class='product-item'>
+              <text class='name'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper> -->
+  <view>djalkjdklfajdl;sfj</view>
 </view>
