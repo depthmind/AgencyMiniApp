@@ -7,7 +7,8 @@
 }
 .exceptProduct {
   background-image: url('http://m.tourmade.com/sites/all/themes/tourmade_m_v3/images/banner/home-banner.jpg');
-  background-size: 100%,50%;
+  height: 500rpx;
+  background-size: 100%,80%;
   display: flex;
   flex-direction: column;
 }
@@ -57,12 +58,13 @@
 .swiper-view {
   display: flex;
   justify-content: center;
-  height: 40%;
-  width: 80%;
+  height: 400rpx;
+  width: 85%;
 }
 
 .u-wrp-bnr {
-  width: 80%;
+  width: 100%;
+  height: 400rpx;
   display: flex;
   background: #f0f0f0;
 }
