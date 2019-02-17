@@ -1,6 +1,5 @@
-<!--pages/map/map.wxml-->
 <view>
-  <map
+  <!-- <map
     id="map"
     longitude="{{longitude}}"
     latitude="{{latitude}}"
@@ -17,10 +16,23 @@
     <cover-view>
       <cover-image style='width:80px;height:80px;' src="/images/address.png" />
     </cover-view>
-  </map>
-  <view>
-    <view>城市</view>
-    <input bindconfirm='searchAddress' placeholder='小区/写字楼/学校等'></input>
+  </map> -->
+  <!-- <text class='city'>城市</text> -->
+  <view class='form-item'>
+    <input bindinput='searchAddress' placeholder='小区/写字楼/学校等' confirm-type='search'></input>
   </view>
-  <button bindtap="nearby_search">搜索周边KFC</button>
+
+  <view>
+    <view>当前位置</view>
+    <view>{{currentLocation}}</view>
+    <view>重新定位</view>
+  </view>
+  <view>--------------------------------------</view>
+  <view>
+    <view>搜索地址</view>
+    <view wx:for="{{addresses}}" wx:key="{{item.id}}" bindtap="openRoute" data-cid="{{item.id}}">
+    <!-- <text class='summary'>{{item.title}}</text> -->
+    <text class='agentname' bindtap='confirmAddress'>{{item.address}}</text>
+  </view>
+  </view>
 </view>

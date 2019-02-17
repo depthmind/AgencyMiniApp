@@ -1,22 +1,55 @@
-<view class="container">
-  <view>
-    <view>代理商名称</view>
-    <input></input>
-  </view>
-  <view>
-    <view>详细地址</view>
-    <text bindtap='chooseAddress'>></text>
-  </view>
-  <view>显示区域</view>
-  <!--三级选择-->
-  <view>
-    <view>服务工号</view>
-    <input></input>
-  </view>
-  <view>
-    <view>代理商logo</view>
-    <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
-      <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
+<view >
+  <view class='message'>
+    <view class='form'>
+      <form bindsubmit="formSubmit">
+        <view class='form-item'>
+          <text class='label'>代理商名称</text>
+          <input placeholder="代理商名称"></input>
+        </view>
+        <view class='form-item'>
+          <text class='label'>详细地址</text>
+          <input bindtap='chooseAddress' value='{{addressDetail}}'></input>
+        </view>
+        <view class='form-item'>
+          <text class='label'>显示区域</text>
+          <input placeholder="显示区域"></input>
+        </view>
+        <!--三级选择-->
+        <view class='form-item'>
+          <text class='label'>服务工号</text>
+          <input></input>
+        </view>
+        <view class='form-item'>
+          <text class='label'>代理商logo</text>
+          <view style="width: 100px; height: 100px;         background-color: #eeeeee;" bindtap='chooseImage'>
+            <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{logoImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item'>
+          <text class='label'>老板微信</text>
+          <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
+            <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{wechatImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item'>
+            <text class='label'>电话</text> 
+            <input placeholder="联系人电话"></input>
+        </view>
+        <view class='form-item'>
+          <text class='label'>验证码</text>
+          <input></input>
+        </view>
+      </form>
     </view>
   </view>
+  <view class='title'>入驻时长</view>
+    <view>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />
+          {{item.value}}
+        </label>
+      </radio-group>
+    </view>
+  <button>申请入驻</button>
 </view>

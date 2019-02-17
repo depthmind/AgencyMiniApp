@@ -1,1 +1,23 @@
-/* pages/map/map.wxss */
+.form-item{
+  background: #fff;
+	border-radius: 20rpx;
+	padding: 20rpx 40rpx;
+	margin:10rpx 0;
+	box-shadow: 0 3px 5px #bdbdbd;
+	box-sizing: border-box;
+	width:100%;
+	border-bottom: 2rpx solid #dedede;
+	position:relative;
+	font-size:28rpx;
+}
+.city{
+  position:absolute;
+	left:0;
+	line-height:80rpx;
+}
+
+.form-item .label{
+	position:absolute;
+	left:0;
+	line-height:80rpx;
+}

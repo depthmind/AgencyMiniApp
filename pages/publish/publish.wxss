@@ -53,7 +53,7 @@ button{
 }
 .form .form-item input{
 	height: 80rpx;
-	padding-left: 100rpx;
+	padding-left: 135rpx;
 }
 .form .form-item textarea{
 	height: 130rpx;

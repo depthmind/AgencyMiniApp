@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    items: [
+      { name: 'halfYear', value: '半年' },
+      { name: 'onYear', value: '一年', checked: 'true' },
+    ],
+    addressDetail: '',
   },
 
   /**
@@ -41,7 +45,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    that.setData({
+      addressDetail: that.data.addressDetail
+    })
   },
 
   /**
@@ -99,5 +106,9 @@ Page({
     wx.navigateTo({
       url: '/pages/map/map',
     })
+  },
+
+  radioChange: function (e) {
+    console.log(e.detail.value)
   }
 })
