@@ -1,2 +1,30 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view>
+  <view>
+    <image>头像</image>
+    <view>昵称</view>
+    <view>钱包</view>
+    <view>我的收藏</view>
+  </view>
+
+  <view>
+    <view>我的订单</view>
+    <view>待付款</view>
+    <view>待发货</view>
+    <view>待收货</view>
+    <view>已完成</view>
+    <view>售后</view>
+  </view>
+
+  <view>
+    <view>商家入驻</view>
+    <view>商家入口</view>
+    <view>二批入驻</view>
+    <view>二批入口</view>
+  </view>
+
+  <view>
+    <view>联系客服</view>
+    <view>帮助中心</view>
+    <view>关于我们</view>
+  </view>
+</view>
