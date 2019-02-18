@@ -157,6 +157,13 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+
+  //点击搜索框跳转搜索页面
+  navigateToSearchPage: function() {
+    wx.navigateTo({
+      url: '../search/search'
+    })
   }
 
 
