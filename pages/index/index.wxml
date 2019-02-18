@@ -7,7 +7,7 @@
       </view>
       <view class='search'>
         <icon class="searchcion" size='20' type='search'></icon>
-        <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText'></input>
+        <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText' bindfocus='navigateToSearchPage'></input>
       </view>
     </view>
     <view style='display:flex;justify-content: center;margin:20rpx'>
