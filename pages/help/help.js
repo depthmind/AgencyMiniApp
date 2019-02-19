@@ -1,4 +1,4 @@
-// pages/search/search.js
+// pages/help/help.js
 Page({
 
   /**
@@ -20,7 +20,7 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: '搜索',
+      title: '帮助中心',
     })
   },
 

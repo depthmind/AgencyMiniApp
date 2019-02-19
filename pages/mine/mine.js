@@ -19,7 +19,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.setNavigationBarTitle({
+      title: '个人中心',
+    })
   },
 
   /**
@@ -62,5 +64,23 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  agencySignin: function () {
+    wx.navigateTo({
+      url: '../../pages/agency/agency',
+    })
+  },
+
+  aboutUs: function () {
+    wx.navigateTo({
+      url: '../../pages/aboutUs/aboutUs',
+    })
+  },
+
+  help: function () {
+    wx.navigateTo({
+      url: '../../pages/help/help',
+    })
   }
 })

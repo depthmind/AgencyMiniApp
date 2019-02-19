@@ -25,6 +25,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    wx.setNavigationBarTitle({
+      title: '信息发布',
+    })
     var that = this;
     // wx.request({
     //   url: '', //查询分类信息

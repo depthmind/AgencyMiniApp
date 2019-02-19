@@ -1,4 +1,4 @@
-// pages/search/search.js
+// pages/aboutUs/aboutUs.js
 Page({
 
   /**
@@ -20,7 +20,7 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: '搜索',
+      title: '关于我们',
     })
   },
 

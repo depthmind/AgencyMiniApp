@@ -16,12 +16,12 @@
   </view>
 
   <view>
-    <view>商家入驻</view>
+    <view bindtap='agencySignin'>商家入驻</view>
     <view>商家入口</view>
     <view>二批入驻</view>
     <view>二批入口</view>
-    <view>联系客服</view>
-    <view>帮助中心</view>
-    <view>关于我们</view>
+    <button open-type='contact'>联系我们</button>
+    <view bindtap='help'>帮助中心</view>
+    <view bindtap='aboutUs'>关于我们</view>
   </view>
 </view>
