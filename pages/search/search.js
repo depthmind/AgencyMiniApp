@@ -7,76 +7,78 @@ Page({
   data: {
     canClear: false,
     searchContent: '',
+    inputCursor: null,
     resultProductList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '搜索',
-    })
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  clearInputText: function () {
+  clearInputText: function() {
     this.setData({
       searchContent: ''
     })
   },
 
-  search: function (e) {
+  search: function(e) {
     let that = this;
     let value = e.detail.value;
+    let cursor = e.detail.cursor
+    console.log(value)
+    console.log(cursor)
     if (value.length > 0) {
       that.setData({
         canClear: true
@@ -86,15 +88,28 @@ Page({
         canClear: false
       })
     }
+    if (cursor != that.data.inputCursor) {
+      wx.request({
+        url: '',
+        data: {
+          key: value
+        },
+        success(res) {
+          that.setData({
+            resultProductList: res.data.productList
+          })
+        }
+      })
+    }
+    that.setData({
+      inputCursor: cursor
+    })
+  },
+  getProductInfo: function(e) {
     wx.request({
       url: '',
       data: {
-        key: value
-      },
-      success(res){
-        that.setData({
-          resultProductList: res.data.productList
-        })
+        productId: e.detail.productId
       }
     })
   }
