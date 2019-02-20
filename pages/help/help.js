@@ -1,13 +1,11 @@
-// pages/search/search.js
+// pages/help/help.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    canClear: false,
-    searchContent: '',
-    resultProductList: []
+
   },
 
   /**
@@ -22,7 +20,7 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: '搜索',
+      title: '帮助中心',
     })
   },
 
@@ -66,36 +64,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  clearInputText: function () {
-    this.setData({
-      searchContent: ''
-    })
-  },
-
-  search: function (e) {
-    let that = this;
-    let value = e.detail.value;
-    if (value.length > 0) {
-      that.setData({
-        canClear: true
-      })
-    } else {
-      that.setData({
-        canClear: false
-      })
-    }
-    wx.request({
-      url: '',
-      data: {
-        key: value
-      },
-      success(res){
-        that.setData({
-          resultProductList: res.data.productList
-        })
-      }
-    })
   }
 })

@@ -23,6 +23,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    wx.setNavigationBarTitle({
+      title: '代理商入驻',
+    })
     var that = this
     var longitude = wx.getStorageSync("longitude")
     var latitude = wx.getStorageSync("latitude")
