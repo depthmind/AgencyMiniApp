@@ -3,28 +3,37 @@
 .header {
   background-color: red;
   height: 100rpx;
+  display: flex;
+  margin-top: 30rpx;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .search {
   display: flex;
   height: 50rpx;
-  position: absolute;
-  top: 20rpx;
   width: 80%;
-  align-content: center;
   background-color: white;
   border-radius:50rpx; 
 }
+
 .searchcion {
   margin-top: 6rpx;
   margin-left: 20rpx;
   display: flex;
 }
+
 .searchInput {
   display: flex;
-  flex-direction: row;
+  width: 80%;
 }
+
+.search-clear {
+  margin-top: 2rpx;
+}
+
 .searchInputText {
   font-size: 30rpx;
 }
+
