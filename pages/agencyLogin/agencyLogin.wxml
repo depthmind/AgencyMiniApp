@@ -1,0 +1,9 @@
+<view>
+  <view>
+    <form bindsubmit='formSubmit'>
+      <input placeholder='请输入账号'></input>
+      <input placeholder='请输入密码' type='password'></input>
+    </form>
+    <button>登录</button>
+  </view>
+</view>

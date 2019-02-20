@@ -1,18 +1,18 @@
-// pages/mine/mine.js
+// pages/agencyLogin/agencyLogin.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
@@ -20,7 +20,7 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: '个人中心',
+      title: '代理商中心',
     })
   },
 
@@ -64,23 +64,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  agencySignin: function () {
-    wx.navigateTo({
-      url: '../../pages/agency/agency',
-    })
-  },
-
-  aboutUs: function () {
-    wx.navigateTo({
-      url: '../../pages/aboutUs/aboutUs',
-    })
-  },
-
-  help: function () {
-    wx.navigateTo({
-      url: '../../pages/help/help',
-    })
   }
 })
