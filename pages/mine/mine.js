@@ -68,7 +68,13 @@ Page({
 
   agencySignin: function () {
     wx.navigateTo({
-      url: '../../pages/agency/agency',
+      url: '../../pages/agencySignin/agencySignin',
+    })
+  },
+
+  nearbyAgencySignin: function () {
+    wx.navigateTo({
+      url: '../../pages/nearbyAgencySignin/nearbyAgencySignin',
     })
   },
 
