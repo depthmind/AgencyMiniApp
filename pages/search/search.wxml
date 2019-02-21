@@ -1,9 +1,16 @@
 <!--pages/search/search.wxml-->
-<view class='header'>
-  <view class='search'>
-    <icon class="searchcion" size='20' type='search'></icon>
-    <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText' bindfocus='navigateToSearchPage'></input>
+<view>
+  <view class='header'>
+    <view class='search'>
+      <icon class="searchcion" size='20' type='search'></icon>
+      <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText' value='{{searchContent}}' bindinput='search'></input>
+      <icon wx:if="{{canClear}}" type='clear' class='search-clear' bindtap='clearInputText'></icon>
+    </view>
+
+    <view class='search-result' wx:for="{{resultProductList}}">
+      <text class='name' data-product-id='{{item.id}}' bindtap='getProductInfo'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+    </view>
+
+
   </view>
-
-
 </view>
