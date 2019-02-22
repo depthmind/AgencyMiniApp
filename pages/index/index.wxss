@@ -6,15 +6,14 @@
   flex-direction: column;
 }
 .exceptProduct {
-  background-image: url('http://m.tourmade.com/sites/all/themes/tourmade_m_v3/images/banner/home-banner.jpg');
-  height: 500rpx;
-  background-size: 100%,80%;
   display: flex;
   flex-direction: column;
 }
 .header {
+  background-color: red;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 150rpx;
   width: 100%;
   top: 10rpx;
 }
@@ -22,34 +21,36 @@
   display: flex;
   position: flex;
   margin-left: 20rpx;
-  width: 155rpx;
 }
 .location-text {
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 10rpx;
   white-space: nowrap;
-  font-size: 30rpx;
-  color: #ccc
+  font-size: 40rpx;
+  color: #ccc;
+  font-family: Microsoft YaHei
 }
 .search {
   display: flex;
-  height: 80%;
-  margin-top: 2rpx;
-  margin-left: 120rpx;
-  margin-right: 10rpx;
+  height: 35%;
+  width: 90%;
+  justify-content: center;
+  align-self: center;
+  margin-top: 10rpx;
   margin-bottom: 2rpx;
   background-color: white;
   border: 0rpx solid #000;
   border-radius:50rpx; 
 }
 .searchcion {
-  margin-top: 6rpx;
-  margin-left: 20rpx;
+  align-items: center;
   display: flex;
 }
 .searchInput {
   display: flex;
-  flex-direction: row;
+  align-self: center;
+  width: 200rpx;
 }
 .searchInputText {
   font-size: 30rpx;
@@ -58,13 +59,13 @@
 .swiper-view {
   display: flex;
   justify-content: center;
-  height: 400rpx;
-  width: 85%;
+  height: 300rpx;
+  width: 100%;
 }
 
 .u-wrp-bnr {
   width: 100%;
-  height: 400rpx;
+  height: 100%;
   display: flex;
   background: #f0f0f0;
 }
@@ -77,11 +78,12 @@
 .u-img-slide {
   display: flex;
   width: 100%;
-  height: 70%;
+  height: 80%;
 }
 
 .u-text-slide {
   display: flex;
+  margin-top: 5rpx;
   justify-content: center;
   font-size: 30rpx;
   margin-bottom: 3rpx;
@@ -97,34 +99,6 @@
   flex: 1;
   border: black 3rpx solid;
 }
-
-/* .swiper-tab{
-    width: 100%;
-    border-bottom: 2rpx solid #ccc;
-    text-align: center;
-    height: 88rpx;
-    line-height: 88rpx;
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-} .swiper-tab-item{
-    flex: 1; 
-    color:#434343;
-} .active{
-    color:#F65959;
-    border-bottom: 4rpx solid #F65959;
-} swiper{
-  text-align: center;
-}
-
-.scrollView {
-  height: 100%;
-}
-
-swiper-item {
-  width: 100%;
-  height: 100%;
-} */
 
 .productType-tab {
   width: 100%;

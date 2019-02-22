@@ -8,7 +8,44 @@ Page({
     canClear: false,
     searchContent: '',
     inputCursor: null,
-    resultProductList: []
+    resultAgencyList: [{
+      id: "1",
+      name: "agency1", 
+      content: "contendafdfat1"
+    }, {
+        id: "2",
+        name: "agency2",
+        content: "contdfaent2"
+    }, {
+        id: "3",
+        name: "agency3",
+        content: "contefdafdafdafdafdant3"
+    }],
+    resultProductList: [{
+      id: "1",
+      name: "product1",
+      content: "contedfadfant1"
+    }, {
+        id: "2",
+        name: "product2",
+        content: "contdafdafent2"
+    }, {
+        id: "3",
+        name: "product3",
+        content: "conterq32432ent3"
+    }, {
+        id: "4",
+        name: "product4",
+        content: "conte112nt4"
+    }, {
+        id: "5",
+        name: "product5",
+        content: "con434fraffdafdafdafdafdafdafdafafdewerwqrewqrtent5"
+    }, {
+        id: "6",
+        name: "product6",
+        content: "conteafdadfafafnt6"
+    }]
   },
 
   /**

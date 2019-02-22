@@ -5,11 +5,17 @@ const app = getApp()
 Page({
   data: {
     location: "正在定位...",
-    "bnrUrl": [{
+    "bnr": [{
+      "id": "1",
+      "name": "name1",
       "url": "images/1.jpg"
     }, {
+      "id": "2",
+      "name": "name2",
       "url": "images/2.jpg"
     }, {
+      "id": "3",
+      "name": "name3",
       "url": "images/3.jpg"
     }],
     recommends: [{
