@@ -1,16 +1,21 @@
 <!--pages/search/search.wxml-->
-<view>
+<view class='container_search'>
   <view class='header'>
     <view class='search'>
       <icon class="searchcion" size='20' type='search'></icon>
       <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText' value='{{searchContent}}' bindinput='search'></input>
-      <icon wx:if="{{canClear}}" type='clear' class='search-clear' bindtap='clearInputText'></icon>
+      <icon wx:if="{{canClear}}" type='clear' size='45rpx' class='search-clear' bindtap='clearInputText'></icon>
     </view>
-
-    <view class='search-result' wx:for="{{resultProductList}}">
+  </view>
+  <view class='search-result'>
+    <view class='search-result-agency' wx:for="{{resultAgencyList}}" wx:key="{{item.id}}">
+      <text class='name' data-agency-id='{{item.id}}' bindtap='getAgencyInfo'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+      <view class="divLine1"></view>
+    </view>
+    <view class="divLine2"></view>
+    <view class='search-result-product' wx:for="{{resultProductList}}" wx:key="{{item.id}}">
       <text class='name' data-product-id='{{item.id}}' bindtap='getProductInfo'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+      <view class="divLine1"></view>
     </view>
-
-
   </view>
 </view>

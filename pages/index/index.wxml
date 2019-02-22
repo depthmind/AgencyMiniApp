@@ -6,17 +6,17 @@
         <text class='location-text'>{{location}}</text>
       </view>
       <view class='search'>
-        <icon class="searchcion" size='20' type='search'></icon>
-        <input class='searchInput' placeholder='请输入关键字' placeholder-class='searchInputText' bindfocus='navigateToSearchPage'></input>
+        <icon class="searchcion" size='35rpx' type='search'></icon>
+        <input class='searchInput' placeholder=' 请输入关键字' placeholder-class='searchInputText' bindfocus='navigateToSearchPage'></input>
       </view>
     </view>
-    <view style='display:flex;justify-content: center;margin:20rpx'>
+    <view style='display:flex;justify-content: center;'>
       <view class='swiper-view'>
-        <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
-          <block wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="index">
-            <swiper-item class="swiper-item">
+        <swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
+          <block wx:for="{{bnr}}" wx:for-index="index" wx:key="index">
+            <swiper-item class="swiper-item" bindtap="get" data-id="{{item.id}}">
               <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
-              <view class='u-text-slide'>轮播图信息</view>
+              <view class='u-text-slide'>{{item.name}}</view>
             </swiper-item>
           </block>
         </swiper>
@@ -52,18 +52,4 @@
     </view>
   </view>
 
-  <!-- <swiper current="{{currentTab-1}} " duration="300 " bindchange="swiperTab">
-    <swiper-item>
-      <scroll-view scroll-y='true' class='scrollView'>
-        <view class='products'>
-          <view wx:for="{{infoList}}" wx:key="{{infoList.id}}">
-            <view class='product-item'>
-              <text class='name'>{{item.name}} | <text class="content">{{item.content}}</text></text>
-            </view>
-          </view>
-        </view>
-      </scroll-view>
-    </swiper-item>
-  </swiper> -->
-  <view>djalkjdklfajdl;sfj</view>
 </view>
