@@ -12,15 +12,15 @@ Page({
     "bnr": [{
       "id": "1",
       "name": "name1",
-      "url": "images/1.jpg"
+      "url": "../../images/index-bnr1.jpg"
     }, {
       "id": "2",
       "name": "name2",
-      "url": "images/2.jpg"
+        "url": "../../images/index-bnr2.jpg"
     }, {
       "id": "3",
       "name": "name3",
-      "url": "images/3.jpg"
+        "url": "../../images/index-bnr3.jpg"
     }],
     recommends: [],
     infoTypes: [{
