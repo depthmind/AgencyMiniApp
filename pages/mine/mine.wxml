@@ -1,7 +1,7 @@
 <view>
   <view>
-    <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKtGdfGvgMJ7orcVqdPHia4YLaFW8jJpIQK7UJGCRhbwmTsbxM9fNc8lpwXQXMFdzxcB9NuO9EknZw/0' style='height:30px;width:30px;'></image>
-    <view>昵称</view>
+    <open-data type="userAvatarUrl"></open-data> 
+    <open-data type="userNickName" lang="zh_CN"></open-data>
     <view>钱包</view>
     <view>我的收藏</view>
   </view>
@@ -18,7 +18,7 @@
   <view>
     <view bindtap='agencySignin'>商家入驻</view>
     <view>商家入口</view>
-    <view>二批入驻</view>
+    <view bindtap='nearbyAgencySignin'>二批入驻</view>
     <view>二批入口</view>
     <button open-type='contact'>联系我们</button>
     <view bindtap='help'>帮助中心</view>

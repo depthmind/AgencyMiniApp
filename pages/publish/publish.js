@@ -11,7 +11,10 @@ Page({
       { name: 'top', value: '是' },
       { name: 'notTop', value: '否', checked: 'true' },
     ],
-    imagePath: '/images/photo.png'
+    imagePath: '/images/photo.png',
+    addressDetail: '',
+    tempFilePaths: [],
+    uploadImagePath: '',
   },
 
   /**
@@ -94,14 +97,14 @@ Page({
   chooseImage: function () {
     var that = this;
     wx.chooseImage({
-      count: 1,
+      count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album'],
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
+        that.data.tempFilePaths = res.tempFilePaths
         that.setData({
-          imagePath: tempFilePaths
+          tempFilePaths: that.data.tempFilePaths
         })
       }
     })
@@ -109,5 +112,62 @@ Page({
 
   radioChange: function (e) {
     console.log(e.detail.value)
+  },
+
+  chooseAddress: function () {
+    wx.navigateTo({
+      url: '/pages/map/map',
+    })
+  },
+
+  formSubmit: function (e) {
+    console.log(e)
+    var that = this
+    var temp = that.data.tempFilePaths
+    var data = e.detail.value
+    var isTop = 0
+    if (data.switch) {
+      isTop = 1
+    }
+    var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilePhone=' + data.mobilePhone
+      + '&description=' + data.description + '&isTop=' + isTop
+    if (temp.length > 0) {
+      for (var i = 0; i < temp.length; i++) {
+        wx.uploadFile({
+          url: 'http://47.105.169.49/Agency/upfile',
+          filePath: temp[i],
+          name: 'file',
+          formData: {
+            user: 'test'
+          },
+          success(res) {
+            var path = res.data
+            if (that.data.uploadImagePath == '') {
+              that.data.uploadImagePath = path
+            } else {
+              that.data.uploadImagePath = that.data.uploadImagePath + '|' + path 
+            }
+            if (i = temp.length - 1) {
+              console.log(that.data.uploadImagePath)
+              parameter = parameter + '&images=' + that.data.uploadImagePath
+              wx.request({
+                url: 'http://47.105.169.49/Agency/publish/savePublishContent.do?' + parameter,
+                success(res) {
+                  console.log(res)
+                }
+              })
+            }
+          }
+        })
+      }
+    } else { //直接调用保存发布信息的接口
+      wx.request({
+        url: 'http://47.105.169.49/Agency/publish/savePublishContent.do?' + parameter,
+        success(res) {
+          console.log(res)
+        }
+      })
+    }
+    console.log(e)
   }
 })

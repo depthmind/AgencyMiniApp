@@ -5,23 +5,18 @@
       <form bindsubmit="formSubmit">
         <view class='form-item'>
         <text class='label'>类目</text> 
-          <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-          <text>{{array[index]}}</text>
-            <view>
-              {{array[index]}}
-            </view>
-          </picker> -->
-          <input placeholder="请输入标题"></input>
-        </view>
-        <view class='form-item'>
-            <text class='label'>标题<text>*</text></text> 
-            <input placeholder="请输入标题"></input>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <text name="category">{{array[index]}}</text>
+          </picker>
         </view>
         <view class='form-item'>
           <text class='textarea-label'>内容描述<text>*</text></text>
-          <textarea style="display: {{textareadisplay}};" name="requirement" placeholder='请描述信息内容' value='{{requirement}}'></textarea>
+          <textarea name="description" style="display: {{textareadisplay}};" placeholder='请描述信息内容'></textarea>
         </view>
         <view class='form-item'>
+        <view wx:for="{{tempFilePaths}}"wx:key="{{index}}">
+           <image style="width: 100px; height: 100px; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
+          </view>
           <text class='label' style='position:static;'>上传图片<text>*</text></text> 
           <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
             <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
@@ -29,26 +24,22 @@
         </view>
         <view class='form-item'>
             <text class='label'>姓名</text> 
-            <input placeholder="联系人姓名"></input>
+            <input name="contactName" placeholder="联系人姓名"></input>
         </view>
         <view class='form-item'>
             <text class='label'>电话</text> 
-            <input placeholder="联系人电话"></input>
+            <input name="mobilePhone" placeholder="联系人电话"></input>
         </view>
+        <view class='form-item'>
+          <text class='label'>详细地址</text>
+          <input name="address" bindtap='chooseAddress' value='{{addressDetail}}'></input>
+        </view>
+        <view class="form-item">
+          <view class="label">是否置顶</view>
+          <switch name="switch" />
+        </view>
+        <button form-type="submit">提交审核</button>
       </form>
     </view>
   </view>
-    <!-- <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
-      <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
-    </view> -->
-  <view class='title'>是否置顶</view>
-  <view>
-    <radio-group class="radio-group" bindchange="radioChange">
-      <label class="radio" wx:for="{{items}}">
-        <radio value="{{item.name}}" checked="{{item.checked}}" />
-        {{item.value}}
-      </label>
-    </radio-group>
-  </view>
-  <button>提交审核</button>
 </view>

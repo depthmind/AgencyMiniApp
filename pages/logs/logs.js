@@ -11,5 +11,17 @@ Page({
         return util.formatTime(new Date(log))
       })
     })
+  },
+
+  pay: function () {
+    wx.requestPayment({
+      timeStamp: '',
+      nonceStr: '',
+      package: '',
+      signType: 'MD5',
+      paySign: '',
+      success(res) { },
+      fail(res) { }
+    })
   }
 })
