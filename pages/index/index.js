@@ -4,6 +4,10 @@ const app = getApp()
 
 Page({
   data: {
+    offset: 0,
+    rows: 5,
+    scrollHeight: 0,
+    scrollTop: 0,
     location: "正在定位...",
     "bnr": [{
       "id": "1",
@@ -18,19 +22,7 @@ Page({
       "name": "name3",
       "url": "images/3.jpg"
     }],
-    recommends: [{
-      "id": 1,
-      "name": "recommendName1",
-      "content": "recommendContent1"
-    }, {
-      "id": 2,
-      "name": "recommendName2",
-      "content": "recommendContent2"
-    }, {
-      "id": 3,
-      "name": "recommendName3",
-      "content": "recommendContent3"
-    }],
+    recommends: [],
     infoTypes: [{
       "id": "1",
       "name": "infoType1"
@@ -44,29 +36,20 @@ Page({
       "id": "4",
       "name": "infoType4"
     }],
-    infoList: [{
-      "id": "1",
-      "name": "name1",
-      "content": "content1"
-    }, {
-      "id": "2",
-      "name": "name2",
-      "content": "content2"
-    }, {
-      "id": "3",
-      "name": "name3",
-      "content": "content3"
-    }, {
-      "id": "4",
-      "name": "name4",
-      "content": "content4"
-    }]
+    allGoodsList: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          scrollHeight: res.windowHeight
+        })
+      },
+    })
   },
 
   /**
@@ -110,7 +93,45 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    //获取推荐产品
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        isTop: 1,
+        offset: 0,
+        rows: 3
+      },
+      success(recommendRes){
+        console.log("recommendRes")
+        console.log(recommendRes)
+        that.setData({
+          recommends: recommendRes.data
+        })
+      }
+    })
+    //获取所有商品--分页 0-10
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        offset: 0,
+        rows: 5
+      },
+      success(allGoodsRes) {
+        console.log("allGoodsRes")
+        console.log(allGoodsRes)
+        that.setData({
+          allGoodsList: allGoodsRes.data
+        })
+        
+        that.setData({
+          offset: that.data.offset + that.data.rows
+        })
+        console.log("offset")
+        console.log(that.data.offset)
+        console.log(that.data.offset)
+      }
+    })
   },
 
   /**
@@ -138,7 +159,46 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
+    var that = this;
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading'
+    })
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        offset: that.data.offset,
+        rows: that.data.rows
+      },
+      success(moreGoodsRes) {
+        console.log("moreGoods")
+        console.log(moreGoodsRes)
 
+        if (moreGoodsRes.data.length < 1) {
+          wx.showToast({
+            title: '没有了。。。',
+            icon: "none"
+          })
+        } else {
+
+        var infoList = that.data.allGoodsList;
+        for (var i = 0; i < moreGoodsRes.data.length; i++) {
+          infoList.push(moreGoodsRes.data[i])
+        }
+        that.setData({
+          allGoodsList: infoList
+        })
+        that.setData({
+          offset: that.data.offset + that.data.rows
+        })}
+      },
+      fail: {
+
+      },
+      complete() {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**
@@ -173,7 +233,6 @@ Page({
     wx.navigateTo({
       url: '../search/search'
     })
-  }
-
+  },
 
 })

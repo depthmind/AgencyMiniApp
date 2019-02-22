@@ -30,7 +30,7 @@
   <view style='display:flex;justify-content:center;font-size: 30rpx;'>推荐产品</view>
   <view class='products'>
     <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">
-      <text class='name'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+      <text class='name'>{{item.goodsName}} | <text class="content">{{item.agencyName}}</text></text>
     </view>
   </view>
 
@@ -45,9 +45,9 @@
   </view>
 
   <view class='products'>
-    <view wx:for="{{infoList}}" wx:key="{{infoList.id}}">
+    <view wx:for="{{allGoodsList}}" wx:key="{{allGoodsList.id}}">
       <view class='product-item'>
-        <text class='name'>{{item.name}} | <text class="content">{{item.content}}</text></text>
+        <text class='name'>{{item.goodsName}} | <text class="content">{{item.agencyName}}</text></text>
       </view>
     </view>
   </view>
