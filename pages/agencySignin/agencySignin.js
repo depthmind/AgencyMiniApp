@@ -7,6 +7,7 @@ Page({
   data: {
     items: [
       { name: 'halfYear', value: '半年' },
+      { name: 'oneMonth', value: '一个月' },
       { name: 'onYear', value: '一年', checked: 'true' },
     ],
     addressDetail: '',

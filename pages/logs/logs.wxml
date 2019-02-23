@@ -1,7 +1,7 @@
 <!--logs.wxml-->
 <view class="container log-list">
-  <block wx:for="{{logs}}" wx:for-item="log">
+  <!-- <block wx:for="{{logs}}" wx:for-item="log">
     <text class="log-item">{{index + 1}}. {{log}}</text>
-  </block>
+  </block> -->
   <button bindtap='pay'>支付测试</button>
 </view>

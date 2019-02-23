@@ -14,18 +14,24 @@ Page({
   },
 
   pay: function () {
-    wx.requestPayment({
-      timeStamp: '1550830958',
-      nonceStr: '175e731c8acf4d249ba8e4e0d0582d1e',
-      package: 'wx2218224125377251061936020594850699',
-      signType: 'MD5',
-      paySign: 'AB920CBF1205F491EC3F8B7BB8A5CC7CEA8E824A14354D3992AA5A4611C68798',
+    wx.request({
+      url: 'http://localhost:8080/Agency/pay/jsapiPay?tradeNo=koejoijfwer2goi&totalFee=1',
       success(res) {
-        console.log(res)
-       },
-      fail(res) {
-        console.log(res)
-       }
+        wx.requestPayment({
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.prepayId,
+          signType: 'MD5',
+          paySign: res.data.paySign,
+          success(res) {
+            console.log(res)
+          },
+          fail(res) {
+            console.log(res)
+          }
+        })
+      }
     })
+    
   }
 })
