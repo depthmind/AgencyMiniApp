@@ -9,7 +9,11 @@ Page({
     scrollHeight: 0,
     scrollTop: 0,
     location: "正在定位...",
-    "bnr": [{
+    currentProvince: "",
+    currentCity: "",
+    currentDistrict: "",
+    isCooperation: true,
+    goodsBnr: [{
       "id": "1",
       "name": "name1",
       "url": "../../images/index-bnr1.jpg"
@@ -25,16 +29,16 @@ Page({
     recommends: [],
     infoTypes: [{
       "id": "1",
-      "name": "infoType1"
+      "name": "陈列"
     }, {
       "id": "2",
-      "name": "infoType2"
+      "name": "优惠"
     }, {
       "id": "3",
-      "name": "infoType3"
+      "name": "附近"
     }, {
       "id": "4",
-      "name": "infoType4"
+      "name": "二批"
     }],
     allGoodsList: []
   },
@@ -49,15 +53,6 @@ Page({
           scrollHeight: res.windowHeight
         })
       },
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-    wx.setNavigationBarTitle({
-      title: '首页',
     })
     wx.authorize({
       scope: 'scope.userLocation',
@@ -77,22 +72,21 @@ Page({
             console.log("accuracy = " + accuracy)
             wx.request({
               url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
-              success(res) {
-                console.log(res)
+              success(locationRes) {
+                console.log("location_res")
+                console.log(locationRes)
+                that.data.currentCity = locationRes.data.result.address_component.city
+                that.data.currentProvince = locationRes.data.result.address_component.province
+                that.data.currentDistrict = locationRes.data.result.address_component.district
+                console.log("currentProvince="+that.data.currentProvince)
               }
             })
           }
         })
       },
-      fail() {},
-      complete() {}
+      fail() { },
+      complete() { }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
     var that = this;
     //获取推荐产品
     wx.request({
@@ -100,7 +94,75 @@ Page({
       data: {
         isTop: 1,
         offset: 0,
-        rows: 3
+        rows: 4
+      },
+      success(recommendRes) {
+        console.log("recommendRes")
+        console.log(recommendRes)
+        that.setData({
+          recommends: recommendRes.data
+        })
+      }
+    })
+    //获取所有商品--分页 0-10
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        offset: 0,
+        rows: 5
+      },
+      success(allGoodsRes) {
+        console.log("allGoodsRes")
+        console.log(allGoodsRes)
+        that.setData({
+          allGoodsList: allGoodsRes.data
+        })
+
+        that.setData({
+          offset: that.data.offset + that.data.rows
+        })
+        console.log("offset")
+        console.log(that.data.offset)
+        console.log(that.data.offset)
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+    wx.setNavigationBarTitle({
+      title: '首页',
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+    var that = this;
+    //获取推荐产品
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        isTop: 1,
+        offset: 0,
+        rows: 4
       },
       success(recommendRes){
         console.log("recommendRes")
@@ -132,20 +194,6 @@ Page({
         console.log(that.data.offset)
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
   },
 
   /**
@@ -208,24 +256,19 @@ Page({
 
   },
 
-
-  //滑动切换 
-  swiperTab: function(e) {
-    var that = this;
-    that.setData({
-      currentTab: e.detail.current
-    });
-  },
-  //点击切换 
+  //点击切换tab
   clickTab: function(e) {
     var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
+    console.log(e)
+    that.setData({
+      offset: 0
+    })
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        
+      }
+    })
   },
 
   //点击搜索框跳转搜索页面
@@ -234,5 +277,12 @@ Page({
       url: '../search/search'
     })
   },
+
+  //跳转修改定位页面
+  changeLocation: function() {
+    wx.navigateTo({
+      url: '../location/location?currentProvince=' + this.data.currentProvince + '&currentCity=' + this.data.currentCity + '&currentDistrict=' + this.data.currentDistrict
+    })
+  }
 
 })
