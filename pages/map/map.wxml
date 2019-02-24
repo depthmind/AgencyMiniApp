@@ -23,7 +23,7 @@
   </view>
 
   <view>
-    <view>当前位置</view>
+    <view>当前位置aaa</view>
     <view>{{currentLocation}}</view>
     <view>重新定位</view>
   </view>

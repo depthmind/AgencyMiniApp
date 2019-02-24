@@ -1,11 +1,11 @@
-<view class="">
+<view  style="padding: 0 0 50px;">
 
   <view class='message'>
     <view class='form'>
       <form bindsubmit="formSubmit">
         <view class='form-item'>
         <text class='label'>类目</text> 
-          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="padding: 0 0 0 66px; line-height: 80rpx;">
           <text name="category">{{array[index]}}</text>
           </picker>
         </view>
@@ -18,7 +18,7 @@
            <image style="width: 100px; height: 100px; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
           </view>
           <text class='label' style='position:static;'>上传图片<text>*</text></text> 
-          <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
+          <view style="width: 100px; height: 100px; background-color: #eeeeee; margin: 10px 0;" bindtap='chooseImage'>
             <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
           </view>
         </view>
@@ -36,7 +36,7 @@
         </view>
         <view class="form-item">
           <view class="label">是否置顶</view>
-          <switch name="switch" />
+          <switch name="switch" style="position:relative; left: 100px; margin: 5px 0;" />
         </view>
         <button form-type="submit">提交审核</button>
       </form>
