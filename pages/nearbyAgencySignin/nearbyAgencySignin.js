@@ -10,6 +10,7 @@ Page({
       { name: 'onYear', value: '一年', checked: 'true' },
     ],
     addressDetail: '',
+    logoImagePath: '/images/logo-image.jpg',
   },
 
   /**

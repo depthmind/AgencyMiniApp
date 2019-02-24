@@ -8,32 +8,36 @@ button{
 	color:#fff;
 	border: none;
 	line-height:2.2;
-	margin:20rpx 40rpx;
+	margin:0;
 	font-size: 32rpx;
-	border-radius: 100rpx;
+	border-radius: 0;
+	width: 100%;
+	position: fixed;
+	left:0;
+	bottom: 0;
+	border: 0;
 }
 
 .message{
 	float:none;
-	width:110%;
+	width:100%;
 	flex-direction:row-reverse;
 	zoom:1;
 	overflow:hidden;
-	padding: 30rpx 20rpx 0;
+	padding: 30rpx 0 0;
 	background: #fff;
 	border-radius: 16rpx;
-	box-shadow: 0 0 10rpx #e4e4e4;
 	box-sizing: border-box;
 	position:relative;
+	margin: 40rpx 0;
 }
 
 .form{
 	background: #fff;
 	border-radius: 20rpx;
 	padding: 20rpx 40rpx;
-	margin:40rpx 10%;
+	margin:40rpx 0;
 	box-sizing: border-box;
-	box-shadow: 0 3px 5px #bdbdbd;
 }
 .form .form-item{
 	box-sizing: border-box;

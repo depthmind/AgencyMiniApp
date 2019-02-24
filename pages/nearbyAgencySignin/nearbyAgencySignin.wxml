@@ -1,10 +1,10 @@
-<view >
+<view style="padding: 0 0 50px;">
   <view class='message'>
     <view class='form'>
       <form bindsubmit="formSubmit">
         <view class='form-item'>
-          <text class='label'>代理商名称</text>
-          <input placeholder="代理商名称"></input>
+          <text class='label'>商家名称</text>
+          <input placeholder="商家名称"></input>
         </view>
         <view class='form-item'>
           <text class='label'>详细地址</text>
@@ -19,21 +19,21 @@
           <text class='label'>服务工号</text>
           <input></input>
         </view>
-        <view class='form-item'>
-          <text class='label'>代理商logo</text>
-          <view style="width: 100px; height: 100px;         background-color: #eeeeee;" bindtap='chooseImage'>
-            <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{logoImagePath}}"></image>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">代理商logo</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseImage'>
+            <image style="width: 100px; height: 100px;"  src="{{logoImagePath}}"></image>
           </view>
         </view>
-        <view class='form-item'>
-          <text class='label'>老板微信</text>
-          <view style="width: 100px; height: 100px; background-color: #eeeeee;" bindtap='chooseImage'>
-            <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{wechatImagePath}}"></image>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">老板微信</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseImage'>
+            <image style="width: 100px; height: 100px;"  src="{{logoImagePath}}"></image>
           </view>
         </view>
-        <view class='form-item'>
+        <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
             <text class='label'>电话</text> 
-            <input placeholder="联系人电话"></input>
+            <input name="mobilePhone" placeholder="联系人电话"></input>
         </view>
         <view class='form-item'>
           <text class='label'>验证码</text>
@@ -42,10 +42,10 @@
       </form>
     </view>
   </view>
-  <view class='title'>入驻时长</view>
+    <text class='label'>入驻时长</text>
     <view>
       <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio" wx:for="{{items}}">
+        <label class="radio" wx:for="{{items}}" style="margin: 0 20rpx 0 0;">
           <radio value="{{item.name}}" checked="{{item.checked}}" />
           {{item.value}}
         </label>
