@@ -2,8 +2,9 @@
 <view class="container_index">
   <view class='exceptProduct'>
     <view class='header'>
-      <view class="location" bindtap='{{changeLocation}}'>
+      <view class="location">
         <text class='location-text'>{{location}}</text>
+        <image class='location-pull' hidden='{{!isCooperation}}' mode='widthFix' src='../../images/pull.png' bindtap="changeLocation"/>
       </view>
       <view class='search'>
         <icon class="searchcion" size='35rpx' type='search'></icon>
@@ -13,7 +14,7 @@
     <view style='display:flex;justify-content: center;'>
       <view class='swiper-view'>
         <swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
-          <block wx:for="{{bnr}}" wx:for-index="index" wx:key="index">
+          <block wx:for="{{goodsBnr}}" wx:for-index="index" wx:key="index">
             <swiper-item class="swiper-item" bindtap="get" data-id="{{item.id}}">
               <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
               <view class='u-text-slide'>{{item.name}}</view>

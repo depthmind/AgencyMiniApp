@@ -1,0 +1,14 @@
+<!--pages/location/location.wxml-->
+<view class="">
+  <view class="weui-cells__title">选择地址：</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd" style="width: 105px">
+                    <picker bindchange="bindProvinceChange" value="{{provincesListIndex}}" range="{{provincesList}}" range-key='fullname'>
+                        <view class="weui-select">{{provincesList[provincesListIndex].fullname}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+</view>
