@@ -12,6 +12,7 @@ Page({
     ],
     addressDetail: '',
     logoImagePath: '/images/logo-image.jpg',
+    wechatImagePath: '/images/logo-image.jpg',
   },
 
   /**
@@ -91,7 +92,7 @@ Page({
 
   },
 
-  chooseImage: function () {
+  chooseLogoImage: function () {
     var that = this;
     wx.chooseImage({
       count: 1,
@@ -101,7 +102,23 @@ Page({
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
         that.setData({
-          imagePath: tempFilePaths
+          logoImagePath: tempFilePaths
+        })
+      }
+    })
+  },
+
+  chooseWechatImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        that.setData({
+          wechatImagePath: tempFilePaths
         })
       }
     })
@@ -115,5 +132,41 @@ Page({
 
   radioChange: function (e) {
     console.log(e.detail.value)
+  },
+
+  formSubmit: function (e) {
+    var that = this
+    var temp = that.data.tempFilePaths
+    var data = e.detail.value
+    var validateCode= data.validateCode //先判断验证码是否正确
+    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilePhone=" + data.mobilePhone + "&time=" + data.time
+    wx.uploadFile({
+      url: 'http://47.105.169.49/Agency/upfile',
+      filePath: that.data.logoImagePath[0],
+      name: 'file',
+      formData: {
+        user: 'test'
+      },
+      success(res) {
+        var path = res.data
+        parameter = parameter + '&logoPath=' + path
+        wx.uploadFile({
+          url: 'http://47.105.169.49/Agency/upfile',
+          filePath: that.data.wechatImagePath[0],
+          name: 'file',
+          formData: {
+            user: 'test'
+          },
+          success(res) {
+            var path = res.data
+            parameter = parameter + '&wechatImagePath=' + path
+            wx.request({
+              url: 'http://localhost:8080/Agency/agency/saveAgencyBase.do?' + parameter,
+            })
+          }
+        })
+      }
+    })
+    
   }
 })

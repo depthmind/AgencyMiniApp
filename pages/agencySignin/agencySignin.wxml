@@ -26,14 +26,14 @@
         </view>
         <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">代理商logo</text>
-          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseImage'>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLogoImage'>
             <image style="width: 100px; height: 100px;"  src="{{logoImagePath}}"></image>
           </view>
         </view>
         <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">老板微信</text>
-          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseImage'>
-            <image style="width: 100px; height: 100px;"  src="{{logoImagePath}}"></image>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseWechatImage'>
+            <image style="width: 100px; height: 100px;"  src="{{wechatImagePath}}"></image>
           </view>
         </view>
         <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
