@@ -139,7 +139,7 @@ Page({
     var temp = that.data.tempFilePaths
     var data = e.detail.value
     var validateCode= data.validateCode //先判断验证码是否正确
-    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilePhone=" + data.mobilePhone + "&time=" + data.time
+    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time
     wx.uploadFile({
       url: 'http://47.105.169.49/Agency/upfile',
       filePath: that.data.logoImagePath[0],
@@ -149,7 +149,7 @@ Page({
       },
       success(res) {
         var path = res.data
-        parameter = parameter + '&logoPath=' + path
+        parameter = parameter + '&logoImagePath=' + path
         wx.uploadFile({
           url: 'http://47.105.169.49/Agency/upfile',
           filePath: that.data.wechatImagePath[0],

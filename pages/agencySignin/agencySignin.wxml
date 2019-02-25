@@ -38,7 +38,7 @@
         </view>
         <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
             <text class='label'>电话</text> 
-            <input name="mobilePhone" placeholder="联系人电话"></input>
+            <input name="mobilephone" placeholder="联系人电话"></input>
         </view>
         <view>发送验证码</view>
         <view class='form-item'>
@@ -47,9 +47,9 @@
         </view>
         <text class='label'>入驻时长</text>
         <view>
-          <radio-group class="radio-group" bindchange="radioChange">
+          <radio-group name="time" class="radio-group" bindchange="radioChange">
             <label class="radio" wx:for="{{items}}" style="margin: 0 20rpx 0 0;">
-              <radio name="time" value="{{item.name}}" checked="{{item.checked}}" />
+              <radio value="{{item.name}}" checked="{{item.checked}}" />
               {{item.value}}
             </label>
           </radio-group>
