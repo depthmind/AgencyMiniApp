@@ -5,8 +5,6 @@
     <text>{{item.agencyName}}</text>
     <view></view>
     <text>{{item.address}}</text>
-    <view></view>
-    <text>{{item.mobilephone}}</text>
   </view>
   </view>
 </view>
