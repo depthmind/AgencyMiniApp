@@ -118,30 +118,44 @@
   border: black 3rpx solid;
 }
 
-.productType-tab {
-  width: 100%;
-  border-bottom: 2rpx solid #ccc;
-  text-align: center;
-  height: 88rpx;
-  line-height: 88rpx;
+.tabs {
   display: flex;
   flex-direction: row;
+  height: 40rpx;
+  border-bottom: 2rpx solid white;
+  border-top: 2rpx solid white;
 }
 
-.productType-tab-item {
-  color: #434343;
-  justify-content: center;
-  background-color: pink;
-  flex: 1;
+.tab-item {
+  display: flex;
+  width: 80rpx;
+  border: 1rpx solid black;
+  border-radius: 20rpx;
+  text-align: center;
 }
 
-.active {
-  color: #f65959;
-  border-bottom: 4rpx solid #f65959;
-  flex: 1;
+.tab-view {
+  display: flex;
+  border: 1rpx #000;
+  border-radius: 5rpx 0;
 }
 
-.products {
+.tabs-scroll-view {
+  border-left: 1rpx solid white;
+  margin-left: 5rpx;
+  width: 80%;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.tabs-scroll-view view{
+height:128rpx;
+width:128rpx;
+display: inline-block; 
+}
+
+
+/* .products {
   float: none;
   width: 100%;
   flex-direction: row-reverse;
@@ -169,9 +183,20 @@
   color: #434343;
   text-decoration: none;
   display: block;
+} */
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  display: flex;
+  width: 300rpx;
 }
 
 .product-item .name {
+  display: flex;
   float: left;
   font-size: 24rpx;
   font-weight: bold;
@@ -182,5 +207,6 @@
 }
 
 .product-item .content {
+  display: flex;
   color: #2cca90;
 }

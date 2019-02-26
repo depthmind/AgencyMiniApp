@@ -9,37 +9,10 @@ Page({
     scrollHeight: 0,
     scrollTop: 0,
     location: "正在定位...",
-    currentProvince: "",
-    currentCity: "",
-    currentDistrict: "",
     isCooperation: true,
-    goodsBnr: [{
-      "id": "1",
-      "name": "name1",
-      "url": "../../images/index-bnr1.jpg"
-    }, {
-      "id": "2",
-      "name": "name2",
-        "url": "../../images/index-bnr2.jpg"
-    }, {
-      "id": "3",
-      "name": "name3",
-        "url": "../../images/index-bnr3.jpg"
-    }],
+    ads: [],
     recommends: [],
-    infoTypes: [{
-      "id": "1",
-      "name": "陈列"
-    }, {
-      "id": "2",
-      "name": "优惠"
-    }, {
-      "id": "3",
-      "name": "附近"
-    }, {
-      "id": "4",
-      "name": "二批"
-    }],
+    tabs: [],
     allGoodsList: []
   },
   /**
@@ -75,19 +48,26 @@ Page({
               success(locationRes) {
                 console.log("location_res")
                 console.log(locationRes)
-                that.data.currentCity = locationRes.data.result.address_component.city
-                that.data.currentProvince = locationRes.data.result.address_component.province
-                that.data.currentDistrict = locationRes.data.result.address_component.district
-                console.log("currentProvince="+that.data.currentProvince)
+                that.setData({
+                  location: locationRes.data.result.address_component.district
+                })
               }
             })
           }
         })
       },
-      fail() { },
-      complete() { }
+      fail() {},
+      complete() {}
     })
     var that = this;
+    //获取轮播图信息
+    wx.request({
+      url: 'http://localhost:8080/Agency/agency/findAdAgency.do',
+      success(adRes) {
+        console.log(adRes)
+      }
+    })
+
     //获取推荐产品
     wx.request({
       url: 'http://localhost:8080/Agency/goods/getGoods.do',
@@ -104,6 +84,18 @@ Page({
         })
       }
     })
+
+    //获取scroll-view-tabs
+    wx.request({
+      url: 'http://localhost:8080/Agency/getIndexTabs.do',
+      success(tabRes) {
+        that.setData({
+          tabs: tabRes.data
+        })
+      }
+    })
+
+
     //获取所有商品--分页 0-10
     wx.request({
       url: 'http://localhost:8080/Agency/goods/getGoods.do',
@@ -141,7 +133,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
 
   /**
@@ -164,7 +156,7 @@ Page({
         offset: 0,
         rows: 4
       },
-      success(recommendRes){
+      success(recommendRes) {
         console.log("recommendRes")
         console.log(recommendRes)
         that.setData({
@@ -185,7 +177,7 @@ Page({
         that.setData({
           allGoodsList: allGoodsRes.data
         })
-        
+
         that.setData({
           offset: that.data.offset + that.data.rows
         })
@@ -229,16 +221,17 @@ Page({
           })
         } else {
 
-        var infoList = that.data.allGoodsList;
-        for (var i = 0; i < moreGoodsRes.data.length; i++) {
-          infoList.push(moreGoodsRes.data[i])
+          var infoList = that.data.allGoodsList;
+          for (var i = 0; i < moreGoodsRes.data.length; i++) {
+            infoList.push(moreGoodsRes.data[i])
+          }
+          that.setData({
+            allGoodsList: infoList
+          })
+          that.setData({
+            offset: that.data.offset + that.data.rows
+          })
         }
-        that.setData({
-          allGoodsList: infoList
-        })
-        that.setData({
-          offset: that.data.offset + that.data.rows
-        })}
       },
       fail: {
 
@@ -266,7 +259,7 @@ Page({
     wx.request({
       url: 'http://localhost:8080/Agency/goods/getGoods.do',
       data: {
-        
+
       }
     })
   },

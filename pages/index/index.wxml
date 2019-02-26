@@ -4,7 +4,7 @@
     <view class='header'>
       <view class="location">
         <text class='location-text'>{{location}}</text>
-        <image class='location-pull' hidden='{{!isCooperation}}' mode='widthFix' src='../../images/pull.png' bindtap="changeLocation"/>
+        <image class='location-pull' hidden='{{!isCooperation}}' mode='widthFix' src='../../images/pull.png' bindtap="changeLocation" />
       </view>
       <view class='search'>
         <icon class="searchcion" size='35rpx' type='search'></icon>
@@ -14,10 +14,10 @@
     <view style='display:flex;justify-content: center;'>
       <view class='swiper-view'>
         <swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
-          <block wx:for="{{goodsBnr}}" wx:for-index="index" wx:key="index">
+          <block wx:for="{{ads}}" wx:for-index="index" wx:key="index">
             <swiper-item class="swiper-item" bindtap="get" data-id="{{item.id}}">
-              <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
-              <view class='u-text-slide'>{{item.name}}</view>
+              <image src='{{item.pic}}' class='u-img-slide' mode='aspectFill'></image>
+              <view class='u-text-slide'>{{item.agencyName}}</view>
             </swiper-item>
           </block>
         </swiper>
@@ -31,24 +31,25 @@
   <view style='display:flex;justify-content:center;font-size: 30rpx;'>推荐产品</view>
   <view class='products'>
     <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">
-      <text class='name'>{{item.goodsName}} | <text class="content">{{item.agencyName}}</text></text>
+      <text class='name'>{{item.goodsName}}<text class="content">{{item.agencyName}}</text></text>
     </view>
   </view>
 
-
-
-
-
-  <view class="productType-tab">
-    <view wx:for="{{infoTypes}}" wx:key="{{infoTypes.id}}">
-      <view class="productType-tab-item {{currentTab==item.id? 'active': ''}} " data-current="{{item.id}} " bindtap="clickTab">{{item.name}}</view>
+  <view class='tabs'>
+    <view class='tab-view'>
+      <view class='tab-item'>附近</view>
+      <view class='tab-item'>二批</view>
     </view>
+    <scroll-view scroll-x class='tabs-scroll-view'>
+        <view wx:for="{{tabs}}" data-tab-id='{{item.id}}'>{{item.tabName}}</view>
+    </scroll-view>
   </view>
+
 
   <view class='products'>
     <view wx:for="{{allGoodsList}}" wx:key="{{allGoodsList.id}}">
       <view class='product-item'>
-        <text class='name'>{{item.goodsName}} | <text class="content">{{item.agencyName}}</text></text>
+        <text class='name'>{{item.goodsName}} <text class="content">{{item.agencyName}}</text></text>
       </view>
     </view>
   </view>
