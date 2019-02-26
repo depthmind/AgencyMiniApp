@@ -36,6 +36,18 @@
             <image style="width: 100px; height: 100px;"  src="{{wechatImagePath}}"></image>
           </view>
         </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">营业执照</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence1Image'>
+            <image style="width: 100px; height: 100px;"  src="{{licence1ImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">食品经营许可证</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence2Image'>
+            <image style="width: 100px; height: 100px;"  src="{{licence2ImagePath}}"></image>
+          </view>
+        </view>
         <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
             <text class='label'>电话</text> 
             <input name="mobilephone" placeholder="联系人电话"></input>
@@ -48,9 +60,9 @@
         <text class='label'>入驻时长</text>
         <view>
           <radio-group name="time" class="radio-group" bindchange="radioChange">
-            <label class="radio" wx:for="{{items}}" style="margin: 0 20rpx 0 0;">
-              <radio value="{{item.name}}" checked="{{item.checked}}" />
-              {{item.value}}
+            <label class="radio" wx:for="{{validPeriod}}" style="margin: 0 20rpx 0 0;">
+              <radio value="{{item.value}}" checked="{{item.checked}}" />
+              {{item.chinese}}
             </label>
           </radio-group>
         </view>
