@@ -50,9 +50,9 @@
         </view>
         <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
             <text class='label'>电话</text> 
-            <input name="mobilephone" placeholder="联系人电话"></input>
+            <input name="mobilephone" placeholder="联系人电话" style="padding-right: 160rpx;"></input>
+            <view style="position:absolute; right: 0; top:12rpx; color:#fff; background:#ff7419;padding: 2px 8px; border-radius: 5px;">发送验证码</view>
         </view>
-        <view>发送验证码</view>
         <view class='form-item'>
           <text class='label'>验证码</text>
           <input name="validateCode"></input>
