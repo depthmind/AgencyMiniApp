@@ -29,6 +29,7 @@ button{
 	border-radius: 16rpx;
 	box-sizing: border-box;
 	position:relative;
+	margin: 40rpx 0 0;
 }
 
 .form{

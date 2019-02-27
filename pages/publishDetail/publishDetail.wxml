@@ -1,0 +1,24 @@
+<view>
+  <view>
+    <!-- 发布者头像 -->
+    <image></image>
+    <!-- 联系人姓名 -->
+    <view></view>
+    <!-- 类别 -->
+    <view></view>
+    <!-- 地址 -->
+    <view></view>
+    <!-- description -->
+    <view></view>
+  </view>
+  <view>
+    <view wx:for="{{images}}">
+      <image src='{{item}}'></image>
+    </view>
+  </view>
+  <view>
+    <view>发布时间:{{publishDate}}</view>
+    <view>联系电话:{{mobilephone}}</view>
+    <button bindtap='makePhoneCall' data-mobilephone='{{mobilephone}}'>拨打电话</button>
+  </view>
+</view>

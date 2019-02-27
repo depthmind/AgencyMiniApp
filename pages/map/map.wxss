@@ -3,7 +3,6 @@
 	border-radius: 20rpx;
 	padding: 20rpx 40rpx;
 	margin:10rpx 0;
-	box-shadow: 0 3px 5px #bdbdbd;
 	box-sizing: border-box;
 	width:100%;
 	border-bottom: 2rpx solid #dedede;
@@ -20,4 +19,19 @@
 	position:absolute;
 	left:0;
 	line-height:80rpx;
+}
+.currentlocation{
+	color: #0097fe;
+	position: relative;
+	padding: 0 100rpx 0 40rpx;
+	height: 60rpx;
+	margin: 0 -40rpx;
+	background: #fff;
+	line-height: 60rpx;
+}
+.relo{
+	position: absolute;
+	right: 40rpx;
+	top: 0;
+	color:#0097fe;
 }

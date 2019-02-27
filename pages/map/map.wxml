@@ -23,13 +23,11 @@
   </view>
 
   <view>
-    <view>当前位置aaa</view>
-    <view>{{currentLocation}}</view>
-    <view>重新定位</view>
+    <view style="margin: 20rpx 0;">当前位置</view>
+    <view class="currentlocation">{{currentLocation}}晶城<view class="relo">重新定位</view></view>
   </view>
-  <view>--------------------------------------</view>
   <view>
-    <view>搜索地址</view>
+    <view style="margin: 20rpx 0;">搜索地址</view>
     <view wx:for="{{addresses}}" wx:key="{{item.id}}" bindtap="openRoute" data-cid="{{item.id}}">
     <!-- <text class='summary'>{{item.title}}</text> -->
     <text class='agentname' bindtap='confirmAddress'>{{item.address}}</text>
