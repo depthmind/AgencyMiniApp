@@ -13,7 +13,7 @@ Page({
     ads: [],
     recommends: [],
     tabs: [],
-    allGoodsList: []
+    publishList: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -49,7 +49,7 @@ Page({
                 console.log("location_res")
                 console.log(locationRes)
                 that.setData({
-                  location: locationRes.data.result.address_component.district
+                  //location: locationRes.data.result.address_component.district
                 })
               }
             })
@@ -98,21 +98,23 @@ Page({
       }
     })
 
-
     //获取所有商品--分页 0-10
     wx.request({
-      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      url: 'http://localhost:8080/Agency/publish/getPublish.do',
       data: {
-        offset: 0,
-        rows: 5
+        offset: that.data.offset,
+        rows: that.data.rows
       },
-      success(allGoodsRes) {
-        console.log("allGoodsRes")
-        console.log(allGoodsRes)
+      success(publishRes) {
+        console.log("publishRes")
+        console.log(publishRes)
+        var publish = publishRes.data
+        for (var i = 0; i < publish.length; i++) {
+          publish[i].images = publish[i].images.split(",")
+        }
         that.setData({
-          allGoodsList: allGoodsRes.data
+          publishList: publish
         })
-
         that.setData({
           offset: that.data.offset + that.data.rows
         })
@@ -150,45 +152,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    var that = this;
-    //获取推荐产品
-    wx.request({
-      url: 'http://localhost:8080/Agency/goods/getGoods.do',
-      data: {
-        isTop: 1,
-        offset: 0,
-        rows: 4
-      },
-      success(recommendRes) {
-        console.log("recommendRes")
-        console.log(recommendRes)
-        that.setData({
-          recommends: recommendRes.data
-        })
-      }
-    })
-    //获取所有商品--分页 0-10
-    wx.request({
-      url: 'http://localhost:8080/Agency/goods/getGoods.do',
-      data: {
-        offset: 0,
-        rows: 5
-      },
-      success(allGoodsRes) {
-        console.log("allGoodsRes")
-        console.log(allGoodsRes)
-        that.setData({
-          allGoodsList: allGoodsRes.data
-        })
 
-        that.setData({
-          offset: that.data.offset + that.data.rows
-        })
-        console.log("offset")
-        console.log(that.data.offset)
-        console.log(that.data.offset)
-      }
-    })
   },
 
   /**
@@ -208,28 +172,28 @@ Page({
       icon: 'loading'
     })
     wx.request({
-      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      url: 'http://localhost:8080/Agency/publish/getPublish.do',
       data: {
         offset: that.data.offset,
         rows: that.data.rows
       },
-      success(moreGoodsRes) {
-        console.log("moreGoods")
-        console.log(moreGoodsRes)
+      success(morePublishRes) {
+        console.log("morePublish")
+        console.log(morePublishRes)
 
-        if (moreGoodsRes.data.length < 1) {
+        if (morePublishRes.data.length < 1) {
           wx.showToast({
             title: '没有了。。。',
             icon: "none"
           })
         } else {
 
-          var infoList = that.data.allGoodsList;
-          for (var i = 0; i < moreGoodsRes.data.length; i++) {
-            infoList.push(moreGoodsRes.data[i])
+          var publishList = that.data.publishList;
+          for (var i = 0; i < morePublishRes.data.length; i++) {
+            publishList.push(morePublishRes.data[i])
           }
           that.setData({
-            allGoodsList: infoList
+            publishList: publishList
           })
           that.setData({
             offset: that.data.offset + that.data.rows
