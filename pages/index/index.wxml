@@ -41,7 +41,7 @@
       <view class='tab-item'>二批</view>
     </view>
     <scroll-view scroll-x class='tabs-scroll-view'>
-        <view wx:for="{{tabs}}" data-tab-id='{{item.id}}'>{{item.tabName}}</view>
+        <view wx:for="{{tabs}}" data-tab-id='{{item.value}}'>{{item.chinese}}</view>
     </scroll-view>
   </view>
 

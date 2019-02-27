@@ -87,7 +87,10 @@ Page({
 
     //获取scroll-view-tabs
     wx.request({
-      url: 'http://localhost:8080/Agency/getIndexTabs.do',
+      url: 'http://localhost:8080/Agency/parameter/findParameter.do',
+      data: {
+        paraDomain: "product.category"
+      },
       success(tabRes) {
         that.setData({
           tabs: tabRes.data
