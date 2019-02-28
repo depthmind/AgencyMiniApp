@@ -233,6 +233,7 @@ Page({
 
   //点击搜索框跳转搜索页面
   navigateToSearchPage: function() {
+    console.log('search page')
     wx.navigateTo({
       url: '../search/search'
     })
@@ -240,8 +241,9 @@ Page({
 
   //跳转修改定位页面
   changeLocation: function() {
+    console.log('location page')
     wx.navigateTo({
-      url: '../location/location?currentProvince=' + this.data.currentProvince + '&currentCity=' + this.data.currentCity + '&currentDistrict=' + this.data.currentDistrict
+      url: '../location/location'
     })
   }
 

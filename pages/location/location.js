@@ -11,7 +11,9 @@ Page({
   data: {
     provices: [1, 2, 3],
     cities: [],
-    districts: []
+    districts: [],
+    region: ["请选择", "请选择", "请选择"]
+    
   },
 
   /**
@@ -192,5 +194,23 @@ Page({
     console.log(val)
     that.data.provinceIndex = provinceIndex
     that.data.cityIndex = cityIndex
+  },
+
+  bindRegionChange: function (e) {
+    console.log("picker选择改变，携带值为：" + e.detail.value)
+    this.setData({
+      region: String(e.detail.value).split(',')
+    })
+    let pages = getCurrentPages();
+    let prePage = pages[pages.length - 2]
+    console.log(pages)
+    prePage.setData({
+      location: this.data.region[2]
+    })
+    wx.navigateBack({
+      delta: 1,
+    })
   }
+
+
 })
