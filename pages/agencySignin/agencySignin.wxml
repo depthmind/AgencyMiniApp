@@ -13,11 +13,11 @@
         <view class='form-item'>
           <!-- <text class='label'>显示区域</text>
           <input placeholder="显示区域"></input> -->
-          <picker-view>
-            <picker>北京市</picker>
-            <picker>北京市</picker>
-            <picker>朝阳区</picker>
-          </picker-view>
+          <picker mode="selector" bindchange="bindPickerChange" range='{{province}}' range-key='{{fullname}}' value="{{province[index].id}}">
+          <view class="picker">
+            当前选择：{{province[index].name}}
+          </view>
+          </picker>
         </view>
         <!--三级选择-->
         <view class='form-item'>
