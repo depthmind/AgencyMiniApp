@@ -118,60 +118,54 @@
   border: black 3rpx solid;
 }
 
-.productType-tab {
-  width: 100%;
-  border-bottom: 2rpx solid #ccc;
-  text-align: center;
-  height: 88rpx;
-  line-height: 88rpx;
+.tabs {
   display: flex;
   flex-direction: row;
+  height: 40rpx;
+  border-bottom: 2rpx solid white;
+  border-top: 2rpx solid white;
 }
 
-.productType-tab-item {
-  color: #434343;
-  justify-content: center;
-  background-color: pink;
-  flex: 1;
+.tab-item {
+  display: flex;
+  width: 80rpx;
+  border: 1rpx solid black;
+  border-radius: 20rpx;
+  text-align: center;
 }
 
-.active {
-  color: #f65959;
-  border-bottom: 4rpx solid #f65959;
-  flex: 1;
+.tab-view {
+  display: flex;
+  border: 1rpx #000;
+  border-radius: 5rpx 0;
+}
+
+.tabs-scroll-view {
+  border-left: 1rpx solid white;
+  margin-left: 5rpx;
+  width: 80%;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.tabs-scroll-view view{
+height:128rpx;
+width:128rpx;
+display: inline-block; 
 }
 
 .products {
-  float: none;
-  width: 100%;
-  flex-direction: row-reverse;
-  zoom: 1;
-  overflow: hidden;
-  padding: 30rpx 20rpx 0;
-  background: #fff;
-  border-radius: 16rpx;
-  box-shadow: 0 0 10rpx #e4e4e4;
-  box-sizing: border-box;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .product-item {
-  overflow: hidden;
-  box-sizing: border-box;
-  position: relative;
-  border-bottom: 2rpx solid #e6e6e6;
-  padding: 16rpx;
-  padding-left: 136rpx;
-  width: 100%;
-  margin: 0;
-  border-radius: 0;
-  min-height: 132rpx;
-  color: #434343;
-  text-decoration: none;
-  display: block;
+  display: flex;
+  width: 300rpx;
 }
 
 .product-item .name {
+  display: flex;
   float: left;
   font-size: 24rpx;
   font-weight: bold;
@@ -182,5 +176,34 @@
 }
 
 .product-item .content {
+  display: flex;
   color: #2cca90;
+}
+
+
+.publish {
+  display: flex;
+  flex-direction: column;
+}
+
+.publish-item {
+  display: flex;
+  width: 100%;
+  border-bottom: 1rpx solid white;
+}
+
+.publish-item .name {
+  display: flex;
+  float: left;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #2cca90;
+  margin: 10rpx 0;
+  padding: 0;
+  background: none;
+}
+
+.publish-item .content {
+  display: flex;
+  color: #434343;
 }

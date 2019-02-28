@@ -8,44 +8,8 @@ Page({
     canClear: false,
     searchContent: '',
     inputCursor: null,
-    resultAgencyList: [{
-      id: "1",
-      name: "agency1", 
-      content: "contendafdfat1"
-    }, {
-        id: "2",
-        name: "agency2",
-        content: "contdfaent2"
-    }, {
-        id: "3",
-        name: "agency3",
-        content: "contefdafdafdafdafdant3"
-    }],
-    resultProductList: [{
-      id: "1",
-      name: "product1",
-      content: "contedfadfant1"
-    }, {
-        id: "2",
-        name: "product2",
-        content: "contdafdafent2"
-    }, {
-        id: "3",
-        name: "product3",
-        content: "conterq32432ent3"
-    }, {
-        id: "4",
-        name: "product4",
-        content: "conte112nt4"
-    }, {
-        id: "5",
-        name: "product5",
-        content: "con434fraffdafdafdafdafdafdafdafafdewerwqrewqrtent5"
-    }, {
-        id: "6",
-        name: "product6",
-        content: "conteafdadfafafnt6"
-    }]
+    resultAgencyList: [],
+    resultGoodsList: []
   },
 
   /**
@@ -125,15 +89,30 @@ Page({
         canClear: false
       })
     }
-    if (cursor != that.data.inputCursor) {
+    if (cursor != that.data.inputCursor && value.length > 0) {
       wx.request({
-        url: '',
+        url: 'http://localhost:8080/Agency/agency/findAgencyByName.do',
         data: {
-          key: value
+          name: value,
+          offset: 0,
+          rows: 3
         },
         success(res) {
           that.setData({
-            resultProductList: res.data.productList
+            resultAgencyList: res.data
+          })
+        }
+      })
+      wx.request({
+        url: 'http://localhost:8080/Agency/goods/getGoods.do',
+        data: {
+          goodsName: value,
+          offset: 0,
+          rows: 10
+        },
+        success(res) {
+          that.setData({
+            resultGoodsList: res.data
           })
         }
       })
