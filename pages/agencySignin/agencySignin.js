@@ -1,4 +1,7 @@
-// pages/agency/agency.js
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
+var qqmapsdk = new QQMapWX({
+  key: 'EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF' // 必填
+})
 Page({
 
   /**
@@ -23,7 +26,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var openId = wx.getStorageSync('openId')
-    wx.request({
+    wx.request({ //判断是否已入驻
       url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {
         if (res.data.isCooperation == '1') {
@@ -50,6 +53,42 @@ Page({
         })
       }
     })
+
+    qqmapsdk.getCityList({
+      success: function (res) {//成功后的回调
+        //console.log(res);
+        var province = new Array()
+        province = res.result[0]
+        console.log(province);
+        wx.setStorageSync("provinces", province)
+        var provinceId = province[0].id
+        var citys = res.result[1]
+        wx.setStorageSync("citys", citys)
+        var city = citys[0]
+        var tmp = new Array();
+        for (var i = 0; i < citys.length; i++) {
+          var start = citys[i].id.slice(0, 3)
+          if (start == 110) { //直辖市可以比较前三位
+            tmp.push(citys[i])
+          }
+        }
+        var area = res.result[2]
+        that.setData({
+          province: province,
+          city: province,
+          area: tmp
+        })
+        //console.log('省份数据：', res.result[0]); //打印省份数据
+        //console.log('城市数据：', res.result[1]); //打印城市数据
+        //console.log('区县数据：', res.result[2]); //打印区县数据
+      },
+      fail: function (error) {
+        console.error(error);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+        });
   },
 
   /**
@@ -401,5 +440,15 @@ Page({
         }
       }
     })
+  },
+
+  bindPickerChange: function (e) {
+    console.log(e)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // var index = e.detail.value;
+    // var currentId = this.data.objectArray[index].id; // 这个id就是选中项的id
+    // this.setData({
+    //   index: e.detail.value
+    // })
   }
 })
