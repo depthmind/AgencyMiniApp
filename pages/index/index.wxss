@@ -216,6 +216,7 @@ display: inline-block;
 .publish-item .images {
   display: flex;
   flex-direction: row;
+  margin-top: 5rpx;
 }
 
 .publish-item .image {
@@ -223,4 +224,5 @@ display: inline-block;
   height: 100rpx;
   width: 100rpx;
   display: flex;
+  margin-left: 5rpx;
 }
