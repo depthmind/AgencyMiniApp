@@ -13,6 +13,7 @@ Page({
     ads: [],
     recommends: [],
     tabs: [],
+    currentTab: null,
     publishList: []
   },
   /**
@@ -95,6 +96,8 @@ Page({
         that.setData({
           tabs: tabRes.data
         })
+        console.log("tabRes")
+        console.log(tabRes)
       }
     })
 
@@ -244,6 +247,35 @@ Page({
     console.log('location page')
     wx.navigateTo({
       url: '../location/location'
+    })
+  },
+
+  tapNearBy: function() {
+    this.setData({
+      currentTab: -2
+    })
+    wx.request({
+      url: '',
+    })
+  },
+
+  tap2p: function () {
+    this.setData({
+      currentTab: -1
+    })
+    wx.request({
+      url: '',
+    })
+  },
+
+  tapTab: function (e) {
+    console.log("tapTab:" + e.currentTarget.dataset.tabId)
+    console.log(e.currentTarget.dataset.index)
+    this.setData({
+      currentTab: e.currentTarget.dataset.index
+    })
+    wx.request({
+      url: '',
     })
   }
 
