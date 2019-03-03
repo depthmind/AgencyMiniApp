@@ -17,7 +17,12 @@ Page({
     licence1ImagePathSubmit: '',
     licence2ImagePath: '/images/logo-image.jpg',
     licence2ImagePathSubmit: '',
-    validPeriod: ''
+    validPeriod: '',
+    provinceIndex: 0,
+    cityIndex: 0,
+    areaIndex: 0,
+    selectedArea: '',
+    arr: [], //标签数组：用来存储选中的值
   },
 
   /**
@@ -26,6 +31,19 @@ Page({
   onLoad: function (options) {
     var that = this
     var openId = wx.getStorageSync('openId')
+    wx.getLocation({ //初始地址
+      success: function (res) {
+        var new_latitude = res.latitude
+        var new_longitude = res.longitude
+        wx.setStorageSync('latitude', new_latitude)
+        wx.setStorageSync('longitude', new_longitude)
+        that.translateAddress(new_latitude, new_longitude)
+        that.setData({
+          latitude: new_latitude,
+          longitude: new_longitude
+        })
+      },
+    })
     wx.request({ //判断是否已入驻
       url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {
@@ -64,8 +82,9 @@ Page({
         var provinceId = province[0].id
         var citys = res.result[1]
         wx.setStorageSync("citys", citys)
-        var city = citys[0]
-        var tmp = new Array();
+        var city = new Array()
+        city.push(province[0])
+        var tmp = new Array()
         for (var i = 0; i < citys.length; i++) {
           var start = citys[i].id.slice(0, 3)
           if (start == 110) { //直辖市可以比较前三位
@@ -75,7 +94,9 @@ Page({
         var area = res.result[2]
         that.setData({
           province: province,
+          provinceIndex: 0,
           city: province,
+          citys: city,
           area: tmp
         })
         //console.log('省份数据：', res.result[0]); //打印省份数据
@@ -245,7 +266,23 @@ Page({
     var temp = that.data.tempFilePaths
     var data = e.detail.value
     that.validation(data)
-    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time
+    //选中区域
+    var selectedArea = that.data.arr
+    var area = ''
+    var cityArea = that.data.area //所选城市下的区县
+    for (var s = 0; s < selectedArea.length; s++) {
+      for (var c = 0; c < cityArea.length; c++) {
+        if (cityArea[c].id == selectedArea[s]) {
+          if (area == '') {
+            area = cityArea[c].fullname
+          } else {
+            area = area + ',' + cityArea[c].fullname
+          }
+        }
+      }
+    }
+    console.log('area-----', area)
+    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area
     wx.uploadFile({ // 上传代理商logo
       url: 'http://47.105.169.49/Agency/upfile',
       filePath: that.data.logoImagePath[0],
@@ -441,14 +478,168 @@ Page({
       }
     })
   },
+  
+  chooseAddress: function () {
+    // wx.navigateTo({
+    //   url: '/pages/map/map',
+    // })
+    var that = this
+    // wx.getLocation({
+    //   success: function(res) {
+    //     var new_latitude = res.latitude
+    //     var new_longitude = res.longitude
+    //     wx.setStorageSync('latitude', new_latitude)
+    //     wx.setStorageSync('longitude', new_longitude)
+    //     that.translateAddress(new_latitude, new_longitude)
+    //     that.setData({
+    //       latitude: latitude,
+    //       longitude: longitude
+    //     })
+    //   },
+    // })
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+          addressDetail: res.address
+        });
+      },
+    })
+  },
 
-  bindPickerChange: function (e) {
+  translateAddress: function (latitude, longitude) {
+    var that = this
+    qqmapsdk.reverseGeocoder({
+      location: latitude + ',' + longitude,
+      success: function (res) {//成功后的回调
+        console.log(res);
+        var address = res.result.address;
+        that.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+          addressDetail: address
+        });
+      },
+      fail: function (error) {
+        console.error(error);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+        })
+  },
+
+  bindPickerChangeProvince: function (e) {
+    var that = this
     console.log(e)
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    // var index = e.detail.value;
-    // var currentId = this.data.objectArray[index].id; // 这个id就是选中项的id
+    var index = e.detail.value;
+
+    var provinceId = this.data.province[index].id; // 这个id就是选中项的id
+    var province = wx.getStorageSync("provinces")[index]
+    if (provinceId == "110000" || provinceId == "120000" || provinceId == "310000" || provinceId == "500000"
+      || provinceId == "810000" || provinceId == "820000") {
+      var id = provinceId.slice(0, 2)
+      var citys = wx.getStorageSync("citys")
+      var tmp = new Array(); //city
+      for (var i = 0; i < citys.length; i++) {
+        var start = citys[i].id.slice(0, 2)
+        if (start == id) {
+          tmp.push(citys[i])
+        }
+      }
+      var provinceArr = []
+      provinceArr.push(province)
+      that.setData({
+        citys: provinceArr,
+        area: tmp,
+        provinceIndex: index,
+        cityIndex: 0
+      })
+    } else {
+      var id = provinceId.slice(0, 2)
+      var citys = wx.getStorageSync("citys")
+      var tmp = new Array(); //city
+      for (var i = 0; i < citys.length; i++) {
+        var start = citys[i].id.slice(0, 2)
+        if (start == id) {
+          tmp.push(citys[i])
+        }
+      }
+      that.setData({
+        citys: tmp
+      })
+    }
+
+    
     // this.setData({
     //   index: e.detail.value
     // })
-  }
+  },
+
+  bindPickerChangeCity: function (e) {
+    var that = this
+    console.log(e)
+    var cityIndex = e.detail.value
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var cityId = this.data.citys[cityIndex].id;
+    qqmapsdk.getDistrictByCityId({
+      // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+      id: cityId, //对应接口getCityList返回数据的Id，如：北京是'110000'
+      success: function (res) {//成功后的回调
+        console.log(res);
+        console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
+        var area = res.result[0]
+        for (var a=0;a<area.length;a++) {
+          area[a].checked=''
+        }
+        that.setData({
+          cityIndex: e.detail.value,
+          area: area
+        })
+        //wx.setStorageSync("area", citys) 查询之后存储，下次就不通过网络查询了
+      },
+      fail: function (error) {
+        console.error(error);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    })
+  },
+
+  checkLabs: function (e) {
+    var that = this
+    var index = e.currentTarget.dataset.index,
+      area = that.data.area,
+      value = e.currentTarget.dataset.value,
+      arr = this.data.arr,
+      val = area[index].checked, //点击前的值
+      limitNum = 5,
+      curNum = 0; //已选择数量
+    // if (that.data.selectedArea == '') {
+    //   selectedArea = area[index].fullname
+    // } else {
+    //   selectedArea
+    // }
+    //选中累加
+    for (var i in area) {
+      if (area[i].checked) {
+        curNum += 1;
+      }
+    }
+    if (!val) {
+      arr.push(value);
+    } else {
+      for (var i in arr) {
+        if (arr[i] == value) {
+          arr.splice(i, 1);
+        }
+      }
+
+    }
+    area[index].checked = !val;
+
+    this.setData({
+      area: area
+    })
+
+  },
 })

@@ -7,7 +7,7 @@ Page({
   data: {
     offset: 0,
     limit: 7,
-    agencyes: [{ "address": "北京市朝阳区西大望路甲20号", "agencyName": "测试","mobilephone":"13641716360","logo":"../../images/add.png"}]
+    // agencyes: [{ "address": "北京市朝阳区西大望路甲20号", "agencyName": "测试","mobilephone":"13641716360","logo":"../../images/add.png"}]
   },
 
   /**
@@ -75,7 +75,7 @@ Page({
       title: '正在加载中',
     })
     wx.request({
-      url: 'http://47.105.169.49/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
+      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
       success(res) {
         console.log(res)
         var array = res.data

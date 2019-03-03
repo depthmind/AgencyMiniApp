@@ -57,8 +57,8 @@ Page({
         wx.setStorageSync('longitude', new_longitude)
         that.translateAddress(new_latitude, new_longitude)
         that.setData({
-          latitude: latitude,
-          longitude: longitude
+          latitude: new_latitude,
+          longitude: new_longitude
         })
       },
     })

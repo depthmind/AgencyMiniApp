@@ -8,18 +8,34 @@
         </view>
         <view class='form-item'>
           <text class='label'>详细地址</text>
-          <input name="addressDetail" bindtap='chooseAddress' value='{{addressDetail}}'></input>
+          <input name="addressDetail" value='{{addressDetail}}'></input>
+          <text bindtap='chooseAddress'>定位</text>
         </view>
         <view class='form-item'>
           <!-- <text class='label'>显示区域</text>
           <input placeholder="显示区域"></input> -->
-          <picker mode="selector" bindchange="bindPickerChange" range='{{province}}' range-key='{{fullname}}' value="{{province[index].id}}">
+          <picker mode="selector" bindchange="bindPickerChangeProvince" range='{{province}}' range-key='fullname' value="{{provinceIndex}}">
           <view class="picker">
-            当前选择：{{province[index].name}}
+            选择入驻省份
+            <text name='province'>{{province[provinceIndex].fullname}}</text>
+          </view>
+          </picker>
+          <picker mode="selector" bindchange="bindPickerChangeCity" range='{{citys}}' range-key='fullname' value="{{cityIndex}}">
+          <view class="picker">
+            选择入驻城市
+            <text name='city'>{{citys[cityIndex].fullname}}</text>
           </view>
           </picker>
         </view>
-        <!--三级选择-->
+        <view class='the-label'>
+          <view class='list'>
+            <block wx:for="{{area}}" wx:key="">
+              <view class="li {{item.checked?'cur':''}}" data-index="{{index}}" data-value="{{item.id}}" bindtap="checkLabs">
+                <label class='ti'>{{item.fullname}}</label>
+              </view>
+            </block>
+          </view>
+        </view>
         <view class='form-item'>
           <text class='label'>服务工号</text>
           <input name="serviceNumber"></input>
