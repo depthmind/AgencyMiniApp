@@ -1,1 +1,23 @@
 /* pages/agencyLogin/agencyLogin.wxss */
+.agencylist{
+	border-radius: 10px;
+	background: #fff;
+	margin: 10px 0;
+	padding: 20rpx;
+	overflow: hidden;
+}
+.agencylist image{
+	float: left;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 100rpx;
+	margin: 0 10px 0 0;
+	box-shadow: 0 0 3px #dedede;
+}
+.name{
+	display: block;
+}
+.address{
+	display: block;
+	color:#999;
+}

@@ -1,10 +1,9 @@
 <view>
   <view>
-    <view wx:for="{{agencyes}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
-    <image src='{{item.logo}}'></image>
-    <text>{{item.agencyName}}</text>
-    <view></view>
-    <text>{{item.address}}</text>
-  </view>
+    <view class="agencylist" wx:for="{{agencyes}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
+	    <image src='{{item.logo}}'></image>
+	    <text class="name">{{item.agencyName}}</text>
+	    <text class="address">{{item.address}}</text>
+	 </view>
   </view>
 </view>
