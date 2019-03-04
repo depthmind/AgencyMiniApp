@@ -181,33 +181,28 @@ Page({
     })
   },
 
-  tapNearBy: function() {
-    this.setData({
-      currentTab: -2
-    })
-    wx.request({
-      url: '',
-    })
-  },
-
-  tap2p: function() {
-    this.setData({
-      currentTab: -1
-    })
-    wx.request({
-      url: '',
-    })
-  },
-
   tapTab: function(e) {
     console.log("tapTab:" + e.currentTarget.dataset.tabId)
-    console.log(e.currentTarget.dataset.index)
+    console.log(e.currentTarget.dataset.tabId)
     this.setData({
-      currentTab: e.currentTarget.dataset.index
+      currentTab: e.currentTarget.dataset.tabId
     })
-    wx.request({
-      url: '',
-    })
+    if (e.currentTarget.dataset.tabId == '-2') {
+      this.setData({
+        tabType: 0
+      })
+    } else if (e.currentTarget.dataset.tabId == '-1') {
+      this.setData({
+        tabType: 1
+      })
+    } else {
+      this.setData({
+        tabType: 2
+      })
+    }
+    console.log("tabType=" + this.data.tabType)
+    console.log("currentTab:" + this.data.currentTab)
+    this.getContents(this.data.tabType)
   },
 
 
@@ -251,6 +246,21 @@ Page({
         })
       }
     })
+  },
+
+  //获取主页主体内容
+  getContents: function(tabType) {
+    switch (tabType) {
+      case 0:   //获取publish
+      this.getPublish()
+      break;
+      case 1:   //获取agency
+      break;
+      case 2:   //获取。。。
+      break;
+      default:
+      break;
+    }
   },
 
 
@@ -297,8 +307,11 @@ Page({
           console.log(that.data.offset)
         }
       },
-      fail: {
-        
+      fail() {
+        wx.showToast({
+          title: '请检查网络。。。',
+          icon: "none"
+        })
       },
       complete() {
         wx.hideLoading()
