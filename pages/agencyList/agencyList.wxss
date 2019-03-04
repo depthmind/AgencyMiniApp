@@ -3,10 +3,11 @@
 	border-radius: 10px;
 	background: #fff;
 	margin: 10px 0;
-	padding: 20rpx;
+	padding: 10px 55px 10px 10px;
 	overflow: hidden;
+	position: relative;
 }
-.agencylist image{
+.itemimage{
 	float: left;
 	width: 100rpx;
 	height: 100rpx;
@@ -20,4 +21,11 @@
 .address{
 	display: block;
 	color:#999;
+}
+.phone{
+	width:36px;
+	height: 36px;
+	position: absolute;
+	top:17px;
+	right: 10px;
 }

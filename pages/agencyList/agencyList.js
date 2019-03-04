@@ -7,6 +7,7 @@ Page({
   data: {
     offset: 0,
     limit: 7,
+    phoneImage: '/images/phone.jpg',
     agencyes: [{ "address": "北京市朝阳区西大望路甲20号", "agencyName": "测试","mobilephone":"13641716360","logo":"../../images/add.png"}]
   },
 
