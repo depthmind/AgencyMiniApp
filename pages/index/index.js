@@ -11,12 +11,12 @@ Page({
     publishOffset: 0,
     location: "正在定位...",
     isCooperation: true,
-    ads: [],
-    recommends: [],
-    tabs: [],
+    ads: [{ "agencyName": "加华印象", "id": 1, "pic": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "pic": "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "pic": "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "seachValue": "" }],
+    recommends: [{ "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "凡客 1 帆布鞋", "goodsName": "凡客帆布鞋", "id": 8, "productId": 1, "productName": "鞋子" }, { "agencyId": 2, "agencyName": "中信旅行1", "goodsDescription": "adidas boost 1", "goodsName": "adidas boost", "id": 7, "productId": 1, "productName": "鞋子" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "匡威 1 帆布鞋", "goodsName": "匡威帆布鞋", "id": 6, "productId": 1, "productName": "鞋子" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "牙牙乐 3 牙刷", "goodsName": "中信 牙牙乐牙刷", "id": 5, "productId": 2, "productName": "牙刷" }],
+    tabs: [{ "chinese": "陈列", "seachValue": "", "value": "1" }, { "chinese": "优惠", "seachValue": "", "value": "2" }, { "chinese": "优惠", "seachValue": "", "value": "3" }, { "chinese": "优惠", "seachValue": "", "value": "4" }, { "chinese": "优惠", "seachValue": "", "value": "5" }],
     tabType: 0,
     currentTab: null,
-    publishList: []
+    publishList: [{ "category": "租车", "description": "出租东风雪铁龙轿车一辆，每日200元", "id": 1, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg","http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9075635785,116.4688968606", "mobilePhone": "13888888888", "seachValue": "" }, { "category": "卖车", "description": "出售东风雪铁龙轿车一辆，100000元", "id": 2, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg","http://47.105.169.49/Agency/attachment/upload/10000000002.jpg","http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "location": "39.9049958097,116.6331768036", "mobilePhone": "13889998888", "seachValue": "" }]
   },
   /**
    * 生命周期函数--监听页面加载
@@ -283,6 +283,9 @@ Page({
               publish[i].images = publish[i].images.split(",")
             }
           }
+
+          console.log("publishRes111")
+          console.log(publishRes)
           that.setData({
             publishList: that.data.publishList.concat(publish)
           })
@@ -295,7 +298,7 @@ Page({
         }
       },
       fail: {
-
+        
       },
       complete() {
         wx.hideLoading()
