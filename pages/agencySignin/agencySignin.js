@@ -563,8 +563,30 @@ Page({
           tmp.push(citys[i])
         }
       }
+      qqmapsdk.getDistrictByCityId({
+        // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+        id: tmp[0].id, //对应接口getCityList返回数据的Id，如：北京是'110000'
+        success: function (res) {//成功后的回调
+          var area = res.result[0]
+          for (var a = 0; a < area.length; a++) {
+            area[a].checked = ''
+          }
+          that.setData({
+            area: area
+          })
+          //wx.setStorageSync("area", citys) 查询之后存储，下次就不通过网络查询了
+        },
+        fail: function (error) {
+          console.error(error);
+        },
+        complete: function (res) {
+          console.log(res);
+        }
+      })
       that.setData({
-        citys: tmp
+        citys: tmp,
+        provinceIndex: index,
+        cityIndex: 0
       })
     }
 
