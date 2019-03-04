@@ -5,14 +5,17 @@ const app = getApp()
 Page({
   data: {
     offset: 0,
-    rows: 5,
-    scrollHeight: 0,
-    scrollTop: 0,
+    rows: 5, //主体内容一次加载行数
+    adOffset: 0,
+    recommendOffset: 0,
+    publishOffset: 0,
     location: "正在定位...",
     isCooperation: true,
     ads: [],
     recommends: [],
     tabs: [],
+    tabType: 0,
+    currentTab: null,
     publishList: []
   },
   /**
@@ -60,30 +63,12 @@ Page({
       complete() {}
     })
     var that = this;
-    //获取轮播图信息
-    wx.request({
-      url: 'http://localhost:8080/Agency/agency/findAdAgency.do',
-      success(adRes) {
-        console.log(adRes)
-      }
-    })
+    //获取轮播图
+    this.getAds()
 
-    //获取推荐产品
-    wx.request({
-      url: 'http://localhost:8080/Agency/goods/getGoods.do',
-      data: {
-        isTop: 1,
-        offset: 0,
-        rows: 4
-      },
-      success(recommendRes) {
-        console.log("recommendRes")
-        console.log(recommendRes)
-        that.setData({
-          recommends: recommendRes.data
-        })
-      }
-    })
+    //获取推荐
+    this.getRecommends()
+
 
     //获取scroll-view-tabs
     wx.request({
@@ -95,34 +80,14 @@ Page({
         that.setData({
           tabs: tabRes.data
         })
+        console.log("tabRes")
+        console.log(tabRes)
       }
     })
 
-    //获取所有商品--分页 0-10
-    wx.request({
-      url: 'http://localhost:8080/Agency/publish/getPublish.do',
-      data: {
-        offset: that.data.offset,
-        rows: that.data.rows
-      },
-      success(publishRes) {
-        console.log("publishRes")
-        console.log(publishRes)
-        var publish = publishRes.data
-        for (var i = 0; i < publish.length; i++) {
-          publish[i].images = publish[i].images.split(",")
-        }
-        that.setData({
-          publishList: publish
-        })
-        that.setData({
-          offset: that.data.offset + that.data.rows
-        })
-        console.log("offset")
-        console.log(that.data.offset)
-        console.log(that.data.offset)
-      }
-    })
+    //获取发布信息
+    this.getPublish()
+
   },
 
   /**
@@ -166,47 +131,16 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    var that = this;
-    wx.showLoading({
-      title: '加载中',
-      icon: 'loading'
-    })
-    wx.request({
-      url: 'http://localhost:8080/Agency/publish/getPublish.do',
-      data: {
-        offset: that.data.offset,
-        rows: that.data.rows
-      },
-      success(morePublishRes) {
-        console.log("morePublish")
-        console.log(morePublishRes)
-
-        if (morePublishRes.data.length < 1) {
-          wx.showToast({
-            title: '没有了。。。',
-            icon: "none"
-          })
-        } else {
-
-          var publishList = that.data.publishList;
-          for (var i = 0; i < morePublishRes.data.length; i++) {
-            publishList.push(morePublishRes.data[i])
-          }
-          that.setData({
-            publishList: publishList
-          })
-          that.setData({
-            offset: that.data.offset + that.data.rows
-          })
-        }
-      },
-      fail: {
-
-      },
-      complete() {
-        wx.hideLoading()
-      }
-    })
+    //根据tab类型加载内容
+    switch (this.data.tabType) {
+      case 0: //默认 publish
+        this.getPublish()
+        break;
+      case 1: //附近 二批 ？ 是不是同一个东西，如果是就在一起
+        break;
+      case 2: //scroll-view里的类型
+        break;
+    }
   },
 
   /**
@@ -233,6 +167,7 @@ Page({
 
   //点击搜索框跳转搜索页面
   navigateToSearchPage: function() {
+    console.log('search page')
     wx.navigateTo({
       url: '../search/search'
     })
@@ -240,9 +175,133 @@ Page({
 
   //跳转修改定位页面
   changeLocation: function() {
+    console.log('location page')
     wx.navigateTo({
-      url: '../location/location?currentProvince=' + this.data.currentProvince + '&currentCity=' + this.data.currentCity + '&currentDistrict=' + this.data.currentDistrict
+      url: '../location/location'
+    })
+  },
+
+  tapNearBy: function() {
+    this.setData({
+      currentTab: -2
+    })
+    wx.request({
+      url: '',
+    })
+  },
+
+  tap2p: function() {
+    this.setData({
+      currentTab: -1
+    })
+    wx.request({
+      url: '',
+    })
+  },
+
+  tapTab: function(e) {
+    console.log("tapTab:" + e.currentTarget.dataset.tabId)
+    console.log(e.currentTarget.dataset.index)
+    this.setData({
+      currentTab: e.currentTarget.dataset.index
+    })
+    wx.request({
+      url: '',
+    })
+  },
+
+
+  //获取轮播图信息
+  getAds: function(e) {
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/Agency/agency/findAdAgency.do',
+      data: {
+        offset: this.data.adOffset,
+        rows: 4
+      },
+      success(adRes) {
+        console.log("adRes")
+        console.log(adRes)
+        that.setData({
+          ads: adRes.data
+        })
+      }
+    })
+  },
+
+  //获取推荐产品
+  getRecommends: function() {
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      data: {
+        isTop: 1,
+        offset: this.data.recommendOffset,
+        rows: 4
+      },
+      success(recommendRes) {
+        console.log("recommendRes")
+        console.log(recommendRes)
+        that.setData({
+          recommends: recommendRes.data
+        })
+        that.setData({
+          recommendOffset: that.data.recommendOffset + 4
+        })
+      }
+    })
+  },
+
+
+  //获取发布信息
+  getPublish: function() {
+    var that = this;
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading'
+    })
+    wx.request({
+      url: 'http://localhost:8080/Agency/publish/getPublish.do',
+      data: {
+        offset: that.data.publishOffset,
+        rows: that.data.rows
+      },
+      success(publishRes) {
+        console.log("publishRes")
+        console.log(publishRes)
+        var publish = publishRes.data
+        if (publish.length < 1) {
+          wx.showToast({
+            title: '没有了。。。',
+            icon: "none"
+          })
+        } else {
+          console.log(publish[2].images)
+          for (var i = 0; i < publish.length; i++) {
+            if (publish[i].images != undefined) {
+              publish[i].images = publish[i].images.split(",")
+            }
+          }
+          that.setData({
+            publishList: that.data.publishList.concat(publish)
+          })
+          that.setData({
+            publishOffset: that.data.publishOffset + that.data.rows
+          })
+          console.log("offset")
+          console.log(that.data.offset)
+          console.log(that.data.offset)
+        }
+      },
+      fail: {
+
+      },
+      complete() {
+        wx.hideLoading()
+      }
     })
   }
+
 
 })

@@ -122,6 +122,7 @@
   display: flex;
   flex-direction: row;
   height: 40rpx;
+  background: red;
   border-bottom: 2rpx solid white;
   border-top: 2rpx solid white;
 }
@@ -132,6 +133,10 @@
   border: 1rpx solid black;
   border-radius: 20rpx;
   text-align: center;
+}
+
+.active {
+  color: white;
 }
 
 .tab-view {
@@ -149,7 +154,6 @@
 }
 
 .tabs-scroll-view view{
-height:128rpx;
 width:128rpx;
 display: inline-block; 
 }
@@ -188,6 +192,7 @@ display: inline-block;
 
 .publish-item {
   display: flex;
+  flex-direction: column;
   width: 100%;
   border-bottom: 1rpx solid white;
 }
@@ -206,4 +211,18 @@ display: inline-block;
 .publish-item .content {
   display: flex;
   color: #434343;
+}
+
+.publish-item .images {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rpx;
+}
+
+.publish-item .image {
+  border: 1rpx solid #000;
+  height: 100rpx;
+  width: 100rpx;
+  display: flex;
+  margin-left: 5rpx;
 }

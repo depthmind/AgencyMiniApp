@@ -33,15 +33,16 @@
     <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">
       <text class='name'>{{item.goodsName}}<text class="content">{{item.agencyName}}</text></text>
     </view>
+    <view class='product-item' bindtap='getRecommends'>换一批</view>
   </view>
 
   <view class='tabs'>
     <view class='tab-view'>
-      <view class='tab-item'>附近</view>
-      <view class='tab-item'>二批</view>
+      <view class='tab-item {{currentTab == -2?"active":""}}' bindtap='tapNearBy'>附近</view>
+      <view class='tab-item {{currentTab == -1?"active":""}}' bindtap='tap2p'>二批</view>
     </view>
     <scroll-view scroll-x class='tabs-scroll-view'>
-        <view wx:for="{{tabs}}" data-tab-id='{{item.value}}'>{{item.chinese}}</view>
+        <view wx:for="{{tabs}}" data-tab-id='{{item.value}}' data-index='{{index}}' class='tab-item {{currentTab == index?"active":""}}' bindtap='tapTab'>{{item.chinese}}</view>
     </scroll-view>
   </view>
 
@@ -51,7 +52,8 @@
       <view class='publish-item'>
         <text class='name'>{{item.category}}</text>
         <text class="content">{{item.description}}</text>
-        <view wx:for="{{item.images}}"><image src='{{item}}'></image></view>
+        <view class='images'>
+        <view wx:for="{{item.images}}"><image class='image' mode='scaleToFill' src='{{item}}'></image></view></view>
       </view>
     </view>
   </view>

@@ -1,1 +1,9 @@
 /* pages/location/location.wxss */
+
+.section__title{
+  margin-bottom: 20rpx;
+}
+.section{
+  margin: 50rpx 0;
+  font-size: 30rpx;
+}
