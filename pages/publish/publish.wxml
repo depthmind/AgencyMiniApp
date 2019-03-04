@@ -5,21 +5,21 @@
       <form bindsubmit="formSubmit">
         <view class='form-item'>
         <text class='label'>类目</text> 
-          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="padding: 0 0 0 66px; line-height: 80rpx;">
-          <text name="category">{{array[index]}}</text>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{publishCategorys}}" range-key='chinese' style="padding: 0 0 0 66px; line-height: 80rpx;">
+          <text name="category">{{publishCategory?publishCategorys[index].chinese:"--请选择--"}}</text>
           </picker>
         </view>
         <view class='form-item'>
-          <text class='textarea-label'>内容描述<text>*</text></text>
+          <text class='textarea-label'>内容描述</text>
           <textarea name="description" style="display: {{textareadisplay}};" placeholder='请描述信息内容'></textarea>
         </view>
         <view class='form-item'>
-        <view wx:for="{{tempFilePaths}}"wx:key="{{index}}">
-           <image style="width: 100px; height: 100px; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
-          </view>
-          <text class='label' style='position:static;'>上传图片<text>*</text></text> 
-          <view style="width: 100px; height: 100px; background-color: #eeeeee; margin: 10px 0;" bindtap='chooseImage'>
-            <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
+          <view wx:for="{{tempFilePaths}}"wx:key="{{index}}" style="width:160rpx; float:left; margin: 20px 1%;">
+             <image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
+            </view>
+            <text class='label' style='position:static;'>上传图片<text>*</text></text> 
+            <view style="width: 100px; height: 100px; background-color: #eeeeee; margin: 10px 0;" bindtap='chooseImage'>
+              <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
           </view>
         </view>
         <view class='form-item'>
@@ -28,16 +28,17 @@
         </view>
         <view class='form-item'>
             <text class='label'>电话</text> 
-            <input name="mobilePhone" placeholder="联系人电话"></input>
+            <input type="number" name="mobilephone" placeholder="联系人电话"></input>
         </view>
         <view class='form-item'>
           <text class='label'>详细地址</text>
-          <input name="address" bindtap='chooseAddress' value='{{addressDetail}}'></input>
+          <input name="address" value='{{addressDetail}}'></input>
+          <text class='label' bindtap='chooseAddress'>定位</text>
         </view>
-        <view class="form-item">
+        <!-- <view class="form-item">
           <view class="label">是否置顶</view>
           <switch name="switch" style="position:relative; left: 100px; margin: 5px 0;" />
-        </view>
+        </view> -->
         <button form-type="submit">提交审核</button>
       </form>
     </view>

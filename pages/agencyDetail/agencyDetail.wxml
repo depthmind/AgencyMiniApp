@@ -1,0 +1,14 @@
+<view>
+  <view>
+    <label>商家名称</label>
+    <text>{{agencyName}}</text>
+  </view>
+  <view>
+    <label>详细地址</label>
+    <text>{{address}}</text>
+  </view>
+  <view>
+    <label>联系电话</label>
+    <text>{{mobilephone}}</text>
+  </view>
+</view>
