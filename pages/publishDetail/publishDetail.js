@@ -12,7 +12,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var id = options.id
+    wx.request({
+      url: 'http://localhost:8080/Agency/publish/findPublishContentById.do?id=' + '1',
+      success(res) {
+        console.log(res)
+        var publishContent = res.data
+        wx.setNavigationBarTitle({
+          title: '信息详情', //待定
+        })
+        var images = publishContent.images
+        var imagesArr = images.split(',')
+        console.log(imagesArr)
+        that.setData({
+          publishContent: publishContent,
+          imagesArr: imagesArr
+        })
+        console.log(publishContent)
+        // if (typeof agency != 'object') {
+        //   agency = agency.replace(/\ufeff/g, "");//重点
+        //   var jj = JSON.parse(agency);
+        //   console.log(jj)
+        // }
+      }
+    })
   },
 
   /**

@@ -1,14 +1,12 @@
 <view>
   <view>
-    <label>商家名称</label>
-    <text>{{agencyName}}</text>
+    <image class="itemimage" src='{{agency.logoImagePath}}'></image>
+    <text>{{agency.agencyName}}</text>
   </view>
   <view>
-    <label>详细地址</label>
-    <text>{{address}}</text>
+    <text>{{agency.address}}</text>
   </view>
   <view>
-    <label>联系电话</label>
-    <text>{{mobilephone}}</text>
+    <image class="phone" src='{{phoneImage}}' bindtap='makePhoneCall' data-mobilephone='{{agency.mobilephone}}'></image>
   </view>
 </view>

@@ -8,7 +8,7 @@ Page({
     offset: 0,
     limit: 7,
     phoneImage: '/images/phone.jpg',
-    agencyes: [{ "address": "北京市朝阳区西大望路甲20号", "agencyName": "测试","mobilephone":"13641716360","logo":"../../images/add.png"}]
+    //agencyes: [{ "address": "北京市朝阳区西大望路甲20号", "agencyName": "测试","mobilephone":"13641716360","logo":"../../images/add.png"}]
   },
 
   /**
@@ -31,8 +31,8 @@ Page({
       success(res) {
         console.log(res)
         that.setData({
-          //agencyes: res.data,
-          agencyes: that.data.agencyes,
+          agencyes: res.data,
+          //agencyes: that.data.agencyes,
           offset: that.data.offset + that.data.limit
         })
       }
@@ -99,5 +99,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  openAgency: function (e) {
+    console.log(e)
+    wx.redirectTo({
+      url: '/pages/agencyDetail/agencyDetail?id=' + e.currentTarget.dataset.cid,
+    })
   }
 })

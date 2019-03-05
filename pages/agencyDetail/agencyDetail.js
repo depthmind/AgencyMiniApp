@@ -5,14 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    phoneImage: '/images/phone.jpg',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var id = options.id
+    wx.request({
+      url: 'http://localhost:8080/Agency/agency/findAgencyById.do?id=' + id,
+      success(res) {
+        console.log(res)
+        var agency = res.data
+        wx.setNavigationBarTitle({
+          title: agency.agencyName, //页面title用代理商名称
+        })
+        that.setData({
+          agency: agency
+        })
+        console.log(agency)
+        // if (typeof agency != 'object') {
+        //   agency = agency.replace(/\ufeff/g, "");//重点
+        //   var jj = JSON.parse(agency);
+        //   console.log(jj)
+        // }
+      }
+    })
   },
 
   /**
@@ -62,5 +82,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  makePhoneCall: function (e) {
+    console.log(e)
+    var mobilephone = e.currentTarget.dataset.mobilephone
+    wx.makePhoneCall({
+      phoneNumber: mobilephone,
+    })
   }
 })

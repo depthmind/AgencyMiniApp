@@ -1,24 +1,23 @@
 <view>
+  <!-- 基础信息 -->
   <view>
-    <!-- 发布者头像 -->
-    <image></image>
-    <!-- 联系人姓名 -->
-    <view></view>
-    <!-- 类别 -->
-    <view></view>
-    <!-- 地址 -->
-    <view></view>
-    <!-- description -->
-    <view></view>
+    <open-data class="itemimage" type="userAvatarUrl"></open-data>
+    <text>{{publishContent.contactName}}</text>
+    <text>分类</text>
+    <text>{{publishContent.address}}</text>
+  </view>
+  <!-- 内容描述 -->
+  <view>
+    <view>{{publishContent.description}}</view>
   </view>
   <view>
-    <view wx:for="{{images}}">
+    <view wx:for="{{imagesArr}}">
       <image src='{{item}}'></image>
     </view>
   </view>
   <view>
     <view>发布时间:{{publishDate}}</view>
-    <view>联系电话:{{mobilephone}}</view>
+    <view>联系电话:{{publishContent.mobilephone}}</view>
     <button bindtap='makePhoneCall' data-mobilephone='{{mobilephone}}'>拨打电话</button>
   </view>
 </view>
