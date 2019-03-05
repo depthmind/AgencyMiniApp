@@ -234,3 +234,34 @@ display: inline-block;
   display: flex;
   margin-left: 5rpx;
 }
+
+.agencylist{
+	border-radius: 10px;
+	background: #fff;
+	margin: 10px 0;
+	padding: 10px 55px 10px 10px;
+	overflow: hidden;
+	position: relative;
+}
+.itemimage{
+	float: left;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 100rpx;
+	margin: 0 10px 0 0;
+	box-shadow: 0 0 3px #dedede;
+}
+.name{
+	display: block;
+}
+.address{
+	display: block;
+	color:#999;
+}
+.phone{
+	width:36px;
+	height: 36px;
+	position: absolute;
+	top:17px;
+	right: 10px;
+}

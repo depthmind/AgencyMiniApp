@@ -43,17 +43,19 @@
       <view class='tab-item {{currentTab == -1?"active":""}}' data-tab-id='-1' bindtap='tapTab'>附近二批</view>
     </view>
     <scroll-view scroll-x class='tabs-scroll-view'>
-        <view wx:for="{{tabs}}" data-tab-id='{{item.value}}' class='tab-item {{currentTab == item.value?"active":""}}' bindtap='tapTab'>{{item.chinese}}</view>
+      <view wx:for="{{tabs}}" data-tab-id='{{item.value}}' class='tab-item {{currentTab == item.value?"active":""}}' bindtap='tapTab'>{{item.chinese}}</view>
     </scroll-view>
   </view>
 
 
-  <view wx:if="{{tabType==1}}" class='content'>
+  <view wx:if="{{tabType==1}}" class='agencylist'>
     <view wx:for="{{agencyList}}" wx:key="{{agencyList.id}}">
       <view class='content-item'>
-        <text class='name'>{{item.agencyName}}</text>
-        <view class='images'>
-        <view wx:for="{{item.pic}}"><image class='image' mode='scaleToFill' src='{{item}}'></image></view></view>
+        <image class="itemimage" src='{{item.logo}}'></image>
+        <image class="phone" src='../../images/phone.jpg'></image>
+        <text>{{item.distance}}</text>
+        <text class="name">{{item.agencyName}}</text>
+        <text class="address">{{item.address}}</text>
       </view>
     </view>
   </view>
@@ -64,7 +66,10 @@
         <text class='name'>{{item.category}}</text>
         <text class="content">{{item.description}}</text>
         <view class='images'>
-        <view wx:for="{{item.images}}"><image class='image' mode='scaleToFill' src='{{item}}'></image></view></view>
+          <view wx:for="{{item.images}}">
+            <image class='image' mode='scaleToFill' src='{{item}}'></image>
+          </view>
+        </view>
       </view>
     </view>
   </view>
