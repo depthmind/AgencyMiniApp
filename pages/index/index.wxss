@@ -129,7 +129,7 @@
 
 .tab-item {
   display: flex;
-  width: 80rpx;
+  width: 120rpx;
   border: 1rpx solid black;
   border-radius: 20rpx;
   text-align: center;
@@ -185,19 +185,19 @@ display: inline-block;
 }
 
 
-.publish {
+.content {
   display: flex;
   flex-direction: column;
 }
 
-.publish-item {
+.content-item {
   display: flex;
   flex-direction: column;
   width: 100%;
   border-bottom: 1rpx solid white;
 }
 
-.publish-item .name {
+.content-item .name {
   display: flex;
   float: left;
   font-size: 24rpx;
@@ -208,18 +208,26 @@ display: inline-block;
   background: none;
 }
 
-.publish-item .content {
+.content-item .content {
   display: flex;
   color: #434343;
 }
 
-.publish-item .images {
+.content-item .images {
   display: flex;
   flex-direction: row;
   margin-top: 5rpx;
 }
 
-.publish-item .image {
+.content-item .image {
+  border: 1rpx solid #000;
+  height: 100rpx;
+  width: 100rpx;
+  display: flex;
+  margin-left: 5rpx;
+}
+
+.product-item .image {
   border: 1rpx solid #000;
   height: 100rpx;
   width: 100rpx;

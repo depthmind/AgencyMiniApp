@@ -32,14 +32,15 @@
   <view class='products'>
     <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">
       <text class='name'>{{item.goodsName}}<text class="content">{{item.agencyName}}</text></text>
+      <image class='image' src='{{item.productPic}}'></image>
     </view>
     <view class='product-item' bindtap='getRecommends'>换一批</view>
   </view>
 
   <view class='tabs'>
     <view class='tab-view'>
-      <view class='tab-item {{currentTab == -2?"active":""}}' data-tab-id='-2' bindtap='tapTab'>附近</view>
-      <view class='tab-item {{currentTab == -1?"active":""}}' data-tab-id='-1' bindtap='tapTab'>二批</view>
+      <!-- <view class='tab-item {{currentTab == -2?"active":""}}' data-tab-id='-2' bindtap='tapTab'>附近</view> -->
+      <view class='tab-item {{currentTab == -1?"active":""}}' data-tab-id='-1' bindtap='tapTab'>附近二批</view>
     </view>
     <scroll-view scroll-x class='tabs-scroll-view'>
         <view wx:for="{{tabs}}" data-tab-id='{{item.value}}' class='tab-item {{currentTab == item.value?"active":""}}' bindtap='tapTab'>{{item.chinese}}</view>
@@ -47,9 +48,19 @@
   </view>
 
 
-  <view class='publish'>
+  <view wx:if="{{tabType==1}}" class='content'>
+    <view wx:for="{{agencyList}}" wx:key="{{agencyList.id}}">
+      <view class='content-item'>
+        <text class='name'>{{item.agencyName}}</text>
+        <view class='images'>
+        <view wx:for="{{item.pic}}"><image class='image' mode='scaleToFill' src='{{item}}'></image></view></view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{tabType==2}}" class='content'>
     <view wx:for="{{publishList}}" wx:key="{{publishList.id}}">
-      <view class='publish-item'>
+      <view class='content-item'>
         <text class='name'>{{item.category}}</text>
         <text class="content">{{item.description}}</text>
         <view class='images'>
