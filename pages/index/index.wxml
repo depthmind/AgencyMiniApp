@@ -16,7 +16,7 @@
         <swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
           <block wx:for="{{ads}}" wx:for-index="index" wx:key="index">
             <swiper-item class="swiper-item" bindtap="get" data-id="{{item.id}}">
-              <image src='{{item.pic}}' class='u-img-slide' mode='aspectFill'></image>
+              <image src='{{item.logoImagePath}}' class='u-img-slide' mode='aspectFill'></image>
               <view class='u-text-slide'>{{item.agencyName}}</view>
             </swiper-item>
           </block>
@@ -51,7 +51,7 @@
   <view wx:if="{{tabType==1}}" class='agencylist'>
     <view wx:for="{{agencyList}}" wx:key="{{agencyList.id}}">
       <view class='content-item'>
-        <image class="itemimage" src='{{item.logo}}'></image>
+        <image class="itemimage" src='{{item.logoImagePath}}'></image>
         <image class="phone" src='../../images/phone.jpg'></image>
         <text>{{item.distance}}</text>
         <text class="name">{{item.agencyName}}</text>

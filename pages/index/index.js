@@ -9,15 +9,19 @@ Page({
     adOffset: 0,
     recommendOffset: 0,
     publishOffset: 0,
+    agencyOffset: 0,
     location: "正在定位...",
     isCooperation: true,
-    ads: [{ "agencyName": "加华印象", "id": 1, "pic": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "pic": "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "pic": "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "seachValue": "" }],
-    agencyList: [{ "agencyName": "加华印象", "id": 1, "logo": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米","seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logo": ["http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米","seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logo": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance":"3183.34米","seachValue": "" }],
-    recommends: [{ "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "凡客 1 帆布鞋", "goodsName": "凡客帆布鞋", "id": 8, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 2, "agencyName": "中信旅行1", "goodsDescription": "adidas boost 1", "goodsName": "adidas boost", "id": 7, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "匡威 1 帆布鞋", "goodsName": "匡威帆布鞋", "id": 6, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "牙牙乐 3 牙刷", "goodsName": "中信 牙牙乐牙刷", "id": 5, "productId": 2, "productName": "牙刷", "productPic": "../../images/index-bnr1.jpg"}],
+    ads: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "seachValue": "" }],
+    agencyList: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": ["http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米", "seachValue": "" }],
+    agencyList: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "seachValue": "" }],
+    recommends: [{ "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "凡客 1 帆布鞋", "goodsName": "凡客帆布鞋", "id": 8, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 2, "agencyName": "中信旅行1", "goodsDescription": "adidas boost 1", "goodsName": "adidas boost", "id": 7, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "匡威 1 帆布鞋", "goodsName": "匡威帆布鞋", "id": 6, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "牙牙乐 3 牙刷", "goodsName": "中信 牙牙乐牙刷", "id": 5, "productId": 2, "productName": "牙刷", "productPic": "../../images/index-bnr1.jpg" }],
     tabs: [{ "chinese": "陈列", "seachValue": "", "value": "1" }, { "chinese": "优惠", "seachValue": "", "value": "2" }, { "chinese": "优惠", "seachValue": "", "value": "3" }, { "chinese": "优惠", "seachValue": "", "value": "4" }, { "chinese": "优惠", "seachValue": "", "value": "5" }],
-    tabType: 1,
-    currentTab: -1,
-    publishList: [{ "category": "租车", "description": "出租东风雪铁龙轿车一辆，每日200元", "id": 1, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg","http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9075635785,116.4688968606", "mobilePhone": "13888888888", "seachValue": "" }, { "category": "卖车", "description": "出售东风雪铁龙轿车一辆，100000元", "id": 2, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg","http://47.105.169.49/Agency/attachment/upload/10000000002.jpg","http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "location": "39.9049958097,116.6331768036", "mobilePhone": "13889998888", "seachValue": "" }]
+    tabType: 1, //1-agency,2-publish
+    currentTab: -1, //-1-附近二批,1~n-publish
+    publishList: [{ "category": "租车", "description": "出租东风雪铁龙轿车一辆，每日200元", "id": 1, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9075635785,116.4688968606", "mobilePhone": "13888888888", "seachValue": "" }, { "category": "卖车", "description": "出售东风雪铁龙轿车一辆，100000元", "id": 2, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "location": "39.9049958097,116.6331768036", "mobilePhone": "13889998888", "seachValue": "" }],
+    currentLatitude: null,
+    currentLongitude: null
   },
   /**
    * 生命周期函数--监听页面加载
@@ -54,6 +58,8 @@ Page({
                 console.log(locationRes)
                 that.setData({
                   //location: locationRes.data.result.address_component.district
+                  currentLatitude: latitude,
+                  currentLongitude: longitude
                 })
               }
             })
@@ -86,8 +92,8 @@ Page({
       }
     })
 
-    //获取发布信息
-    this.getPublish()
+    //根据tab类型加载内容
+    this.getContents()
 
   },
 
@@ -133,15 +139,7 @@ Page({
    */
   onReachBottom: function() {
     //根据tab类型加载内容
-    switch (this.data.tabType) {
-      case 0: //默认 publish
-        this.getPublish()
-        break;
-      case 1: //附近 二批 ？ 是不是同一个东西，如果是就在一起
-        break;
-      case 2: //scroll-view里的类型
-        break;
-    }
+    this.getContents()
   },
 
   /**
@@ -231,20 +229,71 @@ Page({
   },
 
   //获取主页主体内容
-  getContents: function(tabType) {
+  getContents: function() {
+    var that = this
+    var tabType = that.data.tabType
     switch (tabType) {
-      case 0:   //获取publish
-      this.getPublish()
-      break;
       case 1:   //获取agency
+      that.getAgency()
       break;
-      case 2:   //获取。。。
+      case 2:   //获取publish
+      that.getPublish()
       break;
-      default:
+      default:  //error
       break;
     }
   },
 
+  //获取附近二批
+  getAgency: function() {
+    var that = this;
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading'
+    })
+    console.log(that.data.currentLat)
+
+
+    wx.request({
+      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      data: {
+        offset: that.data.agencyOffset,
+        limit: that.data.rows,
+        //city: that.data.location,
+        //currentLat: that.data.currentLatitude,
+        //currentLon: that.data.currentLatitude
+      },
+      success(agencyRes) {
+        console.log("agencyRes")
+        console.log(agencyRes)
+        var agency = agencyRes.data
+        if (agency.length < 1) {
+          wx.showToast({
+            title: '没有了。。。',
+            icon: "none"
+          })
+        } else {
+          that.setData({
+            agencyList: that.data.agencyList.concat(agency)
+          })
+          that.setData({
+            agencyOffset: that.data.agencyOffset + that.data.rows
+          })
+          console.log("offset")
+          console.log(that.data.offset)
+        }
+      },
+      fail() {
+        wx.showToast({
+          title: '请检查网络。。。',
+          icon: "none"
+        })
+      },
+      complete() {
+        wx.hideLoading()
+      }
+    })
+  },
 
   //获取发布信息
   getPublish: function() {
@@ -285,7 +334,6 @@ Page({
             publishOffset: that.data.publishOffset + that.data.rows
           })
           console.log("offset")
-          console.log(that.data.offset)
           console.log(that.data.offset)
         }
       },
