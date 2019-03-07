@@ -3,7 +3,7 @@
   <view class='exceptProduct'>
     <view class='header'>
       <view class="location">
-        <text class='location-text'>{{location}}</text>
+        <text class='location-text'>{{currentArea}}</text>
         <image class='location-pull' hidden='{{!isCooperation}}' mode='widthFix' src='../../images/pull.png' bindtap="changeLocation" />
       </view>
       <view class='search'>
@@ -32,7 +32,7 @@
   <view class='products'>
     <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">
       <text class='name'>{{item.goodsName}}<text class="content">{{item.agencyName}}</text></text>
-      <image class='image' src='{{item.productPic}}'></image>
+      <image class='image' src='{{item.goodsPic[0]}}'></image>
     </view>
     <view class='product-item' bindtap='getRecommends'>换一批</view>
   </view>

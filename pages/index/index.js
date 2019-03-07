@@ -10,18 +10,19 @@ Page({
     recommendOffset: 0,
     publishOffset: 0,
     agencyOffset: 0,
-    location: "正在定位...",
+    currentProvince: "北京",
+    currentCity: "北京",
+    currentArea: "朝阳区",
     isCooperation: true,
-    ads: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "seachValue": "" }],
-    agencyList: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": ["http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "address": "北京市朝阳区西大望路甲20号", "distance": "3183.34米", "seachValue": "" }],
-    agencyList: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "seachValue": "" }],
-    recommends: [{ "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "凡客 1 帆布鞋", "goodsName": "凡客帆布鞋", "id": 8, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 2, "agencyName": "中信旅行1", "goodsDescription": "adidas boost 1", "goodsName": "adidas boost", "id": 7, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "匡威 1 帆布鞋", "goodsName": "匡威帆布鞋", "id": 6, "productId": 1, "productName": "鞋子", "productPic": "../../images/index-bnr1.jpg" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "牙牙乐 3 牙刷", "goodsName": "中信 牙牙乐牙刷", "id": 5, "productId": 2, "productName": "牙刷", "productPic": "../../images/index-bnr1.jpg" }],
+    ads: [{ "agencyName": "加华印象", "id": 1, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/155164247199297de0f6cb4ee2a9877a.jpg", "seachValue": "" }, { "agencyName": "中信旅行4", "id": 5, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/155164247199297de0f6cb4ee2a9877a.jpg", "seachValue": "" }, { "agencyName": "测试商家", "id": 30, "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/1551172519.jpg", "seachValue": "" }],
+    agencyList: [{ "address": "北京市朝阳区", "agencyName": "加华印象", "city": "北京", "createTime": 1550644191000, "distance": "8514.0米", "email": "123@123.com", "id": 1, "isCooperation": 0, "isDel": 0, "latitude": "39.9075635785", "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "longitude": "116.4688968606", "mobilephone": "1312000888", "seachValue": "", "sysUserName": "加华印象", "sysUserPassword": "123456", "updateTime": 1550644193000, "wechatImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg" }, { "address": "北京朝阳区", "agencyName": "中信旅行1", "city": "北京", "createTime": 1550645115000, "distance": "8514.0米", "id": 2, "isCooperation": 1, "isDel": 0, "latitude": "39.9075635785", "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "longitude": "116.4688968606", "mobilephone": "1231231232", "seachValue": "", "sysUserName": "中信", "sysUserPassword": "123456", "updateTime": 1550645117000, "wechatImagePath": "http://47.105.169.49/Agency/attachment/upload/1551136298.jpg" }, { "address": "北京朝阳区", "agencyName": "中信旅行2", "city": "北京", "createTime": 1550645115000, "distance": "8514.0米", "email": "", "id": 3, "isCooperation": 1, "isDel": 0, "latitude": "39.9075635785", "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "longitude": "116.4688968606", "mobilephone": "1231231232", "openId": "", "seachValue": "", "sysUserName": "中信", "sysUserPassword": "123456", "updateTime": 1550645117000, "wechatImagePath": "http://47.105.169.49/Agency/attachment/upload/1551136298.jpg" }, { "address": "北京朝阳区", "agencyName": "中信旅行3", "city": "北京", "createTime": 1550645115000, "distance": "8514.0米", "email": "", "id": 4, "isCooperation": 1, "isDel": 0, "latitude": "39.9075635785", "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "longitude": "116.4688968606", "mobilephone": "1231231232", "openId": "", "seachValue": "", "sysUserName": "中信", "sysUserPassword": "123456", "updateTime": 1550645117000, "wechatImagePath": "http://47.105.169.49/Agency/attachment/upload/1551136298.jpg" }, { "address": "北京朝阳区", "agencyName": "中信旅行4", "city": "北京", "createTime": 1550645115000, "distance": "8514.0米", "email": "", "id": 5, "isCooperation": 1, "isDel": 0, "latitude": "39.9075635785", "logoImagePath": "http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "longitude": "116.4688968606", "mobilephone": "1231231232", "openId": "", "seachValue": "", "sysUserName": "中信", "sysUserPassword": "123456", "updateTime": 1550645117000, "wechatImagePath": "http://47.105.169.49/Agency/attachment/upload/1551136298.jpg" }],
+    recommends: [{ "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "凡客 1 帆布鞋", "goodsName": "凡客帆布鞋", "goodsPic": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "id": 8, "productId": 1, "productName": "鞋子" }, { "agencyId": 2, "agencyName": "中信旅行1", "goodsDescription": "adidas boost 1", "goodsName": "adidas boost", "goodsPic": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "id": 7, "productId": 1, "productName": "鞋子" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "匡威 1 帆布鞋", "goodsName": "匡威帆布鞋", "goodsPic": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "id": 6, "productId": 1, "productName": "鞋子" }, { "agencyId": 1, "agencyName": "加华印象", "goodsDescription": "牙牙乐 3 牙刷", "goodsName": "中信 牙牙乐牙刷", "goodsPic": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "id": 5, "productId": 2, "productName": "牙刷" }],
     tabs: [{ "chinese": "陈列", "seachValue": "", "value": "1" }, { "chinese": "优惠", "seachValue": "", "value": "2" }, { "chinese": "优惠", "seachValue": "", "value": "3" }, { "chinese": "优惠", "seachValue": "", "value": "4" }, { "chinese": "优惠", "seachValue": "", "value": "5" }],
     tabType: 1, //1-agency,2-publish
     currentTab: -1, //-1-附近二批,1~n-publish
-    publishList: [{ "category": "租车", "description": "出租东风雪铁龙轿车一辆，每日200元", "id": 1, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9075635785,116.4688968606", "mobilePhone": "13888888888", "seachValue": "" }, { "category": "卖车", "description": "出售东风雪铁龙轿车一辆，100000元", "id": 2, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000001.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000003.jpg"], "location": "39.9049958097,116.6331768036", "mobilePhone": "13889998888", "seachValue": "" }],
-    currentLatitude: null,
-    currentLongitude: null
+    publishList: [{ "category": "租车", "city": "北京", "description": "出租东风雪铁龙轿车一辆，每日200元", "id": 1, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9075635785,116.4688968606", "mobilephone": "13888888888", "seachValue": "" }, { "category": "卖车", "city": "北京", "description": "出售东风雪铁龙轿车一辆，100000元", "id": 2, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9049958097,116.6331768036", "mobilephone": "13889998888", "seachValue": "" }, { "category": "0", "city": "北京", "description": "12", "id": 3, "mobilephone": "13641716360", "seachValue": "" }],
+    currentLatitude: 39.90469,
+    currentLongitude: 116.40717
   },
   /**
    * 生命周期函数--监听页面加载
@@ -57,9 +58,11 @@ Page({
                 console.log("location_res")
                 console.log(locationRes)
                 that.setData({
-                  //location: locationRes.data.result.address_component.district
                   currentLatitude: latitude,
-                  currentLongitude: longitude
+                  currentLongitude: longitude,
+                  //currentArea: locationRes.data.result.address_component.district,
+                  //currentCity: locationRes.data.result.address_component.city,
+                  //currentProvince: locationRes.data.result.address_component.province
                 })
               }
             })
@@ -67,33 +70,34 @@ Page({
         })
       },
       fail() {},
-      complete() {}
-    })
-    var that = this;
-    //获取轮播图
-    this.getAds()
+      complete() {
+        //获取轮播图
+        that.getAds()
 
-    //获取推荐
-    this.getRecommends()
+        //获取推荐
+        that.getRecommends()
 
 
-    //获取scroll-view-tabs
-    wx.request({
-      url: 'http://localhost:8080/Agency/parameter/findParameter.do',
-      data: {
-        paraDomain: "product.category"
-      },
-      success(tabRes) {
-        that.setData({
-          tabs: tabRes.data
+        //获取scroll-view-tabs
+        wx.request({
+          url: 'http://localhost:8080/Agency/parameter/findParameter.do',
+          data: {
+            paraDomain: "product.category"
+          },
+          success(tabRes) {
+            that.setData({
+              tabs: tabRes.data
+            })
+            console.log("tabRes")
+            console.log(tabRes)
+          }
         })
-        console.log("tabRes")
-        console.log(tabRes)
+
+        //根据tab类型加载内容
+        that.getContents()
       }
     })
-
-    //根据tab类型加载内容
-    this.getContents()
+    
 
   },
 
@@ -193,7 +197,10 @@ Page({
       url: 'http://localhost:8080/Agency/agency/findAdAgency.do',
       data: {
         offset: this.data.adOffset,
-        rows: 4
+        rows: 4,
+        province: that.data.currentProvince,
+        city: that.data.currentCity,
+        area: that.data.currentArea
       },
       success(adRes) {
         console.log("adRes")
@@ -213,13 +220,22 @@ Page({
       data: {
         isTop: 1,
         offset: this.data.recommendOffset,
-        rows: 4
+        rows: 4,
+        province: that.data.currentProvince,
+        city: that.data.currentCity,
+        area: that.data.currentArea
       },
       success(recommendRes) {
         console.log("recommendRes")
         console.log(recommendRes)
+        var recommends = recommendRes.data
+        for (var i = 0; i < recommends.length; i++) {
+          if (recommends[i].goodsPic != undefined) {
+            recommends[i].goodsPic = recommends[i].goodsPic.split(",")
+          }
+        }
         that.setData({
-          recommends: recommendRes.data
+          recommends: recommends
         })
         that.setData({
           recommendOffset: that.data.recommendOffset + 4
@@ -259,9 +275,12 @@ Page({
       data: {
         offset: that.data.agencyOffset,
         limit: that.data.rows,
-        //city: that.data.location,
-        //currentLat: that.data.currentLatitude,
-        //currentLon: that.data.currentLatitude
+        city: that.data.location,
+        currentLat: that.data.currentLatitude,
+        currentLon: that.data.currentLongitude,
+        province: that.data.currentProvince,
+        city: that.data.currentCity,
+        area: that.data.currentArea
       },
       success(agencyRes) {
         console.log("agencyRes")
@@ -306,7 +325,10 @@ Page({
       url: 'http://localhost:8080/Agency/publish/getPublish.do',
       data: {
         offset: that.data.publishOffset,
-        rows: that.data.rows
+        rows: that.data.rows,
+        province: that.data.currentProvince,
+        city: that.data.currentCity,
+        area: that.data.currentArea
       },
       success(publishRes) {
         console.log("publishRes")
