@@ -165,7 +165,7 @@ Page({
   changeLocation: function() {
     console.log('location page')
     wx.navigateTo({
-      url: '../location/location'
+      url: '../location/location?currentProvince=' + this.data.currentProvince + '&currentCity=' + this.data.currentCity + '&currentArea=' + this.data.currentArea
     })
   },
 

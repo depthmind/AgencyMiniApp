@@ -18,7 +18,10 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    
+    console.log(options.currentProvince)
+    this.setData({
+      region: [options.currentProvince, options.currentCity, options.currentArea]
+    })
   },
 
   /**

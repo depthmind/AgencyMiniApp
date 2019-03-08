@@ -1,22 +1,6 @@
 <!--pages/location/location.wxml-->
 <view>
   <view class="weui-cells__title">选择地址：</view>
-  <!-- <picker-view
-    indicator-style="height: 50px;"
-    style="width: 100%; height: 300px;"
-    value="{{value}}"
-    bindchange="bindChange"
-  >
-    <picker-view-column>
-      <view wx:for="{{provinces}}" style="line-height: 50px">{{item.fullname}}</view>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{cities}}" style="line-height: 50px">{{item.fullname}}</view>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{districts}}" style="line-height: 50px">{{item.fullname}}</view>
-    </picker-view-column>
-  </picker-view> -->
 
 <view class="section">
       <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
