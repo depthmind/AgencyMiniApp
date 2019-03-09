@@ -7,7 +7,7 @@
 	overflow: hidden;
 	position: relative;
 }
-.itemimage{
+.agencylist .itemimage{
 	float: left;
 	width: 100rpx;
 	height: 100rpx;
@@ -15,14 +15,14 @@
 	margin: 0 10px 0 0;
 	box-shadow: 0 0 3px #dedede;
 }
-.name{
+.agencylist .name{
 	display: block;
 }
-.address{
+.agencylist .address{
 	display: block;
 	color:#999;
 }
-.phone{
+.agencylist .phone{
 	width:36px;
 	height: 36px;
 	position: absolute;
