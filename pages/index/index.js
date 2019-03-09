@@ -129,68 +129,7 @@ Page({
     wx.setNavigationBarTitle({
       title: '首页',
     })
-
-    wx.login({
-      success: res => {
-        console.log(res)
-        //获取用户信息
-        wx.getUserInfo({
-          success(userRes) {
-            console.log(userRes)
-            app.globalData.userInfo = userRes.userInfo
-            console.log("app.globalData.userInfo=" + app.globalData.userInfo)
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            if (res.code) {
-              wx.request({
-                url: 'http://localhost:8080/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
-                success(loginRes) {
-                  console.log(loginRes)
-                  app.globalData.userId = loginRes.data.userId
-                  console.log("login_app.globalData.userId=" + app.globalData.userId)
-                  switch (loginRes.data.rtnCode) {
-                    case '999':
-                      wx.showToast({
-                        title: loginRes.data.rtnMessage,
-                        icon: 'none',
-                        duration: 5000
-                      })
-                      break;
-                    case '0':
-                      wx.redirectTo({
-                        url: '../register/register',
-                      })
-                      break;
-                    case '1':
-                      wx.request({
-                        url: 'http://localhost:8765/iBet/wechat/betSites',
-                        data: {
-                          userId: app.globalData.userId
-                        },
-                        success(betSitesRes) {
-                          console.log("betSites_app.globalData.userId=" + app.globalData.userId)
-                          if (betSitesRes.data.betSites != null && betSitesRes.data.betSites != "") {
-                            that.setData({
-                              betSites: betSitesRes.data.betSites
-                            })
-                            app.globalData.userBetSites = betSitesRes.data.betSites
-                            console.log(that.data.betSites)
-                          }
-                        }
-                      })
-                      break;
-                    default:
-                      break;
-                  }
-                }
-              })
-              console.log("success")
-            } else {
-              console.log("fail" + res.errMsg)
-            }
-          }
-        })
-      }
-    })
+    //that.login()
   },
 
   /**
@@ -466,7 +405,35 @@ Page({
       that.setData({
         isNotAuthorized: false
       });
-      app.globalData.userInfo = e.detail.userInfo
+      wx.login({
+        success: res => {
+          console.log(res)
+          //获取用户信息
+          wx.getUserInfo({
+            success(userRes) {
+              // 发送 res.code 到后台换取 openId, sessionKey, unionId
+              if (app.globalData.openId == null || app.globalData.openId == '') {
+                if (res.code) {
+                  wx.request({
+                    url: 'http://localhost:8080/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
+                    success(loginRes) {
+                      console.log(loginRes)
+                      var userInfo = loginRes.data
+                      app.globalData.userInfo = userInfo
+                      wx.setStorageSync('userInfo', userInfo)
+                      app.globalData.openId = userInfo.openId
+                    }
+                  })
+                  console.log("success")
+                } else {
+                  console.log("fail" + res.errMsg)
+                }
+              }
+
+            }
+          })
+        }
+      })
     } else {
       //用户按了拒绝按钮
       wx.showModal({
@@ -482,5 +449,37 @@ Page({
         }
       });
     }
+  },
+  
+  login: function () {
+    wx.login({
+      success: res => {
+        console.log(res)
+        //获取用户信息
+        wx.getUserInfo({
+          success(userRes) {
+            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            if (app.globalData.openId == null || app.globalData.openId == '') {
+              if (res.code) {
+                wx.request({
+                  url: 'http://localhost:8080/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
+                  success(loginRes) {
+                    console.log(loginRes)
+                    var userInfo = loginRes.data
+                    app.globalData.userInfo = userInfo
+                    wx.setStorageSync('userInfo', userInfo)
+                    app.globalData.openId = userInfo.openId
+                  }
+                })
+                console.log("success")
+              } else {
+                console.log("fail" + res.errMsg)
+              }
+            }
+
+          }
+        })
+      }
+    })
   }
 })
