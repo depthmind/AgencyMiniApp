@@ -13,13 +13,13 @@
           <text class='textarea-label'>内容描述</text>
           <textarea name="description" style="display: {{textareadisplay}};" placeholder='请描述信息内容'></textarea>
         </view>
-        <view class='form-item'>
-          <view wx:for="{{tempFilePaths}}"wx:key="{{index}}" style="width:160rpx; float:left; margin: 20px 1%;">
-             <image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
-            </view>
-            <text class='label' style='position:static;'>上传图片<text>*</text></text> 
-            <view style="width: 100px; height: 100px; background-color: #eeeeee; margin: 10px 0;" bindtap='chooseImage'>
-              <image style="width: 100px; height: 100px; background-color: #eeeeee;"  src="{{imagePath}}"></image>
+        <view class='form-item' style="padding-top: 25px; overflow:hidden;">
+          <text class='label' style="top:0;">上传图片<text>*</text></text> 
+          <view wx:for="{{tempFilePaths}}"wx:key="{{index}}" style="width:180rpx; float:left; margin: 20px 6rpx 0;">
+             <image style="width: 180rpx; height: 180rpx; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
+          </view>
+          <view style="width: 180rpx; height: 180rpx; background-color: #eeeeee; margin: 20px 0; float:left;" bindtap='chooseImage'>
+            <image style="width: 180rpx; height: 180rpx; background-color: #eeeeee;"  src="{{imagePath}}"></image>
           </view>
         </view>
         <view class='form-item'>
