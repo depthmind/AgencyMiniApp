@@ -7,6 +7,16 @@
     <text>{{agency.address}}</text>
   </view>
   <view>
+    <text>{{agency.mobilephone}}</text>
     <image class="phone" src='{{phoneImage}}' bindtap='makePhoneCall' data-mobilephone='{{agency.mobilephone}}'></image>
+  </view>
+  <view wx:if="{{agency.logoImagePath}}">
+    <text>老板微信</text>
+    <image src='{{agency.logoImagePath}}'></image>
+  </view>
+  <view>
+    <text>经营许可证</text>
+    <image src='{{agency.licence1ImagePath}}'></image>
+    <image src='{{agency.licence2ImagePath}}'></image>
   </view>
 </view>

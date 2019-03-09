@@ -1,7 +1,7 @@
 <view>
   <view>
     <view class="agencylist" wx:for="{{agencyes}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
-	    <image class="itemimage" src='{{item.logo}}'></image>
+	    <image class="itemimage" src='{{item.logoImagePath}}'></image>
 	    <image class="phone" src='{{phoneImage}}'></image>
 	    <text class="name">{{item.agencyName}}</text>
 	    <text class="address">{{item.address}}</text>

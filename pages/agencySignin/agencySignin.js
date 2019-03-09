@@ -1,3 +1,4 @@
+const app = getApp()
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
 var qqmapsdk = new QQMapWX({
   key: 'EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF' // 必填
@@ -30,7 +31,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var openId = wx.getStorageSync('openId')
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
     wx.getLocation({ //初始地址
       success: function (res) {
         var new_latitude = res.latitude
@@ -53,9 +55,13 @@ Page({
             content: '您已经入驻过了哦',
             success(res) {
               if (res.confirm) {
-                console.log('用户点击确定')
+                wx.switchTab({
+                  url: '/pages/mine/mine',
+                })
               } else if (res.cancel) {
-                console.log('用户点击取消')
+                wx.switchTab({
+                  url: '/pages/mine/mine',
+                })
               }
             }
           })

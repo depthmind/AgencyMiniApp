@@ -1,10 +1,11 @@
+const app = getApp()
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
 var qqmapsdk = new QQMapWX({
   key: 'EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF' // 必填
 })
 var longitude = wx.getStorageSync("longitude")
 var latitude = wx.getStorageSync("latitude")
-var openId = wx.getStorageSync('openId')
+
 Page({
   /**
    * 页面的初始数据
@@ -62,6 +63,8 @@ Page({
         })
       },
     })
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
     wx.request({ //判断是否已入驻
       url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {

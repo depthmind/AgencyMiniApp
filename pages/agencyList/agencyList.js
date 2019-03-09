@@ -103,7 +103,7 @@ Page({
 
   openAgency: function (e) {
     console.log(e)
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/agencyDetail/agencyDetail?id=' + e.currentTarget.dataset.cid,
     })
   }
