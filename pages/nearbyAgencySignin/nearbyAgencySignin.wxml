@@ -4,53 +4,86 @@
       <form bindsubmit="formSubmit">
         <view class='form-item'>
           <text class='label'>商家名称</text>
-          <input placeholder="商家名称"></input>
+          <input name="agencyName" placeholder="商家名称"></input>
         </view>
         <view class='form-item'>
           <text class='label'>详细地址</text>
-          <input bindtap='chooseAddress' value='{{addressDetail}}'></input>
+          <input name="addressDetail" value='{{addressDetail}}'></input>
+          <text bindtap='chooseAddress'>定位</text>
         </view>
         <view class='form-item'>
-          <text class='label'>显示区域</text>
-          <input placeholder="显示区域"></input>
+          <!-- <text class='label'>显示区域</text>
+          <input placeholder="显示区域"></input> -->
+          <picker mode="selector" bindchange="bindPickerChangeProvince" range='{{province}}' range-key='fullname' value="{{provinceIndex}}">
+          <view class="picker">
+            选择入驻省份
+            <text name='province'>{{province[provinceIndex].fullname}}</text>
+          </view>
+          </picker>
+          <picker mode="selector" bindchange="bindPickerChangeCity" range='{{citys}}' range-key='fullname' value="{{cityIndex}}">
+          <view class="picker">
+            选择入驻城市
+            <text name='city'>{{citys[cityIndex].fullname}}</text>
+          </view>
+          </picker>
         </view>
-        <!--三级选择-->
+        <view class='the-label'>
+          <view class='list'>
+            <block wx:for="{{area}}" wx:key="">
+              <view class="li {{item.checked?'cur':''}}" data-index="{{index}}" data-value="{{item.id}}" bindtap="checkLabs">
+                <label class='ti'>{{item.fullname}}</label>
+              </view>
+            </block>
+          </view>
+        </view>
         <view class='form-item'>
           <text class='label'>服务工号</text>
-          <input></input>
+          <input name="serviceNumber"></input>
         </view>
         <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">代理商logo</text>
-          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseImage'>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLogoImage'>
             <image style="width: 100px; height: 100px;"  src="{{logoImagePath}}"></image>
           </view>
         </view>
         <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">老板微信</text>
-          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseImage'>
-            <image style="width: 100px; height: 100px;"  src="{{logoImagePath}}"></image>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseWechatImage'>
+            <image style="width: 100px; height: 100px;"  src="{{wechatImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">营业执照</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence1Image'>
+            <image style="width: 100px; height: 100px;"  src="{{licence1ImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">食品经营许可证</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence2Image'>
+            <image style="width: 100px; height: 100px;"  src="{{licence2ImagePath}}"></image>
           </view>
         </view>
         <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
             <text class='label'>电话</text> 
-            <input name="mobilePhone" placeholder="联系人电话" style="padding-right: 160rpx;"></input>
+            <input name="mobilephone" placeholder="联系人电话" style="padding-right: 160rpx;"></input>
             <view style="position:absolute; right: 0; top:12rpx; color:#fff; background:#ff7419;padding: 2px 8px; border-radius: 5px;">发送验证码</view>
         </view>
         <view class='form-item'>
           <text class='label'>验证码</text>
-          <input></input>
+          <input name="validateCode"></input>
         </view>
+        <text class='label'>入驻时长</text>
+        <view>
+          <radio-group name="time" class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{validPeriod}}" style="margin: 0 20rpx 0 0;">
+              <radio value="{{item.value}}" checked="{{item.checked}}" />
+              {{item.chinese}}
+            </label>
+          </radio-group>
+        </view>
+        <button form-type='submit'>申请入驻</button>
       </form>
     </view>
   </view>
-    <text class='label'>入驻时长</text>
-    <view>
-      <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio" wx:for="{{items}}" style="margin: 0 20rpx 0 0;">
-          <radio value="{{item.name}}" checked="{{item.checked}}" />
-          {{item.value}}
-        </label>
-      </radio-group>
-    </view>
-  <button>申请入驻</button>
 </view>
