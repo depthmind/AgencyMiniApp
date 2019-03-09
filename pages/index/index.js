@@ -142,12 +142,7 @@ Page({
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
             if (res.code) {
               wx.request({
-                url: 'http://localhost:8765/iBet/wechat/login',
-                data: {
-                  jsCode: res.code,
-                  iv: userRes.iv,
-                  encryptedData: userRes.encryptedData
-                },
+                url: 'http://localhost:8080/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
                 success(loginRes) {
                   console.log(loginRes)
                   app.globalData.userId = loginRes.data.userId
