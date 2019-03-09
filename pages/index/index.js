@@ -269,7 +269,8 @@ Page({
       })
     } else {
       this.setData({
-        tabType: 2
+        tabType: 2,
+        
       })
     }
     console.log("tabType=" + this.data.tabType)
@@ -415,6 +416,7 @@ Page({
         offset: that.data.publishOffset,
         rows: that.data.rows,
         province: that.data.currentProvince,
+        paraId: that.data.currentTab,
         city: that.data.currentCity,
         area: that.data.currentArea
       },
@@ -428,7 +430,6 @@ Page({
             icon: "none"
           })
         } else {
-          console.log(publish[2].images)
           for (var i = 0; i < publish.length; i++) {
             if (publish[i].images != undefined) {
               publish[i].images = publish[i].images.split(",")
