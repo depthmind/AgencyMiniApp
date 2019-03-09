@@ -4,9 +4,9 @@
 
 .container_index {
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0 -40rpx;
 }
 
 .exceptProduct {
@@ -15,18 +15,17 @@
 }
 
 .header {
-  background-color: red;
+  background-color: #0097fe;
   display: flex;
   flex-direction: column;
   height: 150rpx;
-  width: 100%;
   top: 10rpx;
 }
 
 .location {
   display: flex;
   position: flex;
-  margin-left: 20rpx;
+  margin-left: 40rpx;
 }
 
 .location-text {
@@ -121,32 +120,27 @@
 .tabs {
   display: flex;
   flex-direction: row;
-  height: 40rpx;
-  background: red;
-  border-bottom: 2rpx solid white;
-  border-top: 2rpx solid white;
+  padding: 1px 40rpx;
+  margin: 20rpx 0;
+  background: #fff;
+  border-bottom: 1px solid #dedede;
 }
 
 .tab-item {
-  display: flex;
-  width: 120rpx;
-  border: 1rpx solid black;
-  border-radius: 20rpx;
   text-align: center;
+  padding: 8px 0;
 }
 
 .active {
-  color: white;
+  border-bottom: 2px solid red;
+  color: red;
 }
 
 .tab-view {
-  display: flex;
-  border: 1rpx #000;
-  border-radius: 5rpx 0;
+
 }
 
 .tabs-scroll-view {
-  border-left: 1rpx solid white;
   margin-left: 5rpx;
   width: 80%;
   white-space: nowrap;
@@ -161,29 +155,37 @@ display: inline-block;
 .products {
   display: flex;
   flex-wrap: wrap;
+  background: #fff;
+  padding: 40rpx 0;
 }
 
 .product-item {
-  display: flex;
-  width: 300rpx;
+  width: 315rpx;
+  margin: 0 0 20rpx 40rpx;
 }
 
 .product-item .name {
-  display: flex;
-  float: left;
-  font-size: 24rpx;
-  font-weight: bold;
+  font-size: 26rpx;
   color: #434343;
-  margin: 10rpx 0;
+  margin: 10rpx 10rpx 0 0;
   padding: 0;
   background: none;
+  font-weight: bold;
 }
 
 .product-item .content {
-  display: flex;
-  color: #2cca90;
+  color: #999;
+  margin: 0 0 10rpx 0;
+  font-weight: normal;
 }
-
+.reflesh{
+  text-align: center;
+  margin: 20rpx auto;
+  color: #0097fe;
+  border-radius: 30px;
+  border: 1px solid #0097fe;
+  padding: 2px 15px;
+}
 
 .content {
   display: flex;
@@ -193,24 +195,23 @@ display: inline-block;
 .content-item {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  border-bottom: 1rpx solid white;
+  border-bottom: 1rpx solid #dedede;
+  margin: 0 40rpx;
+  padding: 20rpx 0;
 }
 
 .content-item .name {
   display: flex;
   float: left;
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-weight: bold;
-  color: #2cca90;
-  margin: 10rpx 0;
   padding: 0;
   background: none;
 }
 
 .content-item .content {
   display: flex;
-  color: #434343;
+  color: #999;
 }
 
 .content-item .images {
@@ -228,37 +229,39 @@ display: inline-block;
 }
 
 .product-item .image {
-  border: 1rpx solid #000;
-  height: 100rpx;
-  width: 100rpx;
-  display: flex;
-  margin-left: 5rpx;
+  border: 1rpx solid #dedede;
+  height: 315rpx;
+  width: 315rpx;
+  display: block;
 }
 
 .agencylist{
-	border-radius: 10px;
-	background: #fff;
-	margin: 10px 0;
-	padding: 10px 55px 10px 10px;
-	overflow: hidden;
-	position: relative;
+  background: #fff;
+  margin: 10px 20px;
+  padding: 10px 55px 10px 10px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #dedede;
 }
-.itemimage{
-	float: left;
-	width: 100rpx;
-	height: 100rpx;
-	border-radius: 100rpx;
-	margin: 0 10px 0 0;
-	box-shadow: 0 0 3px #dedede;
+.agencylist .itemimage{
+  float: left;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  margin: 0 10px 0 0;
+  box-shadow: 0 0 3px #dedede;
 }
-.name{
-	display: block;
+.agencylist .name{
+  display: block;
 }
-.address{
-	display: block;
-	color:#999;
+.agencylist .address{
+  display: block;
+  color:#999;
 }
-.phone{
-	width:36px;
-	height: 36px;
+.agencylist .phone{
+  width:36px;
+  height: 36px;
+  position: absolute;
+  top:17px;
+  right: 10px;
 }
