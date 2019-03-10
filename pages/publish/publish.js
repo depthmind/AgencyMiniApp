@@ -18,6 +18,7 @@ Page({
       { name: 'notTop', value: '否', checked: 'true' },
     ],
     imagePath: '/images/photo.png',
+    dingwei: '/images/dingwei.jpg',
     addressDetail: '',
     tempFilePaths: [],
     uploadImagePath: '',

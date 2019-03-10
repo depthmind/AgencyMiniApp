@@ -30,10 +30,10 @@
             <text class='label'>电话</text> 
             <input type="number" name="mobilephone" placeholder="联系人电话"></input>
         </view>
-        <view class='form-item'>
+        <view class='form-item' style="padding-right: 60rpx;">
           <text class='label'>详细地址</text>
           <input name="address" value='{{addressDetail}}'></input>
-          <text class='label' bindtap='chooseAddress'>定位</text>
+          <image style="width: 36rpx; height: 46rpx; position: absolute; right: 16rpx; top: 16rpx;"  src="{{dingwei}}"></image>
         </view>
         <!-- <view class="form-item">
           <view class="label">是否置顶</view>
