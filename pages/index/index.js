@@ -24,7 +24,10 @@ Page({
     currentTab: -1, //-1-附近二批,1~n-publish
     publishList: [{ "category": "租车", "city": "北京", "description": "出租东风雪铁龙轿车一辆，每日200元", "id": 1, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9075635785,116.4688968606", "mobilephone": "13888888888", "seachValue": "" }, { "category": "卖车", "city": "北京", "description": "出售东风雪铁龙轿车一辆，100000元", "id": 2, "images": ["http://47.105.169.49/Agency/attachment/upload/10000000003.jpg", "http://47.105.169.49/Agency/attachment/upload/10000000002.jpg"], "location": "39.9049958097,116.6331768036", "mobilephone": "13889998888", "seachValue": "" }, { "category": "0", "city": "北京", "description": "12", "id": 3, "mobilephone": "13641716360", "seachValue": "" }],
     currentLatitude: 39.90469,
-    currentLongitude: 116.40717
+    currentLongitude: 116.40717,
+    adsImage1: '/images/ad1.jpg',
+    adsImage2: '/images/ad2.jpg',
+    labaImage: '/images/laba.jpg',
   },
   /**
    * 生命周期函数--监听页面加载

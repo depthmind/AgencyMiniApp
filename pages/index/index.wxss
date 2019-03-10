@@ -17,8 +17,7 @@
 .header {
   background-color: #0097fe;
   display: flex;
-  flex-direction: column;
-  height: 150rpx;
+  height: 120rpx;
   top: 10rpx;
 }
 
@@ -26,6 +25,7 @@
   display: flex;
   position: flex;
   margin-left: 40rpx;
+  align-self: center;
 }
 
 .location-text {
@@ -46,12 +46,12 @@
 
 .search {
   display: flex;
-  height: 35%;
   width: 90%;
   justify-content: center;
   align-self: center;
   margin-top: 10rpx;
   margin-bottom: 2rpx;
+  margin-right: 40rpx;
   background-color: white;
   border: 0rpx solid #000;
   border-radius: 50rpx;
@@ -108,13 +108,13 @@
 .flexRowContainer {
   display: flex;
   flex-direction: row;
+  padding: 0 26rpx;
 }
 
 .flexRowSon {
   display: flex;
   flex: 1;
   justify-content: center;
-  border: black 3rpx solid;
 }
 
 .tabs {
