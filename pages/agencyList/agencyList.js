@@ -27,7 +27,7 @@ Page({
       title: '代理商中心',
     })
     wx.request({
-      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
       success(res) {
         console.log(res)
         that.setData({

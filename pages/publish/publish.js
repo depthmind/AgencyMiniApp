@@ -33,7 +33,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({ //查询可选择的类目参数
-      url: 'http://localhost:8080/Agency/parameter/findParameter.do?paraDomain=publish.category',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=publish.category',
       success(res) {
         console.log(res)
         that.setData({
@@ -42,7 +42,7 @@ Page({
       }
     })
     wx.request({ //查询如果需要支付时的费用
-      url: 'http://localhost:8080/Agency/parameter/findParameter.do?paraDomain=publish.cost',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=publish.cost',
       success(res) {
         console.log(res)
         that.setData({
@@ -67,7 +67,7 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({ //判断是否已入驻
-      url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {
         if (res.data.isCooperation == '1') {
           that.setData({
