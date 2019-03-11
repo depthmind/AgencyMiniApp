@@ -1,16 +1,42 @@
 .itemimage{
-	float: left;
-	width: 100rpx;
-	height: 100rpx;
-	border-radius: 100rpx;
-	margin: 0 10px 0 0;
+	width: 180rpx;
+	height: 180rpx;
+	border-radius: 180rpx;
+	margin: 0 15px 0 0;
 	box-shadow: 0 0 3px #dedede;
+	float: left;
 }
-
-.phone{
-	width:36px;
-	height: 36px;
-	position: absolute;
-	top:17px;
-	right: 10px;
+.agencyname{
+	font-size: 36rpx;
+	line-height: 180rpx;
+	color: #000;
+}
+.address{
+	color: #666;
+	line-height:1;
+	background: #fff; 
+	padding: 40rpx 40rpx 0;
+}
+.address image{
+	width:25rpx;
+	height: 30rpx;
+	float: left;
+	margin: 0 15rpx 0 0;
+}
+.tel{
+	color: #666;
+	background: #fff; 
+	padding: 5px 40rpx 40rpx 80rpx;
+	margin-bottom: 10px;
+}
+.phone {
+	color:#d24855;
+	float: right;
+	line-height: 32rpx;
+}
+.phone image{
+	width:26rpx;
+	height: 32rpx;
+	float: left;
+	margin: 0 8px 0 0;
 }

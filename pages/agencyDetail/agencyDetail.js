@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phoneImage: '/images/phone.jpg',
+    phoneImage2: '/images/phone2.jpg',
+    addressImage: '/images/address.png',
   },
 
   /**

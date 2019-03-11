@@ -1,22 +1,25 @@
-<view>
-  <view>
+<view style="margin: 0 -40rpx;">
+  <view style="border-bottom: 1px solid #dedede; padding: 30rpx 0; overflow: hidden; margin: 0 0 10px; padding: 40rpx; background: #fff;">
     <image class="itemimage" src='{{agency.logoImagePath}}'></image>
-    <text>{{agency.agencyName}}</text>
+    <text class="agencyname">{{agency.agencyName}}</text>
   </view>
-  <view>
-    <text>{{agency.address}}</text>
+  <view class="address">
+    <image src='{{addressImage}}'></image>{{agency.address}}
   </view>
-  <view>
-    <text>{{agency.mobilephone}}</text>
-    <image class="phone" src='{{phoneImage}}' bindtap='makePhoneCall' data-mobilephone='{{agency.mobilephone}}'></image>
+  <view class="tel">
+      <text>{{agency.mobilephone}}</text>
+      <view class="phone">
+        <image src='{{phoneImage2}}' bindtap='makePhoneCall' data-mobilephone='{{agency.mobilephone}}'></image>电话
+      </view>
+    </view>
+  
+  <view wx:if="{{agency.logoImagePath}}" style="background: #fff; margin: 0 0 10px 0; padding: 40rpx;">
+    <text style="margin: 0 0 10px; font-size: 28rpx; color: #000;">老板微信</text>
+    <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.logoImagePath}}'></image>
   </view>
-  <view wx:if="{{agency.logoImagePath}}">
-    <text>老板微信</text>
-    <image src='{{agency.logoImagePath}}'></image>
-  </view>
-  <view>
-    <text>经营许可证</text>
-    <image src='{{agency.licence1ImagePath}}'></image>
-    <image src='{{agency.licence2ImagePath}}'></image>
+  <view style="background: #fff; margin: 0 0 10px 0; padding: 40rpx;">
+    <view style="margin: 0 0 10px; font-size: 28rpx; color: #000;">经营许可证</view>
+    <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence1ImagePath}}'></image>
+    <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence2ImagePath}}'></image>
   </view>
 </view>
