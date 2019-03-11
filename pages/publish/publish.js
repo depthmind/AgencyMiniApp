@@ -24,7 +24,8 @@ Page({
     uploadImagePath: '',
     publishCategory:'',
     choosedCategory: '',
-    needPay: true
+    needPay: true,
+    showModal: false
   },
 
   /**
@@ -399,4 +400,18 @@ Page({
       },
     });
   },
+
+  //隐藏发布须知
+  onConfirm: function() {
+    this.setData({
+      showModal: false
+    });
+  },
+
+  //显示发布须知
+  showDialog: function() {
+    this.setData({
+      showModal: true
+    });
+  }
 })

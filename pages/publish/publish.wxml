@@ -39,8 +39,22 @@
           <view class="label">是否置顶</view>
           <switch name="switch" style="position:relative; left: 100px; margin: 5px 0;" />
         </view> -->
+        <view bindtap='showDialog'>发布须知</view>
         <button form-type="submit">提交审核</button>
       </form>
     </view>
+  </view>
+</view>
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">发布须知</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <text>山东分局啊赛捷东方 i阿斯顿放辣椒水都放假哦啊啥的肌肤 i 哦叫阿松大家佛 is 的肌肤</text>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view>
 </view>
