@@ -8,13 +8,10 @@ button{
 	color:#fff;
 	border: none;
 	line-height:2.2;
-	margin:0;
+	margin: 30px 0 0;
 	font-size: 32rpx;
 	border-radius: 0;
 	width: 100%;
-	position: fixed;
-	left:0;
-	bottom: 0;
 	border: 0;
 }
 
@@ -98,9 +95,10 @@ button{
 
 .modal-title {
   padding-top: 50rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
   color: #030303;
   text-align: center;
+  font-weight: bold;
 }
 
 .modal-content {
@@ -109,8 +107,6 @@ button{
 
 .modal-input {
   display: flex;
-  background: #fff;
-  border: 2rpx solid #ddd;
   border-radius: 4rpx;
   font-size: 28rpx;
 }
@@ -148,7 +144,7 @@ input-holder {
 }
 
 .btn-confirm {
-  width: 50%;
+  width: 100%;
   color: #ec5300;
   text-align: center;
 }
