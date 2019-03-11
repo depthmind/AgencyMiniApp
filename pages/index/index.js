@@ -24,7 +24,10 @@ Page({
     currentTab: -1, //-1-附近二批,1~n-publish
     publishList: [],
     currentLatitude: 39.90469,
-    currentLongitude: 116.40717
+    currentLongitude: 116.40717,
+    adsImage1: '/images/ad1.jpg',
+    adsImage2: '/images/ad2.jpg',
+    labaImage: '/images/laba.jpg'
   },
   /**
    * 生命周期函数--监听页面加载
