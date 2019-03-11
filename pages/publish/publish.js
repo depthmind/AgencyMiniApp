@@ -19,6 +19,7 @@ Page({
     ],
     imagePath: '/images/photo.png',
     dingwei: '/images/dingwei.jpg',
+    wenImage: '/images/wen.png',
     addressDetail: '',
     tempFilePaths: [],
     uploadImagePath: '',
