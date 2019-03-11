@@ -22,4 +22,9 @@
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence1ImagePath}}'></image>
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence2ImagePath}}'></image>
   </view>
+
+  <view style="background: #fff; margin: 0 0 10px 0; padding: 40rpx;">
+    <text style="margin: 0 0 10px; font-size: 28rpx; color: #000;">点击图中小程序码进行识别,即可进入门店</text>
+    <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='../../images/wxacode.png'></image>
+  </view>
 </view>

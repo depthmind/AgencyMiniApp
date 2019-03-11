@@ -122,6 +122,17 @@ Page({
     // })
     
 
+    wx.request({
+      url: 'http://localhost:8080/Agency/parameter/findParameter.do',
+      data: {
+        paraDomain: "index.notice"
+      },
+      success(res) {
+        that.setData({
+          notice: res.data[0].chinese
+        })
+      }
+    })
   },
 
   /**
@@ -483,6 +494,12 @@ Page({
           }
         })
       }
+    })
+  },
+
+  redirctToAgencyList: function() {
+    wx.switchTab({
+      url: '../../pages/agencyList/agencyList',
     })
   }
 })

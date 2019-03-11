@@ -227,6 +227,16 @@ Page({
   formSubmit: function (e) {
     console.log(e)
     var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var formId = e.detail.formId
+    wx.request({ //保存formId发送模板消息时使用
+      url: 'http://localhost:8080/Agency/template/saveFormIdForTemplate',
+      data: {
+        openId: openId,
+        formId: formId
+      }
+    })
     var temp = that.data.tempFilePaths
     var data = e.detail.value
     var isTop = 0

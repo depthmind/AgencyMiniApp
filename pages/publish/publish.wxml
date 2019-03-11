@@ -2,7 +2,7 @@
 
   <view class='message'>
     <view class='form'>
-      <form bindsubmit="formSubmit">
+      <form bindsubmit="formSubmit" report-submit='true'>
         <view class='form-item'>
         <text class='label'>类目</text> 
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{publishCategorys}}" range-key='chinese' style="padding: 0 0 0 66px; line-height: 80rpx;">
