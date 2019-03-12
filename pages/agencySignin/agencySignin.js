@@ -48,7 +48,7 @@ Page({
       },
     })
     wx.request({ //判断是否已入驻
-      url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {
         if (res.data.isCooperation == '1') {
           wx.showModal({

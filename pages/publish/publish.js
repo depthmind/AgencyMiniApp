@@ -231,7 +231,7 @@ Page({
     var openId = userInfo.openId
     var formId = e.detail.formId
     wx.request({ //保存formId发送模板消息时使用
-      url: 'http://localhost:8080/Agency/template/saveFormIdForTemplate',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/template/saveFormIdForTemplate',
       data: {
         openId: openId,
         formId: formId
@@ -292,7 +292,7 @@ Page({
     console.log("parameter", parameter)
     if (that.data.needPay) {
       wx.request({
-        url: 'http://localhost:8080/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + that.data.publishCost,
+        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + that.data.publishCost,
         success(res) {
           wx.requestPayment({
             timeStamp: res.data.timeStamp,
@@ -302,7 +302,7 @@ Page({
             paySign: res.data.paySign,
             success(res) {
               wx.request({
-                url: 'http://localhost:8080/Agency/publish/savePublishContent.do?' + parameter,
+                url: 'https://www.caoxianyoushun.com:8443/Agency/publish/savePublishContent.do?' + parameter,
                 header: {
                   'content-type': 'application/json' // 默认值
                 },
@@ -325,7 +325,7 @@ Page({
       })
     } else {
       wx.request({
-        url: 'http://localhost:8080/Agency/publish/savePublishContent.do?' + parameter,
+        url: 'https://www.caoxianyoushun.com:8443/Agency/publish/savePublishContent.do?' + parameter,
         header: {
           'content-type': 'application/json' // 默认值
         },

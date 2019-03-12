@@ -91,7 +91,7 @@ Page({
     }
     if (cursor != that.data.inputCursor && value.length > 0) {
       wx.request({
-        url: 'http://localhost:8080/Agency/agency/findAgencyByName.do',
+        url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByName.do',
         data: {
           name: value,
           offset: 0,
@@ -104,7 +104,7 @@ Page({
         }
       })
       wx.request({
-        url: 'http://localhost:8080/Agency/goods/getGoods.do',
+        url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
         data: {
           goodsName: value,
           offset: 0,

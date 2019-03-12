@@ -47,7 +47,7 @@ Page({
       },
     })
     wx.request({ //判断是否已入驻
-      url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {
         if (res.data.isCooperation == '1') {
           wx.showModal({
@@ -69,7 +69,7 @@ Page({
       }
     })
     wx.request({ //查询可选择的入驻时长参数
-      url: 'http://localhost:8080/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
       success(res) {
         console.log(res)
         that.setData({
@@ -331,7 +331,7 @@ Page({
                       var path = res.data
                       parameter = parameter + '&licence2ImagePath=' + path
                       wx.request({
-                        url: 'http://localhost:8080/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
+                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
                         success(res) {
                           wx.requestPayment({
                             timeStamp: res.data.timeStamp,
@@ -341,7 +341,7 @@ Page({
                             paySign: res.data.paySign,
                             success(res) {
                               wx.request({
-                                url: 'http://localhost:8080/Agency/agency/saveNearbyAgency.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                                url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveNearbyAgency.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
                                 success(res) {
 
                                 }
@@ -389,7 +389,7 @@ Page({
                     parameter = parameter + '&openId=' + openId
                   }
                   wx.request({
-                    url: 'http://localhost:8080/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
                     success(res) {
                       wx.requestPayment({
                         timeStamp: res.data.timeStamp,
@@ -399,7 +399,7 @@ Page({
                         paySign: res.data.paySign,
                         success(res) {
                           wx.request({
-                            url: 'http://localhost:8080/Agency/agency/saveNearbyAgency.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                            url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveNearbyAgency.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
                             success(res) {
                               var tmp = Date.parse(new Date()).toString();
                               tmp = tmp.substr(0, 10);

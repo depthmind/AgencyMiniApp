@@ -15,7 +15,7 @@ Page({
     var that = this
     var id = options.id
     wx.request({
-      url: 'http://localhost:8080/Agency/publish/findPublishContentById.do?id=' + '1',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/publish/findPublishContentById.do?id=' + '1',
       success(res) {
         console.log(res)
         var publishContent = res.data

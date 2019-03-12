@@ -123,7 +123,7 @@ Page({
     
 
     wx.request({
-      url: 'http://localhost:8080/Agency/parameter/findParameter.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
       data: {
         paraDomain: "index.notice"
       },
@@ -231,7 +231,7 @@ Page({
   getAds: function(e) {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/Agency/agency/findAdAgency.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAdAgency.do',
       data: {
         offset: this.data.adOffset,
         rows: 4,
@@ -253,7 +253,7 @@ Page({
   getRecommends: function() {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/Agency/goods/getGoods.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
       data: {
         isTop: 1,
         offset: this.data.recommendOffset,
@@ -308,7 +308,7 @@ Page({
 
 
     wx.request({
-      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
       data: {
         offset: that.data.agencyOffset,
         limit: that.data.rows,
@@ -359,7 +359,7 @@ Page({
       icon: 'loading'
     })
     wx.request({
-      url: 'http://localhost:8080/Agency/publish/getPublish.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/publish/getPublish.do',
       data: {
         offset: that.data.publishOffset,
         rows: that.data.rows,
@@ -429,7 +429,7 @@ Page({
               if (app.globalData.openId == null || app.globalData.openId == '') {
                 if (res.code) {
                   wx.request({
-                    url: 'http://localhost:8080/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
                     success(loginRes) {
                       console.log(loginRes)
                       var userInfo = loginRes.data
@@ -476,7 +476,7 @@ Page({
             if (app.globalData.openId == null || app.globalData.openId == '') {
               if (res.code) {
                 wx.request({
-                  url: 'http://localhost:8080/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
+                  url: 'https://www.caoxianyoushun.com:8443/Agency/wechat/getUnionId.do?jsCode=' + res.code + '&iv=' + userRes.iv + '&encryptedData=' + userRes.encryptedData,
                   success(loginRes) {
                     console.log(loginRes)
                     var userInfo = loginRes.data

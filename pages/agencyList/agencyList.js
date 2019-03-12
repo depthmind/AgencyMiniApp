@@ -76,7 +76,7 @@ Page({
       title: '正在加载中',
     })
     wx.request({
-      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
       success(res) {
         console.log(res)
         var array = res.data

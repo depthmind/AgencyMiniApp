@@ -16,7 +16,7 @@ Page({
     var that = this
     var id = options.id
     wx.request({
-      url: 'http://localhost:8080/Agency/agency/findAgencyById.do?id=' + id,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyById.do?id=' + id,
       success(res) {
         console.log(res)
         var agency = res.data
