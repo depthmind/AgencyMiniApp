@@ -12,9 +12,9 @@ Page({
     recommendOffset: 0,
     publishOffset: 0,
     agencyOffset: 0,
-    currentProvince: "北京",
-    currentCity: "北京",
-    currentArea: "朝阳区",
+    currentProvince: "",
+    currentCity: "",
+    currentArea: "",
     isCooperation: true,
     ads: [],
     agencyList: [],
@@ -57,70 +57,70 @@ Page({
         })
       },
     })
-    // wx.authorize({
-    //   scope: 'scope.userLocation',
-    //   success(res) {
-    //     wx.getLocation({
-    //       type: 'wgs84',
-    //       success(res) {
-    //         const latitude = res.latitude
-    //         const longitude = res.longitude
-    //         const speed = res.speed
-    //         const accuracy = res.accuracy
-    //         console.log("latitude = " + latitude)
-    //         console.log("longitude = " + longitude)
-    //         wx.setStorageSync("latitude", latitude)
-    //         wx.setStorageSync("longitude", longitude)
-    //         console.log("speed = " + speed)
-    //         console.log("accuracy = " + accuracy)
-    //         wx.request({
-    //           url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
-    //           success(locationRes) {
-    //             console.log("location_res")
-    //             console.log(locationRes)
-    //             that.setData({
-    //               currentLatitude: latitude,
-    //               currentLongitude: longitude,
-    //               //currentArea: locationRes.data.result.address_component.district,
-    //               //currentCity: locationRes.data.result.address_component.city,
-    //               //currentProvince: locationRes.data.result.address_component.province
-    //             })
-    //           }
-    //         })
-    //       }
-    //     })
-    //   },
-    //   fail() {},
-    //   complete() {
-    //     //获取轮播图
-    //     that.getAds()
+    wx.authorize({
+      scope: 'scope.userLocation',
+      success(res) {
+        wx.getLocation({
+          type: 'wgs84',
+          success(res) {
+            const latitude = res.latitude
+            const longitude = res.longitude
+            const speed = res.speed
+            const accuracy = res.accuracy
+            console.log("latitude = " + latitude)
+            console.log("longitude = " + longitude)
+            wx.setStorageSync("latitude", latitude)
+            wx.setStorageSync("longitude", longitude)
+            console.log("speed = " + speed)
+            console.log("accuracy = " + accuracy)
+            wx.request({
+              url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
+              success(locationRes) {
+                console.log("location_res")
+                console.log(locationRes)
+                that.setData({
+                  currentLatitude: latitude,
+                  currentLongitude: longitude,
+                  currentArea: locationRes.data.result.address_component.district,
+                  currentCity: locationRes.data.result.address_component.city,
+                  currentProvince: locationRes.data.result.address_component.province
+                })
+              }
+            })
+          }
+        })
+      },
+      fail() {},
+      complete() {
+        //获取轮播图
+        that.getAds()
 
-    //     //获取推荐
-    //     that.getRecommends()
+        //获取推荐
+        that.getRecommends()
 
 
-    //     //获取scroll-view-tabs
-    //     wx.request({
-    //       url: 'http://localhost:8080/Agency/parameter/findParameter.do',
-    //       data: {
-    //         paraDomain: "product.category"
-    //       },
-    //       success(tabRes) {
-    //         that.setData({
-    //           tabs: tabRes.data
-    //         })
-    //         console.log("tabRes")
-    //         console.log(tabRes)
-    //       }
-    //     })
+        //获取scroll-view-tabs
+        wx.request({
+          url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
+          data: {
+            paraDomain: "product.category"
+          },
+          success(tabRes) {
+            that.setData({
+              tabs: tabRes.data
+            })
+            console.log("tabRes")
+            console.log(tabRes)
+          }
+        })
 
-    //     //根据tab类型加载内容
-    //     that.getContents()
+        //根据tab类型加载内容
+        that.getContents()
 
-        
-    //   }
-    // })
-    
+
+      }
+    })
+
 
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
@@ -213,12 +213,15 @@ Page({
     })
     if (e.currentTarget.dataset.tabId == '-1') {
       this.setData({
-        tabType: 1
+        tabType: 1, //agency
+        agencyOffset: 0, //重头获取agency
+        agencyList: []
       })
     } else {
       this.setData({
-        tabType: 2,
-        
+        tabType: 2, //publish
+        publishOffset: 0, //重头获取publish
+        publishList: []
       })
     }
     console.log("tabType=" + this.data.tabType)
@@ -266,17 +269,24 @@ Page({
         console.log("recommendRes")
         console.log(recommendRes)
         var recommends = recommendRes.data
-        for (var i = 0; i < recommends.length; i++) {
-          if (recommends[i].goodsPic != undefined) {
-            recommends[i].goodsPic = recommends[i].goodsPic.split(",")
+        if (recommends.length > 0) {
+          for (var i = 0; i < recommends.length; i++) {
+            if (recommends[i].goodsPic != undefined) {
+              recommends[i].goodsPic = recommends[i].goodsPic.split(",")
+            }
           }
+          that.setData({
+            recommends: recommends
+          })
+          that.setData({
+            recommendOffset: that.data.recommendOffset + 4
+          })
+        } else { //如果recommends换完一波，重头开始
+          that.setData({
+            recommendOffset: 0
+          })
+          that.getRecommends()
         }
-        that.setData({
-          recommends: recommends
-        })
-        that.setData({
-          recommendOffset: that.data.recommendOffset + 4
-        })
       }
     })
   },
@@ -286,14 +296,14 @@ Page({
     var that = this
     var tabType = that.data.tabType
     switch (tabType) {
-      case 1:   //获取agency
-      that.getAgency()
-      break;
-      case 2:   //获取publish
-      that.getPublish()
-      break;
-      default:  //error
-      break;
+      case 1: //获取agency
+        that.getAgency()
+        break;
+      case 2: //获取publish
+        that.getPublish()
+        break;
+      default: //error
+        break;
     }
   },
 
@@ -408,7 +418,7 @@ Page({
     })
   },
 
-  bindGetUserInfo: function (e) {
+  bindGetUserInfo: function(e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
@@ -455,7 +465,7 @@ Page({
         content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
         showCancel: false,
         confirmText: '返回授权',
-        success: function (res) {
+        success: function(res) {
           // 用户没有授权成功，不需要改变 isNotAuthorized 的值
           if (res.confirm) {
             console.log('用户点击了“返回授权”');
@@ -464,8 +474,8 @@ Page({
       });
     }
   },
-  
-  login: function () {
+
+  login: function() {
     wx.login({
       success: res => {
         console.log(res)
