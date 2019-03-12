@@ -1,0 +1,96 @@
+/**app.wxss**/
+@import 'weui.wxss';
+page{
+  background: #f1f1f1;
+  padding: 0  20px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.weui-panel {
+	border-radius: 10px;
+}
+.media-box{
+	display:flex;
+	padding: 15px;
+	position: relative;
+	border-bottom: 1px solid #dedede;
+}
+.media-box-hd{
+	margin-right: .8em;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+}
+.media-box-thumb{
+	width: 100%;
+	max-height: 100%;
+	vertical-align: top;
+}
+.media-box-bd{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	min-width: 0;
+}
+.weui-cells {
+    margin-top: 1.17647059em;
+    background-color: #FFFFFF;
+    line-height: 1.47058824;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+}
+.weui-cell{
+	padding: 10px 15px;
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+.weui-cell-hd image{
+	width: 30px;
+	height: 30px;
+	margin-right: 0.8em;
+	display: block;
+}
+.weui-cell-bd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+.weui-cell-ft {
+    text-align: right;
+    color: #808080;
+    padding-right: 13px;
+	position: relative;
+}
+.weui-cell-ft::after {
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 2px;
+}

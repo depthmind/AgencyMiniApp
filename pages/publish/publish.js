@@ -244,33 +244,33 @@ Page({
     var contactName = data.contactName
     var mobilephone = data.mobilephone
     var address = data.address
-    // if (that.data.publishCategory == '') {
-    //   that.showModal("请选择类目")
-    //   return;
-    // }
-    // if (description == undefined || description == '') {
-    //   that.showModal("请填写信息内容")
-    //   return;
-    // }
-    // if (contactName == undefined || contactName == '') {
-    //   that.showModal("请填写联系人姓名")
-    //   return;
-    // }
-    // if (mobilephone == undefined || mobilephone == '') {
-    //   that.showModal("请填写联系人电话")
-    //   return;
-    // }
-    // if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobilephone))) {
-    //   that.showModal("请填写正确的手机号")
-    //   return;
-    // }
-    // if (address == undefined || address == '') {
-    //   that.showModal("请填写详细地址")
-    //   return;
-    // }
-    // if (data.switch) {
-    //   isTop = 1
-    // }
+    if (that.data.publishCategory == '') {
+      that.showModal("请选择类目")
+      return;
+    }
+    if (description == undefined || description == '') {
+      that.showModal("请填写信息内容")
+      return;
+    }
+    if (contactName == undefined || contactName == '') {
+      that.showModal("请填写联系人姓名")
+      return;
+    }
+    if (mobilephone == undefined || mobilephone == '') {
+      that.showModal("请填写联系人电话")
+      return;
+    }
+    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobilephone))) {
+      that.showModal("请填写正确的手机号")
+      return;
+    }
+    if (address == undefined || address == '') {
+      that.showModal("请填写详细地址")
+      return;
+    }
+    if (data.switch) {
+      isTop = 1
+    }
     var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilephone=' + data.mobilephone
       + '&description=' + data.description + '&category=' + that.data.choosedCategory
     if (temp.length > 0) {

@@ -56,9 +56,9 @@ Page({
             content: '您已经入驻过了哦',
             success(res) {
               if (res.confirm) {
-                // wx.switchTab({
-                //   url: '/pages/mine/mine',
-                // })
+                wx.switchTab({
+                  url: '/pages/mine/mine',
+                })
               } else if (res.cancel) {
                 wx.switchTab({
                   url: '/pages/mine/mine',
