@@ -15,7 +15,6 @@
 }
 
 .header {
-  background-color: #0097fe;
   display: flex;
   height: 120rpx;
   top: 10rpx;

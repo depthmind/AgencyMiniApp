@@ -1,6 +1,5 @@
 /* pages/mine/mine.wxss */
 .mine-top{
-	background: #0097fe;
 	text-align: center;
 	position: relative;
 	padding: 60rpx 0;

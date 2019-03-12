@@ -9,7 +9,7 @@ Page({
     searchContent: '',
     inputCursor: null,
     resultAgencyList: [],
-    resultGoodsList: []
+    resultGoodsList: [],
   },
 
   /**
