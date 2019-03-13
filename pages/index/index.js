@@ -511,5 +511,13 @@ Page({
     wx.switchTab({
       url: '../../pages/agencyList/agencyList',
     })
+  },
+
+  openGoods: function(e) {
+    console.log(e)
+    var goodsId = e.currentTarget.dataset.goodsId
+    wx.navigateTo({
+      url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
+    })
   }
 })

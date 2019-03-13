@@ -15,7 +15,8 @@
     "pages/agencyDetail/agencyDetail",
     "pages/location/location",
     "pages/nearbyAgencySignin/nearbyAgencySignin",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/goodsDetail/goodsDetail"
   ],
   "permission": {
     "scope.userLocation": {

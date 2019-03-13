@@ -49,7 +49,7 @@
   </view>
   <view style='display:flex;justify-content:center;font-size: 32rpx; padding: 30rpx 0 0; background: #fff; color: #da4062; font-weight: bold;'>推荐产品</view>
   <view class='products'>
-    <view class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}">   
+    <view bindtap='openGoods' class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}" data-goods-id='{{item.agencyId}}'>
       <image class='image' src='{{item.goodsPic[0]}}'></image>
       <view class='name'>{{item.goodsName}}</view>
       <view class="content"> {{item.agencyName}}</view>

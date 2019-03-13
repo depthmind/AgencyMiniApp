@@ -1,0 +1,14 @@
+<view>
+<!-- 头部 -->
+  <view>
+    <view>试吃装阿胶糕</view>
+    <view>￥1.00</view>
+    <view>剩余：6</view>
+  </view>
+  <view>
+    <view>商品描述</view>
+    <view wx:for="{{goodsPicArr}}">
+      <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{goodsPicArr[index]}}'></image>
+    </view>
+  </view>
+</view>
