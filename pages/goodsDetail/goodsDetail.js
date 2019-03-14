@@ -15,7 +15,7 @@ Page({
     var that = this
     var goodsId = options.goodsId
     wx.request({
-      url: 'http://localhost:8080/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
       success(res) {
         console.log(res)
         var data = res.data

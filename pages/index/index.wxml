@@ -69,7 +69,7 @@
 
 
   <view wx:if="{{tabType==1}}" style="background: #fff;">
-    <view class='agencylist' wx:for="{{agencyList}}" wx:key="{{agencyList.id}}">
+    <view class='agencylist' wx:for="{{agencyList}}" wx:key="{{agencyList.id}}" bindtap='openNearbyAgency' data-agency-id='{{item.id}}'>
         <image class="itemimage" src='{{item.logoImagePath}}'></image>
         <image class="phone" src='../../images/phone.jpg'></image>
         <text class="name">{{item.agencyName}}</text>

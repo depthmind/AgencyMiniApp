@@ -6,10 +6,10 @@
   <view class="address">
     <image src='{{addressImage}}'></image>{{agency.address}}
   </view>
-  <view class="tel">
+  <view class="tel" bindtap='makePhoneCall' data-mobilephone='{{agency.mobilephone}}'>
       <text>{{agency.mobilephone}}</text>
       <view class="phone">
-        <image src='{{phoneImage2}}' bindtap='makePhoneCall' data-mobilephone='{{agency.mobilephone}}'></image>电话
+        <image src='{{phoneImage2}}'></image>电话
       </view>
     </view>
   

@@ -369,7 +369,8 @@ Page({
       icon: 'loading'
     })
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/publish/getPublish.do',
+      //url: 'https://www.caoxianyoushun.com:8443/Agency/publish/getPublish.do',
+      url: 'http://localhost:8080/Agency/publish/getPublish.do',
       data: {
         offset: that.data.publishOffset,
         rows: that.data.rows,
@@ -518,6 +519,13 @@ Page({
     var goodsId = e.currentTarget.dataset.goodsId
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
+    })
+  },
+
+  openNearbyAgency: function(e) {
+    var agencyId = e.currentTarget.dataset.agencyId
+    wx.redirectTo({
+      url: '../agencyDetail/agencyDetail?id=' + agencyId,
     })
   }
 })
