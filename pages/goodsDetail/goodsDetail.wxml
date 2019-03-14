@@ -1,14 +1,15 @@
-<view>
+<view style="position: relative; padding-bottom: 50px;">
 <!-- 头部 -->
-  <view>
-    <view>试吃装阿胶糕</view>
-    <view>￥1.00</view>
-    <view>剩余：6</view>
+  <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
+    <view class="title">试吃装阿胶糕</view>
+    <view class="price">￥1.00</view>
+    <view class="rest">剩余：6</view>
   </view>
-  <view>
-    <view>商品描述</view>
+  <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
+    <view class="section-title">商品描述</view>
     <view wx:for="{{goodsPicArr}}">
       <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{goodsPicArr[index]}}'></image>
     </view>
   </view>
+  <view class="booking">立即购买</view>
 </view>
