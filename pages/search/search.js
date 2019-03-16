@@ -133,5 +133,20 @@ Page({
         productId: e.detail.productId
       }
     })
-  }
+  },
+
+  openAgency: function (e) {
+    var agencyId = e.currentTarget.dataset.agencyId
+    wx.navigateTo({
+      url: '../agencyDetail/agencyDetail?id=' + agencyId,
+    })
+  },
+
+  openGoods: function (e) {
+    console.log(e)
+    var goodsId = e.currentTarget.dataset.goodsId
+    wx.navigateTo({
+      url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
+    })
+  },
 })

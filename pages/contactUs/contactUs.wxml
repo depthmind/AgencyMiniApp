@@ -1,0 +1,3 @@
+<view>
+  <button open-type="contact" style='top:50px;'>联系我们</button>
+</view>

@@ -26,7 +26,8 @@ Page({
     publishCategory:'',
     choosedCategory: '',
     needPay: true,
-    showModal: false
+    showModal: false,
+    publishCost: '', //发布需要支付的费用
   },
 
   /**
@@ -332,6 +333,9 @@ Page({
         success(res) {
           that.setData({
             uploadImagePath: ''
+          })
+          wx.redirectTo({
+            url: '/pages/paySuccess/paySuccess',
           })
         }
       })

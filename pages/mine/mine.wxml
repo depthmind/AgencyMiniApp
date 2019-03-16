@@ -4,7 +4,7 @@
     <open-data class="username" type="userNickName" lang="zh_CN"></open-data>
   </view>
 
-  <view class="weui-panel panel-myorder">
+  <!-- <view class="weui-panel panel-myorder">
     <view class="media-box">
       <view class="media-box-hd">
         <image class="media-box-thumb" src="{{orderImage0}}"></image>
@@ -16,68 +16,68 @@
     <view class="order-tab"><image src="{{orderImage3}}"></image><view>待收货</view></view>
     <view class="order-tab"><image src="{{orderImage4}}"></image><view>已完成</view></view>
     <view class="order-tab"><image src="{{orderImage5}}"></image><view>售后</view></view>
-  </view>
+  </view> -->
 
   <view class="weui-panel weui-cells panel-myorder">
     <view class="weui-cell">
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/钱包.png"></image>
       </view>
       <view class="weui-cell-bd">我的钱包</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell">
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/收藏.png"></image>
       </view>
       <view class="weui-cell-bd">我的收藏</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='agencySignin'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/商家列表.png"></image>
       </view>
       <view class="weui-cell-bd">商家入驻</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell">
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/商家认证.png"></image>
       </view>
       <view class="weui-cell-bd">商家入口</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='nearbyAgencySignin'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/商家列表.png"></image>
       </view>
       <view class="weui-cell-bd">二批入驻</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell">
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/商家认证.png"></image>
       </view>
       <view class="weui-cell-bd">二批入口</view>
       <span class="weui-cell-ft"></span>
     </view>
-    <view class="weui-cell" open-type='contact'>
+    <view class="weui-cell" bindtap='openContact'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/联系.png"></image>
       </view>
       <view class="weui-cell-bd">联系我们</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='help'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/帮助.png"></image>
       </view>
       <view class="weui-cell-bd">帮助中心</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='aboutUs'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+        <image class="media-box-thumb" src="../../images/关于我们.png"></image>
       </view>
       <view class="weui-cell-bd">关于我们</view>
       <span class="weui-cell-ft"></span>
