@@ -527,5 +527,11 @@ Page({
     wx.navigateTo({
       url: '../agencyDetail/agencyDetail?id=' + agencyId,
     })
+  },
+
+  redirctToPartner: function() {
+    wx.navigateTo({
+      url: '../partner/partner',
+    })
   }
 })

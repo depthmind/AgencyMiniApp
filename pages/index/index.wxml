@@ -43,7 +43,7 @@
   <view style="padding: 40rpx 0; background: #fff; margin: 0 0 10px;">
     <view style="padding: 0 40rpx 20rpx; line-height: 1; color: #da4062;"><image style="width: 40rpx; height: 30rpx; float: left; margin: 0 10rpx 0 0;"  src="{{labaImage}}"></image>{{notice}}</view>
     <view class='flexRowContainer'>
-      <view class='flexRowSon'><image style="width: 330rpx; height: 154rpx;"  src="{{adsImage1}}"></image></view>
+      <view class='flexRowSon'><image bindtap='redirctToPartner' style="width: 330rpx; height: 154rpx;"  src="{{adsImage1}}"></image></view>
       <view class='flexRowSon'><image bindtap='redirctToAgencyList' style="width: 330rpx; height: 154rpx;"  src="{{adsImage2}}"></image></view>
     </view>
   </view>
