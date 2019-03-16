@@ -15,7 +15,7 @@
     </view>
     <view class="divLine2"></view>
     <view class='search-result-product' wx:for="{{resultGoodsList}}" wx:key="{{item.id}}">
-      <image class="itemimage" src='{{}}'></image>
+      <image class="itemimage" src='{{item.agencyLogo}}'></image>
       <text class='name' data-product-id='{{item.id}}' bindtap='getProductInfo'>{{item.goodsName}} | <text class="content">{{item.goodsDescription}}</text></text>
       <view class="divLine1"></view>
     </view>

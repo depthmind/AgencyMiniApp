@@ -98,19 +98,24 @@ Page({
           rows: 3
         },
         success(res) {
+          console.log("findAgency")
+          console.log(res.data)
           that.setData({
             resultAgencyList: res.data
           })
         }
       })
       wx.request({
-        url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
+        //url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
+        url: 'http://localhost:8080/Agency/goods/getGoods.do',
         data: {
           goodsName: value,
           offset: 0,
           rows: 10
         },
         success(res) {
+          console.log("findGoods")
+          console.log(res.data)
           that.setData({
             resultGoodsList: res.data
           })
