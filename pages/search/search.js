@@ -106,8 +106,8 @@ Page({
         }
       })
       wx.request({
-        //url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
-        url: 'http://localhost:8080/Agency/goods/getGoods.do',
+        url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
+        //url: 'http://localhost:8080/Agency/goods/getGoods.do',
         data: {
           goodsName: value,
           offset: 0,
