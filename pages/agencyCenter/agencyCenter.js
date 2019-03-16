@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderImage0: '/images/order-img0.jpg',
+    orderImage1: '/images/order-img1.jpg',
+    orderImage2: '/images/order-img2.jpg',
+    orderImage3: '/images/order-img3.jpg',
+    orderImage4: '/images/order-img4.jpg',
+    orderImage5: '/images/order-img5.jpg',
   },
 
   /**

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/agencyCenter/agencyCenter",
     "pages/agencySignin/agencySignin",
     "pages/logs/logs",
     "pages/publishDetail/publishDetail",
@@ -11,7 +12,6 @@
     "pages/map/map",
     "pages/aboutUs/aboutUs",
     "pages/help/help",
-    "pages/agencyCenter/agencyCenter",
     "pages/agencyDetail/agencyDetail",
     "pages/location/location",
     "pages/nearbyAgencySignin/nearbyAgencySignin",

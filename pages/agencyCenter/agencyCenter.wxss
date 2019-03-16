@@ -1,1 +1,41 @@
-/* pages/agencyCenter/agencyCenter.wxss */
+/* pages/mine/mine.wxss */
+.mine-top{
+	text-align: center;
+	position: relative;
+	padding: 60rpx 0;
+	margin: 0 -40rpx;
+}
+.avatar{
+	border-radius:200px;
+	overflow:hidden;
+	width:100px;
+	display:inline-block;
+	height:100px;
+	margin: 0 0 10rpx 0;
+}
+.username{
+	color: #fff;
+	display: block;
+	text-align: center;
+	font-size: 28rpx;
+}
+.panel-myorder .media-box-hd{
+	width:60rpx;
+	height:60rpx;
+}
+.panel-myorder .media-box-bd{
+	line-height: 60rpx;
+}
+.order-tab{
+	width: 20%;
+	float: left;
+	text-align: center;
+	font-size: 28rpx;
+	padding: 30rpx 0;
+}
+.order-tab image{
+	width: 64rpx;
+	height: 64rpx;
+	margin: 0 0 4rpx 0;
+
+}
