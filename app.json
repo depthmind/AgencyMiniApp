@@ -18,7 +18,8 @@
     "pages/search/search",
     "pages/goodsDetail/goodsDetail",
     "pages/partner/partner",
-    "pages/contactUs/contactUs"
+    "pages/contactUs/contactUs",
+    "pages/publishSuccess/publishSuccess"
   ],
   "permission": {
     "scope.userLocation": {

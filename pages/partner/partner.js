@@ -93,7 +93,7 @@ Page({
 
   formSubmit: function (e) {
     var that = this
-    var data = that.data
+    var data = e.detail.value
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     var formId = e.detail.formId
@@ -108,18 +108,47 @@ Page({
       that.showModal("请填写姓名")
       return;
     }
-    if (mobilephone == undefined || mobilephone == '') {
+    if (data.mobilephone == undefined || data.mobilephone == '') {
       that.showModal("请填写联系人电话")
       return;
     }
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobilephone))) {
+    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(data.mobilephone))) {
       that.showModal("请填写正确的手机号")
       return;
     }
-    if (!data.agreeNotice) {
+    if (!that.data.isChecked) {
       that.showModal("阅读并同意合伙人须知")
       return;
     }
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + that.data.partnerFee,
+      success(res) {
+        wx.requestPayment({
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.prepayId,
+          signType: 'MD5',
+          paySign: res.data.paySign,
+          success(res) {
+            wx.request({
+              url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer,
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success(res) {
+              }
+            })
+            wx.redirectTo({
+              url: '/pages/paySuccess/paySuccess',
+            })
+            console.log(res)
+          },
+          fail(res) {
+            console.log(res)
+          }
+        })
+      }
+    })
   },
 
   showModal: function (msg) {

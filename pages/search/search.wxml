@@ -8,13 +8,13 @@
     </view>
   </view>
   <view class='search-result'>
-    <view class='search-result-agency' wx:for="{{resultAgencyList}}" wx:key="{{item.id}}">
+    <view class='search-result-agency' wx:for="{{resultAgencyList}}" wx:key="{{item.id}}" data-agency-id='item.agencyId' bindtap='openAgency'>
       <icon class="i-searchcion" size='12' type='search'></icon>
       <text class='name' data-agency-id='{{item.id}}' bindtap='getAgencyInfo'>{{item.agencyName}}</text>
       <view class="divLine1"></view>
     </view>
     <view class="divLine2"></view>
-    <view class='search-result-product' wx:for="{{resultGoodsList}}" wx:key="{{item.id}}">
+    <view class='search-result-product' wx:for="{{resultGoodsList}}" wx:key="{{item.id}}" data-goods-id='item.goodsId' bindtap='openGoods'>
       <image class="itemimage" src='{{}}'></image>
       <text class='name' data-product-id='{{item.id}}' bindtap='getProductInfo'>{{item.goodsName}} | <text class="content">{{item.goodsDescription}}</text></text>
       <view class="divLine1"></view>

@@ -1,4 +1,4 @@
 <view>
-  <view>支付成功</view>
+  <view>发布成功</view>
   <button bindtap='redirctToIndex'>返回首页</button>
 </view>

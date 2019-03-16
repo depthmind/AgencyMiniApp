@@ -8,7 +8,7 @@
     <form bindsubmit="formSubmit" report-submit='true'>
         <view class='form-item'>
             <text class='label'>邀请人</text> 
-            <input name="introduceName" placeholder="联系人姓名"></input>
+            <input name="introducer" placeholder="联系人姓名"></input>
         </view>
         <view class='form-item'>
             <text class='label'>姓名</text> 
