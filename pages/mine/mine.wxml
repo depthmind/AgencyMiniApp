@@ -61,7 +61,7 @@
       <view class="weui-cell-bd">二批入口</view>
       <span class="weui-cell-ft"></span>
     </view>
-    <view class="weui-cell" open-type='contact'>
+    <view class="weui-cell" bindtap='openContact'>
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/联系.png"></image>
       </view>

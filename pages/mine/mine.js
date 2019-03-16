@@ -94,5 +94,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/help/help',
     })
+  },
+
+  openContact: function () {
+    wx.navigateTo({
+      url: '../../pages/contactUs/contactUs',
+    })
   }
 })

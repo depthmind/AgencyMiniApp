@@ -39,3 +39,28 @@
 	margin: 0 0 4rpx 0;
 
 }
+
+.share-img-button{
+  border: none;
+}
+.share-img-button::after{
+  border: none
+}
+.share-img-button{
+  background: none;
+  border: none;
+}
+.share-img{
+  width: 96rpx;
+  height: 96rpx;
+  margin-bottom: 10rpx;
+  background: none;
+}
+.share-img-button{
+  position: absolute;
+  top: 0rpx;
+  width: 96rpx;
+  height: 96rpx;
+  background: none;
+  border: none;
+}
