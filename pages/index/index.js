@@ -524,7 +524,7 @@ Page({
 
   openNearbyAgency: function(e) {
     var agencyId = e.currentTarget.dataset.agencyId
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../agencyDetail/agencyDetail?id=' + agencyId,
     })
   }

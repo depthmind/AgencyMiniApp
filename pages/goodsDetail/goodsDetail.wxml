@@ -1,7 +1,7 @@
 <view style="position: relative; padding-bottom: 50px;">
 <!-- 头部 -->
   <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
-    <view class="title">试吃装阿胶糕</view>
+    <view class="title">{{goodsName}}</view>
     <view class="price">￥1.00</view>
     <view class="rest">剩余：6</view>
   </view>

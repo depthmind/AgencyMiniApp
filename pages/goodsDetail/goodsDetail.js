@@ -28,7 +28,9 @@ Page({
         var goodsPic = 'http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg,http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg'
         var goodsPicArr = goodsPic.split(',')
         that.setData({
-          goodsPicArr: goodsPicArr
+          goodsPicArr: goodsPicArr,
+          goodsName: goodsName,
+          
         })
       }
     })
