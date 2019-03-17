@@ -73,7 +73,8 @@
         <image class="itemimage" src='{{item.logoImagePath}}'></image>
         <image class="phone" src='../../images/phone.jpg'></image>
         <text class="name">{{item.agencyName}}</text>
-        <text class="address">{{item.address}}<text style="margin-left: 10px; color:#d05857;">{{item.distance}}</text></text>
+        <text class="address">{{item.address}}</text>
+        <text style="color:#d05857;">{{item.distance}}</text>
     </view>
   </view>
 

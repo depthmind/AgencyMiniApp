@@ -241,6 +241,7 @@ display: inline-block;
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid #dedede;
+  font-size: 28rpx;
 }
 .agencylist .itemimage{
   float: left;
