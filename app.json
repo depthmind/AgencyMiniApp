@@ -19,7 +19,8 @@
     "pages/goodsDetail/goodsDetail",
     "pages/partner/partner",
     "pages/contactUs/contactUs",
-    "pages/publishSuccess/publishSuccess"
+    "pages/publishSuccess/publishSuccess",
+    "pages/joinSuccess/joinSuccess"
   ],
   "permission": {
     "scope.userLocation": {

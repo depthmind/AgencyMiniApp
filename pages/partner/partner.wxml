@@ -18,7 +18,6 @@
             <text class='label'>手机号</text> 
             <input type="number" name="mobilephone" placeholder="请填写手机号码"></input>
         </view>
-        
         <view bindtap='showDialog' style="color: #000; font-weight:bold; margin: 15px 0 20px;">
           <radio value="" checked="{{isChecked}}" bindtap='agreeNotice'/>
           我已阅读并同意<text style="color:#e6424b;">《合伙人须知》</text>

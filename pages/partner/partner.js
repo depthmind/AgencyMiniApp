@@ -1,4 +1,7 @@
-// pages/partner/partner.js
+const openId = wx.getStorageSync('openId')
+const province = wx.getStorageSync('currentProvince')
+const city = wx.getStorageSync('currentCity')
+const area = wx.getStorageSync('currentArea')
 Page({
 
   /**
@@ -120,35 +123,47 @@ Page({
       that.showModal("阅读并同意合伙人须知")
       return;
     }
+    //暂时加入合伙人不需要收费
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + that.data.partnerFee,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer + '&openId=' + openId + '&province=' + province + '&city=' + city + '&area=' + area ,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
       success(res) {
-        wx.requestPayment({
-          timeStamp: res.data.timeStamp,
-          nonceStr: res.data.nonceStr,
-          package: res.data.prepayId,
-          signType: 'MD5',
-          paySign: res.data.paySign,
-          success(res) {
-            wx.request({
-              url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer,
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success(res) {
-              }
-            })
-            wx.redirectTo({
-              url: '/pages/paySuccess/paySuccess',
-            })
-            console.log(res)
-          },
-          fail(res) {
-            console.log(res)
-          }
-        })
       }
     })
+    wx.redirectTo({
+      url: '/pages/joinSuccess/joinSuccess',
+    })
+    // wx.request({
+    //   url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + that.data.partnerFee,
+    //   success(res) {
+    //     wx.requestPayment({
+    //       timeStamp: res.data.timeStamp,
+    //       nonceStr: res.data.nonceStr,
+    //       package: res.data.prepayId,
+    //       signType: 'MD5',
+    //       paySign: res.data.paySign,
+    //       success(res) {
+    //         wx.request({
+    //           url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer,
+    //           header: {
+    //             'content-type': 'application/json' // 默认值
+    //           },
+    //           success(res) {
+    //           }
+    //         })
+    //         wx.redirectTo({
+    //           url: '/pages/paySuccess/paySuccess',
+    //         })
+    //         console.log(res)
+    //       },
+    //       fail(res) {
+    //         console.log(res)
+    //       }
+    //     })
+    //   }
+    // })
   },
 
   showModal: function (msg) {
@@ -164,4 +179,10 @@ Page({
       }
     })
   },
+
+  redirctToIndex: function () {
+    wx.reLaunch({
+      url: "/pages/index/index"
+    });
+  }
 })
