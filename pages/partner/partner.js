@@ -1,4 +1,5 @@
-const openId = wx.getStorageSync('openId')
+const userInfo = wx.getStorageSync('userInfo')
+const openId = userInfo.openId
 const province = wx.getStorageSync('currentProvince')
 const city = wx.getStorageSync('currentCity')
 const area = wx.getStorageSync('currentArea')
