@@ -1,7 +1,7 @@
 <view>
   <view>
     <image src="/../../images/合伙人.jpeg"></image>
-    <view>欢迎加入曹县代理商，请填写申请信息</view>
+    <view>欢迎加入代理商代理商供货信息，请填写申请信息</view>
   </view>
 
   <view class='form'>
@@ -20,8 +20,8 @@
         </view>
         <radio value="" checked="{{isChecked}}" bindtap='agreeNotice'/>
         <view bindtap='showDialog' style="font-size: 24rpx; color: #000; font-weight:bold; margin: 10px 0 0;"><image style="width: 30rpx; height: 30rpx; float:left; margin: 2px 3px 0 0;" src="{{wenImage}}"></image>合伙人须知</view>
-        <view>合伙人加入费用为{{partnerFee}}元</view>
-        <view>您的粉丝付费发布、置顶、入驻、加入合伙人等，您可获得提成</view>
+        <!-- <view>合伙人加入费用为{{partnerFee}}元</view> -->
+        <view>您的粉丝付费发布、置顶、入驻、广告位等，您均可获得佣金</view>
         <button form-type="submit">立刻成为合伙人</button>
       </form>
   </view>

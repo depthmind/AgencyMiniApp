@@ -78,6 +78,11 @@ Page({
               success(locationRes) {
                 console.log("location_res")
                 console.log(locationRes)
+
+                wx.setStorageSync('currentProvince', locationRes.data.result.address_component.province)
+                wx.setStorageSync('currentCity', locationRes.data.result.address_component.city)
+                wx.setStorageSync('currentArea', locationRes.data.result.address_component.district)
+
                 that.setData({
                   currentLatitude: latitude,
                   currentLongitude: longitude,

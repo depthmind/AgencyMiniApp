@@ -5,6 +5,7 @@ var qqmapsdk = new QQMapWX({
 })
 var longitude = wx.getStorageSync("longitude")
 var latitude = wx.getStorageSync("latitude")
+const openId = wx.getStorageSync('openId')
 
 Page({
   /**
@@ -25,7 +26,7 @@ Page({
     uploadImagePath: '',
     publishCategory:'',
     choosedCategory: '',
-    needPay: true,
+    needPay: false, //设置为false是因为前期都不需要支付
     showModal: false,
     publishCost: '', //发布需要支付的费用
   },
@@ -229,7 +230,6 @@ Page({
     console.log(e)
     var that = this
     var userInfo = wx.getStorageSync('userInfo')
-    var openId = userInfo.openId
     var formId = e.detail.formId
     wx.request({ //保存formId发送模板消息时使用
       url: 'https://www.caoxianyoushun.com:8443/Agency/template/saveFormIdForTemplate',
@@ -273,7 +273,7 @@ Page({
       isTop = 1
     }
     var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilephone=' + data.mobilephone
-      + '&description=' + data.description + '&category=' + that.data.choosedCategory
+      + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId
     if (temp.length > 0) {
       var imagePath = ''
       for (var i = 0; i < temp.length; i++) {
