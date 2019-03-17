@@ -141,7 +141,7 @@
 
 .tabs-scroll-view {
   margin-left: 5rpx;
-  width: 80%;
+  width: 75%;
   white-space: nowrap;
   display: inline-block;
 }

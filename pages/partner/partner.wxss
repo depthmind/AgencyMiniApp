@@ -9,7 +9,7 @@ button{
 	border: none;
 	line-height:2.2;
 	margin: 30px 0 0;
-	font-size: 32rpx;
+	font-size: 40rpx;
 	border-radius: 0;
 	width: 100%;
 	border: 0;
@@ -41,19 +41,19 @@ button{
 	width:100%;
 	border-bottom: 2rpx solid #dedede;
 	position:relative;
-	font-size:28rpx;
+	font-size:36rpx;
 }
 .form .form-item .label{
 	position:absolute;
 	left:0;
-	line-height:80rpx;
+	line-height:100rpx;
 }
 .form .form-item .label text,
 .textarea-label text{
 	color: red;
 }
 .form .form-item input{
-	height: 80rpx;
+	height: 100rpx;
 	padding-left: 135rpx;
 }
 .form .form-item textarea{

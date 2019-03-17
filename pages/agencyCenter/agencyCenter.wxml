@@ -1,81 +1,76 @@
 <view>
   <view class="mine-top">
     <image src='../../images/开心果.png' class='avatar'></image>
-    <view>
-      <view>
-        <text>0个</text>
+    <view class="part1">
+      <view class="item">
+        <view style="color: #f19d21;">0<text style="font-size: 24rpx;">个</text></view>
         <text>今日订单</text>
       </view>
-      <view>
-        <text>0.00元</text>
+      <view class="item">
+        <view style="color: #e66a48;">0.00<text style="font-size: 24rpx;">元</text></view>
         <text>余额</text>
       </view>
-      <view>
-        <text>12次</text>
+      <view class="item">
+        <view style="color: #7bb142;">12<text style="font-size: 24rpx;">次</text></view>
         <text>访问量</text>
       </view>
     </view>
-  </view>
-  <view class="weui-panel panel-myorder">
-    <view class="media-box">
-      <view class="media-box-hd">
-        <image class="media-box-thumb" src="{{orderImage0}}"></image>
+    <view class="panel-myorder">
+      <view class="title">我的订单</view>
+      <view class="order-tab">
+        <image src="{{orderImage1}}"></image>
+        <view>待付款</view>
       </view>
-      <view class="media-box-bd">我的订单</view>
-    </view>
-    <view class="order-tab">
-      <image src="{{orderImage1}}"></image>
-      <view>待付款</view>
-    </view>
-    <view class="order-tab">
-      <image src="{{orderImage2}}"></image>
-      <view>待发货</view>
-    </view>
-    <view class="order-tab">
-      <image src="{{orderImage4}}"></image>
-      <view>已完成</view>
-    </view>
-    <view class="order-tab">
-      <image src="{{orderImage5}}"></image>
-      <view>售后</view>
+      <view class="order-tab">
+        <image src="{{orderImage2}}"></image>
+        <view>待发货</view>
+      </view>
+      <view class="order-tab">
+        <image src="{{orderImage4}}"></image>
+        <view>已完成</view>
+      </view>
+      <view class="order-tab">
+        <image src="{{orderImage5}}"></image>
+        <view>售后</view>
+      </view>
     </view>
   </view>
-
-  <view>
-    <view class="media-box">
-      <view class="media-box-bd">今日收益</view>
+  <view class="panel-yue">
+    <view class="title">我的余额</view>
+    <view class="item">
+      <view>今日收益</view>
+      <text>0</text>
     </view>
-    <view class="media-box">
-      <view class="media-box-bd">昨日收益</view>
+    <view class="item">
+      <view>昨日收益</view>
+      <text>0</text>
     </view>
-    <view class="media-box">
-      <view class="media-box-bd">总收益</view>
+    <view class="item">
+      <view>总收益</view>
+      <text>0</text>
     </view>
-    <view class="media-box">
-      <view class="media-box-bd">可体现</view>
+    <view class="item">
+      <view>可体现</view>
+      <text>0</text>
     </view>
     <button>提现</button>
   </view>
 
-  <view>
-    <text>推广</text>
-    <view>
-      <text>广告位购买</text>
-      <text>暂未开通线上购买，请联系客服</text>
-    </view>
+  <view class="promote">
+    <view class="title">推广</view>
+    <view>广告位购买 </view>
+    <view>暂未开通线上购买，请联系客服</view>
   </view>
 
-  <view>
-    <text>店铺设置</text>
-    <view class='weui-panel panel-myorder'>
-      <view class="order-tab">
-        <image src="{{orderImage4}}"></image>
-        <view>修改资料</view>
-      </view>
-      <view class="order-tab">
-        <image src="{{orderImage4}}"></image>
-        <view>商家续费</view>
-      </view>
+  <view class="panel-edit">
+    <view class="title">修改资料</view>
+    <view class="order-tab">
+      <image src="{{orderImage4}}"></image>
+      <view>修改资料</view>
+    </view>
+    <view class="order-tab">
+      <image src="{{orderImage4}}"></image>
+      <view>商家续费</view>
     </view>
   </view>
 </view>
