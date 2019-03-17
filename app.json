@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/publishSuccess/publishSuccess",
     "pages/index/index",
     "pages/agencyCenter/agencyCenter",
     "pages/agencySignin/agencySignin",
@@ -19,7 +20,6 @@
     "pages/goodsDetail/goodsDetail",
     "pages/partner/partner",
     "pages/contactUs/contactUs",
-    "pages/publishSuccess/publishSuccess",
     "pages/joinSuccess/joinSuccess"
   ],
   "permission": {

@@ -462,6 +462,10 @@ Page({
       that.showModal("请输入正确的手机号")
       return;
     }
+    if (!(/^1[34578]\d{9}$/.test(mobilephone))) {
+      that.showModal("请填写正确的手机号")
+      return;
+    }
     // if (validateCode == undefined || validateCode == '') {
     //   that.showModal("验证码错误")
     //   return;

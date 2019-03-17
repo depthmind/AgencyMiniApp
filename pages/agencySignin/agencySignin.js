@@ -27,7 +27,8 @@ Page({
     areaIndex: 0,
     selectedArea: '',
     arr: [], //标签数组：用来存储选中的值
-    showModal: false
+    showModal: false,
+    dingwei: '/images/dingwei.jpg',
   },
 
   /**
@@ -259,8 +260,13 @@ Page({
   },
 
   chooseAddress: function () {
-    wx.navigateTo({
-      url: '/pages/map/map',
+    var that = this
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+          addressDetail: res.address
+        });
+      },
     })
   },
 
@@ -293,7 +299,7 @@ Page({
     console.log('area-----', area)
     var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType
     wx.uploadFile({ // 上传代理商logo
-      url: 'http://47.105.169.49/Agency/upfile',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: that.data.logoImagePath[0],
       name: 'file',
       formData: {
@@ -304,7 +310,7 @@ Page({
         parameter = parameter + '&logoImagePath=' + path
         if (that.data.wechatImagePathSubmit != '') { //判断是否上传了老板微信
           wx.uploadFile({ // 上传老板微信
-            url: 'http://47.105.169.49/Agency/upfile',
+            url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
             filePath: that.data.wechatImagePath[0],
             name: 'file',
             formData: {
@@ -314,7 +320,7 @@ Page({
               var path = res.data
               parameter = parameter + '&wechatImagePath=' + path
               wx.uploadFile({ // 上传营业执照
-                url: 'http://47.105.169.49/Agency/upfile',
+                url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
                 filePath: that.data.wechatImagePath[0],
                 name: 'file',
                 formData: {
@@ -324,7 +330,7 @@ Page({
                   var path = res.data
                   parameter = parameter + '&licence1ImagePath=' + path
                   wx.uploadFile({ // 上传食品经营许可证
-                    url: 'http://47.105.169.49/Agency/upfile',
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
                     filePath: that.data.wechatImagePath[0],
                     name: 'file',
                     formData: {
@@ -368,7 +374,7 @@ Page({
           })
         } else {
           wx.uploadFile({ // 上传营业执照
-            url: 'http://47.105.169.49/Agency/upfile',
+            url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
             filePath: that.data.licence1ImagePath[0],
             name: 'file',
             formData: {
@@ -378,7 +384,7 @@ Page({
               var path = res.data
               parameter = parameter + '&licence1ImagePath=' + path
               wx.uploadFile({ // 上传食品经营许可证
-                url: 'http://47.105.169.49/Agency/upfile',
+                url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
                 filePath: that.data.licence2ImagePath[0],
                 name: 'file',
                 formData: {
@@ -461,6 +467,10 @@ Page({
     }
     if (mobilephone == undefined || mobilephone == '') {
       that.showModal("请输入正确的手机号")
+      return;
+    }
+    if (!(/^1[34578]\d{9}$/.test(mobilephone))) {
+      that.showModal("请填写正确的手机号")
       return;
     }
     // if (validateCode == undefined || validateCode == '') {

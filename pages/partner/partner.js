@@ -116,7 +116,7 @@ Page({
       that.showModal("请填写联系人电话")
       return;
     }
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(data.mobilephone))) {
+    if (!(/^1[34578]\d{9}$/.test(data.mobilephone))) {
       that.showModal("请填写正确的手机号")
       return;
     }

@@ -6,10 +6,10 @@
           <text class='label'>商家名称</text>
           <input name="agencyName" placeholder="商家名称"></input>
         </view>
-        <view class='form-item'>
+        <view class='form-item' style="padding-right: 60rpx;">
           <text class='label'>详细地址</text>
           <input name="addressDetail" value='{{addressDetail}}'></input>
-          <text bindtap='chooseAddress'>定位</text>
+          <image style="width: 36rpx; height: 46rpx; position: absolute; right: 16rpx; top: 16rpx;" src="{{dingwei}}" bindtap='chooseAddress'></image>
         </view>
         <view class='form-item'>
           <!-- <text class='label'>显示区域</text>
