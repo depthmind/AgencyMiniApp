@@ -6,6 +6,8 @@ var qqmapsdk = new QQMapWX({
 const agencyType = 'normal'
 const userInfo = wx.getStorageSync('userInfo')
 const openId = userInfo.openId
+var allValidPeriod = [] //全部可选时长和需支付的费用
+var fee = '0';
 Page({
 
   /**
@@ -74,8 +76,9 @@ Page({
     })
     wx.request({ //查询可选择的入驻时长参数
       url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
+      //url: 'http://localhost:8080/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
       success(res) {
-        console.log(res)
+        allValidPeriod = res.data
         that.setData({
           validPeriod: res.data
         })
@@ -273,6 +276,8 @@ Page({
   radioChange: function (e) {
     console.log(e.detail.value)
     var that = this
+    fee = '0'
+    fee = allValidPeriod[e.detail.value - 1].chinese;
     that.data.validPeriod = e.detail.value
   },
 
@@ -285,7 +290,11 @@ Page({
     var selectedArea = that.data.arr
     var area = ''
     var cityArea = that.data.area //所选城市下的区县
-    for (var s = 0; s < selectedArea.length; s++) {
+    var amountOfSelectedArea = selectedArea.length
+    if (amountOfSelectedArea > 1) {
+      fee = parseInt(fee) * (selectedArea.length)
+    }
+    for (var s = 0; s < amountOfSelectedArea; s++) {
       for (var c = 0; c < cityArea.length; c++) {
         if (cityArea[c].id == selectedArea[s]) {
           if (area == '') {
@@ -340,7 +349,7 @@ Page({
                       var path = res.data
                       parameter = parameter + '&licence2ImagePath=' + path
                       wx.request({
-                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
+                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
                         success(res) {
                           wx.requestPayment({
                             timeStamp: res.data.timeStamp,
@@ -397,7 +406,7 @@ Page({
                     parameter = parameter + '&openId=' + openId
                   }
                   wx.request({
-                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
                     success(res) {
                       wx.requestPayment({
                         timeStamp: res.data.timeStamp,

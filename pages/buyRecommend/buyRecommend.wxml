@@ -1,0 +1,40 @@
+<view>
+  <view class='form'>
+    <form bindsubmit="formSubmit" report-submit='true'>
+        <!-- <view class='form-item'>
+            <text class='label'>邀请人</text> 
+            <input name="introducer" placeholder="联系人姓名"></input>
+        </view> -->
+        <view class='form-item'>
+            <text class='label'>姓名</text> 
+            <input name="partnerName" placeholder="联系人姓名"></input>
+        </view>
+        <view class='form-item'>
+            <text class='label'>手机号</text> 
+            <input type="number" name="mobilephone" placeholder="请填写手机号码"></input>
+        </view>
+        <view bindtap='showDialog' style="color: #000; font-weight:bold; margin: 15px 0 20px;">
+          <radio value="" checked="{{isChecked}}" bindtap='agreeNotice'/>
+          我已阅读并同意<text style="color:#e6424b;">《合伙人须知》</text>
+        </view>
+        <view style="color: #999;">您的粉丝付费发布、置顶、入驻、加入广告位等，您可获得红包。</view>
+        <button form-type="submit">立刻成为合伙人</button>
+      </form>
+  </view>
+</view>
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">
+   
+    合伙人须知
+  </view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <text>山东分局啊赛捷东方 i阿斯顿放辣椒水都放假哦啊啥的肌肤 i 哦叫阿松大家佛 is 的肌肤</text>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view>

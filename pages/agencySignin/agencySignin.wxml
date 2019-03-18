@@ -12,19 +12,19 @@
           <image style="width: 36rpx; height: 46rpx; position: absolute; right: 16rpx; top: 16rpx;" src="{{dingwei}}" bindtap='chooseAddress'></image>
         </view>
         <view class='form-item'>
-          <!-- <text class='label'>显示区域</text>
-          <input placeholder="显示区域"></input> -->
           <picker mode="selector" bindchange="bindPickerChangeProvince" range='{{province}}' range-key='fullname' value="{{provinceIndex}}">
-          <view class="picker">
-            选择入驻省份
-            <text name='province'>{{province[provinceIndex].fullname}}</text>
-          </view>
+            <view class="picker">
+              省份
+              <text name='province'>{{province[provinceIndex].fullname}}</text>
+            </view>
           </picker>
+        </view>
+        <view class='form-item' style="padding-right: 60rpx;">
           <picker mode="selector" bindchange="bindPickerChangeCity" range='{{citys}}' range-key='fullname' value="{{cityIndex}}">
-          <view class="picker">
-            选择入驻城市
-            <text name='city'>{{citys[cityIndex].fullname}}</text>
-          </view>
+            <view class="picker">
+              城市
+              <text name='city'>{{citys[cityIndex].fullname}}</text>
+            </view>
           </picker>
         </view>
         <view class='the-label'>
@@ -73,12 +73,12 @@
           <text class='label'>验证码</text>
           <input name="validateCode"></input>
         </view> -->
-        <text class='label'>入驻时长</text>
+        <!-- <text class='label'>入驻时长</text> -->
         <view>
           <radio-group name="time" class="radio-group" bindchange="radioChange">
             <label class="radio" wx:for="{{validPeriod}}" style="margin: 0 20rpx 0 0;">
               <radio value="{{item.value}}" checked="{{item.checked}}" />
-              {{item.chinese}}
+              {{item.chinese}}元({{item.depict}})
             </label>
           </radio-group>
         </view>
