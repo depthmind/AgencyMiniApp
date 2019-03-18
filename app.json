@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/publishSuccess/publishSuccess",
     "pages/index/index",
+    "pages/publishSuccess/publishSuccess",
     "pages/agencyCenter/agencyCenter",
     "pages/agencySignin/agencySignin",
     "pages/logs/logs",

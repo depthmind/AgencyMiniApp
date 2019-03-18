@@ -1,15 +1,15 @@
 <view>
   <view>
     <image src="../../images/合伙人.jpeg"></image>
-    <view>欢迎加入<text style="color:#e6424b;">曹县代理商</text>，请填写申请信息</view>
+    <view>欢迎加入<text style="color:#e6424b;">代理商供货信息</text>，请填写申请信息</view>
   </view>
 
   <view class='form'>
     <form bindsubmit="formSubmit" report-submit='true'>
-        <view class='form-item'>
+        <!-- <view class='form-item'>
             <text class='label'>邀请人</text> 
             <input name="introducer" placeholder="联系人姓名"></input>
-        </view>
+        </view> -->
         <view class='form-item'>
             <text class='label'>姓名</text> 
             <input name="partnerName" placeholder="联系人姓名"></input>
@@ -23,7 +23,7 @@
           我已阅读并同意<text style="color:#e6424b;">《合伙人须知》</text>
         </view>
         <!-- <view style="color: #999;">合伙人加入费用为 <text style="color:#e6424b;">{{partnerFee}}元</text></view> -->
-        <view style="color: #999;">您的粉丝付费发布、置顶、入驻、加入合伙人等，您可获得提成。</view>
+        <view style="color: #999;">您的粉丝付费发布、置顶、入驻、加入广告位等，您可获得红包。</view>
         <button form-type="submit">立刻成为合伙人</button>
       </form>
   </view>
