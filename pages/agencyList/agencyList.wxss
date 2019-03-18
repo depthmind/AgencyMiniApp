@@ -11,7 +11,7 @@
 	float: left;
 	width: 100rpx;
 	height: 100rpx;
-	border-radius: 100rpx;
+	border-radius: 10rpx;
 	margin: 0 10px 0 0;
 	box-shadow: 0 0 3px #dedede;
 }
