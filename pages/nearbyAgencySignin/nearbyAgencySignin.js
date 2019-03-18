@@ -3,6 +3,11 @@ var QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
 var qqmapsdk = new QQMapWX({
   key: 'EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF' // 必填
 })
+const agencyType = 'nearby'
+const userInfo = wx.getStorageSync('userInfo')
+const openId = userInfo.openId
+var allValidPeriod = [] //全部可选时长和需支付的费用
+var fee = '0';
 Page({
 
   /**
@@ -24,6 +29,7 @@ Page({
     areaIndex: 0,
     selectedArea: '',
     arr: [], //标签数组：用来存储选中的值
+    dingwei: '/images/dingwei.jpg',
   },
 
   /**
@@ -32,7 +38,6 @@ Page({
   onLoad: function (options) {
     var that = this
     var userInfo = wx.getStorageSync('userInfo')
-    var openId = userInfo.openId
     wx.getLocation({ //初始地址
       success: function (res) {
         var new_latitude = res.latitude
@@ -47,7 +52,7 @@ Page({
       },
     })
     wx.request({ //判断是否已入驻
-      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
       success(res) {
         if (res.data.isCooperation == '1') {
           wx.showModal({
@@ -55,9 +60,9 @@ Page({
             content: '您已经入驻过了哦',
             success(res) {
               if (res.confirm) {
-                // wx.switchTab({
-                //   url: '/pages/mine/mine',
-                // })
+                wx.switchTab({
+                  url: '/pages/mine/mine',
+                })
               } else if (res.cancel) {
                 wx.switchTab({
                   url: '/pages/mine/mine',
@@ -70,8 +75,9 @@ Page({
     })
     wx.request({ //查询可选择的入驻时长参数
       url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
+      //url: 'http://localhost:8080/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
       success(res) {
-        console.log(res)
+        allValidPeriod = res.data
         that.setData({
           validPeriod: res.data
         })
@@ -255,15 +261,11 @@ Page({
     })
   },
 
-  chooseAddress: function () {
-    wx.navigateTo({
-      url: '/pages/map/map',
-    })
-  },
-
   radioChange: function (e) {
     console.log(e.detail.value)
     var that = this
+    fee = '0'
+    fee = allValidPeriod[e.detail.value - 1].chinese;
     that.data.validPeriod = e.detail.value
   },
 
@@ -276,7 +278,10 @@ Page({
     var selectedArea = that.data.arr
     var area = ''
     var cityArea = that.data.area //所选城市下的区县
-    for (var s = 0; s < selectedArea.length; s++) {
+    if (amountOfSelectedArea > 1) {
+      fee = parseInt(fee) * (selectedArea.length)
+    }
+    for (var s = 0; s < amountOfSelectedArea; s++) {
       for (var c = 0; c < cityArea.length; c++) {
         if (cityArea[c].id == selectedArea[s]) {
           if (area == '') {
@@ -288,9 +293,9 @@ Page({
       }
     }
     console.log('area-----', area)
-    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area
+    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType
     wx.uploadFile({ // 上传代理商logo
-      url: 'http://47.105.169.49/Agency/upfile',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: that.data.logoImagePath[0],
       name: 'file',
       formData: {
@@ -301,7 +306,7 @@ Page({
         parameter = parameter + '&logoImagePath=' + path
         if (that.data.wechatImagePathSubmit != '') { //判断是否上传了老板微信
           wx.uploadFile({ // 上传老板微信
-            url: 'http://47.105.169.49/Agency/upfile',
+            url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
             filePath: that.data.wechatImagePath[0],
             name: 'file',
             formData: {
@@ -311,7 +316,7 @@ Page({
               var path = res.data
               parameter = parameter + '&wechatImagePath=' + path
               wx.uploadFile({ // 上传营业执照
-                url: 'http://47.105.169.49/Agency/upfile',
+                url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
                 filePath: that.data.wechatImagePath[0],
                 name: 'file',
                 formData: {
@@ -321,7 +326,7 @@ Page({
                   var path = res.data
                   parameter = parameter + '&licence1ImagePath=' + path
                   wx.uploadFile({ // 上传食品经营许可证
-                    url: 'http://47.105.169.49/Agency/upfile',
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
                     filePath: that.data.wechatImagePath[0],
                     name: 'file',
                     formData: {
@@ -331,7 +336,7 @@ Page({
                       var path = res.data
                       parameter = parameter + '&licence2ImagePath=' + path
                       wx.request({
-                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
+                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
                         success(res) {
                           wx.requestPayment({
                             timeStamp: res.data.timeStamp,
@@ -341,7 +346,7 @@ Page({
                             paySign: res.data.paySign,
                             success(res) {
                               wx.request({
-                                url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveNearbyAgency.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                                url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
                                 success(res) {
 
                                 }
@@ -365,7 +370,7 @@ Page({
           })
         } else {
           wx.uploadFile({ // 上传营业执照
-            url: 'http://47.105.169.49/Agency/upfile',
+            url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
             filePath: that.data.licence1ImagePath[0],
             name: 'file',
             formData: {
@@ -375,7 +380,7 @@ Page({
               var path = res.data
               parameter = parameter + '&licence1ImagePath=' + path
               wx.uploadFile({ // 上传食品经营许可证
-                url: 'http://47.105.169.49/Agency/upfile',
+                url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
                 filePath: that.data.licence2ImagePath[0],
                 name: 'file',
                 formData: {
@@ -384,12 +389,11 @@ Page({
                 success(res) {
                   var path = res.data
                   parameter = parameter + '&licence2ImagePath=' + path
-                  var openId = wx.getStorageSync('openId')
                   if (openId != undefined && openId != '') {
                     parameter = parameter + '&openId=' + openId
                   }
                   wx.request({
-                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=0.01',
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
                     success(res) {
                       wx.requestPayment({
                         timeStamp: res.data.timeStamp,
@@ -399,7 +403,7 @@ Page({
                         paySign: res.data.paySign,
                         success(res) {
                           wx.request({
-                            url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveNearbyAgency.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                            url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
                             success(res) {
                               var tmp = Date.parse(new Date()).toString();
                               tmp = tmp.substr(0, 10);
@@ -461,10 +465,14 @@ Page({
       that.showModal("请输入正确的手机号")
       return;
     }
-    if (validateCode == undefined || validateCode == '') {
-      that.showModal("验证码错误")
+    if (!(/^1[34578]\d{9}$/.test(mobilephone))) {
+      that.showModal("请填写正确的手机号")
       return;
     }
+    // if (validateCode == undefined || validateCode == '') {
+    //   that.showModal("验证码错误")
+    //   return;
+    // }
     if (validPeriod == undefined || validPeriod == '') {
       that.showModal("请选择入驻时长")
       return;

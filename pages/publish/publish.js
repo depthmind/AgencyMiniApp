@@ -199,33 +199,6 @@ Page({
     console.log(e.detail.value)
   },
 
-  chooseAddress: function () {
-    // wx.navigateTo({
-    //   url: '/pages/map/map',
-    // })
-    var that = this
-    // wx.getLocation({
-    //   success: function(res) {
-    //     var new_latitude = res.latitude
-    //     var new_longitude = res.longitude
-    //     wx.setStorageSync('latitude', new_latitude)
-    //     wx.setStorageSync('longitude', new_longitude)
-    //     that.translateAddress(new_latitude, new_longitude)
-    //     that.setData({
-    //       latitude: latitude,
-    //       longitude: longitude
-    //     })
-    //   },
-    // })
-    wx.chooseLocation({
-      success: function(res) {
-        that.setData({ //设置markers属性和地图位置poi，将结果在地图展示
-          addressDetail: res.address
-        });
-      },
-    })
-  },
-
   formSubmit: function (e) {
     console.log(e)
     var that = this
@@ -261,7 +234,7 @@ Page({
       that.showModal("请填写联系人电话")
       return;
     }
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobilephone))) {
+    if (!(/^1[34578]\d{9}$/.test(mobilephone))) {
       that.showModal("请填写正确的手机号")
       return;
     }
@@ -314,7 +287,7 @@ Page({
                 }
               })
               wx.redirectTo({
-                url: '/pages/paySuccess/paySuccess',
+                url: '/pages/publishSuccess/publishSuccess',
               })
               console.log(res)
             },
@@ -335,7 +308,7 @@ Page({
             uploadImagePath: ''
           })
           wx.redirectTo({
-            url: '/pages/paySuccess/paySuccess',
+            url: '/pages/publishSuccess/publishSuccess',
           })
         }
       })
@@ -381,7 +354,7 @@ Page({
   uploadDIY(filePaths, successUp, failUp, i, length) {
     var that = this
     wx.uploadFile({
-      url: 'http://47.105.169.49/Agency/upfile',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: filePaths[i],
       name: 'fileData',
       // formData: {
@@ -428,5 +401,16 @@ Page({
     this.setData({
       showModal: true
     });
-  }
+  },
+
+  chooseAddress: function () {
+    var that = this
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+          addressDetail: res.address
+        });
+      },
+    })
+  },
 })

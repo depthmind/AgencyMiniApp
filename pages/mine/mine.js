@@ -100,5 +100,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/contactUs/contactUs',
     })
+  },
+
+  openAgencyCenter: function () {
+    wx.navigateTo({
+      url: '../../pages/agencyCenter/agencyCenter',
+    })
   }
 })

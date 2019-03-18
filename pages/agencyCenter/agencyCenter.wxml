@@ -57,9 +57,21 @@
   </view>
 
   <view class="promote">
-    <view class="title">推广</view>
-    <view>广告位购买 </view>
-    <view>暂未开通线上购买，请联系客服</view>
+    <view class="title">广告位购买</view>
+    <view class="weui-cell" bindtap='agencySignin'>
+      <!-- <view class="weui-cell-hd">
+        <image class="media-box-thumb" src="../../images/商家列表.png"></image>
+      </view> -->
+      <view class="weui-cell-bd">推荐产品</view>
+      <span class="weui-cell-ft"></span>
+    </view>
+    <view class="weui-cell" bindtap='agencySignin'>
+      <!-- <view class="weui-cell-hd">
+        <image class="media-box-thumb" src="../../images/商家列表.png"></image>
+      </view> -->
+      <view class="weui-cell-bd">产品轮播</view>
+      <span class="weui-cell-ft"></span>
+    </view>
   </view>
 
   <view class="panel-edit">

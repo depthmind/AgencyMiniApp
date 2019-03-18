@@ -1,4 +1,4 @@
-// pages/joinSuccess/joinSuccess.js
+// pages/buyRecommend/buyRecommend.js
 Page({
 
   /**
@@ -62,11 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  redirctToIndex: function () {
-    wx.reLaunch({
-      url: "/pages/index/index"
-    });
   }
 })

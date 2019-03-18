@@ -40,7 +40,7 @@
       <view class="weui-cell-bd">商家入驻</view>
       <span class="weui-cell-ft"></span>
     </view>
-    <view class="weui-cell">
+    <view class="weui-cell" bindtap='openAgencyCenter'>
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/商家认证.png"></image>
       </view>
@@ -54,7 +54,7 @@
       <view class="weui-cell-bd">二批入驻</view>
       <span class="weui-cell-ft"></span>
     </view>
-    <view class="weui-cell">
+    <view class="weui-cell" bindtap='openAgencyCenter'>
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/商家认证.png"></image>
       </view>

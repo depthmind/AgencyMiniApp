@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/agencyCenter/agencyCenter",
+    "pages/nearbyAgencySignin/nearbyAgencySignin",
     "pages/agencySignin/agencySignin",
+    "pages/agencyCenter/agencyCenter",
+    "pages/publishSuccess/publishSuccess",
     "pages/logs/logs",
     "pages/publishDetail/publishDetail",
     "pages/paySuccess/paySuccess",
@@ -14,13 +16,12 @@
     "pages/help/help",
     "pages/agencyDetail/agencyDetail",
     "pages/location/location",
-    "pages/nearbyAgencySignin/nearbyAgencySignin",
     "pages/search/search",
     "pages/goodsDetail/goodsDetail",
     "pages/partner/partner",
     "pages/contactUs/contactUs",
-    "pages/publishSuccess/publishSuccess",
-    "pages/joinSuccess/joinSuccess"
+    "pages/joinSuccess/joinSuccess",
+    "pages/buyRecommend/buyRecommend"
   ],
   "permission": {
     "scope.userLocation": {
