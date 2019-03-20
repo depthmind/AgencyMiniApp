@@ -5,7 +5,11 @@ var qqmapsdk = new QQMapWX({
 })
 var longitude = wx.getStorageSync("longitude")
 var latitude = wx.getStorageSync("latitude")
-const openId = wx.getStorageSync('openId')
+const userInfo = wx.getStorageSync('userInfo')
+const openId = userInfo.openId
+const currentProvince = wx.getStorageSync('currentProvince')
+const currentCity = wx.getStorageSync('currentCity')
+const currentArea = wx.getStorageSync('currentArea')
 
 Page({
   /**
@@ -246,7 +250,7 @@ Page({
       isTop = 1
     }
     var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilephone=' + data.mobilephone
-      + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId
+      + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId + '&province=' + currentProvince + '&city=' + currentCity + '&area=' + currentArea
     if (temp.length > 0) {
       var imagePath = ''
       for (var i = 0; i < temp.length; i++) {
