@@ -6,7 +6,6 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isNotAuthorized: null,
-    offset: 0,
     rows: 5, //主体内容一次加载行数
     adOffset: 0,
     recommendOffset: 0,
@@ -34,110 +33,9 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    //授权
-    if (app.globalData.isNotAuthorized == null) {
-      console.log("app.globalData.isNotAuthorized is null")
-      app.getSettingCallback = isNotAuthorized => {
-        console.log("app.getSettingCallback is defind")
-        if (isNotAuthorized != null) {
-          that.setData({
-            isNotAuthorized: app.globalData.isNotAuthorized
-          })
-        }
-      }
-    }
-    console.log("buy_onLoad before setData isNotAuthorized=" + that.data.isNotAuthorized)
-    that.setData({
-      isNotAuthorized: app.globalData.isNotAuthorized
-    })
-    wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-          scrollHeight: res.windowHeight
-        })
-      },
-    })
-    wx.authorize({
-      scope: 'scope.userLocation',
-      success(res) {
-        wx.getLocation({
-          type: 'wgs84',
-          success(res) {
-            const latitude = res.latitude
-            const longitude = res.longitude
-            const speed = res.speed
-            const accuracy = res.accuracy
-            console.log("latitude = " + latitude)
-            console.log("longitude = " + longitude)
-            wx.setStorageSync("latitude", latitude)
-            wx.setStorageSync("longitude", longitude)
-            console.log("speed = " + speed)
-            console.log("accuracy = " + accuracy)
-            wx.request({
-              url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
-              success(locationRes) {
-                console.log("location_res")
-                console.log(locationRes)
+    
+    this.beforeEverything().then(this.init())
 
-                wx.setStorageSync('currentProvince', locationRes.data.result.address_component.province)
-                wx.setStorageSync('currentCity', locationRes.data.result.address_component.city)
-                wx.setStorageSync('currentArea', locationRes.data.result.address_component.district)
-
-                that.setData({
-                  currentLatitude: latitude,
-                  currentLongitude: longitude,
-                  currentArea: locationRes.data.result.address_component.district,
-                  currentCity: locationRes.data.result.address_component.city,
-                  currentProvince: locationRes.data.result.address_component.province
-                })
-              }
-            })
-          }
-        })
-      },
-      fail() {},
-      complete() {
-        //获取轮播图
-        that.getAds()
-
-        //获取推荐
-        that.getRecommends()
-
-
-        //获取scroll-view-tabs
-        wx.request({
-          url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
-          data: {
-            paraDomain: "product.category"
-          },
-          success(tabRes) {
-            that.setData({
-              tabs: tabRes.data
-            })
-            console.log("tabRes")
-            console.log(tabRes)
-          }
-        })
-
-        //根据tab类型加载内容
-        that.getContents()
-
-
-      }
-    })
-
-
-    wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
-      data: {
-        paraDomain: "index.notice"
-      },
-      success(res) {
-        that.setData({
-          notice: res.data[0].chinese
-        })
-      }
-    })
   },
 
   /**
@@ -350,8 +248,8 @@ Page({
           that.setData({
             agencyOffset: that.data.agencyOffset + that.data.rows
           })
-          console.log("offset")
-          console.log(that.data.offset)
+          console.log("agencyOffset")
+          console.log(that.data.agencyOffset)
         }
       },
       fail() {
@@ -374,8 +272,8 @@ Page({
       icon: 'loading'
     })
     wx.request({
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/publish/getPublish.do',
-      url: 'http://localhost:8080/Agency/publish/getPublish.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/publish/getPublish.do',
+      //url: 'http://localhost:8080/Agency/publish/getPublish.do',
       data: {
         offset: that.data.publishOffset,
         rows: that.data.rows,
@@ -408,8 +306,8 @@ Page({
           that.setData({
             publishOffset: that.data.publishOffset + that.data.rows
           })
-          console.log("offset")
-          console.log(that.data.offset)
+          console.log("publishOffset")
+          console.log(that.data.publishOffset)
         }
       },
       fail() {
@@ -537,6 +435,117 @@ Page({
   redirctToPartner: function() {
     wx.navigateTo({
       url: '../partner/partner',
+    })
+  },
+
+  beforeEverything: function() {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      //授权
+      if (app.globalData.isNotAuthorized == null) {
+        console.log("app.globalData.isNotAuthorized is null")
+        app.getSettingCallback = isNotAuthorized => {
+          console.log("app.getSettingCallback is defind")
+          if (isNotAuthorized != null) {
+            that.setData({
+              isNotAuthorized: app.globalData.isNotAuthorized
+            })
+          }
+        }
+      }
+      console.log("buy_onLoad before setData isNotAuthorized=" + that.data.isNotAuthorized)
+      that.setData({
+        isNotAuthorized: app.globalData.isNotAuthorized
+      })
+      wx.getSystemInfo({
+        success: function (res) {
+          that.setData({
+            scrollHeight: res.windowHeight
+          })
+        },
+      })
+      wx.authorize({
+        scope: 'scope.userLocation',
+        success(res) {
+          wx.getLocation({
+            type: 'wgs84',
+            success(res) {
+              const latitude = res.latitude
+              const longitude = res.longitude
+              const speed = res.speed
+              const accuracy = res.accuracy
+              console.log("latitude = " + latitude)
+              console.log("longitude = " + longitude)
+              wx.setStorageSync("latitude", latitude)
+              wx.setStorageSync("longitude", longitude)
+              console.log("speed = " + speed)
+              console.log("accuracy = " + accuracy)
+              wx.request({
+                url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
+                success(locationRes) {
+                  console.log("location_res")
+                  console.log(locationRes)
+
+                  wx.setStorageSync('currentProvince', locationRes.data.result.address_component.province)
+                  wx.setStorageSync('currentCity', locationRes.data.result.address_component.city)
+                  wx.setStorageSync('currentArea', locationRes.data.result.address_component.district)
+
+                  that.setData({
+                    currentLatitude: latitude,
+                    currentLongitude: longitude,
+                    currentArea: locationRes.data.result.address_component.district,
+                    currentCity: locationRes.data.result.address_component.city,
+                    currentProvince: locationRes.data.result.address_component.province
+                  })
+                }
+              })
+            }
+          })
+        },
+        fail() { }
+
+      })
+    })
+  },
+
+  init: function () {
+    var that = this;
+    //获取轮播图
+    that.getAds()
+
+    //获取推荐
+    that.getRecommends()
+
+
+    //获取scroll-view-tabs
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
+      data: {
+        paraDomain: "product.category"
+      },
+      success(tabRes) {
+        that.setData({
+          tabs: tabRes.data
+        })
+        console.log("tabRes")
+        console.log(tabRes)
+      }
+    })
+
+    //根据tab类型加载内容
+    that.getContents()
+
+
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
+      data: {
+        paraDomain: "index.notice"
+      },
+      success(res) {
+        that.setData({
+          notice: res.data[0].chinese
+        })
+      }
     })
   }
 })
