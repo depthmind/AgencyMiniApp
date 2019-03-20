@@ -22,9 +22,9 @@
         <text class='location-text'>{{currentArea}}</text>
         <image class='location-pull' mode='widthFix' src='../../images/pull.png'/>
       </view>
-      <view class='search'>
+      <view class='search' bindtap='navigateToSearchPage'>
         <icon class="searchcion" size='35rpx' type='search'></icon>
-        <input class='searchInput' placeholder=' 请输入关键字' placeholder-class='searchInputText' bindfocus='navigateToSearchPage'></input>
+        <input class='searchInput' placeholder=' 请输入关键字' placeholder-class='searchInputText'></input>
       </view>
     </view>
     <view style='display:flex;justify-content: center; margin: 15px 0;'>

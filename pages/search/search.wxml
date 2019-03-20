@@ -7,16 +7,18 @@
       <icon wx:if="{{canClear}}" type='clear' size='45rpx' class='search-clear' value='{{searchContent}}' bindtap='clearInputText'></icon>
     </view>
   </view>
+
   <view class='search-result'>
-    <view class='search-result-agency' wx:for="{{resultAgencyList}}" wx:key="{{item.id}}" data-agency-id='item.agencyId' bindtap='openAgency'>
+    <!-- 此处搜索结果为代理商 -->
+    <view class='search-result-agency' wx:for="{{resultAgencyList}}" wx:key="{{item.id}}" data-agency-id='{{item.id}}' bindtap='openAgency'>
       <icon class="i-searchcion" size='12' type='search'></icon>
       <image class="itemimage" src='{{item.logoImagePath}}'></image>
       <text class='name' data-agency-id='{{item.id}}' bindtap='getAgencyInfo'>{{item.agencyName}}</text>
       <view class="divLine1"></view>
     </view>
     <view class="divLine2"></view>
-
-    <view class='search-result-product' wx:for="{{resultGoodsList}}" wx:key="{{item.id}}" data-goods-id='item.goodsId' bindtap='openGoods'>
+    <!-- 此处搜索结果为商品 -->
+    <view class='search-result-product' wx:for="{{resultGoodsList}}" wx:key="{{item.id}}" data-goods-id='{{item.id}}' bindtap='openGoods'>
       <icon class="i-searchcion" size='12' type='search'></icon>
       <image class="itemimage" src='{{item.thumbnail}}'></image>
       <text class='name' data-product-id='{{item.id}}' bindtap='getProductInfo'>{{item.goodsName}} | <text class="content">{{item.goodsDescription}}</text></text>
