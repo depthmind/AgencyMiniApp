@@ -11,6 +11,7 @@ Page({
     recommendOffset: 0,
     publishOffset: 0,
     agencyOffset: 0,
+    changeLocationFlag: false,
     currentProvince: "",
     currentCity: "",
     currentArea: "",
@@ -32,9 +33,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this;
     
-    this.beforeEverything().then(this.init())
+    this.beforeEverything()
 
   },
 
@@ -53,7 +53,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (this.data.changeLocationFlag) {
+      this.setData({
+        recommendOffset: 0,
+        recommends: [],
+        agencyOffset: 0,
+        agencyList: [],
+        publishOffset: 0,
+        publishList: [],
+        changeLocationFlag: false
+      })
+      this.init()
+    }
   },
 
   /**
@@ -172,7 +183,7 @@ Page({
         console.log("recommendRes")
         console.log(recommendRes)
         var recommends = recommendRes.data
-        if (recommends.length > 0) {
+        if (recommends.length > 0 || that.data.recommendOffset == 0) {  //判断offset，防止一条数据都没有陷入死循环
           for (var i = 0; i < recommends.length; i++) {
             if (recommends[i].goodsPic != undefined) {
               recommends[i].goodsPic = recommends[i].goodsPic.split(",")
@@ -440,7 +451,6 @@ Page({
 
   beforeEverything: function() {
     var that = this
-    return new Promise(function (resolve, reject) {
       //授权
       if (app.globalData.isNotAuthorized == null) {
         console.log("app.globalData.isNotAuthorized is null")
@@ -497,15 +507,14 @@ Page({
                     currentCity: locationRes.data.result.address_component.city,
                     currentProvince: locationRes.data.result.address_component.province
                   })
+                  that.init()
                 }
               })
             }
           })
         },
         fail() { }
-
       })
-    })
   },
 
   init: function () {

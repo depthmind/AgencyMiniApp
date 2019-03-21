@@ -85,7 +85,8 @@ Page({
     prePage.setData({
       currentProvince: this.data.region[0],
       currentCity: this.data.region[1],
-      currentArea: this.data.region[2]
+      currentArea: this.data.region[2],
+      changeLocationFlag: true
     })
     console.log(this.data.region)
     wx.navigateBack({
