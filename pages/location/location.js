@@ -88,6 +88,9 @@ Page({
       currentArea: this.data.region[2],
       changeLocationFlag: true
     })
+    wx.setStorageSync('currentProvince', this.data.region[0])
+    wx.setStorageSync('currentCity', this.data.region[1])
+    wx.setStorageSync('currentArea', this.data.region[2])
     console.log(this.data.region)
     wx.navigateBack({
       delta: 1,

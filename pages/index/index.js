@@ -26,7 +26,7 @@ Page({
     currentLatitude: 39.90469,
     currentLongitude: 116.40717,
     adsImage1: '/images/ad1.jpg',
-    adsImage2: '/images/ad2.jpg',
+    adsImage2: '/images/agency-list.jpg',
     labaImage: '/images/laba.jpg'
   },
   /**

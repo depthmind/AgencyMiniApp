@@ -1,6 +1,6 @@
 <view>
   <view>
-    <image src="../../images/合伙人.jpeg"></image>
+    <image src="../../images/partner.jpg"></image>
     <view>欢迎加入<text style="color:#e6424b;">代理商供货信息</text>，请填写申请信息</view>
   </view>
 

@@ -1,6 +1,5 @@
-// pages/agencyLogin/agencyLogin.js
-Page({
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -23,11 +22,22 @@ Page({
    */
   onReady: function () {
     var that = this
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
     wx.setNavigationBarTitle({
       title: '代理商中心',
     })
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
+      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      data: {
+        offset: that.data.offset,
+        limit: that.data.limit,
+        province: currentProvince,
+        city: currentCity,
+        area: currentArea
+      },
       success(res) {
         console.log(res)
         that.setData({
@@ -43,7 +53,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
+    wx.request({
+      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      data: {
+        offset: 0,
+        limit: 8,
+        province: currentProvince,
+        city: currentCity,
+        area: currentArea
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          agencyes: res.data,
+          //agencyes: that.data.agencyes,
+          offset: that.data.offset + that.data.limit
+        })
+      }
+    })
   },
 
   /**
@@ -72,11 +104,22 @@ Page({
    */
   onReachBottom: function () {
     var that = this;
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
     wx.showLoading({
       title: '正在加载中',
     })
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do?offset=' + that.data.offset + '&limit=' + that.data.limit,
+      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      data: {
+        offset: that.data.offset,
+        limit: that.data.limit,
+        province: currentProvince,
+        city: currentCity,
+        area: currentArea
+      },
       success(res) {
         console.log(res)
         var array = res.data
