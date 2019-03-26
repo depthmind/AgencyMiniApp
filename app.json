@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/contactUs/contactUs",
     "pages/nearbyAgencySignin/nearbyAgencySignin",
     "pages/agencySignin/agencySignin",
     "pages/agencyCenter/agencyCenter",
@@ -19,7 +20,6 @@
     "pages/search/search",
     "pages/goodsDetail/goodsDetail",
     "pages/partner/partner",
-    "pages/contactUs/contactUs",
     "pages/joinSuccess/joinSuccess",
     "pages/buyRecommend/buyRecommend"
   ],

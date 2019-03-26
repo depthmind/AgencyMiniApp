@@ -11,7 +11,7 @@
         </view>
         <view class='form-item'>
           <text class='textarea-label'>内容描述</text>
-          <textarea name="description" style="display: {{textareadisplay}};" placeholder='请描述信息内容'></textarea>
+          <textarea name="description" maxlength='-1' auto-height='true'></textarea>
         </view>
         <view class='form-item' style="padding-top: 25px; overflow:hidden;">
           <text class='label' style="top:0;">上传图片<text>*</text></text> 

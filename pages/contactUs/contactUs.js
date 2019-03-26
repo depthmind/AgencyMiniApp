@@ -62,5 +62,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  makePhoneCall: function (e) {
+    var mobilephone = ''
+    wx.makePhoneCall({
+      phoneNumber: mobilephone,
+    })
   }
 })

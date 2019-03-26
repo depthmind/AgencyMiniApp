@@ -60,7 +60,7 @@ button{
 	height: 130rpx;
 	border: 2rpx solid #dedede;
 	width:100%;
-	padding: 10rpx;
+	padding: 140rpx;
 	box-sizing: border-box;
 	z-index: 1;
 }

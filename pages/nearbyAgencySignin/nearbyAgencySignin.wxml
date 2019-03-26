@@ -36,10 +36,10 @@
             </block>
           </view>
         </view>
-        <view class='form-item'>
+        <!-- <view class='form-item'>
           <text class='label'>服务工号</text>
           <input name="serviceNumber"></input>
-        </view>
+        </view> -->
         <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">代理商logo</text>
           <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLogoImage'>
