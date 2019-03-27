@@ -40,7 +40,7 @@
             </block>
           </view>
         </view>
-        <view class='form-item'>
+        <!-- <view class='form-item'>
           <text class='label'>服务工号</text>
           <input name="serviceNumber"></input>
         </view> -->
