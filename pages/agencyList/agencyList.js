@@ -29,8 +29,8 @@ Page({
       title: '代理商中心',
     })
     wx.request({
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
-      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
       data: {
         offset: that.data.offset,
         limit: that.data.limit,
@@ -58,8 +58,8 @@ Page({
     var currentCity = wx.getStorageSync('currentCity')
     var currentArea = wx.getStorageSync('currentArea')
     wx.request({
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
-      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
       data: {
         offset: 0,
         limit: 8,
@@ -111,8 +111,8 @@ Page({
       title: '正在加载中',
     })
     wx.request({
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
-      url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
       data: {
         offset: that.data.offset,
         limit: that.data.limit,

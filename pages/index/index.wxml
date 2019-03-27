@@ -27,13 +27,13 @@
         <input class='searchInput' placeholder=' 请输入关键字' placeholder-class='searchInputText'></input>
       </view>
     </view>
-    <view style='display:flex;justify-content: center; margin: 15px 0;'>
+    <view style='display:flex;justify-content: center; margin: 0px 0;'>
       <view class='swiper-view'>
         <swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
           <block wx:for="{{ads}}" wx:for-index="index" wx:key="index">
             <swiper-item class="swiper-item" bindtap="get" data-id="{{item.id}}">
               <image src='{{item.logoImagePath}}' class='u-img-slide' mode='aspectFill'></image>
-              <view class='u-text-slide'>{{item.agencyName}}</view>
+              <!-- <view class='u-text-slide'>{{item.agencyName}}</view> -->
             </swiper-item>
           </block>
         </swiper>

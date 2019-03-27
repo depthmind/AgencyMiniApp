@@ -6,12 +6,16 @@
           <text class='label'>商家名称</text>
           <input name="agencyName" placeholder="商家名称"></input>
         </view>
+        <view class='form-item'>
+            <text class='label'>联系人</text> 
+            <input name="contactName" placeholder="联系人姓名"></input>
+        </view>
         <view class='form-item' style="padding-right: 60rpx;">
           <text class='label'>详细地址</text>
           <input name="addressDetail" value='{{addressDetail}}'></input>
           <image style="width: 36rpx; height: 46rpx; position: absolute; right: 16rpx; top: 16rpx;" src="{{dingwei}}" bindtap='chooseAddress'></image>
         </view>
-        <view class='form-item'>
+        <!-- <view class='form-item'>
           <picker mode="selector" bindchange="bindPickerChangeProvince" range='{{province}}' range-key='fullname' value="{{provinceIndex}}">
             <view class="picker">
               省份
@@ -39,7 +43,7 @@
         <view class='form-item'>
           <text class='label'>服务工号</text>
           <input name="serviceNumber"></input>
-        </view>
+        </view> -->
         <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">代理商logo</text>
           <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLogoImage'>
@@ -58,12 +62,12 @@
             <image style="width: 100px; height: 100px;"  src="{{licence1ImagePath}}"></image>
           </view>
         </view>
-        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+        <!-- <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
           <text class='label' style="width: 100%; text-align: center;">食品经营许可证</text>
           <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence2Image'>
             <image style="width: 100px; height: 100px;"  src="{{licence2ImagePath}}"></image>
           </view>
-        </view>
+        </view> -->
         <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
             <text class='label'>电话</text> 
             <input name="mobilephone" placeholder="联系人电话" style="padding-right: 160rpx;"></input>
@@ -81,8 +85,25 @@
             </label>
           </radio-group>
         </view>
+        <view bindtap='showDialog' style="font-size: 24rpx; color: #000; font-weight:bold; margin: 10px 0 0;"><image style="width: 30rpx; height: 30rpx; float:left; margin: 2px 3px 0 0;" src="{{wenImage}}"></image>发布须知</view>
         <button form-type='submit'>申请入驻</button>
       </form>
     </view>
+  </view>
+</view>
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">
+   
+    商家入驻须知
+  </view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <text>山东分局啊赛捷东方 i阿斯顿放辣椒水都放假哦啊啥的肌肤 i 哦叫阿松大家佛 is 的肌肤</text>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view>
 </view>

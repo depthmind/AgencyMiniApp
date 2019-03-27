@@ -7,9 +7,9 @@ var longitude = wx.getStorageSync("longitude")
 var latitude = wx.getStorageSync("latitude")
 const userInfo = wx.getStorageSync('userInfo')
 const openId = userInfo.openId
-const currentProvince = wx.getStorageSync('currentProvince')
-const currentCity = wx.getStorageSync('currentCity')
-const currentArea = wx.getStorageSync('currentArea')
+var currentProvince = wx.getStorageSync('currentProvince')
+var currentCity = wx.getStorageSync('currentCity')
+var currentArea = wx.getStorageSync('currentArea')
 
 Page({
   /**
@@ -77,7 +77,7 @@ Page({
     wx.request({ //判断是否已入驻
       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId,
       success(res) {
-        if (res.data.isCooperation == '1') {
+        if (res.data && res.data.isCooperation == '1') {
           that.setData({
             needPay: false
           })

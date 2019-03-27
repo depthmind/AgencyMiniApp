@@ -8,6 +8,11 @@ const userInfo = wx.getStorageSync('userInfo')
 const openId = userInfo.openId
 var allValidPeriod = [] //全部可选时长和需支付的费用
 var fee = '0';
+var longitude = wx.getStorageSync("longitude")
+var latitude = wx.getStorageSync("latitude")
+var currentProvince = wx.getStorageSync('currentProvince')
+var currentCity = wx.getStorageSync('currentCity')
+var currentArea = wx.getStorageSync('currentArea')
 Page({
 
   /**
@@ -30,6 +35,8 @@ Page({
     selectedArea: '',
     arr: [], //标签数组：用来存储选中的值
     dingwei: '/images/dingwei.jpg',
+    wenImage: '/images/wen.png',
+    showModal: false,
   },
 
   /**
@@ -54,7 +61,7 @@ Page({
     wx.request({ //判断是否已入驻
       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
       success(res) {
-        if (res.data.isCooperation == '1') {
+        if (res.data && res.data.isCooperation == '1') {
           wx.showModal({
             title: '提示',
             content: '您已经入驻过了哦',
@@ -74,7 +81,7 @@ Page({
       }
     })
     wx.request({ //查询可选择的入驻时长参数
-      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=nearbyAgency.validPeriod',
       //url: 'http://localhost:8080/Agency/parameter/findParameter.do?paraDomain=agency.validPeriod',
       success(res) {
         allValidPeriod = res.data
@@ -278,6 +285,7 @@ Page({
     var selectedArea = that.data.arr
     var area = ''
     var cityArea = that.data.area //所选城市下的区县
+    var amountOfSelectedArea = selectedArea.length
     if (amountOfSelectedArea > 1) {
       fee = parseInt(fee) * (selectedArea.length)
     }
@@ -293,7 +301,7 @@ Page({
       }
     }
     console.log('area-----', area)
-    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType
+    var parameter = "agencyName=" + data.agencyName + '&contactName=' + data.contactName + "&address=" + data.addressDetail + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + currentArea + '&type=' + agencyType + '&longitude=' + longitude + '&latitude=' + latitude + '&province=' + currentProvince + '&city=' + currentCity + '&openId=' + openId
     wx.uploadFile({ // 上传代理商logo
       url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: that.data.logoImagePath[0],
@@ -315,60 +323,78 @@ Page({
             success(res) {
               var path = res.data
               parameter = parameter + '&wechatImagePath=' + path
-              wx.uploadFile({ // 上传营业执照
-                url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
-                filePath: that.data.wechatImagePath[0],
-                name: 'file',
-                formData: {
-                  user: 'test'
-                },
-                success(res) {
-                  var path = res.data
-                  parameter = parameter + '&licence1ImagePath=' + path
-                  wx.uploadFile({ // 上传食品经营许可证
-                    url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
-                    filePath: that.data.wechatImagePath[0],
-                    name: 'file',
-                    formData: {
-                      user: 'test'
-                    },
-                    success(res) {
-                      var path = res.data
-                      parameter = parameter + '&licence2ImagePath=' + path
-                      wx.request({
-                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
-                        success(res) {
-                          wx.requestPayment({
-                            timeStamp: res.data.timeStamp,
-                            nonceStr: res.data.nonceStr,
-                            package: res.data.prepayId,
-                            signType: 'MD5',
-                            paySign: res.data.paySign,
-                            success(res) {
-                              wx.request({
-                                url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
-                                success(res) {
+              if (that.data.licence1ImagePathSubmit != '') {
+                wx.uploadFile({ // 上传营业执照
+                  url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
+                  filePath: that.data.licence1ImagePath[0],
+                  name: 'file',
+                  formData: {
+                    user: 'test'
+                  },
+                  success(res) {
+                    var path = res.data
+                    parameter = parameter + '&licence1ImagePath=' + path
+                    wx.request({
+                      url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
+                      success(res) {
+                        wx.requestPayment({
+                          timeStamp: res.data.timeStamp,
+                          nonceStr: res.data.nonceStr,
+                          package: res.data.prepayId,
+                          signType: 'MD5',
+                          paySign: res.data.paySign,
+                          success(res) {
+                            wx.request({
+                              url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                              success(res) {
 
-                                }
-                              })
-                              wx.redirectTo({
-                                url: '/pages/paySuccess/paySuccess',
-                              })
-                              console.log(res)
-                            },
-                            fail(res) {
-                              console.log(res)
-                            }
-                          })
-                        }
-                      })
-                    }
-                  })
-                }
-              })
+                              }
+                            })
+                            wx.redirectTo({
+                              url: '/pages/paySuccess/paySuccess',
+                            })
+                            console.log(res)
+                          },
+                          fail(res) {
+                            console.log(res)
+                          }
+                        })
+                      }
+                    })
+                  }
+                })
+              } else {
+                wx.request({
+                  url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
+                  success(res) {
+                    wx.requestPayment({
+                      timeStamp: res.data.timeStamp,
+                      nonceStr: res.data.nonceStr,
+                      package: res.data.prepayId,
+                      signType: 'MD5',
+                      paySign: res.data.paySign,
+                      success(res) {
+                        wx.request({
+                          url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                          success(res) {
+
+                          }
+                        })
+                        wx.redirectTo({
+                          url: '/pages/paySuccess/paySuccess',
+                        })
+                        console.log(res)
+                      },
+                      fail(res) {
+                        console.log(res)
+                      }
+                    })
+                  }
+                })
+              }
             }
           })
-        } else {
+        } else if (that.data.licence1ImagePathSubmit != '') {
           wx.uploadFile({ // 上传营业执照
             url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
             filePath: that.data.licence1ImagePath[0],
@@ -379,48 +405,59 @@ Page({
             success(res) {
               var path = res.data
               parameter = parameter + '&licence1ImagePath=' + path
-              wx.uploadFile({ // 上传食品经营许可证
-                url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
-                filePath: that.data.licence2ImagePath[0],
-                name: 'file',
-                formData: {
-                  user: 'test'
-                },
+              wx.request({
+                url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
                 success(res) {
-                  var path = res.data
-                  parameter = parameter + '&licence2ImagePath=' + path
-                  if (openId != undefined && openId != '') {
-                    parameter = parameter + '&openId=' + openId
-                  }
-                  wx.request({
-                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
+                  wx.requestPayment({
+                    timeStamp: res.data.timeStamp,
+                    nonceStr: res.data.nonceStr,
+                    package: res.data.prepayId,
+                    signType: 'MD5',
+                    paySign: res.data.paySign,
                     success(res) {
-                      wx.requestPayment({
-                        timeStamp: res.data.timeStamp,
-                        nonceStr: res.data.nonceStr,
-                        package: res.data.prepayId,
-                        signType: 'MD5',
-                        paySign: res.data.paySign,
+                      wx.request({
+                        url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
                         success(res) {
-                          wx.request({
-                            url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
-                            success(res) {
-                              var tmp = Date.parse(new Date()).toString();
-                              tmp = tmp.substr(0, 10);
 
-                            }
-                          })
-                          wx.redirectTo({
-                            url: '/pages/paySuccess/paySuccess',
-                          })
-                          console.log(res)
-                        },
-                        fail(res) {
-                          console.log(res)
                         }
                       })
+                      wx.redirectTo({
+                        url: '/pages/paySuccess/paySuccess',
+                      })
+                      console.log(res)
+                    },
+                    fail(res) {
+                      console.log(res)
                     }
                   })
+                }
+              })
+            }
+          })
+        } else {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
+            success(res) {
+              wx.requestPayment({
+                timeStamp: res.data.timeStamp,
+                nonceStr: res.data.nonceStr,
+                package: res.data.prepayId,
+                signType: 'MD5',
+                paySign: res.data.paySign,
+                success(res) {
+                  wx.request({
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
+                    success(res) {
+
+                    }
+                  })
+                  wx.redirectTo({
+                    url: '/pages/paySuccess/paySuccess',
+                  })
+                  console.log(res)
+                },
+                fail(res) {
+                  console.log(res)
                 }
               })
             }
@@ -453,14 +490,14 @@ Page({
       that.showModal("请上传代理商logo")
       return;
     }
-    if (licence1ImagePath == undefined || licence1ImagePath == '') {
-      that.showModal("请上传营业执照")
-      return;
-    }
-    if (licence2ImagePath == undefined || licence2ImagePath == '') {
-      that.showModal("请上传食品经营许可证")
-      return;
-    }
+    // if (licence1ImagePath == undefined || licence1ImagePath == '') {
+    //   that.showModal("请上传营业执照")
+    //   return;
+    // }
+    // if (licence2ImagePath == undefined || licence2ImagePath == '') {
+    //   that.showModal("请上传食品经营许可证")
+    //   return;
+    // }
     if (mobilephone == undefined || mobilephone == '') {
       that.showModal("请输入正确的手机号")
       return;
@@ -661,5 +698,19 @@ Page({
       area: area
     })
 
+  },
+
+  //隐藏发布须知
+  onConfirm: function () {
+    this.setData({
+      showModal: false
+    });
+  },
+
+  //显示发布须知
+  showDialog: function () {
+    this.setData({
+      showModal: true
+    });
   },
 })

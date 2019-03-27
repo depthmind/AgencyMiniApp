@@ -8,6 +8,11 @@ const userInfo = wx.getStorageSync('userInfo')
 const openId = userInfo.openId
 var allValidPeriod = [] //全部可选时长和需支付的费用
 var fee = '0';
+var longitude = wx.getStorageSync("longitude")
+var latitude = wx.getStorageSync("latitude")
+var currentProvince = wx.getStorageSync('currentProvince')
+var currentCity = wx.getStorageSync('currentCity')
+var currentArea = wx.getStorageSync('currentArea')
 Page({
 
   /**
@@ -31,6 +36,7 @@ Page({
     arr: [], //标签数组：用来存储选中的值
     showModal: false,
     dingwei: '/images/dingwei.jpg',
+    wenImage: '/images/wen.png',
   },
 
   /**
@@ -55,7 +61,7 @@ Page({
     wx.request({ //判断是否已入驻
       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
       success(res) {
-        if (res.data.isCooperation == '1') {
+        if (res.data && res.data.isCooperation == '1') {
           wx.showModal({
             title: '提示',
             content: '您已经入驻过了哦',
@@ -306,7 +312,7 @@ Page({
       }
     }
     console.log('area-----', area)
-    var parameter = "agencyName=" + data.agencyName + "&addressDetail=" + data.addressDetail + "&serviceNumber=" + data.serviceNumber + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType
+    var parameter = "agencyName=" + data.agencyName + '&contactName=' + data.contactName + "&address=" + data.addressDetail + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType + '&openId=' + openId + '&longitude=' + longitude + '&latitude=' + latitude + '&province=' + currentProvince + '&city=' + currentCity
     wx.uploadFile({ // 上传代理商logo
       url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: that.data.logoImagePath[0],
@@ -348,8 +354,9 @@ Page({
                     success(res) {
                       var path = res.data
                       parameter = parameter + '&licence2ImagePath=' + path
+                      console.log("parameter", parameter)
                       wx.request({
-                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
+                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
                         success(res) {
                           wx.requestPayment({
                             timeStamp: res.data.timeStamp,
@@ -402,11 +409,9 @@ Page({
                 success(res) {
                   var path = res.data
                   parameter = parameter + '&licence2ImagePath=' + path
-                  if (openId != undefined && openId != '') {
-                    parameter = parameter + '&openId=' + openId
-                  }
+                  console.log("parameter", parameter)
                   wx.request({
-                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee,
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
                     success(res) {
                       wx.requestPayment({
                         timeStamp: res.data.timeStamp,

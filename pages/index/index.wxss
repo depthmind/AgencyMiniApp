@@ -74,7 +74,7 @@
 .swiper-view {
   display: flex;
   justify-content: center;
-  height: 300rpx;
+  height: 430rpx;
   width: 100%;
 }
 
@@ -93,15 +93,15 @@
 .u-img-slide {
   display: flex;
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 
 .u-text-slide {
   display: flex;
-  margin-top: 5rpx;
+  margin-top: 16rpx;
   justify-content: center;
   font-size: 30rpx;
-  margin-bottom: 3rpx;
+  margin-bottom: -6rpx;
 }
 
 .flexRowContainer {
