@@ -407,6 +407,7 @@ Page({
                     var userInfo = loginRes.data
                     app.globalData.userInfo = userInfo
                     wx.setStorageSync('userInfo', userInfo)
+                    wx.setStorageSync('openId', userInfo.openId)
                     app.globalData.openId = userInfo.openId
                   }
                 })

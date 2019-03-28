@@ -4,8 +4,8 @@ var qqmapsdk = new QQMapWX({
   key: 'EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF' // 必填
 })
 const agencyType = 'nearby'
-const userInfo = wx.getStorageSync('userInfo')
-const openId = userInfo.openId
+var userInfo = wx.getStorageSync('userInfo')
+var openId = userInfo.openId
 var allValidPeriod = [] //全部可选时长和需支付的费用
 var fee = '0';
 var longitude = wx.getStorageSync("longitude")

@@ -1,4 +1,3 @@
-// pages/search/search.js
 Page({
 
   /**
@@ -79,6 +78,9 @@ Page({
     let that = this;
     let value = e.detail.value;
     let cursor = e.detail.cursor
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
     console.log(value)
     console.log(cursor)
     if (value.length > 0) {
@@ -96,6 +98,9 @@ Page({
         //url: 'http://localhost:8080/Agency/agency/findAgencyByName.do',
         data: {
           name: value,
+          province: currentProvince,
+          city: currentCity,
+          area: currentArea,
           offset: 0,
           rows: 3
         },
@@ -112,6 +117,9 @@ Page({
         //url: 'http://localhost:8080/Agency/goods/getGoods.do',
         data: {
           goodsName: value,
+          province: currentProvince,
+          city: currentCity,
+          area: currentArea,
           offset: 0,
           rows: 10
         },
