@@ -25,3 +25,136 @@
 	padding: 18rpx 0;
 	font-size: 32rpx;
 }
+
+
+.bar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 0 0 3rpx rgba(0,0,0,.2);
+    height: 110rpx;
+}
+
+.bar-bottom-btn {
+    border: none;
+    background: #fff;
+    font-size: 0;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    position: inherit;
+    border-left: 1rpx solid #e3e3e3;
+    width: 110rpx;
+}
+
+.bar-bottom-btn:after {
+    display: none;
+}
+
+.bar-bottom-btn:first-child {
+    border-left: none;
+}
+
+.bar-bottom-btn.button-hover {
+    background: rgba(255,255,255,.85);
+}
+
+.bar-bottom-btn view {
+    text-align: center;
+    width: 100%;
+}
+
+.bar-bottom-btn image {
+    width: 38rpx;
+    height: 38rpx;
+    margin-bottom: 0rpx;
+}
+
+.bar-bottom-btn text {
+    font-size: 8pt;
+    color: #888;
+    display: block;
+}
+
+.bar-bottom .add-cart {
+    background: #f39800;
+    color: #fff;
+}
+
+.bar-bottom .buy-now {
+    background: #ff4544;
+    color: #fff;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+}
+
+.flex-grow-0 {
+    min-width: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.flex-grow-1 {
+    min-width: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
+.flex-x-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.flex-y-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+}
+
+.flex-y-bottom {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -ms-grid-row-align: flex-end;
+    align-items: flex-end;
+}

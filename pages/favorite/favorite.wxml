@@ -1,0 +1,5 @@
+<view>
+  <scroll-view scroll-x class='tabs-scroll-view'>
+      <view wx:for="{{favoriteGoods}}" data-tab-id='{{item.value}}' class='tab-item active' bindtap='tapTab'>{{item.chinese}}</view>
+    </scroll-view>
+</view>

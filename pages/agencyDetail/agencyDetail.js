@@ -1,4 +1,4 @@
-// pages/agencyDetail/agencyDetail.js
+const favoriteType = '2' //1代表收藏的是代理商
 Page({
 
   /**
@@ -7,6 +7,9 @@ Page({
   data: {
     phoneImage2: '/images/phone2.jpg',
     addressImage: '/images/address.png',
+    isFavorited: false,
+    inFavorited: false, //是否收藏过
+    agencyId: '',
   },
 
   /**
@@ -15,6 +18,9 @@ Page({
   onLoad: function (options) {
     var that = this
     var id = options.id
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyById.do?id=' + id,
       success(res) {
@@ -24,7 +30,8 @@ Page({
           title: agency.agencyName, //页面title用代理商名称
         })
         that.setData({
-          agency: agency
+          agency: agency,
+          agencyId: id
         })
         console.log(agency)
         // if (typeof agency != 'object') {
@@ -32,6 +39,35 @@ Page({
         //   var jj = JSON.parse(agency);
         //   console.log(jj)
         // }
+      }
+    })
+
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavorite.do',
+      data: {
+        openId: openId,
+        type: favoriteType,
+        favoriteId: id
+      },
+      success(res) {
+        console.log(res)
+        if (res.data) {
+          that.setData({
+            inFavorited: true,
+          })
+        }
+        var favorite = res.data
+        if (favorite && favorite.status == '1') {
+          that.setData({
+            isFavorited: true,
+            favorite_img_url: '../../images/收藏red.png'
+          })
+        } else {
+          that.setData({
+            isFavorited: false,
+            favorite_img_url: '../../images/收藏.png'
+          })
+        }
       }
     })
   },
@@ -90,6 +126,55 @@ Page({
     var mobilephone = e.currentTarget.dataset.mobilephone
     wx.makePhoneCall({
       phoneNumber: mobilephone,
+    })
+  },
+
+  favoriteAdd: function () {
+    var that = this
+    var agencyId = that.data.agencyId
+    var isFavorited = that.data.isFavorited
+    //var inFavorited = that.data.inFavorited
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/favoriteAdd.do',
+      data: {
+        openId: openId,
+        unionId: unionId,
+        type: favoriteType,
+        favoriteId: agencyId
+      },
+      success(res) {
+        that.setData({
+          isFavorited: true,
+          favorite_img_url: '../../images/收藏red.png'
+        })
+      }
+    })
+  },
+
+  favoriteRemove: function () {
+    var that = this
+    var agencyId = that.data.agencyId
+    var isFavorited = that.data.isFavorited
+    var inFavorited = that.data.inFavorited
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/deleteFavorite.do',
+      data: {
+        openId: openId,
+        type: favoriteType,
+        favoriteId: agencyId
+      },
+      success(res) {
+        that.setData({
+          isFavorited: false,
+          favorite_img_url: '../../images/收藏.png'
+        })
+      }
     })
   }
 })

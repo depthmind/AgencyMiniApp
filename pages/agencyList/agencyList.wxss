@@ -2,15 +2,15 @@
 .agencylist{
 	border-radius: 10px;
 	background: #fff;
-	margin: 10px 0;
-	padding: 10px 55px 10px 10px;
+	margin: 25px 0;
+	padding: 17px 55px 18px 18px;
 	overflow: hidden;
 	position: relative;
 }
 .agencylist .itemimage{
 	float: left;
-	width: 100rpx;
-	height: 100rpx;
+	width: 136rpx;
+	height: 136rpx;
 	border-radius: 10rpx;
 	margin: 0 10px 0 0;
 	box-shadow: 0 0 3px #dedede;
@@ -23,9 +23,9 @@
 	color:#999;
 }
 .agencylist .phone{
-	width:36px;
-	height: 36px;
+	width:32px;
+	height: 32px;
 	position: absolute;
-	top:17px;
+	top:20px;
 	right: 10px;
 }

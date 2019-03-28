@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/favorite/favorite",
     "pages/index/index",
     "pages/contactUs/contactUs",
     "pages/nearbyAgencySignin/nearbyAgencySignin",

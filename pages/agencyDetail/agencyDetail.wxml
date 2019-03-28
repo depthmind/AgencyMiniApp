@@ -28,3 +28,36 @@
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='../../images/wxacode.png'></image>
   </view>
 </view>
+
+<view class="flex-row bar-bottom">
+            <view class="flex-grow-0 flex-row">
+                <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="redirect" url="/mch/shop/shop?mch_id={{goods.mch.id}}" wx:if="{{goods.mch}}">
+                    <view>
+                        <image src="{{__wxapp_img.store.store.url}}"></image>
+                        <text>店铺</text>
+                    </view>
+                </navigator>
+                <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="switchTab" url="/pages/index/index">
+                    <view>
+                        <image src="../../images/首页.png"></image>
+                        <text>首页</text>
+                    </view>
+                </navigator>
+                <view bindtap="favoriteRemove" class="flex-grow-0 flex-y-center bar-bottom-btn" wx:if="{{isFavorited}}">
+                    <view>
+                        <image src="{{favorite_img_url}}"></image>
+                        <text>已收藏</text>
+                    </view>
+                </view>
+                <view bindtap="favoriteAdd" class="flex-grow-0 flex-y-center bar-bottom-btn" wx:else>
+                    <view>
+                        <image src="{{favorite_img_url}}"></image>
+                        <text>收藏</text>
+                    </view>
+                </view>
+            </view>
+            <view class="flex-grow-1 flex-row">
+                <!-- <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view> -->
+                <!-- <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view> -->
+            </view>
+        </view>

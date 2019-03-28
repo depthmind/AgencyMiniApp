@@ -1,11 +1,13 @@
-// pages/goodsDetail/goodsDetail.js
+const favoriteType = '1' //1代表收藏的是商品
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goodsId: '',
+    isFavorited: false,
+    inFavorited: false, //是否收藏过
   },
 
   /**
@@ -14,10 +16,12 @@ Page({
   onLoad: function (options) {
     var that = this
     var goodsId = options.goodsId
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
       success(res) {
-        console.log(res)
         var data = res.data
         var agencyId = data.agencyId
         var area = data.area
@@ -30,8 +34,36 @@ Page({
         that.setData({
           goodsPicArr: goodsPicArr,
           goodsName: goodsName,
-          
+          goodsId: goodsId
         })
+      }
+    })
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavorite.do',
+      data: {
+        openId: openId,
+        type: favoriteType,
+        favoriteId: goodsId
+      },
+      success(res) {
+        console.log(res)
+        if (res.data) {
+          that.setData({
+            inFavorited: true,
+          })
+        }
+        var favorite = res.data
+        if (favorite && favorite.status == '1') {
+          that.setData({
+            isFavorited: true,
+            favorite_img_url: '../../images/收藏red.png'
+          })
+        } else {
+          that.setData({
+            isFavorited: false,
+            favorite_img_url: '../../images/收藏.png'
+          })
+        }
       }
     })
   },
@@ -83,5 +115,54 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  favoriteAdd: function () {
+    var that = this
+    var goodsId = that.data.goodsId
+    var isFavorited = that.data.isFavorited
+    //var inFavorited = that.data.inFavorited
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/favoriteAdd.do',
+      data: {
+        openId: openId,
+        unionId: unionId,
+        type: favoriteType,
+        favoriteId: goodsId
+      },
+      success(res) {
+        that.setData({
+          isFavorited: true,
+          favorite_img_url: '../../images/收藏red.png'
+        })
+      }
+    })
+  },
+
+  favoriteRemove: function() {
+    var that = this
+    var goodsId = that.data.goodsId
+    var isFavorited = that.data.isFavorited
+    var inFavorited = that.data.inFavorited
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/deleteFavorite.do',
+      data: {
+        openId: openId,
+        type: favoriteType,
+        favoriteId: goodsId
+      },
+      success(res) {
+        that.setData({
+          isFavorited: false,
+          favorite_img_url: '../../images/收藏.png'
+        })
+      }
+    })
   }
 })

@@ -60,7 +60,7 @@
   <view class='tabs'>
     <view class='tab-view'>
       <!-- <view class='tab-item {{currentTab == -2?"active":""}}' data-tab-id='-2' bindtap='tapTab'>附近</view> -->
-      <view class='tab-item {{currentTab == -1?"active":""}}' data-tab-id='-1' bindtap='tapTab'>附近二批</view>
+      <view class='tab-item {{currentTab == -1?"active":""}}' style='width:138px;' data-tab-id='-1' bindtap='tapTab'>附近二批</view>
     </view>
     <scroll-view scroll-x class='tabs-scroll-view'>
       <view wx:for="{{tabs}}" data-tab-id='{{item.value}}' class='tab-item {{currentTab == item.value?"active":""}}' bindtap='tapTab'>{{item.chinese}}</view>
