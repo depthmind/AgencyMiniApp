@@ -26,7 +26,7 @@
       <view class="weui-cell-bd">我的钱包</view>
       <span class="weui-cell-ft"></span>
     </view>
-    <view class="weui-cell">
+    <view class="weui-cell" bindtap='myFavorite'>
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/收藏.png"></image>
       </view>

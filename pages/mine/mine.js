@@ -106,5 +106,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/agencyCenter/agencyCenter',
     })
+  },
+
+  myFavorite: function () {
+    wx.navigateTo({
+      url: '../../pages/favorite/favorite',
+    })
   }
 })
