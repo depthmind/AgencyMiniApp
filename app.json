@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/cashWithdrawalDetail/cashWithdrawalDetail",
+    "pages/commission/commission",
+    "pages/myTeam/myTeam",
     "pages/favorite/favorite",
     "pages/contactUs/contactUs",
     "pages/nearbyAgencySignin/nearbyAgencySignin",
@@ -22,7 +25,8 @@
     "pages/goodsDetail/goodsDetail",
     "pages/partner/partner",
     "pages/joinSuccess/joinSuccess",
-    "pages/buyRecommend/buyRecommend"
+    "pages/buyRecommend/buyRecommend",
+    "pages/publishList/publishList"
   ],
   "permission": {
     "scope.userLocation": {

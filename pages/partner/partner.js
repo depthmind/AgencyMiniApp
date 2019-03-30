@@ -10,7 +10,8 @@ Page({
    */
   data: {
     showModal: false,
-    isChecked: false
+    isChecked: false,
+    source: '', //分享者openId
   },
 
   /**
@@ -18,6 +19,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    console.log("分享-----",options)
+    if (options && options.source) { //判断是否为分享出来的页面
+      that.setData({
+        source: options.source
+      })
+      wx.setStorageSync('source', options.source) //分享者的open_id
+    }
+    var openId = wx.getStorageSync('openId')
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=partner.fee',
       success (res) {
@@ -25,6 +34,21 @@ Page({
         that.setData({
           partnerFee: res.data[0].value
         })
+      }
+    })
+
+    wx.request({ //判断是否已经入驻
+      url: 'https://www.caoxianyoushun.com:8443/Agency/partner/findPartnerByOpenId.do',
+      data: {
+        openId: openId
+      },
+      success(res) {
+        var partner = res.data
+        if (partner) {
+          that.setData({
+            isPartner: true
+          })
+        }
       }
     })
   },
@@ -74,8 +98,15 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '期待您的加入',
+      path: '/pages/partner/partner?source=' + openId
+    }
   },
   
   onConfirm: function () {
@@ -126,7 +157,7 @@ Page({
     }
     //暂时加入合伙人不需要收费
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer + '&openId=' + openId + '&province=' + province + '&city=' + city + '&area=' + area ,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer + '&openId=' + openId + '&province=' + province + '&city=' + city + '&area=' + area + '&introducer=' + taht.data.source,
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -185,5 +216,17 @@ Page({
     wx.reLaunch({
       url: "/pages/index/index"
     });
+  },
+
+  redirctToMyTeam: function () {
+    wx.navigateTo({
+      url: '../../pages/myTeam/myTeam',
+    })
+  },
+
+  redirctToCommission: function () {
+    wx.navigateTo({
+      url: '../../pages/commission/commission',
+    })
   }
 })

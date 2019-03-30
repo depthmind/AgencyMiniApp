@@ -1,0 +1,49 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+<view>
+  <view class="flex-grow-0 flex-row tab-bar">
+        <view bindtap="tabSwitch" class="flex-grow-1" data-index="0" style="text-align: center">
+            <view class="tab-name {{swiper_current==0?'active':''}}">待审核</view>
+        </view>
+        <view bindtap="tabSwitch" class="flex-grow-1" data-index="1" style="text-align: center">
+            <view class="tab-name {{swiper_current==1?'active':''}}">已通过</view>
+        </view>
+        <view bindtap="tabSwitch" class="flex-grow-1" data-index="2" style="text-align: center">
+            <view class="tab-name {{swiper_current==2?'active':''}}">已拒绝</view>
+        </view>
+    </view>
+
+  <view class="flex-grow-1 wh-100" style="position: absolute;top: 0;left: 0;z-index:0;padding-top: 100rpx">
+        <swiper bindchange="swiperChange" class="h-100" current="{{swiper_current}}" duration="300">
+            <swiper-item>
+                <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
+                  <view class='agencylist' wx:for="{{recorder1}}" wx:key="{{item.id}}" bindtap='openGoods'           data-goods-id='{{item.id}}'>
+                    <text class="name">{{item.name}}</text>
+                    <text class="name">提现金额：{{item.amount}}元</text>
+                    <text class="name">提现账号：{{item.wechat}}元</text>
+                    <text class="name">提现时间：{{dateUtil.dateFormat(item.createTime)}}</text>
+                  </view>
+                </scroll-view>
+            </swiper-item>
+            <swiper-item>
+                <scroll-view bindscrolltolower="topicScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
+                  <view class="agencylist" wx:for="{{recorder2}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
+                    <text class="name">{{item.name}}</text>
+                    <text class="name">提现金额：{{item.amount}}元</text>
+                    <text class="name">提现账号：{{item.wechat}}元</text>
+                    <text class="name">通过时间：{{dateUtil.dateFormat(item.createTime)}}</text>
+                  </view>
+                </scroll-view>
+            </swiper-item>
+            <swiper-item>
+                <scroll-view bindscrolltolower="topicScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
+                  <view class="agencylist" wx:for="{{recorder3}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
+                    <text class="name">{{item.name}}</text>
+                    <text class="name">提现金额：{{item.amount}}元</text>
+                    <text class="name">提现账号：{{item.wechat}}元</text>
+                    <text class="name">处理时间：{{dateUtil.dateFormat(item.createTime)}}</text>
+                  </view>
+                </scroll-view>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>

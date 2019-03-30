@@ -19,11 +19,18 @@
   </view> -->
 
   <view class="weui-panel weui-cells panel-myorder">
-    <view class="weui-cell">
+    <!-- <view class="weui-cell">
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/钱包.png"></image>
       </view>
       <view class="weui-cell-bd">我的钱包</view>
+      <span class="weui-cell-ft"></span>
+    </view> -->
+    <view class="weui-cell" bindtap='publishList'>
+      <view class="weui-cell-hd">
+        <image class="media-box-thumb" src="../../images/信息.png"></image>
+      </view>
+      <view class="weui-cell-bd">我的帖子</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='myFavorite'>

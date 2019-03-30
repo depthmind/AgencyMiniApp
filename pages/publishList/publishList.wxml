@@ -1,0 +1,13 @@
+<view>
+  <view class='content' wx:for="{{publishes}}" wx:key="{{item.id}}">
+      <view class='content-item' bindtap='openPublish' data-id='{{item.id}}'>
+        <text class='name'>{{item.category}}</text>
+        <text class="content">{{item.description}}</text>
+        <view class='images'>
+          <view wx:for="{{item.images}}">
+            <image class='image' mode='scaleToFill' src='{{item}}'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

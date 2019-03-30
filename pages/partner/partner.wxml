@@ -4,7 +4,27 @@
     <view>欢迎加入<text style="color:#e6424b;">代理商供货信息</text>，请填写申请信息</view>
   </view>
 
-  <view class='form'>
+  <view wx:if="{{isPartner}}">
+    <button open-type='share'>邀请合伙人</button>
+    <label>我的收益</label>
+    <view bindtap='redirctToCommission'>
+      <image src="../../images/佣金.png"></image>
+      <text>分销佣金</text>
+      <text>0.16元</text>
+    </view>
+    <view bindtap='redirctToMyTeam'>
+      <image src="../../images/团队.png"></image>
+      <text>我的团队</text>
+      <text>5人</text>
+    </view>
+    <view>
+      <image src="../../images/明细.png"></image>
+      <text>体现明细</text>
+      <text>1笔</text>
+    </view>
+  </view>
+
+  <view class='form' wx:else>
     <form bindsubmit="formSubmit" report-submit='true'>
         <!-- <view class='form-item'>
             <text class='label'>邀请人</text> 

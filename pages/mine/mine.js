@@ -112,5 +112,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/favorite/favorite',
     })
+  },
+
+  publishList: function () {
+    wx.navigateTo({
+      url: '../../pages/publishList/publishList',
+    })
   }
 })

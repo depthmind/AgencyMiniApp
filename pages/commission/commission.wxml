@@ -1,0 +1,40 @@
+<view>
+  <view class="mine-top">
+  </view>
+  <view class="weui-panel weui-cells panel-myorder">
+    <view class="weui-cell" bindtap='publishList'>
+      <view class="weui-cell-bd">可提现佣金</view>
+      <span class="">{{withdrawalRecord.amount}}元</span>
+    </view>
+    <view class="weui-cell" bindtap='myFavorite'>
+      <view class="weui-cell-bd">累计佣金</view>
+      <span class="">{{withdrawalRecord.amount}}元</span>
+    </view>
+    <view class="weui-cell" bindtap='agencySignin'>
+      <view class="weui-cell-bd">已申请佣金</view>
+      <span class="">{{withdrawalRecord.applyAmount}}元</span>
+    </view>
+    <view class="weui-cell" bindtap='openAgencyCenter'>
+      <view class="weui-cell-bd">成功提现佣金</view>
+      <span class="">{{withdrawalRecord.successAmount}}元</span>
+    </view>
+  </view>
+
+  <view class="weui-panel weui-cells panel-myorder">
+    <form bindsubmit="formSubmit" report-submit='true'>
+      <view class="weui-cell">
+        <view class="weui-cell-bd">提现金额</view>
+        <input type="number" name="amount" placeholder='请输入提现金额'></input>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell-bd">姓名</view>
+        <input name="name" placeholder='请输入姓名'></input>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell-bd">微信账号</view>
+        <input name="wechat" placeholder='请输入微信账号'></input>
+      </view>
+      <button form-type="submit">提现</button>
+    </form>
+  </view>
+</view>
