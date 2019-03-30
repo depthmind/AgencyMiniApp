@@ -6,21 +6,21 @@
 
   <view wx:if="{{isPartner}}">
     <button open-type='share'>邀请合伙人</button>
-    <label>我的收益</label>
-    <view bindtap='redirctToCommission'>
+    <view style="margin: 15px 0;">我的收益</view>
+    <view class="shouyi" bindtap='redirctToCommission' style=" border-right: 1px dotted #ed0d3c;">
       <image src="../../images/佣金.png"></image>
-      <text>分销佣金</text>
-      <text>0.16元</text>
+      <view>分销佣金</view>
+      <text style="color: #ecd644;">0.16元</text>
     </view>
-    <view bindtap='redirctToMyTeam'>
+    <view class="shouyi" bindtap='redirctToMyTeam' style=" border-right: 1px dotted #ed0d3c;">
       <image src="../../images/团队.png"></image>
-      <text>我的团队</text>
-      <text>5人</text>
+      <view>我的团队</view>
+      <text style="color: #ff2e05;">5人</text>
     </view>
-    <view>
+    <view class="shouyi">
       <image src="../../images/明细.png"></image>
-      <text>体现明细</text>
-      <text>1笔</text>
+      <view>体现明细</view>
+      <text style="color: #41c6fe;">1笔</text>
     </view>
   </view>
 

@@ -148,3 +148,24 @@ input-holder {
   color: #ec5300;
   text-align: center;
 }
+.shouyi{
+  width: 146rpx;
+  float: left;
+  position: relative;
+  padding: 0 10rpx 0 66rpx;
+  text-align: center;
+  line-height: 1.2;
+}
+.shouyi image{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  left: 10rpx;
+  top: 16rpx;
+}
+.shouyi view{
+  font-size: 32rpx;
+}
+.shouyi text{
+  font-size: 30rpx;
+}
