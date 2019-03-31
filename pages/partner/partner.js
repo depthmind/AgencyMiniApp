@@ -12,6 +12,7 @@ Page({
     showModal: false,
     isChecked: false,
     source: '', //分享者openId
+    isPartner: true
   },
 
   /**
@@ -227,6 +228,18 @@ Page({
   redirctToCommission: function () {
     wx.navigateTo({
       url: '../../pages/commission/commission',
+    })
+  },
+
+  redirctToCashWithdrawalDetail: function () {
+    wx.navigateTo({
+      url: '../../pages/cashWithdrawalDetail/cashWithdrawalDetail',
+    })
+  },
+
+  introduceAgency: function () {
+    wx.navigateTo({
+      url: '../../pages/introduceAgency/introduceAgency',
     })
   }
 })

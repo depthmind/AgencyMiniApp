@@ -26,7 +26,8 @@
     "pages/partner/partner",
     "pages/joinSuccess/joinSuccess",
     "pages/buyRecommend/buyRecommend",
-    "pages/publishList/publishList"
+    "pages/publishList/publishList",
+    "pages/introduceAgency/introduceAgency"
   ],
   "permission": {
     "scope.userLocation": {

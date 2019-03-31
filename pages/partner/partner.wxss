@@ -149,7 +149,7 @@ input-holder {
   text-align: center;
 }
 .shouyi{
-  width: 146rpx;
+  width: 140rpx;
   float: left;
   position: relative;
   padding: 0 10rpx 0 66rpx;
