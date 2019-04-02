@@ -56,6 +56,22 @@
     <button>提现</button>
   </view>
 
+  <view class="panel-yue">
+    <view class="title">营销工具</view>
+    <view class="item" bindtap='addCategory'>
+      <view>添加分类</view>
+    </view>
+    <view class="item">
+      <view>发布商品</view>
+    </view>
+    <view class="item">
+      <view>我的商品</view>
+    </view>
+    <view class="item">
+      <view>我的店铺</view>
+    </view>
+  </view>
+
   <view class="promote">
     <view class="title">广告位购买</view>
     <view class="weui-cell" bindtap='agencySignin'>

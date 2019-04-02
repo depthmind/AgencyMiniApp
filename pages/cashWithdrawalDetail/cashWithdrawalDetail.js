@@ -16,7 +16,7 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({
-      url: 'http://localhost:8080/Agency/withdrawal/findWithdrawalRecord.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/withdrawal/findWithdrawalRecord.do',
       data: {
         openId: openId,
         status : '1'
@@ -28,7 +28,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://localhost:8080/Agency/withdrawal/findWithdrawalRecord.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/withdrawal/findWithdrawalRecord.do',
       data: {
         openId: openId,
         status: '2'
@@ -40,7 +40,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://localhost:8080/Agency/withdrawal/findWithdrawalRecord.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/withdrawal/findWithdrawalRecord.do',
       data: {
         openId: openId,
         status: '3'

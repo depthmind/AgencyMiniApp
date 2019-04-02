@@ -16,7 +16,7 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({
-      url: 'http://localhost:8080/Agency/withdrawal/sumWithdrawalRecord.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/withdrawal/sumWithdrawalRecord.do',
       data: {
         openId: openId
       },
@@ -101,7 +101,7 @@ Page({
       return;
     }
     wx.request({
-      url: 'http://localhost:8080/Agency/withdrawal/add.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/withdrawal/add.do',
       data: {
         openId: openId,
         amount: data.amount,

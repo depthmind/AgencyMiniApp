@@ -1,22 +1,23 @@
 <wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
 <view>
-  <view class="flex-grow-0 flex-row tab-bar">
+  <!-- <view class="flex-grow-0 flex-row tab-bar">
         <view bindtap="tabSwitch" class="flex-grow-1" data-index="0" style="text-align: center">
             <view class="tab-name {{swiper_current==0?'active':''}}">我的合伙人</view>
         </view>
-        <!-- <view bindtap="tabSwitch" class="flex-grow-1" data-index="1" style="text-align: center">
+        <view bindtap="tabSwitch" class="flex-grow-1" data-index="1" style="text-align: center">
             <view class="tab-name {{swiper_current==1?'active':''}}">二级</view>
-        </view> -->
-    </view>
+        </view>
+    </view> -->
 
-  <view class="flex-grow-1 wh-100" style="position: absolute;top: 0;left: 0;z-index:0;padding-top: 100rpx">
+  <view class="flex-grow-1 wh-100" style="position: absolute;top: 0;left: 0;z-index:0;padding-top: 10rpx">
         <swiper bindchange="swiperChange" class="h-100" current="{{swiper_current}}" duration="300">
             <swiper-item>
                 <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
-                  <view class='agencylist' wx:for="{{partners}}" wx:key="{{item.id}}" bindtap='openGoods'           data-goods-id='{{item.id}}'>
-                        <text class="name">{{item.partnerName}}</text>
-                        <text class="name">注册时间：{{dateUtil.dateFormat(item.createTime)}}</text>
-                        <text class="address">{{item.area}}</text>
+                  <view class='agencylist' wx:for="{{goods}}" wx:key="{{item.id}}" bindtap='openGoods' data-goods-id='{{item.id}}'>
+                    <image class="itemimage" src='{{item.thumbnail}}'></image>
+                    <text class="name">{{item.goodsName}}</text>
+                    <text class="name">￥{{item.price}}</text>
+                    <text class="address">{{item.area}}</text>
                   </view>
                 </scroll-view>
             </swiper-item>

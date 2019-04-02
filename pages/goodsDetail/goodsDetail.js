@@ -34,7 +34,8 @@ Page({
         that.setData({
           goodsPicArr: goodsPicArr,
           goodsName: goodsName,
-          goodsId: goodsId
+          goodsId: goodsId,
+          goods: res.data
         })
       }
     })

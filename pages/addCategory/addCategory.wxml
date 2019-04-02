@@ -1,0 +1,11 @@
+<view>
+  <view class='form'>
+      <form bindsubmit="formSubmit" report-submit='true'>
+        <view class='form-item'>
+            <text class='label'>分类名称</text> 
+            <input name="categoryName" placeholder="填写分类名称"></input>
+        </view>
+        <button form-type='submit'>立即添加</button>
+      </form>
+    </view>
+</view>

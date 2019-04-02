@@ -12,7 +12,6 @@ Page({
     showModal: false,
     isChecked: false,
     source: '', //分享者openId
-    isPartner: true
   },
 
   /**
@@ -27,13 +26,15 @@ Page({
       })
       wx.setStorageSync('source', options.source) //分享者的open_id
     }
-    var openId = wx.getStorageSync('openId')
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=partner.fee',
       success (res) {
         console.log(res)
         that.setData({
-          partnerFee: res.data[0].value
+          partnerFee: res.data[0].value,
+          partner: res.data
         })
       }
     })

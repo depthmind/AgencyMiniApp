@@ -1,0 +1,50 @@
+<view style="padding: 0 0 50px;">
+  <view class='message'>
+    <view class='form'>
+      <form bindsubmit="formSubmit">
+        <view class='form-item'>
+          <text class='label'>商家名称</text>
+          <input name="agencyName" value="{{agency.agencyName}}"></input>
+        </view>
+        <view class='form-item'>
+            <text class='label'>联系人</text> 
+            <input name="contactName" value="{{agency.contactName}}"></input>
+        </view>
+        <view class='form-item' style="padding-right: 60rpx;">
+          <text class='label'>详细地址</text>
+          <input name="addressDetail" value='{{agency.address}}'></input>
+          <image style="width: 36rpx; height: 46rpx; position: absolute; right: 16rpx; top: 16rpx;" src="{{dingwei}}" bindtap='chooseAddress'></image>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">代理商logo</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLogoImage'>
+            <image style="width: 100px; height: 100px;"  src="{{agency.logoImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">老板微信</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseWechatImage'>
+            <image style="width: 100px; height: 100px;"  src="{{agency.wechatImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">营业执照</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence1Image'>
+            <image style="width: 100px; height: 100px;"  src="{{agency.licence1ImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="float: left; width: 40%; margin: 0 5%; border-bottom: none;">
+          <text class='label' style="width: 100%; text-align: center;">食品经营许可证</text>
+          <view style="width: 100px; height: 100px; padding: 40px 0 20px;" bindtap='chooseLicence2Image'>
+            <image style="width: 100px; height: 100px;"  src="{{agency.licence2ImagePath}}"></image>
+          </view>
+        </view>
+        <view class='form-item' style="clear:both; border-top:2rpx solid #dedede;">
+            <text class='label'>电话</text> 
+            <input name="mobilephone" value="{{agency.mobilephone}}" style="padding-right: 160rpx;"></input>
+        </view>
+        <button form-type='submit'>保存</button>
+      </form>
+    </view>
+  </view>
+</view>

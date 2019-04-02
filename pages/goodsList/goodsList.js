@@ -1,30 +1,41 @@
-// pages/agencyCenter/agencyCenter.js
+// pages/goodsList/goodsList.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderImage0: '/images/order-img0.jpg',
-    orderImage1: '/images/order-img1.jpg',
-    orderImage2: '/images/order-img2.jpg',
-    orderImage3: '/images/order-img3.jpg',
-    orderImage4: '/images/order-img4.jpg',
-    orderImage5: '/images/order-img5.jpg',
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    wx.request({
+      url: 'http://localhost:8080/Agency/goods/findGoodsByOpenId.do',
+      data: {
+        openId: openId
+      },
+      success (res) {
+        console.log(res)
+        that.setData({
+          goods: res.data
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.setNavigationBarTitle({
+      title: '商品列表'
+    })
   },
 
   /**
@@ -69,10 +80,11 @@ Page({
 
   },
 
-  addCategory: function () {
+  openGoods: function (e) {
+    console.log(e)
+    var goodsId = e.currentTarget.dataset.goodsId
     wx.navigateTo({
-      url: '../addCategory/addCategory',
+      url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
     })
   },
-
 })
