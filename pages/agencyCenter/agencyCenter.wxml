@@ -61,13 +61,13 @@
     <view class="item" bindtap='addCategory'>
       <view>添加分类</view>
     </view>
-    <view class="item">
+    <view class="item" bindtap='addGoods'>
       <view>发布商品</view>
     </view>
-    <view class="item">
+    <view class="item" bindtap='goodsList'>
       <view>我的商品</view>
     </view>
-    <view class="item">
+    <view class="item" bindtap='myShop'>
       <view>我的店铺</view>
     </view>
   </view>
@@ -91,8 +91,8 @@
   </view>
 
   <view class="panel-edit">
-    <view class="title">修改资料</view>
-    <view class="order-tab">
+    <view class="title" bindtap='updateDate'>修改资料</view>
+    <view class="order-tab" bindtap='updateDate'>
       <image src="{{orderImage4}}"></image>
       <view>修改资料</view>
     </view>

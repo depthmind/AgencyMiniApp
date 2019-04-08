@@ -54,7 +54,7 @@
   </view>
   <view class="modal-content">
     <view class="modal-input">
-      <text>山东分局啊赛捷东方 i阿斯顿放辣椒水都放假哦啊啥的肌肤 i 哦叫阿松大家佛 is 的肌肤</text>
+      <text>{{publishNotice}}</text>
     </view>
   </view>
   <view class="modal-footer">

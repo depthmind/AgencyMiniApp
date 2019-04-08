@@ -75,4 +75,27 @@ Page({
     })
   },
 
+  addGoods: function() {
+    wx.navigateTo({
+      url: '../addGoods/addGoods',
+    })
+  },
+
+  goodsList: function() {
+    wx.navigateTo({
+      url: '../goodsList/goodsList',
+    })
+  },
+
+  myShop: function() {
+    wx.navigateTo({
+      url: '../agencyDetail/agencyDetail',
+    })
+  },
+
+  updateDate: function() {
+    wx.navigateTo({
+      url: '../agencyUpdate/agencyUpdate',
+    })
+  },
 })

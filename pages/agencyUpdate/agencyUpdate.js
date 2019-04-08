@@ -52,8 +52,8 @@ Page({
     })
 
     wx.request({
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
-      url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do',
       data: {
         openId: openId,
         type: agencyType
@@ -154,7 +154,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://localhost:8080/Agency/agency/updateAgencyBaseByOpenId.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/updateAgencyBaseByOpenId.do',
       data: {
         openId: openId,
         type: agencyType,

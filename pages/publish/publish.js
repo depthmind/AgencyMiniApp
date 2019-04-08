@@ -94,6 +94,18 @@ Page({
       title: '信息发布',
     })
     var that = this;
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
+      data: {
+        paraDomain: 'publish.notice'
+      },
+      success (res) {
+        console.log(res)
+        that.setData({
+          publishNotice: res.data[0].value
+        })
+      }
+    })
     // wx.request({
     //   url: '', //查询分类信息
     //   success(res) {

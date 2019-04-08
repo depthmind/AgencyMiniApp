@@ -69,7 +69,7 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     var data = e.detail.value
-    if (data.brandCategoryName == undefined || data.brandCategoryName == '') {
+    if (data.categoryName == undefined || data.categoryName == '') {
       wx.showModal({
         title: '提示',
         content: '请填写分类名称',
@@ -86,13 +86,12 @@ Page({
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/category/saveSecondLevelCategory.do',
       data: {
-        brandCategoryName: data.brandCategoryName,
-        seriesCategoryName: data.seriesCategoryName,
+        categoryName: data.categoryName,
         openId: openId
       },
-      success (res) {
+      success(res) {
         wx.navigateBack({
-          
+
         })
       }
     })

@@ -17,7 +17,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({ //查询可选择的类目参数
-      url: 'http://localhost:8080/Agency/category/findOneLevelCategory.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/category/findOneLevelCategory.do',
       success(res) {
         console.log(res)
         that.setData({
@@ -26,7 +26,7 @@ Page({
       }
     })
     wx.request({ //查询可选择的类目参数
-      url: 'http://localhost:8080/Agency/category/findSecondLevelCategory.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/category/findSecondLevelCategory.do',
       success(res) {
         console.log(res)
         that.setData({

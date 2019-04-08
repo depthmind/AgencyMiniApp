@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/addBrandCategory/addBrandCategory",
+    "pages/index/index",
     "pages/agencyUpdate/agencyUpdate",
     "pages/goodsList/goodsList",
-    "pages/addCategory/addCategory",
     "pages/addGoods/addGoods",
     "pages/agencyCenter/agencyCenter",
-    "pages/index/index",
     "pages/cashWithdrawalDetail/cashWithdrawalDetail",
     "pages/commission/commission",
     "pages/myTeam/myTeam",

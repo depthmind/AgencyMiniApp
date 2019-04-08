@@ -12,6 +12,7 @@ Page({
     showModal: false,
     isChecked: false,
     source: '', //分享者openId
+    isPartner: false
   },
 
   /**
@@ -159,16 +160,17 @@ Page({
     }
     //暂时加入合伙人不需要收费
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer + '&openId=' + openId + '&province=' + province + '&city=' + city + '&area=' + area + '&introducer=' + taht.data.source,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/partner/savePartner.do?partnerName=' + data.partnerName + '&mobilephone=' + data.mobilephone + '&introducer=' + data.introducer + '&openId=' + openId + '&province=' + province + '&city=' + city + '&area=' + area + '&introducer=' + that.data.source,
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        that.onLoad()
       }
     })
-    wx.redirectTo({
-      url: '/pages/joinSuccess/joinSuccess',
-    })
+    // wx.redirectTo({
+    //   url: '/pages/joinSuccess/joinSuccess',
+    // })
     // wx.request({
     //   url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + that.data.partnerFee,
     //   success(res) {
