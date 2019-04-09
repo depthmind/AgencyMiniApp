@@ -2,10 +2,6 @@
   <view class='form'>
       <form bindsubmit="formSubmit" report-submit='true'>
         <view class='form-item'>
-            <text class='label'>品牌分类</text> 
-            <input name="brandCategoryName" placeholder="填写分类名称"></input>
-        </view>
-        <view class='form-item'>
             <text class='label'>系列分类</text> 
             <input name="seriesCategoryName" placeholder="填写分类名称"></input>
         </view>

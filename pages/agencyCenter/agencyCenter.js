@@ -98,4 +98,10 @@ Page({
       url: '../agencyUpdate/agencyUpdate',
     })
   },
+
+  brandCategorys: function() {
+    wx.navigateTo({
+      url: '../brandCategoryList/brandCategoryList',
+    })
+  }
 })

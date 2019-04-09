@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/addBrandCategory/addBrandCategory",
     "pages/index/index",
-    "pages/agencyUpdate/agencyUpdate",
-    "pages/goodsList/goodsList",
     "pages/addGoods/addGoods",
     "pages/agencyCenter/agencyCenter",
+    "pages/brandCategoryList/brandCategoryList",
+    "pages/addBrandCategory/addBrandCategory",
+    "pages/agencyUpdate/agencyUpdate",
+    "pages/goodsList/goodsList",
     "pages/cashWithdrawalDetail/cashWithdrawalDetail",
     "pages/commission/commission",
     "pages/myTeam/myTeam",
@@ -31,7 +32,8 @@
     "pages/joinSuccess/joinSuccess",
     "pages/buyRecommend/buyRecommend",
     "pages/publishList/publishList",
-    "pages/introduceAgency/introduceAgency"
+    "pages/introduceAgency/introduceAgency",
+    "pages/seriesCategoryList/seriesCategoryList"
   ],
   "permission": {
     "scope.userLocation": {

@@ -58,8 +58,8 @@
 
   <view class="panel-yue">
     <view class="title">营销工具</view>
-    <view class="item" bindtap='addCategory'>
-      <view>添加分类</view>
+    <view class="item" bindtap='brandCategorys'>
+      <view>分类管理</view>
     </view>
     <view class="item" bindtap='addGoods'>
       <view>发布商品</view>

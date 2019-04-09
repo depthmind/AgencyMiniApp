@@ -84,14 +84,14 @@ Page({
       }
     })
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/category/saveSecondLevelCategory.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/addBrandCategory.do',
       data: {
         categoryName: data.categoryName,
         openId: openId
       },
       success(res) {
-        wx.navigateBack({
-
+        wx.redirectTo({
+          url: '../../pages/brandCategoryList/brandCategoryList',
         })
       }
     })

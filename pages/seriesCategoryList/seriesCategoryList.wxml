@@ -1,0 +1,19 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+<view>
+  <view class="flex-grow-1 wh-100" style="position: absolute;top: 0;left: 0;z-index:0;padding-top: 10rpx">
+        <swiper bindchange="swiperChange" class="h-100" current="{{swiper_current}}" duration="300">
+            <swiper-item>
+                <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
+                  <view class='agencylist' wx:for="{{categorys}}" wx:key="{{item.id}}" bindtap='seriesCategorys'           data-brand-id='{{item.id}}'>
+                        <text class="name">品牌名称：{{item.categoryName}}</text>
+                        <text class="name">添加时间：{{dateUtil.dateFormat(item.createTime)}}</text>
+                  </view>
+                </scroll-view>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>
+
+<view>
+  <button bindtap='addSeriesCategory'>添加系列</button>
+</view>

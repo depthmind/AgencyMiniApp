@@ -16,7 +16,7 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({
-      url: 'http://localhost:8080/Agency/goods/findGoodsByOpenId.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsByOpenId.do',
       data: {
         openId: openId
       },

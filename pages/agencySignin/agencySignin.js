@@ -91,6 +91,15 @@ Page({
       }
     })
 
+    wx.request({ //查询可选择的入驻时长参数
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do?paraDomain=area.fee',
+      success(res) {
+        that.setData({
+          areaFee: res.data[0].value
+        })
+      }
+    })
+
     qqmapsdk.getCityList({
       success: function (res) {//成功后的回调
         //console.log(res);
@@ -297,8 +306,11 @@ Page({
     var area = ''
     var cityArea = that.data.area //所选城市下的区县
     var amountOfSelectedArea = selectedArea.length
+    var areaFee = that.data.areaFee
+    var totalFee = fee
     if (amountOfSelectedArea > 1) {
-      fee = parseInt(fee) * (selectedArea.length)
+      var tmpFee = parseInt(areaFee) * (selectedArea.length - 1)
+      totalFee = parseInt(fee) + tmpFee
     }
     for (var s = 0; s < amountOfSelectedArea; s++) {
       for (var c = 0; c < cityArea.length; c++) {
@@ -356,7 +368,7 @@ Page({
                       parameter = parameter + '&licence2ImagePath=' + path
                       console.log("parameter", parameter)
                       wx.request({
-                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
+                        url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + totalFee + '&openId=' + openId,
                         success(res) {
                           wx.requestPayment({
                             timeStamp: res.data.timeStamp,
@@ -411,7 +423,7 @@ Page({
                   parameter = parameter + '&licence2ImagePath=' + path
                   console.log("parameter", parameter)
                   wx.request({
-                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + fee + '&openId=' + openId,
+                    url: 'https://www.caoxianyoushun.com:8443/Agency/pay/jsapiPay?tradeNo=' + data.mobilephone + '&totalFee=' + totalFee + '&openId=' + openId,
                     success(res) {
                       wx.requestPayment({
                         timeStamp: res.data.timeStamp,

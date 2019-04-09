@@ -5,14 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    brandId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    that.data.brandId = options.id
   },
 
   /**
@@ -65,11 +66,12 @@ Page({
   },
 
   formSubmit: function (e) {
+    var that = this
     var formId = e.detail.formId
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     var data = e.detail.value
-    if (data.brandCategoryName == undefined || data.brandCategoryName == '') {
+    if (data.seriesCategoryName == undefined || data.seriesCategoryName == '') {
       wx.showModal({
         title: '提示',
         content: '请填写分类名称',
@@ -84,11 +86,10 @@ Page({
       }
     })
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/category/saveSecondLevelCategory.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/series/addSeriesCategory.do',
       data: {
-        brandCategoryName: data.brandCategoryName,
-        seriesCategoryName: data.seriesCategoryName,
-        openId: openId
+        categoryName: data.seriesCategoryName,
+        brandId: that.data.brandId
       },
       success (res) {
         wx.navigateBack({
