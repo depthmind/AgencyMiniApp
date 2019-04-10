@@ -1,0 +1,182 @@
+.section{ position: absolute; width: 100%; height: 100% ; overflow: hidden;}
+.left{ position: absolute; left: 0; top: 0; height: 100%; width: 90px; background: #F6F6F6; text-align: center;font-size:28rpx;}
+.left::before{ content: ""; position: absolute; background: #dcdcdc; right: 0; top: 0; height: 100%; border-right: 1rpx solid #dcdcdc;}
+.left view.active{ background: #FFF; position: relative; z-index: 2;}
+.left view{ display: block; height: 60px; line-height: 60px; border-bottom: 1px solid #dcdcdc;}
+
+.right{ margin-left: 90px; height: 100%; overflow: hidden; width: auto;background: #fff;}
+.right text{ font-size: 15px}
+.typeTree{ padding: 10px 20px;width: 100%}
+.typeTree .item{  text-align: center; display: inline-block; vertical-align: top;margin-left:14%;}
+.typeTree .brand,
+.typeTree .category{ flex-wrap: wrap; overflow: hidden;display: inline-block;width: 40%}
+.typeTree .title{ padding: 10px 0; display: block; color: #333;}
+.typeTree image { width: 100px; margin: 0 auto;}
+.typeTree .brand image{ height: 100px;}
+.typeTree .category image{ height: 85px;}
+.typeTree .category{ padding-bottom: 10px;}
+.item text{ padding-bottom: 10px; display: block;}
+
+
+.agencylist{
+	border-radius: 10px;
+	background: #fff;
+	margin: 25px 0;
+	padding: 17px 55px 18px 18px;
+	overflow: hidden;
+	position: relative;
+}
+.agencylist .itemimage{
+	float: left;
+	width: 136rpx;
+	height: 136rpx;
+	border-radius: 10rpx;
+	margin: 0 10px 0 0;
+	box-shadow: 0 0 3px #dedede;
+}
+.agencylist .name{
+	display: block;
+}
+.agencylist .address{
+	display: block;
+	color:#999;
+}
+.agencylist .phone{
+	width:32px;
+	height: 32px;
+	position: absolute;
+	top:20px;
+	right: 10px;
+}
+
+.bar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 0 0 3rpx rgba(0,0,0,.2);
+    height: 110rpx;
+}
+
+.bar-bottom-btn {
+    border: none;
+    background: #fff;
+    font-size: 0;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    position: inherit;
+    border-left: 1rpx solid #e3e3e3;
+    width: 110rpx;
+}
+
+.bar-bottom-btn:after {
+    display: none;
+}
+
+.bar-bottom-btn:first-child {
+    border-left: none;
+}
+
+.bar-bottom-btn.button-hover {
+    background: rgba(255,255,255,.85);
+}
+
+.bar-bottom-btn view {
+    text-align: center;
+    width: 100%;
+}
+
+.bar-bottom-btn image {
+    width: 38rpx;
+    height: 38rpx;
+    margin-bottom: 0rpx;
+}
+
+.bar-bottom-btn text {
+    font-size: 8pt;
+    color: #888;
+    display: block;
+}
+
+.bar-bottom .add-cart {
+    background: #f39800;
+    color: #fff;
+}
+
+.bar-bottom .buy-now {
+    background: #ff4544;
+    color: #fff;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+}
+
+.flex-grow-0 {
+    min-width: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.flex-grow-1 {
+    min-width: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
+.flex-x-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.flex-y-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+}
+
+.flex-y-bottom {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -ms-grid-row-align: flex-end;
+    align-items: flex-end;
+}

@@ -24,7 +24,7 @@
           <text name="brandCategory">{{brandCategory?brandCategorys[index2].categoryName:"--请选择--"}}</text>
           </picker>
         </view>
-        <view class='the-label' wx:if="{{seriesCategoryFlag}}">
+        <!-- <view class='the-label' wx:if="{{seriesCategoryFlag}}">
           <view class='list'>
             <block wx:for="{{seriesCategorys}}" wx:key="">
               <view class="li {{item.checked?'cur':''}}" data-index="{{index}}" data-value="{{item.id}}" bindtap="checkLabs2">
@@ -32,7 +32,7 @@
               </view>
             </block>
           </view>
-        </view>
+        </view> -->
         <view class='form-item'>
             <text class='label'>商品名称</text> 
             <input name="goodsName" placeholder="商品名称"></input>

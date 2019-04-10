@@ -86,7 +86,7 @@
             </label>
           </radio-group>
         </view>
-        <view bindtap='showDialog' style="font-size: 24rpx; color: #000; font-weight:bold; margin: 10px 0 0;"><image style="width: 30rpx; height: 30rpx; float:left; margin: 2px 3px 0 0;" src="{{wenImage}}"></image>发布须知</view>
+        <view bindtap='showDialog' style="font-size: 24rpx; color: #000; font-weight:bold; margin: 10px 0 0;"><image style="width: 30rpx; height: 30rpx; float:left; margin: 2px 3px 0 0;" src="{{wenImage}}"></image>入驻须知</view>
         <button form-type='submit'>申请入驻</button>
       </form>
     </view>
