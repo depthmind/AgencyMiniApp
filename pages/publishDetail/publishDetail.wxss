@@ -14,3 +14,9 @@
 	top:17px;
 	right: 10px;
 }
+
+.title{
+	font-size: 32rpx;
+	font-weight: bold;
+	margin: 8px 0;
+}

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/goodsList/goodsList",
     "pages/agencyCategory/agencyCategory",
     "pages/agencyList/agencyList",
     "pages/agencyDetail/agencyDetail",
@@ -9,7 +10,6 @@
     "pages/brandCategoryList/brandCategoryList",
     "pages/addBrandCategory/addBrandCategory",
     "pages/agencyUpdate/agencyUpdate",
-    "pages/goodsList/goodsList",
     "pages/cashWithdrawalDetail/cashWithdrawalDetail",
     "pages/commission/commission",
     "pages/myTeam/myTeam",

@@ -47,7 +47,8 @@
       <view class='flexRowSon'><image bindtap='redirctToAgencyList' style="width: 330rpx; height: 154rpx;"  src="{{adsImage2}}"></image></view>
     </view>
   </view>
-  <view style='display:flex;justify-content:center;font-size: 32rpx; padding: 30rpx 0 0; background: #fff; color: #da4062; font-weight: bold;'>推荐产品</view>
+
+  <!-- <view style='display:flex;justify-content:center;font-size: 32rpx; padding: 30rpx 0 0; background: #fff; color: #da4062; font-weight: bold;'>推荐产品</view>
   <view class='products'>
     <view bindtap='openGoods' class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}" data-goods-id='{{item.agencyId}}'>
       <image class='image' src='{{item.goodsPic[0]}}'></image>
@@ -55,7 +56,7 @@
       <view class="content"> {{item.agencyName}}</view>
     </view>
     <view class='reflesh' bindtap='getRecommends'>换一批</view>
-  </view>
+  </view> -->
 
   <view class='tabs'>
     <view class='tab-view'>

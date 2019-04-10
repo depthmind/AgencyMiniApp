@@ -1,14 +1,16 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
 <view>
   <!-- 基础信息 -->
   <view>
     <open-data class="itemimage" type="userAvatarUrl"></open-data>
-    <text>{{publishContent.contactName}}</text>
-    <text>分类</text>
-    <text>{{publishContent.address}}</text>
+    <view class='title'>发布人：{{publishContent.contactName}}</view>
+    <view class='title'>分类：{{publishContent.category}}</view>
+    <view class='title'>联系人地址：{{publishContent.address}}</view>
   </view>
   <!-- 内容描述 -->
   <view>
-    <view>{{publishContent.description}}</view>
+    <label class='title'>内容描述</label>
+    <view class='title'>{{publishContent.description}}</view>
   </view>
   <view>
     <view wx:for="{{imagesArr}}">
@@ -16,8 +18,8 @@
     </view>
   </view>
   <view>
-    <view>发布时间:{{publishDate}}</view>
-    <view>联系电话:{{publishContent.mobilephone}}</view>
+    <view class='title'>发布时间:{{dateUtil.dateFormat(publishContent.createTime)}}</view>
+    <view class='title'>联系电话:{{publishContent.mobilephone}}</view>
     <button bindtap='makePhoneCall' data-mobilephone='{{mobilephone}}'>拨打电话</button>
   </view>
 </view>

@@ -25,8 +25,10 @@ Page({
     publishList: [],
     currentLatitude: 39.90469,
     currentLongitude: 116.40717,
-    adsImage1: '/images/ad1.jpg',
-    adsImage2: '/images/agency-list.jpg',
+    //adsImage1: '/images/ad1.jpg',
+    //adsImage2: '/images/agency-list.jpg',
+    adsImage1: '/images/dailishangruzhu.jpg',
+    adsImage2: '/images/dailishangliebiao.jpg',
     labaImage: '/images/laba.jpg'
   },
   /**
@@ -446,7 +448,8 @@ Page({
 
   redirctToPartner: function() {
     wx.navigateTo({
-      url: '../partner/partner',
+      //url: '../partner/partner',
+      url: '../agencySignin/agencySignin',
     })
   },
 
@@ -531,7 +534,7 @@ Page({
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
       data: {
-        paraDomain: "product.category"
+        paraDomain: "publish.category"
       },
       success(tabRes) {
         that.setData({

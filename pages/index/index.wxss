@@ -143,7 +143,7 @@
 }
 
 .tabs-scroll-view view{
-width:128rpx;
+width:183rpx;
 display: inline-block; 
 }
 

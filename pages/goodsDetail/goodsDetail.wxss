@@ -9,8 +9,17 @@
 	font-size: 32rpx;
 	margin-bottom: 6px;
 }
+.stock{
+	font-size: 32rpx;
+	margin-bottom: 6px;
+}
 .section-title{
+  color: #e6424b;
 	text-align: center;
+	font-size: 32rpx;
+	margin: 0 0 20px;
+}
+.description{
 	font-size: 32rpx;
 	margin: 0 0 20px;
 }
@@ -157,4 +166,13 @@
     -ms-flex-align: end;
     -ms-grid-row-align: flex-end;
     align-items: flex-end;
+}
+
+.itemimage{
+  float: left;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  margin: 0 10px 0 0;
+  box-shadow: 0 0 3px #dedede;
 }

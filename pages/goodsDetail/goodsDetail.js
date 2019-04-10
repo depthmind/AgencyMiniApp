@@ -21,6 +21,7 @@ Page({
     var unionId = userInfo.unionId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
+      //url: 'http://localhost:8080/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
       success(res) {
         var data = res.data
         var agencyId = data.agencyId
@@ -28,14 +29,22 @@ Page({
         var city = data.city
         var goodsDescription = data.goodsDescription
         var goodsName = data.goodsName
-        //var goodsPic = data.goodsPic
-        var goodsPic = 'http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg,http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg'
-        var goodsPicArr = goodsPic.split(',')
+        var goodsPic = data.goodsPic
+        var stock = data.stock
+        //var goodsPic = 'http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg,http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg'
+        var goodsPicArr = []
+        var firstPic = ''
+        if (goodsPic) {
+          goodsPicArr = goodsPic.split('|')
+          firstPic = goodsPicArr[0]
+        }
         that.setData({
           goodsPicArr: goodsPicArr,
           goodsName: goodsName,
           goodsId: goodsId,
-          goods: res.data
+          goods: res.data,
+          firstPic: firstPic,
+          goodsDescription: goodsDescription
         })
       }
     })
