@@ -31,6 +31,18 @@ Page({
     var that = this
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
+      data: {
+        openId: openId,
+        type: 'normal'
+      },
+      success(res) {
+        that.setData({
+          agencyId: res.data.id
+        })
+      }
+    })
     wx.request({ //查询可选择的类目参数
       url: 'https://www.caoxianyoushun.com:8443/Agency/category/findOneLevelCategory.do',
       success(res) {
@@ -210,6 +222,7 @@ formSubmit: function (e) {
   var secondLevelCategory = that.data.choosedSecondLevelCategory
   var brandCategory = that.data.choosedBrandCategory
   var seriesCategory = that.data.choosedSeriesCategory
+  var agencyId = that.data.agencyId
   var goodsName = data.goodsName
   var price = data.price
   var stock = data.stock
@@ -233,7 +246,8 @@ formSubmit: function (e) {
       oneLevelCategory: oneLevelCategory,
       secondLevelCategory: secondLevelCategory,
       brandCategory: brandCategory,
-      seriesCategory: seriesCategory
+      seriesCategory: seriesCategory,
+      agencyId: agencyId
     },
     success(res) {
       wx.navigateTo({
@@ -393,7 +407,7 @@ formSubmit: function (e) {
         if (tempUploadImagePath == '') {
           that.data.uploadImagePath = resp.data
         } else {
-          that.data.uploadImagePath = tempUploadImagePath + '|' + resp.data
+          that.data.uploadImagePath = tempUploadImagePath + ',' + resp.data
         }
         successUp++;
       },

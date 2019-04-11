@@ -1,0 +1,19 @@
+<view>
+  <view class='form'>
+      <form bindsubmit="formSubmit" report-submit='true'>
+        <view class='form-item'>
+            <text class='label'>姓名</text> 
+            <input name="contactName" placeholder="请填写联系人姓名"></input>
+        </view>
+        <view class='form-item'>
+            <text class='label'>电话</text> 
+            <input type="number" name="mobilephone" placeholder="请填写联系人电话"></input>
+        </view>
+        <view class='form-item'>
+            <text class='label'>负责区域</text> 
+            <input name="area" placeholder="请填写区/县全称"></input>
+        </view>
+        <button form-type='submit'>立即添加</button>
+      </form>
+    </view>
+</view>

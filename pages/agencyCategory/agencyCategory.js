@@ -11,6 +11,11 @@ Page({
 
   onLoad: function (option) {
     var that = this;
+    var agencyId = option.agencyId
+    var mobilephone = option.mobilephone
+    that.data.agencyId = agencyId
+    that.data.mobilephone = mobilephone
+    console.log('agencyId=', agencyId)
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({ //查询可选择的品牌分类
@@ -24,6 +29,39 @@ Page({
           types: res.data,
           brandCategorysArr: res.data
         })
+        var brandId = res.data[0].id
+        that.setData({
+          brandId: brandId
+        });
+        wx.request({
+          url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsByBrandId.do',
+          data: {
+            brandCategory: brandId,
+            agencyId: agencyId
+          },
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            console.log(res)
+            if (res.data) {
+              for (var i = 0; i < res.data.length; i++) {
+                var images = res.data[i].goodsPic
+                var imagesArr = images.split(',')
+                res.data[i].thumbnail = imagesArr[0]
+              }
+            }
+            that.setData({
+              goodses: res.data,
+            });
+          },
+          error: function (e) {
+            wx.showToast({
+              title: '网络异常！',
+              duration: 2000,
+            });
+          }
+        });
       }
     })
     // wx.request({
@@ -67,15 +105,23 @@ Page({
       brandId: brandId
     });
     wx.request({
-      url: 'http://localhost:8080/Agency/goods/findGoodsByBrandId.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsByBrandId.do',
       data: {
-        brandCategory: brandId
+        brandCategory: brandId,
+        agencyId: that.data.agencyId
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         console.log(res)
+        if (res.data) {
+          for (var i = 0; i < res.data.length; i++) {
+            var images = res.data[i].goodsPic
+            var imagesArr = images.split(',')
+            res.data[i].thumbnail = imagesArr[0]
+          }
+        }
         that.setData({
           goodses: res.data,
         });
@@ -115,5 +161,20 @@ Page({
         }
       });
     }
-  }
+  },
+
+  openGoods: function (e) {
+    var goodsId = e.currentTarget.dataset.goodsId
+    wx.navigateTo({
+      url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
+    })
+  },
+
+  makePhoneCall: function (e) {
+    var that = this
+    var mobilephone = that.data.mobilephone
+    wx.makePhoneCall({
+      phoneNumber: mobilephone,
+    })
+  },
 })

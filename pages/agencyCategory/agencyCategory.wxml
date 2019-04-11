@@ -17,10 +17,11 @@
                 </navigator>
             </view>
         </view> -->
-        <view class="agencylist" wx:for="{{goodses}}" wx:key="{{item.id}}" bindtap="openGoods" data-cid="{{item.id}}">
-          <image class="itemimage" src='{{item.logoImagePath}}'></image>
-          <image class="phone" src='{{phoneImage}}'></image>
+        <view class="agencylist" wx:for="{{goodses}}" wx:key="{{item.id}}" bindtap="openGoods" data-goods-id="{{item.id}}">
+          <image class="itemimage" src='{{item.thumbnail}}'></image>
           <text class="name">{{item.goodsName}}</text>
+          <text class="name">价格：￥{{item.price}}元</text>
+          <text class="name">库存：{{item.stock}}</text>
           <text class="address">{{item.address}}</text>
         </view>
     </scroll-view>
@@ -52,15 +53,15 @@
                         <text>收藏</text>
                     </view>
                 </view>
-                <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="switchTab" url="/pages/index/index">
+                <!-- <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="switchTab" url="/pages/index/index">
                     <view>
                         <image src="../../images/fenlei.png"></image>
                         <text>分类</text>
                     </view>
-                </navigator>
+                </navigator> -->
             </view>
             <view class="flex-grow-1 flex-row">
                 <!-- <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view> -->
-                <!-- <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view> -->
+                <view bindtap="makePhoneCall" data-mobilephone='{{agency.mobilephone}}' class="flex-grow-1 flex-y-center flex-x-center buy-now">一键拨号</view>
             </view>
         </view>

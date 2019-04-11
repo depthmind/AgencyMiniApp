@@ -35,7 +35,7 @@ Page({
         var goodsPicArr = []
         var firstPic = ''
         if (goodsPic) {
-          goodsPicArr = goodsPic.split('|')
+          goodsPicArr = goodsPic.split(',')
           firstPic = goodsPicArr[0]
         }
         that.setData({

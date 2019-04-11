@@ -22,6 +22,15 @@
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence1ImagePath}}'></image>
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence2ImagePath}}'></image>
   </view> -->
+  <text class="contacts">区域负责人</text>
+  <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
+    <view class='agencylist' wx:for="{{agencyContacts}}" wx:key="{{item.id}}" bindtap='openGoods'           data-goods-id='{{item.id}}'>
+          <text class="name">姓名：{{item.contactName}}</text>
+          <text class="address">电话：{{item.mobilephone}}</text>
+          <image bindtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}' class="phone" src='{{phoneImage}}'></image>
+          <text class="address">负责区域：{{item.area}}</text>
+    </view>
+  </scroll-view>
 
   <view style="background: #fff; margin: 0 0 10px 0; padding: 40rpx;">
     <text style="margin: 0 0 10px; font-size: 28rpx; color: #000;">点击图中小程序码进行识别,即可进入门店</text>
@@ -55,7 +64,7 @@
                         <text>收藏</text>
                     </view>
                 </view>
-                <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="switchTab" url="/pages/index/index">
+                <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="navigate" url="/pages/agencyCategory/agencyCategory?agencyId={{agencyId}}&mobilephone={{agency.mobilephone}}">
                     <view>
                         <image src="../../images/fenlei.png"></image>
                         <text>分类</text>
@@ -64,6 +73,6 @@
             </view>
             <view class="flex-grow-1 flex-row">
                 <!-- <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view> -->
-                <!-- <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view> -->
+                <view bindtap="makePhoneCall" data-mobilephone='{{agency.mobilephone}}' class="flex-grow-1 flex-y-center flex-x-center buy-now">一键拨号</view>
             </view>
         </view>
