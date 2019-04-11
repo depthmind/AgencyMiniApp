@@ -324,7 +324,7 @@ Page({
       }
     }
     console.log('area-----', area)
-    var parameter = "agencyName=" + data.agencyName + '&contactName=' + data.contactName + "&address=" + data.addressDetail + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType + '&openId=' + openId + '&longitude=' + longitude + '&latitude=' + latitude + '&province=' + currentProvince + '&city=' + currentCity
+    var parameter = "agencyName=" + data.agencyName + '&description=' + data.description + '&contactName=' + data.contactName + "&address=" + data.addressDetail + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType + '&openId=' + openId + '&longitude=' + longitude + '&latitude=' + latitude + '&province=' + currentProvince + '&city=' + currentCity
     wx.uploadFile({ // 上传代理商logo
       url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: that.data.logoImagePath[0],
@@ -471,14 +471,15 @@ Page({
     var mobilephone = data.mobilephone
     var validateCode = data.validateCode //判断验证码是否正确
     var validPeriod = data.time
+    var description = data.description
     if (agencyName == undefined || agencyName == '') {
       that.showModal("请输入商家名称")
       return;
     }
-    // if (addressDetail == undefined || addressDetail == '') {
-    //   that.showModal("请输入地址")
-    //   return;
-    // }
+    if (description == undefined || description == '') {
+      that.showModal("请填写商家简介")
+      return;
+    }
     if (logoImagePath == undefined || logoImagePath == '') {
       that.showModal("请上传代理商logo")
       return;

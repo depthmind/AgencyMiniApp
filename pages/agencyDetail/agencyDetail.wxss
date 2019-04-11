@@ -11,6 +11,12 @@
 	line-height: 180rpx;
 	color: #000;
 }
+.description{
+	font-size: 34rpx;
+	line-height: 60rpx;
+  width: 80%;
+	color: #000;
+}
 .contacts{
 	font-size: 36rpx;
 	line-height: 60rpx;

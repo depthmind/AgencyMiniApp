@@ -7,6 +7,10 @@
           <input name="agencyName" placeholder="商家名称"></input>
         </view>
         <view class='form-item'>
+          <text class='textarea-label'>商家简介</text>
+          <textarea name="description" style='height:152px;' placeholder='请填写商家简介'></textarea>
+        </view>
+        <view class='form-item'>
             <text class='label'>联系人</text> 
             <input name="contactName" placeholder="联系人姓名"></input>
         </view>
