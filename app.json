@@ -36,7 +36,8 @@
     "pages/buyRecommend/buyRecommend",
     "pages/publishList/publishList",
     "pages/introduceAgency/introduceAgency",
-    "pages/seriesCategoryList/seriesCategoryList"
+    "pages/seriesCategoryList/seriesCategoryList",
+    "pages/updateAgencyDescription/updateAgencyDescription"
   ],
   "permission": {
     "scope.userLocation": {
