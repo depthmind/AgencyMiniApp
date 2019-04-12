@@ -574,6 +574,7 @@ Page({
   bindPickerChangeProvince: function (e) {
     var that = this
     console.log(e)
+    that.data.arr = []
     console.log('picker发送选择改变，携带值为', e.detail.value)
     var index = e.detail.value;
 
@@ -643,6 +644,7 @@ Page({
 
   bindPickerChangeCity: function (e) {
     var that = this
+    that.data.arr = []
     console.log(e)
     var cityIndex = e.detail.value
     console.log('picker发送选择改变，携带值为', e.detail.value)
