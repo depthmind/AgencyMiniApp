@@ -97,8 +97,16 @@
       <view>修改资料</view>
     </view>
     <view class="order-tab">
-      <image src="{{orderImage4}}"></image>
+      <image src="{{orderImage5}}"></image>
       <view>商家续费</view>
+    </view>
+    <view class="order-tab" bindtap='updateDescription'>
+      <image src="{{orderImage7}}"></image>
+      <view>商家简介</view>
+    </view>
+    <view class="order-tab" bindtap='contactList'>
+      <image src="{{orderImage6}}"></image>
+      <view>员工管理</view>
     </view>
   </view>
 </view>

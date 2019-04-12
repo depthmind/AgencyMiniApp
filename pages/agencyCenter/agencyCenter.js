@@ -11,6 +11,8 @@ Page({
     orderImage3: '/images/order-img3.jpg',
     orderImage4: '/images/order-img4.jpg',
     orderImage5: '/images/order-img5.jpg',
+    orderImage6: '/images/yuangongguanli.png',
+    orderImage7: '/images/shangjiajianjie.png',
   },
 
   /**
@@ -102,6 +104,18 @@ Page({
   brandCategorys: function() {
     wx.navigateTo({
       url: '../brandCategoryList/brandCategoryList',
+    })
+  },
+
+  updateDescription: function() { //跳转到商家简介编辑页面
+    wx.navigateTo({
+      url: '../brandCategoryList/brandCategoryList',
+    })
+  },
+
+  contactList: function () { //跳转到商家简介编辑页面
+    wx.navigateTo({
+      url: '../myShop/myShop',
     })
   }
 })
