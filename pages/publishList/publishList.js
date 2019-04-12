@@ -13,14 +13,17 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var openId = wx.getStorageSync('openId')
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/publish/findPublishContentByParam.do',
+      //url: 'http://localhost:8080/Agency/publish/findPublishContentByParam.do',
       data: {
         openId: openId
       },
       success(res) {
         var publishes = res.data
+        console.log('publishes--', publishes)
         if (publishes.length > 0) {
           for (var i = 0; i < publishes.length; i++) {
             if (publishes[i].images != undefined) {

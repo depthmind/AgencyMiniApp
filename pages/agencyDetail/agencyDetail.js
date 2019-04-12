@@ -22,29 +22,42 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     var unionId = userInfo.unionId
-    wx.request({ //查到agencyId
-      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
+    // wx.request({ //查到agencyId
+    //   url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
+    //   data: {
+    //     openId: openId,
+    //     type: 'normal'
+    //   },
+    //   success(res) {
+    //     var agencyId = res.data.id
+    //     that.setData({
+    //       agencyId: agencyId
+    //     })
+    //     wx.request({ //查到联系人列表
+    //       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgnecyContactByAgencyId.do',
+    //       //url: 'http://localhost:8080/Agency/agency/findAgnecyContactByAgencyId.do',
+    //       data: {
+    //         agencyId: agencyId
+    //       },
+    //       success(res) {
+    //         console.log(res.data)
+    //         that.setData({
+    //           agencyContacts: res.data
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
+    wx.request({ //查到联系人列表
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgnecyContactByAgencyId.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgnecyContactByAgencyId.do',
       data: {
-        openId: openId,
-        type: 'normal'
+        agencyId: id
       },
       success(res) {
-        var agencyId = res.data.id
+        console.log(res.data)
         that.setData({
-          agencyId: agencyId
-        })
-        wx.request({ //查到联系人列表
-          url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgnecyContactByAgencyId.do',
-          //url: 'http://localhost:8080/Agency/agency/findAgnecyContactByAgencyId.do',
-          data: {
-            agencyId: agencyId
-          },
-          success(res) {
-            console.log(res.data)
-            that.setData({
-              agencyContacts: res.data
-            })
-          }
+          agencyContacts: res.data
         })
       }
     })

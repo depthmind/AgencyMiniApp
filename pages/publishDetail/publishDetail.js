@@ -24,7 +24,7 @@ Page({
           title: '信息详情', //待定
         })
         var images = publishContent.images
-        var imagesArr = images.split('|')
+        var imagesArr = images.split(',')
         console.log(imagesArr)
         that.setData({
           publishContent: publishContent,

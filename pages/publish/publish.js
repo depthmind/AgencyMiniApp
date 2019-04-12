@@ -272,7 +272,7 @@ Page({
           if (imagePath == '') {
             imagePath = wx.getStorageSync(temp[i])
           } else {
-            imagePath = imagePath + '|' + wx.getStorageSync(temp[i])
+            imagePath = imagePath + ',' + wx.getStorageSync(temp[i])
           }
         }
       }
@@ -386,7 +386,7 @@ Page({
         if (tempUploadImagePath == '') {
           that.data.uploadImagePath = resp.data
         } else {
-          that.data.uploadImagePath = tempUploadImagePath + '|' + resp.data
+          that.data.uploadImagePath = tempUploadImagePath + ',' + resp.data
         }
         successUp++;
       },

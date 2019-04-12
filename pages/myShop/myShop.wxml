@@ -12,7 +12,7 @@
         <swiper bindchange="swiperChange" class="h-100" current="{{swiper_current}}" duration="300">
             <swiper-item>
                 <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
-                  <view class='agencylist' wx:for="{{agencyContacts}}" wx:key="{{item.id}}" bindtap='openGoods'           data-goods-id='{{item.id}}'>
+                  <view class='agencylist' wx:for="{{agencyContacts}}" wx:key="{{item.id}}" data-goods-id='{{item.id}}'>
                         <text class="name">姓名：{{item.contactName}}</text>
                         <text class="address">电话：{{item.mobilephone}}</text>
                         <text class="address">负责区域：{{item.area}}</text>

@@ -91,7 +91,7 @@ Page({
 
   myShop: function() {
     wx.navigateTo({
-      url: '../agencyDetail/agencyDetail',
+      url: '../myShop/myShop',
     })
   },
 

@@ -22,6 +22,8 @@
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence1ImagePath}}'></image>
     <image style="width: 600rpx; height: 600rpx; margin-left: 35rpx;" src='{{agency.licence2ImagePath}}'></image>
   </view> -->
+  <text class="contacts">商家简介</text>
+  <text class="description">{{agency.description}}</text>
   <text class="contacts">区域负责人</text>
   <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
     <view class='agencylist' wx:for="{{agencyContacts}}" wx:key="{{item.id}}" bindtap='openGoods'           data-goods-id='{{item.id}}'>
