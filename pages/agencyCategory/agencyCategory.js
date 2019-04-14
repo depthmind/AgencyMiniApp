@@ -19,8 +19,8 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({ //查询可选择的品牌分类
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategory.do',
       url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategoryByAgencyId.do',
+      //url: 'http://localhost:8080/Agency/brand/findBrandCategoryByAgencyId.do',
       data: {
         agencyId: agencyId
       },

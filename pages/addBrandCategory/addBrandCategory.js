@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    agencyId: '',
   },
 
   /**
@@ -17,7 +17,17 @@ Page({
     var openId = userInfo.openId
     var agencyType = 'normal'
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
+      data: {
+        openId: openId,
+        type: agencyType
+      },
+      success (res) {
+        var agency = res.data
+        that.setData({
+          agencyId : agency.id
+        })
+      }
     })
   },
 
@@ -71,6 +81,7 @@ Page({
   },
 
   formSubmit: function (e) {
+    var that = this
     var formId = e.detail.formId
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
@@ -91,13 +102,15 @@ Page({
     })
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/brand/addBrandCategory.do',
+      //url: 'http://localhost:8080/Agency/brand/addBrandCategory.do',
       data: {
         categoryName: data.categoryName,
-        openId: openId
+        openId: openId,
+        agencyId: that.data.agencyId
       },
       success(res) {
-        wx.redirectTo({
-          url: '../../pages/brandCategoryList/brandCategoryList',
+        wx.navigateBack({
+          
         })
       }
     })
