@@ -83,7 +83,7 @@
     <view class='content' wx:for="{{publishList}}" wx:key="{{publishList.id}}">
       <view class='content-item' bindtap='openPublish' data-id='{{item.id}}'>
         <image class="itemimage" src='{{item.avatarUrl}}'></image>
-        <text class='contact-name'>联系人：{{item.contactName}}</text>
+        <text class='contact-name'>联系人：{{item.nickName}}</text>
         <view bindtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}'><image class="phone" src='{{phoneImage}}'></image></view>
         
         <text class='name'>信息分类：{{item.category}}</text>
