@@ -82,12 +82,13 @@
   <view wx:if="{{tabType==2}}" style="background: #fff;">
     <view class='content' wx:for="{{publishList}}" wx:key="{{publishList.id}}">
       <view class='content-item' bindtap='openPublish' data-id='{{item.id}}'>
-        <image class="itemimage" src='{{item.avatarUrl}}'></image>
-        <text class='contact-name'>联系人：{{item.nickName}}</text>
-        <view bindtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}'><image class="phone" src='{{phoneImage}}'></image></view>
-        
-        <text class='name'>信息分类：{{item.category}}</text>
-        <text class="content">信息描述：{{item.description}}</text>
+        <view style="position:relative; padding: 0 100rpx 0 120rpx;">
+          <image style="position: absolute; left: 0; top:10rpx;;" class="itemimage" src='{{item.avatarUrl}}'></image>
+          <text style="float: none; margin: 0;" class='contact-name'>联系人：{{item.nickName}}</text>
+          <text style="float: none;" class='name'>信息分类：{{item.category}}</text>
+          <view style="position: absolute; right: 0; top:10rpx;" bindtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}'><image class="phone" src='{{phoneImage}}'></image></view>
+        </view>
+        <text style="font-size: 30rpx;" class="content">信息描述：{{item.description}}</text>
         <view class='images'>
           <view wx:for="{{item.images}}">
             <image class='image' mode='scaleToFill' src='{{item}}'></image>
