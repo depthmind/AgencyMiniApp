@@ -1,4 +1,4 @@
-// pages/agencyCenter/agencyCenter.js
+const agencyType = 'normal'
 Page({
 
   /**
@@ -19,7 +19,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    wx.request({ //判断是否已入驻
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
+      success(res) {
+        if (!res.data || res.data.isCooperation != '1') {
+          wx.showModal({
+            title: '提示',
+            content: '您还未入驻，请填写入驻信息成为商家',
+            success(res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/mine/mine',
+                })
+              } else if (res.cancel) {
+                wx.switchTab({
+                  url: '/pages/mine/mine',
+                })
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -109,7 +133,7 @@ Page({
 
   updateDescription: function() { //跳转到商家简介编辑页面
     wx.navigateTo({
-      url: '../brandCategoryList/brandCategoryList',
+      url: '../updateAgencyDescription/updateAgencyDescription',
     })
   },
 

@@ -6,10 +6,10 @@
           <text class='label'>商家名称</text>
           <input name="agencyName" placeholder="商家名称"></input>
         </view>
-        <view class='form-item'>
+        <!-- <view class='form-item'>
           <text class='textarea-label'>商家简介</text>
           <textarea name="description" style='height:152px;' placeholder='请填写商家简介'></textarea>
-        </view>
+        </view> -->
         <view class='form-item'>
             <text class='label'>联系人</text> 
             <input name="contactName" placeholder="联系人姓名"></input>
@@ -23,7 +23,7 @@
           <picker mode="selector" bindchange="bindPickerChangeProvince" range='{{province}}' range-key='fullname' value="{{provinceIndex}}">
             <view class="picker">
               省份
-              <text name='province'>{{province[provinceIndex].fullname}}</text>
+              <text name='province' value='{{province[provinceIndex].fullname}}'>{{province[provinceIndex].fullname}}</text>
             </view>
           </picker>
         </view>
@@ -31,7 +31,7 @@
           <picker mode="selector" bindchange="bindPickerChangeCity" range='{{citys}}' range-key='fullname' value="{{cityIndex}}">
             <view class="picker">
               城市
-              <text name='city'>{{citys[cityIndex].fullname}}</text>
+              <text name='city' value='{{province[provinceIndex].fullname}}'>{{citys[cityIndex].fullname}}</text>
             </view>
           </picker>
         </view>

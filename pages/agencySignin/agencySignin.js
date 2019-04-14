@@ -37,6 +37,8 @@ Page({
     showModal: false,
     dingwei: '/images/dingwei.jpg',
     wenImage: '/images/wen.png',
+    defaultProvince: '北京市',
+    defaultCity: '北京市',
   },
 
   /**
@@ -298,6 +300,8 @@ Page({
 
   formSubmit: function (e) {
     var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
     var temp = that.data.tempFilePaths
     var data = e.detail.value
     that.validation(data)
@@ -324,7 +328,7 @@ Page({
       }
     }
     console.log('area-----', area)
-    var parameter = "agencyName=" + data.agencyName + '&description=' + data.description + '&contactName=' + data.contactName + "&address=" + data.addressDetail + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType + '&openId=' + openId + '&longitude=' + longitude + '&latitude=' + latitude + '&province=' + currentProvince + '&city=' + currentCity
+    var parameter = "agencyName=" + data.agencyName + '&description=' + data.description + '&contactName=' + data.contactName + "&address=" + data.addressDetail + "&mobilephone=" + data.mobilephone + "&time=" + data.time + '&area=' + area + '&type=' + agencyType + '&openId=' + openId + '&longitude=' + longitude + '&latitude=' + latitude + '&province=' + that.data.defaultProvince + '&city=' + that.data.defaultCity
     wx.uploadFile({ // 上传代理商logo
       url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
       filePath: that.data.logoImagePath[0],
@@ -384,7 +388,7 @@ Page({
                                 }
                               })
                               wx.redirectTo({
-                                url: '/pages/paySuccess/paySuccess',
+                                url: '/pages/agencyCenter/agencyCenter',
                               })
                               console.log(res)
                             },
@@ -441,7 +445,7 @@ Page({
                             }
                           })
                           wx.redirectTo({
-                            url: '/pages/paySuccess/paySuccess',
+                            url: '/pages/agencyCenter/agencyCenter',
                           })
                           console.log(res)
                         },
@@ -471,15 +475,15 @@ Page({
     var mobilephone = data.mobilephone
     var validateCode = data.validateCode //判断验证码是否正确
     var validPeriod = data.time
-    var description = data.description
+    // var description = data.description
     if (agencyName == undefined || agencyName == '') {
       that.showModal("请输入商家名称")
       return;
     }
-    if (description == undefined || description == '') {
-      that.showModal("请填写商家简介")
-      return;
-    }
+    // if (description == undefined || description == '') {
+    //   that.showModal("请填写商家简介")
+    //   return;
+    // }
     if (logoImagePath == undefined || logoImagePath == '') {
       that.showModal("请上传代理商logo")
       return;
@@ -580,6 +584,8 @@ Page({
 
     var provinceId = this.data.province[index].id; // 这个id就是选中项的id
     var province = wx.getStorageSync("provinces")[index]
+    that.data.defaultProvince = province.fullname
+    that.data.defaultCity = province.fullname
     if (provinceId == "110000" || provinceId == "120000" || provinceId == "310000" || provinceId == "500000"
       || provinceId == "810000" || provinceId == "820000") {
       var id = provinceId.slice(0, 2)
@@ -593,6 +599,7 @@ Page({
       }
       var provinceArr = []
       provinceArr.push(province)
+      
       that.setData({
         citys: provinceArr,
         area: tmp,
@@ -609,11 +616,13 @@ Page({
           tmp.push(citys[i])
         }
       }
+      that.data.defaultCity = tmp[0].fullname //第一个市的名称
       qqmapsdk.getDistrictByCityId({
         // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
         id: tmp[0].id, //对应接口getCityList返回数据的Id，如：北京是'110000'
         success: function (res) {//成功后的回调
           var area = res.result[0]
+          
           for (var a = 0; a < area.length; a++) {
             area[a].checked = ''
           }
@@ -648,7 +657,8 @@ Page({
     console.log(e)
     var cityIndex = e.detail.value
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    var cityId = this.data.citys[cityIndex].id;
+    var cityId = that.data.citys[cityIndex].id;
+    that.data.defaultCity = that.data.citys[cityIndex].fullname
     qqmapsdk.getDistrictByCityId({
       // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
       id: cityId, //对应接口getCityList返回数据的Id，如：北京是'110000'

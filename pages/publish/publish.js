@@ -219,6 +219,7 @@ Page({
     console.log(e)
     var that = this
     var userInfo = wx.getStorageSync('userInfo')
+    var avatarUrl = userInfo.avatarUrl
     var formId = e.detail.formId
     wx.request({ //保存formId发送模板消息时使用
       url: 'https://www.caoxianyoushun.com:8443/Agency/template/saveFormIdForTemplate',
@@ -262,7 +263,7 @@ Page({
       isTop = 1
     }
     var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilephone=' + data.mobilephone
-      + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId + '&province=' + currentProvince + '&city=' + currentCity + '&area=' + currentArea
+      + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId + '&province=' + currentProvince + '&city=' + currentCity + '&area=' + currentArea + '&avatarUrl=' + avatarUrl
     if (temp.length > 0) {
       var imagePath = ''
       for (var i = 0; i < temp.length; i++) {

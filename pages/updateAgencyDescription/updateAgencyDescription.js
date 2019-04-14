@@ -1,4 +1,4 @@
-// pages/updateAgencyDescription/updateAgencyDescription.js
+const agencyType = 'normal'
 Page({
 
   /**
@@ -12,7 +12,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgencyByOpenId.do',
+      data: {
+        openId: openId,
+        type: agencyType
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          agency: res.data
+        })
+      }
+    })
   },
 
   /**
@@ -61,6 +77,32 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    
+  },
 
+  formSubmit: function (e) {
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var data = e.detail.value
+    if (data.description == undefined || data.description == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请填写商家简介',
+      })
+      return;
+    }
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/updateAgencyBaseByOpenId.do',
+      data: {
+        openId: openId,
+        description: data.description
+      },
+      success(res) {
+        wx.navigateBack({
+          
+        })
+      }
+    })
   }
 })

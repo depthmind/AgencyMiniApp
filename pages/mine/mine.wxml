@@ -54,7 +54,7 @@
       <view class="weui-cell-bd">商家入口</view>
       <span class="weui-cell-ft"></span>
     </view>
-    <view class="weui-cell" bindtap='nearbyAgencySignin'>
+    <!-- <view class="weui-cell" bindtap='nearbyAgencySignin'>
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/商家列表.png"></image>
       </view>
@@ -67,7 +67,7 @@
       </view>
       <view class="weui-cell-bd">二批入口</view>
       <span class="weui-cell-ft"></span>
-    </view>
+    </view> -->
     <view class="weui-cell" bindtap='openContact'>
       <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/联系.png"></image>

@@ -1,2 +1,13 @@
-<!--pages/updateAgencyDescription/updateAgencyDescription.wxml-->
-<text>pages/updateAgencyDescription/updateAgencyDescription.wxml</text>
+<view style="padding: 0 0 50px;">
+  <view class='message'>
+    <view class='form'>
+      <form bindsubmit="formSubmit" report-submit='true'>
+        <view class='form-item'>
+          <text class='textarea-label'>商家简介</text>
+          <textarea name="description" style='height:152px;' placeholder='请填写商家简介'></textarea>
+        </view>
+        <button form-type='submit'>立即提交</button>
+      </form>
+    </view>
+  </view>
+</view>

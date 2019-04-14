@@ -14,6 +14,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var userInfo = wx.getStorageSync('userInfo')
+    console.log('userInfo----', userInfo)
     var openId = userInfo.openId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/publish/findPublishContentByParam.do',

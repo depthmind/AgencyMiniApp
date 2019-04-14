@@ -29,7 +29,8 @@ Page({
     //adsImage2: '/images/agency-list.jpg',
     adsImage1: '/images/dailishangruzhu.jpg',
     adsImage2: '/images/dailishangliebiao.jpg',
-    labaImage: '/images/laba.jpg'
+    labaImage: '/images/laba.jpg',
+    phoneImage: '/images/phone.jpg',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -306,7 +307,7 @@ Page({
           })
         } else {
           for (var i = 0; i < publish.length; i++) {
-            if (publish[i].images != undefined) {
+            if (publish[i].images != null) {
               publish[i].images = publish[i].images.split(",")
             }
           }
@@ -560,5 +561,20 @@ Page({
         })
       }
     })
-  }
+  },
+
+  openPublish: function (e) {
+    var publishId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../publishDetail/publishDetail?id=' + publishId
+    })
+  },
+
+  makePhoneCall: function (e) {
+    console.log(e)
+    var mobilephone = e.currentTarget.dataset.mobilephone
+    wx.makePhoneCall({
+      phoneNumber: mobilephone,
+    })
+  },
 })

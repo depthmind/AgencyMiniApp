@@ -2,7 +2,7 @@
 <view>
   <!-- 基础信息 -->
   <view>
-    <open-data class="itemimage" type="userAvatarUrl"></open-data>
+    <image class="itemimage" src='{{publishContent.avatarUrl}}'></image>
     <view class='title'>发布人：{{publishContent.contactName}}</view>
     <view class='title'>分类：{{publishContent.category}}</view>
     <view class='title'>联系人地址：{{publishContent.address}}</view>

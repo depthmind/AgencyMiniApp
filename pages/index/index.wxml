@@ -59,17 +59,16 @@
   </view> -->
 
   <view class='tabs'>
-    <view class='tab-view'>
-      <!-- <view class='tab-item {{currentTab == -2?"active":""}}' data-tab-id='-2' bindtap='tapTab'>附近</view> -->
+    <!-- <view class='tab-view'>
       <view class='tab-item {{currentTab == -1?"active":""}}' style='width:138px;' data-tab-id='-1' bindtap='tapTab'>附近二批</view>
-    </view>
+    </view> -->
     <scroll-view scroll-x class='tabs-scroll-view'>
       <view wx:for="{{tabs}}" data-tab-id='{{item.value}}' class='tab-item {{currentTab == item.value?"active":""}}' bindtap='tapTab'>{{item.chinese}}</view>
     </scroll-view>
   </view>
 
 
-  <view wx:if="{{tabType==1}}" style="background: #fff;">
+  <!-- <view wx:if="{{tabType==1}}" style="background: #fff;">
     <view class='agencylist' wx:for="{{agencyList}}" wx:key="{{agencyList.id}}" bindtap='openNearbyAgency' data-agency-id='{{item.id}}'>
         <image class="itemimage" src='{{item.logoImagePath}}'></image>
         <image class="phone" src='../../images/phone.jpg'></image>
@@ -77,14 +76,18 @@
         <text class="address">{{item.address}}</text>
         <text style="color:#d05857;">{{item.distance}}</text>
     </view>
-  </view>
+  </view> -->
 
 
   <view wx:if="{{tabType==2}}" style="background: #fff;">
     <view class='content' wx:for="{{publishList}}" wx:key="{{publishList.id}}">
-      <view class='content-item'>
-        <text class='name'>{{item.category}}</text>
-        <text class="content">{{item.description}}</text>
+      <view class='content-item' bindtap='openPublish' data-id='{{item.id}}'>
+        <image class="itemimage" src='{{item.avatarUrl}}'></image>
+        <text class='contact-name'>联系人：{{item.contactName}}</text>
+        <view bindtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}'><image class="phone" src='{{phoneImage}}'></image></view>
+        
+        <text class='name'>信息分类：{{item.category}}</text>
+        <text class="content">信息描述：{{item.description}}</text>
         <view class='images'>
           <view wx:for="{{item.images}}">
             <image class='image' mode='scaleToFill' src='{{item}}'></image>

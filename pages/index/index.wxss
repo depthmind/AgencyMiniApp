@@ -137,7 +137,7 @@
 
 .tabs-scroll-view {
   margin-left: 5rpx;
-  width: 75%;
+  width: 100%;
   white-space: nowrap;
   display: inline-block;
 }
@@ -198,8 +198,17 @@ display: inline-block;
 .content-item .name {
   display: flex;
   float: left;
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-weight: bold;
+  padding: 0;
+  background: none;
+}
+
+.content-item .contact-name {
+  float: right;
+  font-size: 28rpx;
+  color: #526cc4;
+  margin: 10rpx 10rpx 0 0;
   padding: 0;
   background: none;
 }
@@ -216,11 +225,26 @@ display: inline-block;
 }
 
 .content-item .image {
-  border: 1rpx solid #000;
   height: 100rpx;
   width: 100rpx;
   display: flex;
   margin-left: 5rpx;
+}
+
+.content-item .phone{
+  width:36px;
+  height: 36px;
+  position: absolute;
+  right: 10px;
+}
+
+.itemimage{
+	float: left;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 10rpx;
+	margin: 0 10px 0 0;
+	box-shadow: 0 0 3px #dedede;
 }
 
 .product-item .image {

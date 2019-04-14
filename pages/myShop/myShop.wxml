@@ -34,7 +34,7 @@
     </view>
 
     <navigator openType="navigate" url="/pages/addContact/addContact?agencyId={{agencyId}}">
-      <image class='add_icon' src='../../images/发布red.png'></image>
+      <image class='add_icon' src='/images/fabured.png'></image>
     </navigator>
     
 </view>
