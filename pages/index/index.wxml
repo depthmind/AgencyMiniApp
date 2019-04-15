@@ -58,6 +58,16 @@
     <view class='reflesh' bindtap='getRecommends'>换一批</view>
   </view> -->
 
+  <!-- 暂时先放供应商列表 -->
+  <view>
+    <view class="agencylist" wx:for="{{agencyes}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
+	    <image class="itemimage" src='{{item.logoImagePath}}'></image>
+	    <image class="phone" src='{{phoneImage}}'></image>
+	    <text class="name">{{item.agencyName}}</text>
+	    <text class="address">{{item.address}}</text>
+	 </view>
+  </view>
+
   <view class='tabs'>
     <!-- <view class='tab-view'>
       <view class='tab-item {{currentTab == -1?"active":""}}' style='width:138px;' data-tab-id='-1' bindtap='tapTab'>附近二批</view>

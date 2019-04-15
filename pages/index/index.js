@@ -4,6 +4,8 @@ const app = getApp()
 
 Page({
   data: {
+    offset: 0,
+    limit: 1000000, //甲方要求有多少显示多少
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isNotAuthorized: null,
     rows: 5, //主体内容一次加载行数
@@ -49,6 +51,13 @@ Page({
     wx.setNavigationBarTitle({
       title: '首页',
     })
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
+    wx.setNavigationBarTitle({
+      title: '代理商中心',
+    })
+    that.agencyList()
     //that.login()
   },
 
@@ -67,6 +76,7 @@ Page({
         changeLocationFlag: false
       })
       this.init()
+      this.agencyList()
     }
   },
 
@@ -577,4 +587,37 @@ Page({
       phoneNumber: mobilephone,
     })
   },
+
+  agencyList: function () {
+    var that = this
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyBase.do',
+      //url: 'http://localhost:8080/Agency/agency/findAgencyBase.do',
+      data: {
+        offset: 0,
+        limit: that.data.limit,
+        province: currentProvince,
+        city: currentCity,
+        area: currentArea
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          agencyes: res.data,
+          //agencyes: that.data.agencyes,
+          offset: that.data.offset + that.data.limit
+        })
+      }
+    })
+  },
+
+  openAgency: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/agencyDetail/agencyDetail?id=' + e.currentTarget.dataset.cid,
+    })
+  }
 })
