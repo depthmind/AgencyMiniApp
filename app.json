@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/publish/publish",
     "pages/index/index",
+    "pages/agencyCenter/agencyCenter",
     "pages/myShop/myShop",
     "pages/addContact/addContact",
     "pages/agencyList/agencyList",
@@ -8,7 +10,6 @@
     "pages/goodsList/goodsList",
     "pages/agencyDetail/agencyDetail",
     "pages/addGoods/addGoods",
-    "pages/agencyCenter/agencyCenter",
     "pages/brandCategoryList/brandCategoryList",
     "pages/addBrandCategory/addBrandCategory",
     "pages/agencyUpdate/agencyUpdate",
@@ -23,7 +24,6 @@
     "pages/logs/logs",
     "pages/publishDetail/publishDetail",
     "pages/paySuccess/paySuccess",
-    "pages/publish/publish",
     "pages/mine/mine",
     "pages/map/map",
     "pages/aboutUs/aboutUs",

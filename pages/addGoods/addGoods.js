@@ -171,7 +171,7 @@ Page({
     that.setData({
       index2: e.detail.value,
       brandCategory: "sss",
-      choosedBrandCategory: parseInt(e.detail.value) + 1,
+      choosedBrandCategory: brandId,
     })
   },
   

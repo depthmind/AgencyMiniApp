@@ -178,22 +178,12 @@ Page({
       sourceType: ['album'],
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
+        var tempFilePaths = res.tempFilePaths
+        var globalTempFilePaths = that.data.tempFilePaths
+        if (globalTempFilePaths.length > 0) {
+          globalTempFilePaths.push(tempFilePaths)
+        }
         that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
-        // for (var j = 0; j < tempFilePaths.length; j++) {
-        //   wx.uploadFile({
-        //     url: 'http://47.105.169.49/Agency/upfile',
-        //     filePath: tempFilePaths[j],
-        //     name: 'fileData',
-        //     success: (resp) => {
-        //       console.log(resp.data)
-        //       wx.setStorageSync(tempFilePaths[j], resp.data)
-        //     },
-        //     fail: (res) => {
-
-        //     }
-        //   })
-        // }
 
         for (var i = 0; i < res.tempFilePaths.length; i++) {
           for (var j = 0; j < that.data.tempFilePaths.length; j ++) {
@@ -202,10 +192,9 @@ Page({
             }
           }
         }
-        console.log("sss", res.tempFilePaths)
-        that.data.tempFilePaths = res.tempFilePaths
+        console.log("sss", tempFilePaths)
         that.setData({
-          tempFilePaths: that.data.tempFilePaths
+          tempFilePaths: globalTempFilePaths
         })
       }
     })
@@ -431,4 +420,8 @@ Page({
       },
     })
   },
+
+  deleteImg: function (e) {
+    console.log(e)
+  }
 })

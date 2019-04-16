@@ -18,6 +18,7 @@ Page({
     var unionId = userInfo.unionId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategory.do',
+      //url: 'http://localhost:8080/Agency/brand/findBrandCategory.do',
       data: {
         openId: openId
       },
@@ -28,20 +29,20 @@ Page({
         })
       }
     })
-    wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavoriteAgency.do',
-      data: {
-        openId: openId,
-        type: '1',
-      },
-      success(res) {
-        console.log(res)
-        that.setData({
-          favoriteAgency: res.data,
-          swiper_current: 0
-        })
-      }
-    })
+    // wx.request({
+    //   url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavoriteAgency.do',
+    //   data: {
+    //     openId: openId,
+    //     type: '1',
+    //   },
+    //   success(res) {
+    //     console.log(res)
+    //     that.setData({
+    //       favoriteAgency: res.data,
+    //       swiper_current: 0
+    //     })
+    //   }
+    // })
   },
 
   /**
@@ -183,6 +184,21 @@ Page({
     var that = this
     wx.navigateTo({
       url: '/pages/addBrandCategory/addBrandCategory',
+    })
+  },
+
+  delete: function (e){
+    console.log(e)
+    var that = this
+    var brandId = e.currentTarget.dataset.id
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/deleteBrandCategoryById.do',
+      data: {
+        id: brandId
+      },
+      success (res) {
+        that.onLoad()
+      }
     })
   }
 })

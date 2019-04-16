@@ -4,8 +4,6 @@ var qqmapsdk = new QQMapWX({
   key: 'EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF' // 必填
 })
 const agencyType = 'normal'
-var userInfo = wx.getStorageSync('userInfo')
-var openId = userInfo.openId
 var allValidPeriod = [] //全部可选时长和需支付的费用
 var fee = '0';
 var longitude = wx.getStorageSync("longitude")
@@ -47,6 +45,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
     wx.getLocation({ //初始地址
       success: function (res) {
         var new_latitude = res.latitude
@@ -63,6 +62,7 @@ Page({
     wx.request({ //判断是否已入驻
       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
       success(res) {
+        console.log('点一下这里--', res.data)
         if (res.data && res.data.isCooperation == '1') {
           wx.showModal({
             title: '提示',
@@ -381,10 +381,20 @@ Page({
                             signType: 'MD5',
                             paySign: res.data.paySign,
                             success(res) {
+                              wx.showToast({
+                                title: '支付成功',
+                              })
                               wx.request({
                                 url: 'https://www.caoxianyoushun.com:8443/Agency/agency/saveAgencyBase.do?' + parameter + '&isCooperation=1' + '&validPeriod=' + that.data.validPeriod,
                                 success(res) {
-
+                                  wx.showToast({
+                                    title: '保存代理商成功',
+                                  })
+                                },
+                                fail(res) {
+                                  wx.showToast({
+                                    title: res.errMsg,
+                                  })
                                 }
                               })
                               wx.redirectTo({
@@ -394,6 +404,9 @@ Page({
                             },
                             fail(res) {
                               console.log(res)
+                              wx.showToast({
+                                title: res.errMsg,
+                              })
                             }
                           })
                         }

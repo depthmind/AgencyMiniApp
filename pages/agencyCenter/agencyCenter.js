@@ -25,6 +25,7 @@ Page({
     wx.request({ //判断是否已入驻
       url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgencyByOpenId.do?openId=' + openId + '&type=' + agencyType,
       success(res) {
+        console.log('点一下这里--',res.data)
         if (!res.data || res.data.isCooperation != '1') {
           wx.showModal({
             title: '提示',

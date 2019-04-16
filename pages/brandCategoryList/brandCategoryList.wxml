@@ -7,6 +7,7 @@
                   <view class='agencylist' wx:for="{{categorys}}" wx:key="{{item.id}}" bindtap='seriesCategorys'           data-brand-id='{{item.id}}'>
                         <text class="name">品牌名称：{{item.categoryName}}</text>
                         <text class="name">添加时间：{{dateUtil.dateFormat(item.createTime)}}</text>
+                        <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 22px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
                   </view>
                 </scroll-view>
             </swiper-item>
