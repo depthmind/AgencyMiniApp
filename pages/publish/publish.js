@@ -30,6 +30,7 @@ Page({
     uploadImagePath: '',
     publishCategory:'',
     choosedCategory: '',
+    images: '', //最终需要上传的图片
     needPay: false, //设置为false是因为前期都不需要支付
     showModal: false,
     publishCost: '', //发布需要支付的费用
@@ -180,18 +181,22 @@ Page({
         // tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
         var globalTempFilePaths = that.data.tempFilePaths
-        if (globalTempFilePaths.length > 0) {
-          globalTempFilePaths.push(tempFilePaths)
-        }
-        that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
-
-        for (var i = 0; i < res.tempFilePaths.length; i++) {
-          for (var j = 0; j < that.data.tempFilePaths.length; j ++) {
-            if (res.tempFilePaths[i] == that.data.tempFilePaths[j]) {
-              res.tempFilePaths[i].splice(i,1)
-            }
+        if (globalTempFilePaths.length == 0) {
+          globalTempFilePaths = tempFilePaths
+        } else {
+          for (var i = 0; i < tempFilePaths.length; i++) {
+            globalTempFilePaths.push(tempFilePaths[i])
           }
         }
+        
+
+        // for (var i = 0; i < res.tempFilePaths.length; i++) {
+        //   for (var j = 0; j < that.data.tempFilePaths.length; j ++) {
+        //     if (res.tempFilePaths[i] == that.data.tempFilePaths[j]) {
+        //       res.tempFilePaths[i].splice(i,1)
+        //     }
+        //   }
+        // }
         console.log("sss", tempFilePaths)
         that.setData({
           tempFilePaths: globalTempFilePaths
@@ -225,6 +230,7 @@ Page({
     var contactName = data.contactName
     var mobilephone = data.mobilephone
     var address = data.address
+    var tempFilePaths = that.data.tempFilePaths
     if (that.data.publishCategory == '') {
       that.showModal("请选择类目")
       return;
@@ -252,23 +258,32 @@ Page({
     if (data.switch) {
       isTop = 1
     }
+    wx.showToast({
+      title: '拼命加载中',
+      image: '/images/loading.png',
+      duration: 3000,
+      mask: true
+    })
+    var imagePath = wx.getStorageSync('images')
     var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilephone=' + data.mobilephone
       + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId + '&province=' + currentProvince + '&city=' + currentCity + '&area=' + currentArea + '&avatarUrl=' + avatarUrl + '&nickName=' + nickName
+    that.data.parameter = parameter
+    that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length, parameter)
     if (temp.length > 0) {
-      var imagePath = ''
-      for (var i = 0; i < temp.length; i++) {
-        //that.uploadDIY(temp, 0, 0, 0, temp.length, parameter)
-        if (wx.getStorageSync(temp[i])) {
-          console.log('key', wx.getStorageSync(temp[i]))
-          if (imagePath == '') {
-            imagePath = wx.getStorageSync(temp[i])
-          } else {
-            imagePath = imagePath + ',' + wx.getStorageSync(temp[i])
-          }
-        }
-      }
-      parameter = parameter + '&images=' + encodeURIComponent(imagePath)
-      console.log(parameter)
+      // var imagePath = ''
+      // for (var i = 0; i < temp.length; i++) {
+      //   //that.uploadDIY(temp, 0, 0, 0, temp.length, parameter)
+      //   if (wx.getStorageSync(temp[i])) {
+      //     console.log('key', wx.getStorageSync(temp[i]))
+      //     if (imagePath == '') {
+      //       imagePath = wx.getStorageSync(temp[i])
+      //     } else {
+      //       imagePath = imagePath + ',' + wx.getStorageSync(temp[i])
+      //     }
+      //   }
+      // }
+      // parameter = parameter + '&images=' + encodeURIComponent(imagePath)
+      // console.log(parameter)
     } //直接调用保存发布信息的接口
     console.log("parameter", parameter)
     if (that.data.needPay) {
@@ -288,6 +303,10 @@ Page({
                   'content-type': 'application/json' // 默认值
                 },
                 success(res) {
+                  wx.removeStorage({ //清楚图片路径缓存
+                    key: 'images',
+                    success: function(res) {},
+                  })
                   that.setData({
                     uploadImagePath: ''
                   })
@@ -305,20 +324,24 @@ Page({
         }
       })
     } else {
-      wx.request({
-        url: 'https://www.caoxianyoushun.com:8443/Agency/publish/savePublishContent.do?' + parameter,
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          that.setData({
-            uploadImagePath: ''
-          })
-          wx.redirectTo({
-            url: '/pages/publishSuccess/publishSuccess',
-          })
-        }
-      })
+      // wx.request({
+      //   url: 'https://www.caoxianyoushun.com:8443/Agency/publish/savePublishContent.do?' + parameter,
+      //   header: {
+      //     'content-type': 'application/json' // 默认值
+      //   },
+      //   success(res) {
+      //     wx.removeStorage({ //清楚图片路径缓存
+      //       key: 'images',
+      //       success: function (res) { },
+      //     })
+      //     that.setData({
+      //       uploadImagePath: ''
+      //     })
+      //     wx.redirectTo({
+      //       url: '/pages/publishSuccess/publishSuccess',
+      //     })
+      //   }
+      // })
       //并且需要跳转到提交成功页面
     }
     //提交成功之后需要删除缓存里的图片路径
@@ -370,15 +393,25 @@ Page({
       // },
       success: (resp) => {
         console.log(resp)
-        if (wx.getStorageSync(filePaths[i]) != undefined) {
-          wx.setStorageSync(filePaths[i], resp.data)
-        }
-        var tempUploadImagePath = that.data.uploadImagePath
-        if (tempUploadImagePath == '') {
-          that.data.uploadImagePath = resp.data
+        var images = that.data.images
+        if (images) {
+          images = images + ',' + resp.data
         } else {
-          that.data.uploadImagePath = tempUploadImagePath + ',' + resp.data
+          images = resp.data
         }
+        that.setData({
+          images: images
+        })
+        wx.setStorageSync('images', images)
+        // if (wx.getStorageSync(filePaths[i]) != undefined) {
+        //   wx.setStorageSync(filePaths[i], resp.data)
+        // }
+        // var tempUploadImagePath = that.data.uploadImagePath
+        // if (tempUploadImagePath == '') {
+        //   that.data.uploadImagePath = resp.data
+        // } else {
+        //   that.data.uploadImagePath = tempUploadImagePath + ',' + resp.data
+        // }
         successUp++;
       },
       fail: (res) => {
@@ -387,7 +420,26 @@ Page({
       complete: () => {
         i++;
         if (i == length) {
-          //this.showToast('总共' + successUp + '张上传成功,' + failUp + '张上传失败！');
+          var parameter = that.data.parameter+ '&images=' + encodeURIComponent(that.data.images) 
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/publish/savePublishContent.do?' + parameter,
+            //url: 'http://localhost:8080/Agency/publish/savePublishContent.do?' + parameter,
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+              wx.removeStorage({ //清楚图片路径缓存
+                key: 'images',
+                success: function (res) { },
+              })
+              that.setData({
+                uploadImagePath: ''
+              })
+              wx.redirectTo({
+                url: '/pages/publishSuccess/publishSuccess',
+              })
+            }
+          })
         }
         else {  //递归调用uploadDIY函数
           this.uploadDIY(filePaths, successUp, failUp, i, length);
