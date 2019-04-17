@@ -1,7 +1,8 @@
 <view>
   <view class="mine-top">
-    <image src='../../images/开心果.png' class='avatar'></image>
-    <view class="part1">
+    <open-data class="avatar" type="userAvatarUrl"></open-data> 
+    <view class='username'>{{agency.agencyName}}</view>
+    <!-- <view class="part1">
       <view class="item">
         <view style="color: #f19d21;">0<text style="font-size: 24rpx;">个</text></view>
         <text>今日订单</text>
@@ -14,7 +15,7 @@
         <view style="color: #7bb142;">12<text style="font-size: 24rpx;">次</text></view>
         <text>访问量</text>
       </view>
-    </view>
+    </view> -->
     <view class="panel-myorder">
       <view class="title">我的订单</view>
       <view class="order-tab">

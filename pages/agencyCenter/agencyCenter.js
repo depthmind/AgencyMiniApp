@@ -42,6 +42,10 @@ Page({
               }
             }
           })
+        } else {
+          that.setData({
+            agency: res.data
+          })
         }
       }
     })
