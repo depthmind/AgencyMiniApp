@@ -548,6 +548,14 @@ Page({
         paraDomain: "publish.category"
       },
       success(tabRes) {
+        var currentTab = tabRes.data[0].value
+        that.setData({
+          tabType: 2, //publish
+          publishOffset: 0, //重头获取publish
+          publishList: [],
+          currentTab: currentTab
+        })
+        that.getContents() //此处为获取publish
         that.setData({
           tabs: tabRes.data
         })

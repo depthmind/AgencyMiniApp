@@ -62,7 +62,7 @@
   <view>
     <view class="agencylist" wx:for="{{agencyes}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
 	    <image class="itemimage" src='{{item.logoImagePath}}'></image>
-	    <image class="phone" src='{{phoneImage}}'></image>
+	    <image catchtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}' class="phone" src='{{phoneImage}}'></image>
 	    <text class="name">{{item.agencyName}}</text>
 	    <text class="address">{{item.address}}</text>
 	 </view>
@@ -96,7 +96,7 @@
           <image style="position: absolute; left: 0; top:10rpx;;" class="itemimage" src='{{item.avatarUrl}}'></image>
           <text style="float: none; margin: 0;" class='contact-name'>联系人：{{item.nickName}}</text>
           <text style="float: none;" class='name'>信息分类：{{item.category}}</text>
-          <view style="position: absolute; right: 0; top:10rpx;" bindtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}'><image class="phone" src='{{phoneImage}}'></image></view>
+          <view style="position: absolute; right: 0; top:10rpx;" catchtap='makePhoneCall' data-mobilephone='{{item.mobilephone}}'><image class="phone" src='{{phoneImage}}'></image></view>
         </view>
         <text style="font-size: 30rpx;" class="content">信息描述：{{item.description}}</text>
         <view class='images'>

@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/goodsList/goodsList",
     "pages/publish/publish",
     "pages/agencyCenter/agencyCenter",
     "pages/myShop/myShop",
     "pages/addContact/addContact",
     "pages/agencyList/agencyList",
     "pages/agencyCategory/agencyCategory",
-    "pages/goodsList/goodsList",
     "pages/agencyDetail/agencyDetail",
     "pages/addGoods/addGoods",
     "pages/brandCategoryList/brandCategoryList",
@@ -37,7 +37,8 @@
     "pages/publishList/publishList",
     "pages/introduceAgency/introduceAgency",
     "pages/seriesCategoryList/seriesCategoryList",
-    "pages/updateAgencyDescription/updateAgencyDescription"
+    "pages/updateAgencyDescription/updateAgencyDescription",
+    "pages/goodsEdit/goodsEdit"
   ],
   "permission": {
     "scope.userLocation": {

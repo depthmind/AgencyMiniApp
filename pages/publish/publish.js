@@ -34,6 +34,7 @@ Page({
     needPay: false, //设置为false是因为前期都不需要支付
     showModal: false,
     publishCost: '', //发布需要支付的费用
+    publishCategorys: []
   },
 
   /**
@@ -164,10 +165,12 @@ Page({
   bindPickerChange: function (e) {
     console.log("选择产品分类")
     console.log(e)
+    var that = this
+    var choosedCategory = that.data.publishCategorys[e.detail.value]
     this.setData({
       index: e.detail.value,
       publishCategory: "sss",
-      choosedCategory: e.detail.value
+      choosedCategory: choosedCategory.value
     })
   },
 

@@ -91,7 +91,7 @@ Page({
     console.log(e)
     var goodsId = e.currentTarget.dataset.goodsId
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
+      url: '../goodsEdit/goodsEdit?goodsId=' + goodsId,
     })
   },
 })
