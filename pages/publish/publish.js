@@ -475,5 +475,12 @@ Page({
 
   deleteImg: function (e) {
     console.log(e)
+    var index = e.currentTarget.dataset.id
+    var that = this
+    var globalTempFilePaths = that.data.tempFilePaths
+    globalTempFilePaths.splice(index, 1)
+    that.setData({
+      tempFilePaths: globalTempFilePaths
+    })
   }
 })
