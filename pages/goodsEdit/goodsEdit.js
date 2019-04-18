@@ -21,7 +21,13 @@ Page({
     seriesCategorys: '',
     brandCategory: '',
     tempFilePaths: [],
-    brandCategorysArr: []
+    oldTempFilePaths: [],
+    newTempFilePaths: [],
+    brandCategorysArr: [],
+    goodsPicArr: [],
+    index1: '',
+    index2: '',
+    goodsId: '',
   },
 
   /**
@@ -32,9 +38,38 @@ Page({
     var goodsId = options.goodsId
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
+    var oneLevelCategorys = []
+    that.data.goodsId = goodsId //全局使用
+    wx.request({ //查询可选择的类目参数
+      url: 'https://www.caoxianyoushun.com:8443/Agency/category/findOneLevelCategory.do',
+      success(res) {
+        oneLevelCategorys = res.data
+        console.log(res)
+        that.setData({
+          oneLevelCategorys: oneLevelCategorys
+        })
+      }
+    })
+
+    var brandCategorys = []
+    wx.request({ //查询可选择的品牌分类
+      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategory.do',
+      data: {
+        openId: openId
+      },
+      success(res) {
+        brandCategorys = res.data
+        console.log(res)
+        that.setData({
+          brandCategorys: brandCategorys,
+          brandCategorysArr: brandCategorys
+        })
+      }
+    })
+
     wx.request({
-      //url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
-      url: 'http://localhost:8080/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
+      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
+      //url: 'http://localhost:8080/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
       success(res) {
         var data = res.data
         var agencyId = data.agencyId
@@ -50,37 +85,35 @@ Page({
           goodsPicArr = goodsPic.split(',')
           firstPic = goodsPicArr[0]
         }
+        var index1 = ''
+        var index2 = ''
+        for (var i = 0; i < oneLevelCategorys.length; i++) {
+          if (oneLevelCategorys[i].id == res.data.oneLevelCategory) {
+            index1 = i
+          }
+        }
+        for (var i = 0; i < brandCategorys.length; i++) {
+          if (brandCategorys[i].id == res.data.brandCategory) {
+            index2 = i
+          }
+        }
+        var brandCategory = ''
+        if (brandCategorys[index2] && brandCategorys[index2].categoryName) {
+          brandCategory = brandCategorys[index2].categoryName
+        }
         that.setData({
           goodsPicArr: goodsPicArr,
           tempFilePaths: goodsPicArr,
+          globalTempFilePaths: goodsPicArr,
           goodsName: goodsName,
           goodsId: goodsId,
           goods: res.data,
           firstPic: firstPic,
-          goodsDescription: goodsDescription
-        })
-      }
-    })
-    wx.request({ //查询可选择的类目参数
-      url: 'https://www.caoxianyoushun.com:8443/Agency/category/findOneLevelCategory.do',
-      success(res) {
-        console.log(res)
-        that.setData({
-          oneLevelCategorys: res.data
-        })
-      }
-    })
-
-    wx.request({ //查询可选择的品牌分类
-      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategory.do',
-      data: {
-        openId: openId
-      },
-      success(res) {
-        console.log(res)
-        that.setData({
-          brandCategorys: res.data,
-          brandCategorysArr: res.data
+          goodsDescription: goodsDescription,
+          index1: index1,
+          index2: index2,
+          oneLevelCategory: oneLevelCategorys[index1].text,
+          brandCategory: brandCategory
         })
       }
     })
@@ -250,7 +283,8 @@ Page({
     var currentCity = wx.getStorageSync('currentCity')
     var currentArea = wx.getStorageSync('currentArea')
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/addGoods.do',
+      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/updateGoods.do',
+      //url: 'http://localhost:8080/Agency/goods/updateGoods.do',
       data: {
         openId: openId,
         province: currentProvince,
@@ -265,7 +299,7 @@ Page({
         secondLevelCategory: secondLevelCategory,
         brandCategory: brandCategory,
         seriesCategory: seriesCategory,
-        agencyId: agencyId
+        id: that.data.goodsId
       },
       success(res) {
         wx.navigateTo({
@@ -365,6 +399,47 @@ Page({
     })
   },
 
+  // chooseImage: function () {
+  //   var that = this;
+  //   wx.chooseImage({
+  //     count: 9,
+  //     sizeType: ['original', 'compressed'],
+  //     sourceType: ['album'],
+  //     success(res) {
+  //       // tempFilePath可以作为img标签的src属性显示图片
+  //       const tempFilePaths = res.tempFilePaths
+  //       that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
+  //       // for (var j = 0; j < tempFilePaths.length; j++) {
+  //       //   wx.uploadFile({
+  //       //     url: 'http://47.105.169.49/Agency/upfile',
+  //       //     filePath: tempFilePaths[j],
+  //       //     name: 'fileData',
+  //       //     success: (resp) => {
+  //       //       console.log(resp.data)
+  //       //       wx.setStorageSync(tempFilePaths[j], resp.data)
+  //       //     },
+  //       //     fail: (res) => {
+
+  //       //     }
+  //       //   })
+  //       // }
+
+  //       for (var i = 0; i < res.tempFilePaths.length; i++) {
+  //         for (var j = 0; j < that.data.tempFilePaths.length; j++) {
+  //           if (res.tempFilePaths[i] == that.data.tempFilePaths[j]) {
+  //             res.tempFilePaths[i].splice(i, 1)
+  //           }
+  //         }
+  //       }
+  //       console.log("sss", res.tempFilePaths)
+  //       that.data.tempFilePaths = res.tempFilePaths
+  //       that.setData({
+  //         tempFilePaths: that.data.tempFilePaths
+  //       })
+  //     }
+  //   })
+  // },
+
   chooseImage: function () {
     var that = this;
     wx.chooseImage({
@@ -373,34 +448,18 @@ Page({
       sourceType: ['album'],
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-        that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
-        // for (var j = 0; j < tempFilePaths.length; j++) {
-        //   wx.uploadFile({
-        //     url: 'http://47.105.169.49/Agency/upfile',
-        //     filePath: tempFilePaths[j],
-        //     name: 'fileData',
-        //     success: (resp) => {
-        //       console.log(resp.data)
-        //       wx.setStorageSync(tempFilePaths[j], resp.data)
-        //     },
-        //     fail: (res) => {
-
-        //     }
-        //   })
-        // }
-
-        for (var i = 0; i < res.tempFilePaths.length; i++) {
-          for (var j = 0; j < that.data.tempFilePaths.length; j++) {
-            if (res.tempFilePaths[i] == that.data.tempFilePaths[j]) {
-              res.tempFilePaths[i].splice(i, 1)
-            }
+        var tempFilePaths = res.tempFilePaths
+        var globalTempFilePaths = that.data.tempFilePaths
+        if (globalTempFilePaths.length == 0) {
+          globalTempFilePaths = tempFilePaths
+        } else {
+          for (var i = 0; i < tempFilePaths.length; i++) {
+            globalTempFilePaths.push(tempFilePaths[i])
           }
         }
-        console.log("sss", res.tempFilePaths)
-        that.data.tempFilePaths = res.tempFilePaths
+
         that.setData({
-          tempFilePaths: that.data.tempFilePaths
+          tempFilePaths: globalTempFilePaths
         })
       }
     })
@@ -443,4 +502,15 @@ Page({
       },
     });
   },
+
+  deleteImg: function (e) {
+    console.log(e)
+    var index = e.currentTarget.dataset.id
+    var that = this
+    var globalTempFilePaths = that.data.tempFilePaths
+    globalTempFilePaths.splice(index, 1)
+    that.setData({
+      tempFilePaths: globalTempFilePaths
+    })
+  }
 })
