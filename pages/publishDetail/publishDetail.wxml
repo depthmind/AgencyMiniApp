@@ -20,6 +20,6 @@
   <view>
     <view class='title'>发布时间:{{dateUtil.dateFormat(publishContent.createTime)}}</view>
     <view class='title'>联系电话:{{publishContent.mobilephone}}</view>
-    <button bindtap='makePhoneCall' data-mobilephone='{{mobilephone}}'>拨打电话</button>
+    <button bindtap='makePhoneCall' data-mobilephone='{{publishContent.mobilephone}}'>拨打电话</button>
   </view>
 </view>

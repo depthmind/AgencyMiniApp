@@ -45,6 +45,7 @@
                 </view>
             </view>
             <view class="flex-grow-1 flex-row">
+            <view bindtap="backToAgencyDetail" data-mobilephone='{{agency.mobilephone}}' class="flex-grow-1 flex-y-center flex-x-center buy-now">一键拨号</view>
                 <!-- <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view> -->
                 <!-- <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view> -->
             </view>

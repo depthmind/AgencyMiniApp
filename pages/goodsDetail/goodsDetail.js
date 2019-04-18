@@ -174,5 +174,11 @@ Page({
         })
       }
     })
+  },
+
+  backToAgencyDetail: function () {
+    wx.navigateBack({
+      delta: 2
+    })
   }
 })
