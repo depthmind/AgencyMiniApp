@@ -119,8 +119,9 @@ Page({
   },
 
   myShop: function() {
+    var that = this
     wx.navigateTo({
-      url: '../myShop/myShop',
+      url: '../agencyDetail/agencyDetail?id=' + that.data.agency.id,
     })
   },
 
