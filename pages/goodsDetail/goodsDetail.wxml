@@ -11,7 +11,7 @@
     <view class='description'>{{goodsDescription}}</view>
     <view class="section-title">商品图文</view>
     <view wx:for="{{goodsPicArr}}">
-      <image style="width: 112%; height: 375px; margin-left: -20px;" src='{{goodsPicArr[index]}}'></image>
+      <image style="width: 112%; height: 375px; margin-left: -20px; display:block;" src='{{goodsPicArr[index]}}'></image>
     </view>
   </view>
   <!-- <view class="booking">立即购买</view> -->
