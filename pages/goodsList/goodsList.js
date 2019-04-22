@@ -17,6 +17,7 @@ Page({
     var openId = userInfo.openId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsByOpenId.do',
+      //url: 'http://localhost:8080/Agency/goods/findGoodsByOpenId.do',
       data: {
         openId: openId
       },
@@ -92,6 +93,87 @@ Page({
     var goodsId = e.currentTarget.dataset.goodsId
     wx.navigateTo({
       url: '../goodsEdit/goodsEdit?goodsId=' + goodsId,
+    })
+  },
+
+  delete: function (e) {
+    console.log(e)
+    var that = this
+    var brandId = e.currentTarget.dataset.id
+    that.setData({
+      deletedBrandId: brandId
+    })
+    wx.showModal({
+      title: '提示',
+      content: '是否删除？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/goods/deleteGoods.do',
+            //url: 'http://localhost:8080/Agency/goods/deleteGoods.do',
+            data: {
+              id: brandId
+            },
+            success(res) {
+              that.onLoad()
+            }
+          })
+        }
+      }
+    })
+  },
+
+  offline: function (e) {
+    console.log(e)
+    var that = this
+    var brandId = e.currentTarget.dataset.id
+    that.setData({
+      deletedBrandId: brandId
+    })
+    wx.showModal({
+      title: '提示',
+      content: '是否下架？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/goods/offlineGoods.do',
+            //url: 'http://localhost:8080/Agency/goods/offlineGoods.do',
+            data: {
+              id: brandId
+            },
+            success(res) {
+              that.onLoad()
+            }
+          })
+        }
+      }
+    })
+  },
+
+  online: function (e) {
+    console.log(e)
+    var that = this
+    var brandId = e.currentTarget.dataset.id
+    that.setData({
+      deletedBrandId: brandId
+    })
+    wx.showModal({
+      title: '提示',
+      content: '是否上架？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/goods/onlineGoods.do',
+            //url: 'http://localhost:8080/Agency/goods/onlineGoods.do',
+            data: {
+              id: brandId
+            },
+            success(res) {
+              that.onLoad()
+            }
+          })
+        }
+      }
     })
   },
 })

@@ -93,5 +93,32 @@ Page({
     wx.navigateTo({
       url: '/pages/publishDetail/publishDetail?id=' + id,
     })
-  }
+  },
+
+  delete: function (e) {
+    console.log(e)
+    var that = this
+    var brandId = e.currentTarget.dataset.id
+    that.setData({
+      deletedBrandId: brandId
+    })
+    wx.showModal({
+      title: '提示',
+      content: '是否删除？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/publish/deletePublishContent.do',
+            //url: 'http://localhost:8080/Agency/publish/deletePublishContent.do',
+            data: {
+              id: brandId
+            },
+            success(res) {
+              that.onLoad()
+            }
+          })
+        }
+      }
+    })
+  },
 })

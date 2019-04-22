@@ -193,6 +193,7 @@ display: inline-block;
   border-bottom: 1rpx solid #dedede;
   margin: 0 40rpx;
   padding: 20rpx 0;
+  position: relative;
 }
 
 .content-item .name {

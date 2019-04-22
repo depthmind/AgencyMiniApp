@@ -12,23 +12,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    var userInfo = wx.getStorageSync('userInfo')
-    var openId = userInfo.openId
-    var unionId = userInfo.unionId
-    wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategory.do',
-      //url: 'http://localhost:8080/Agency/brand/findBrandCategory.do',
-      data: {
-        openId: openId
-      },
-      success(res) {
-        console.log(res)
-        that.setData({
-          categorys: res.data
-        })
-      }
-    })
     // wx.request({
     //   url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavoriteAgency.do',
     //   data: {
@@ -56,7 +39,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var openId = userInfo.openId
+    var unionId = userInfo.unionId
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategory.do',
+      //url: 'http://localhost:8080/Agency/brand/findBrandCategory.do',
+      data: {
+        openId: openId
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          categorys: res.data
+        })
+      }
+    })
   },
 
   /**
@@ -174,11 +173,11 @@ Page({
     })
   },
 
-  seriesCategorys: function(e) {
-    wx.navigateTo({
-      url: '/pages/seriesCategoryList/seriesCategoryList?id=' + e.currentTarget.dataset.brandId,
-    })
-  },
+  // seriesCategorys: function(e) {
+  //   wx.navigateTo({
+  //     url: '/pages/seriesCategoryList/seriesCategoryList?id=' + e.currentTarget.dataset.brandId,
+  //   })
+  // },
 
   addBrandCategory: function (e) {
     var that = this
@@ -191,13 +190,21 @@ Page({
     console.log(e)
     var that = this
     var brandId = e.currentTarget.dataset.id
-    wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/deleteBrandCategoryById.do',
-      data: {
-        id: brandId
-      },
-      success (res) {
-        that.onLoad()
+    wx.showModal({
+      title: '提示',
+      content: '是否删除？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/brand/deleteBrandCategoryById.do',
+            data: {
+              id: brandId
+            },
+            success(res) {
+              that.onShow()
+            }
+          })
+        }
       }
     })
   }

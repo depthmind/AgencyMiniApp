@@ -8,6 +8,7 @@
             <image class='image' mode='scaleToFill' src='{{item}}'></image>
           </view>
         </view>
+        <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
       </view>
     </view>
 </view>
