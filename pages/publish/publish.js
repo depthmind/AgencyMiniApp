@@ -274,6 +274,12 @@ Page({
       mask: true
     })
     var imagePath = wx.getStorageSync('images')
+    if (!currentProvince) {
+      that.resetLocation()
+    }
+    var currentProvince = wx.getStorageSync('currentProvince')
+    var currentCity = wx.getStorageSync('currentCity')
+    var currentArea = wx.getStorageSync('currentArea')
     var parameter = 'address=' + data.address + '&contactName=' + data.contactName + '&mobilephone=' + data.mobilephone
       + '&description=' + data.description + '&category=' + that.data.choosedCategory + '&openId=' + openId + '&province=' + currentProvince + '&city=' + currentCity + '&area=' + currentArea + '&avatarUrl=' + avatarUrl + '&nickName=' + nickName
     that.data.parameter = parameter
@@ -490,6 +496,35 @@ Page({
     globalTempFilePaths.splice(index, 1)
     that.setData({
       tempFilePaths: globalTempFilePaths
+    })
+  },
+
+  resetLocation: function () { //再次获取定位
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+        console.log("latitude = " + latitude)
+        console.log("longitude = " + longitude)
+        wx.setStorageSync("latitude", latitude)
+        wx.setStorageSync("longitude", longitude)
+        console.log("speed = " + speed)
+        console.log("accuracy = " + accuracy)
+        wx.request({
+          url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=EBNBZ-ELC64-536UJ-XGRBP-FTFGK-OZBMF&location=' + latitude + ',' + longitude,
+          success(locationRes) {
+            console.log("location_res")
+            console.log(locationRes)
+
+            wx.setStorageSync('currentProvince', locationRes.data.result.address_component.province)
+            wx.setStorageSync('currentCity', locationRes.data.result.address_component.city)
+            wx.setStorageSync('currentArea', locationRes.data.result.address_component.district)
+          }
+        })
+      }
     })
   }
 })

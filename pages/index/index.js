@@ -65,18 +65,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this
+    that.setData({
+      isNotAuthorized: app.globalData.isNotAuthorized
+    })
     if (this.data.changeLocationFlag) {
       this.setData({
         recommendOffset: 0,
         recommends: [],
         agencyOffset: 0,
         agencyList: [],
+        agencyes: [],
         publishOffset: 0,
         publishList: [],
         changeLocationFlag: false
       })
-      this.init()
-      this.agencyList()
+      that.init()
+      that.agencyList()
     }
   },
 
