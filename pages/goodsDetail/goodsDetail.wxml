@@ -3,8 +3,8 @@
   <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
   <image class="itemimage" src='{{firstPic}}'></image>
     <view class="title">名称：{{goods.goodsName}}</view>
-    <view class="price">价格：￥{{goods.price}}</view>
-    <view class="stock">库存：{{goods.stock}}</view>
+    <!-- <view class="price">价格：￥{{goods.price}}</view>
+    <view class="stock">库存：{{goods.stock}}</view> -->
   </view>
   <view style="background: #fff; margin: 0 -40rpx 0px -40rpx; padding: 20rpx 40rpx;">
     <view class="section-title">商品介绍</view>

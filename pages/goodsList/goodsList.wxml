@@ -16,7 +16,7 @@
                   <view class='agencylist' wx:for="{{goods}}" wx:key="{{item.id}}" bindtap='openGoods' data-goods-id='{{item.id}}'>
                     <image class="itemimage" src='{{item.thumbnail}}'></image>
                     <text class="name">{{item.goodsName}}</text>
-                    <text class="name">￥{{item.price}}</text>
+                    <!-- <text class="name">￥{{item.price}}</text> -->
                     <text class="address">{{item.area}}</text>
                   </view>
                 </scroll-view>
