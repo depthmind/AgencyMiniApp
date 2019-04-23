@@ -3,15 +3,16 @@
   <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
   <image class="itemimage" src='{{firstPic}}'></image>
     <view class="title">名称：{{goods.goodsName}}</view>
-    <!-- <view class="price">价格：￥{{goods.price}}</view>
-    <view class="stock">库存：{{goods.stock}}</view> -->
+    <view class="price" style='visibility:hidden;'>价格：￥{{goods.price}}</view>
+    <view class="stock" style='visibility:hidden;'>库存：{{goods.stock}}</view>
+    
   </view>
   <view style="background: #fff; margin: 0 -40rpx 0px -40rpx; padding: 20rpx 40rpx;">
     <view class="section-title">商品介绍</view>
     <view class='description'>{{goodsDescription}}</view>
     <view class="section-title">商品图文</view>
     <view wx:for="{{goodsPicArr}}">
-      <image style="width: 112%; height: 375px; margin-left: -20px; display:block;" src='{{goodsPicArr[index]}}'></image>
+      <image mode='widthFix' style="width: 112%; height: 375px; margin-left: -20px; display:block;" src='{{goodsPicArr[index]}}'></image>
     </view>
   </view>
   <!-- <view class="booking">立即购买</view> -->

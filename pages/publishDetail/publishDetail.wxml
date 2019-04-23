@@ -14,7 +14,7 @@
   </view>
   <view>
     <view wx:for="{{imagesArr}}">
-      <image src='{{item}}'></image>
+      <image mode='widthFix' style="width: 112%; height: 375px; margin-left: -20px; display:block;" src='{{item}}'></image>
     </view>
   </view>
   <view>
