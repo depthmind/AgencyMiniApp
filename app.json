@@ -2,8 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/goodsList/goodsList",
-    "pages/publish/publish",
     "pages/agencyCenter/agencyCenter",
+    "pages/mine/mine",
+    "pages/publish/publish",
     "pages/myShop/myShop",
     "pages/addContact/addContact",
     "pages/agencyList/agencyList",
@@ -24,7 +25,6 @@
     "pages/logs/logs",
     "pages/publishDetail/publishDetail",
     "pages/paySuccess/paySuccess",
-    "pages/mine/mine",
     "pages/map/map",
     "pages/aboutUs/aboutUs",
     "pages/help/help",

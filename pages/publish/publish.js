@@ -218,6 +218,12 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var avatarUrl = userInfo.avatarUrl
     var nickName = userInfo.nickName
+    var ranges = [
+      '\ud83c[\udf00-\udfff]',
+      '\ud83d[\udc00-\ude4f]',
+      '\ud83d[\ude80-\udeff]'
+    ]
+    nickName = nickName.replace(new RegExp(ranges.join('|'), 'g'), '')
     var formId = e.detail.formId
     wx.request({ //保存formId发送模板消息时使用
       url: 'https://www.caoxianyoushun.com:8443/Agency/template/saveFormIdForTemplate',

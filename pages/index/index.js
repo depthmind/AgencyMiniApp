@@ -103,7 +103,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    var that = this
+    wx.showToast({
+      title: '努力加载中！！！',
+    })
+    that.init()
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -266,10 +271,10 @@ Page({
         console.log(agencyRes)
         var agency = agencyRes.data
         if (agency.length < 1) {
-          wx.showToast({
-            title: '没有了。。。',
-            icon: "none"
-          })
+          // wx.showToast({
+          //   title: '没有了。。。',
+          //   icon: "none"
+          // })
         } else {
           that.setData({
             agencyList: that.data.agencyList.concat(agency)
@@ -316,10 +321,10 @@ Page({
         console.log(publishRes)
         var publish = publishRes.data
         if (publish.length < 1) {
-          wx.showToast({
-            title: '没有了。。。',
-            icon: "none"
-          })
+          // wx.showToast({
+          //   title: '没有了。。。',
+          //   icon: "none"
+          // })
         } else {
           for (var i = 0; i < publish.length; i++) {
             if (publish[i].images != null) {
@@ -539,6 +544,12 @@ Page({
 
   init: function () {
     var that = this;
+    // that.setData({
+    //   publishList: []
+    // })
+    // that.setData({
+    //   publishOffset: that.data.publishOffset + that.data.rows
+    // })
     //获取轮播图
     that.getAds()
 
@@ -570,7 +581,7 @@ Page({
     })
 
     //根据tab类型加载内容
-    that.getContents()
+    //that.getContents()
 
 
     wx.request({

@@ -18,6 +18,9 @@
                     <text class="name">{{item.goodsName}}</text>
                     <!-- <text class="name">￥{{item.price}}</text> -->
                     <text class="address">{{item.area}}</text>
+                    <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
+                    <view catchtap='offline' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 52px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;" wx:if="{{item.online == 1}}">下架</view>
+                    <view catchtap='online' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 52px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;" wx:else>上架</view>
                   </view>
                 </scroll-view>
             </swiper-item>
