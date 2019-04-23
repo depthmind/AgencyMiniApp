@@ -218,6 +218,12 @@ formSubmit: function (e) {
     that.showModal("请填写商品介绍")
     return;
   }
+  wx.showToast({
+    title: '拼命加载中',
+    image: '/images/loading.png',
+    duration: 3000,
+    mask: true
+  })
   var oneLevelCategory = that.data.choosedOneLevelCategory
   var secondLevelCategory = that.data.choosedSecondLevelCategory
   var brandCategory = that.data.choosedBrandCategory
@@ -231,30 +237,11 @@ formSubmit: function (e) {
   var currentProvince = wx.getStorageSync('currentProvince')
   var currentCity = wx.getStorageSync('currentCity')
   var currentArea = wx.getStorageSync('currentArea')
-  wx.request({
-    url: 'https://www.caoxianyoushun.com:8443/Agency/goods/addGoods.do',
-    data: {
-      openId: openId,
-      province: currentProvince,
-      city: currentCity,
-      area: currentArea,
-      goodsName: goodsName,
-      goodsDescription: goodsDescription,
-      price: price,
-      stock: stock,
-      goodsPic: goodsPic,
-      oneLevelCategory: oneLevelCategory,
-      secondLevelCategory: secondLevelCategory,
-      brandCategory: brandCategory,
-      seriesCategory: seriesCategory,
-      agencyId: agencyId
-    },
-    success(res) {
-      wx.navigateTo({
-        url: '../../pages/goodsList/goodsList',
-      })
-    }
-  })
+  var parameter = 'openId=' + openId + '&province=' + currentProvince + '&city=' + currentCity + '&area=' + currentArea + '&goodsName=' + goodsName + '&goodsDescription=' + goodsDescription + '&price=' + price + '&stock=' + stock + '&oneLevelCategory=' + oneLevelCategory + '&secondLevelCategory=' + secondLevelCategory + '&brandCategory=' + brandCategory + '&agencyId=' + agencyId
+  that.data.parameter = parameter
+  var tempFilePaths = that.data.tempFilePaths
+  that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
+  
 },
 
   checkLabs1: function (e) {
@@ -347,6 +334,33 @@ formSubmit: function (e) {
     })
   },
 
+  // chooseImage: function () {
+  //   var that = this;
+  //   wx.chooseImage({
+  //     count: 9,
+  //     sizeType: ['original', 'compressed'],
+  //     sourceType: ['album'],
+  //     success(res) {
+  //       // tempFilePath可以作为img标签的src属性显示图片
+  //       const tempFilePaths = res.tempFilePaths
+  //       that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
+
+  //       for (var i = 0; i < res.tempFilePaths.length; i++) {
+  //         for (var j = 0; j < that.data.tempFilePaths.length; j++) {
+  //           if (res.tempFilePaths[i] == that.data.tempFilePaths[j]) {
+  //             res.tempFilePaths[i].splice(i, 1)
+  //           }
+  //         }
+  //       }
+  //       console.log("sss", res.tempFilePaths)
+  //       that.data.tempFilePaths = res.tempFilePaths
+  //       that.setData({
+  //         tempFilePaths: that.data.tempFilePaths
+  //       })
+  //     }
+  //   })
+  // },
+
   chooseImage: function () {
     var that = this;
     wx.chooseImage({
@@ -355,34 +369,18 @@ formSubmit: function (e) {
       sourceType: ['album'],
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-        that.uploadDIY(tempFilePaths, 0, 0, 0, tempFilePaths.length)
-        // for (var j = 0; j < tempFilePaths.length; j++) {
-        //   wx.uploadFile({
-        //     url: 'http://47.105.169.49/Agency/upfile',
-        //     filePath: tempFilePaths[j],
-        //     name: 'fileData',
-        //     success: (resp) => {
-        //       console.log(resp.data)
-        //       wx.setStorageSync(tempFilePaths[j], resp.data)
-        //     },
-        //     fail: (res) => {
-
-        //     }
-        //   })
-        // }
-
-        for (var i = 0; i < res.tempFilePaths.length; i++) {
-          for (var j = 0; j < that.data.tempFilePaths.length; j++) {
-            if (res.tempFilePaths[i] == that.data.tempFilePaths[j]) {
-              res.tempFilePaths[i].splice(i, 1)
-            }
+        var tempFilePaths = res.tempFilePaths
+        var globalTempFilePaths = that.data.tempFilePaths
+        if (globalTempFilePaths.length == 0) {
+          globalTempFilePaths = tempFilePaths
+        } else {
+          for (var i = 0; i < tempFilePaths.length; i++) {
+            globalTempFilePaths.push(tempFilePaths[i])
           }
         }
-        console.log("sss", res.tempFilePaths)
-        that.data.tempFilePaths = res.tempFilePaths
+        console.log("sss", tempFilePaths)
         that.setData({
-          tempFilePaths: that.data.tempFilePaths
+          tempFilePaths: globalTempFilePaths
         })
       }
     })
@@ -399,16 +397,15 @@ formSubmit: function (e) {
       //   'pictureAid': albumId
       // },
       success: (resp) => {
-        console.log(resp)
-        if (wx.getStorageSync(filePaths[i]) != undefined) {
-          wx.setStorageSync(filePaths[i], resp.data)
-        }
-        var tempUploadImagePath = that.data.uploadImagePath
-        if (tempUploadImagePath == '') {
-          that.data.uploadImagePath = resp.data
+        var images = that.data.images
+        if (images) {
+          images = images + ',' + resp.data
         } else {
-          that.data.uploadImagePath = tempUploadImagePath + ',' + resp.data
+          images = resp.data
         }
+        that.setData({
+          images: images
+        })
         successUp++;
       },
       fail: (res) => {
@@ -417,12 +414,33 @@ formSubmit: function (e) {
       complete: () => {
         i++;
         if (i == length) {
-          //this.showToast('总共' + successUp + '张上传成功,' + failUp + '张上传失败！');
+          var parameter = that.data.parameter
+          parameter = parameter + '&goodsPic=' + encodeURIComponent(that.data.images)
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/goods/addGoods.do?' + parameter,
+            //url: 'http://localhost:8080/Agency/goods/addGoods.do?' + parameter,
+            success(res) {
+              wx.navigateTo({
+                url: '../../pages/goodsList/goodsList',
+              })
+            }
+          })
         }
         else {  //递归调用uploadDIY函数
           this.uploadDIY(filePaths, successUp, failUp, i, length);
         }
       },
     });
+  },
+
+  deleteImg: function (e) {
+    console.log(e)
+    var index = e.currentTarget.dataset.id
+    var that = this
+    var globalTempFilePaths = that.data.tempFilePaths
+    globalTempFilePaths.splice(index, 1)
+    that.setData({
+      tempFilePaths: globalTempFilePaths
+    })
   },
 })

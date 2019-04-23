@@ -4,7 +4,7 @@
         <swiper bindchange="swiperChange" class="h-100" current="{{swiper_current}}" duration="300">
             <swiper-item>
                 <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
-                  <view class='agencylist' wx:for="{{categorys}}" wx:key="{{item.id}}" bindtap='seriesCategorys'           data-brand-id='{{item.id}}'>
+                  <view class='agencylist' wx:for="{{categorys}}" wx:key="{{item.id}}" bindtap='editBrandCategory'           data-brand-id='{{item.id}}'>
                         <text class="name">品牌名称：{{item.categoryName}}</text>
                         <text class="name">添加时间：{{dateUtil.dateFormat(item.createTime)}}</text>
                         <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 22px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>

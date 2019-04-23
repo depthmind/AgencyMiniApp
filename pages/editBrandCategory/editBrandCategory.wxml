@@ -1,0 +1,11 @@
+<view>
+  <view class='form'>
+      <form bindsubmit="formSubmit" report-submit='true'>
+        <view class='form-item'>
+            <text class='label'>品牌分类</text> 
+            <input name="categoryName" placeholder="填写分类名称" value='{{brandCategory.categoryName}}'></input>
+        </view>
+        <button form-type='submit'>立即修改</button>
+      </form>
+    </view>
+</view>

@@ -55,8 +55,10 @@
         </view>
         <view class='form-item' style="padding-top: 25px; overflow:hidden;">
           <text class='label' style="top:0;">上传图片<text>*</text></text> 
-          <view wx:for="{{tempFilePaths}}"wx:key="{{index}}" style="width:180rpx; float:left; margin: 20px 6rpx 0;">
-             <image style="width: 180rpx; height: 180rpx; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'></image>
+          <view wx:for="{{tempFilePaths}}"wx:key="{{index}}" style="width:180rpx; float:left; margin: 20px 6rpx 0; position:relative;">
+             <image style="width: 180rpx; height: 180rpx; background-color: #eeeeee;" src='{{item}}' data-id='{{index}}' bindlongtap='deleteImg'>
+              <text style='width: 80rpx; height: 80rpx; overflow: hidden; position: absolute; left:104rpx; border: 0; top: -6rpx; font-size: 16px' data-id='{{index}}' bindtap='deleteImg'>删除</text>
+             </image>
           </view>
           <view style="width: 180rpx; height: 180rpx; background-color: #eeeeee; margin: 20px 0; float:left;" bindtap='chooseImage'>
             <image style="width: 180rpx; height: 180rpx; background-color: #eeeeee;"  src="{{imagePath}}"></image>

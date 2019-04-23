@@ -33,6 +33,7 @@
                         <image class="itemimage" src='{{item.thumbnail}}'></image>
                         <text class="name">{{item.goodsName}}</text>
                         <text class="address">￥{{item.price}}</text>
+                        <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
                   </view>
                 </scroll-view>
             </swiper-item>
@@ -83,6 +84,7 @@
                     <image class="phone" src='{{phoneImage}}'></image>
                     <text class="name">{{item.agencyName}}</text>
                     <text class="address">{{item.address}}</text>
+                    <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
                   </view>
                 </scroll-view>
             </swiper-item>

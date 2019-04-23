@@ -18,20 +18,32 @@ Page({
     var unionId = userInfo.unionId
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavoriteGoods.do',
+      //url: 'http://localhost:8080/Agency/favorite/findFavoriteGoods.do',
       data: {
         openId: openId,
         type: '1',
       },
       success(res) {
         console.log(res)
+        var favoriteGoods = res.data
+        if (favoriteGoods) {
+          for (var i = 0; i < favoriteGoods.length; i++) {
+            if (favoriteGoods[i].goodsPic.indexOf(',') > -1) {
+              favoriteGoods[i].thumbnail = favoriteGoods[i].goodsPic.split(',')[0]
+            } else {
+              favoriteGoods[i].thumbnail = goodsPic
+            }
+          }
+        }
         that.setData({
-          favoriteGoods: res.data,
+          favoriteGoods: favoriteGoods,
           swiper_current: 0
         })
       }
     })
     wx.request({
       url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavoriteAgency.do',
+      //url: 'http://localhost:8080/Agency/favorite/findFavoriteAgency.do',
       data: {
         openId: openId,
         type: '1',
@@ -180,5 +192,33 @@ Page({
     wx.navigateTo({
       url: '/pages/agencyDetail/agencyDetail?id=' + e.currentTarget.dataset.cid,
     })
-  }
+  },
+
+  delete: function (e) {
+    console.log(e)
+    var that = this
+    var id = e.currentTarget.dataset.id
+    // that.setData({
+    //   deletedBrandId: brandId
+    // })
+    wx.showModal({
+      title: '提示',
+      content: '是否删除？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/deleteFavoriteById.do',
+            //url: 'http://localhost:8080/Agency/favorite/deleteFavoriteById.do',
+            data: {
+              id: id
+            },
+            success(res) {
+              that.onLoad()
+            }
+          })
+        }
+      }
+    })
+  },
+
 })

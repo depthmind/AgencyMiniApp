@@ -186,6 +186,13 @@ Page({
     })
   },
 
+  editBrandCategory: function (e) {
+    var brandId = e.currentTarget.dataset.brandId
+    wx.navigateTo({
+      url: '/pages/editBrandCategory/editBrandCategory?id=' + brandId,
+    })
+  },
+
   delete: function (e){
     console.log(e)
     var that = this
