@@ -147,5 +147,60 @@ Page({
     wx.navigateTo({
       url: '../myShop/myShop',
     })
-  }
+  },
+
+  daifukuan: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  daifahuo: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  yiwancheng: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  shouhou: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  jinrishouyi: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  zuorishouyi: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  zongshouyi: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  ketixian: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
+  tixian: function () {
+    wx.showToast({
+      icon: 'none',
+      title: '《暂未开放》',
+    })
+  },
 })

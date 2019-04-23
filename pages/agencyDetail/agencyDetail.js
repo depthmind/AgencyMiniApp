@@ -100,12 +100,12 @@ Page({
         if (favorite && favorite.status == '1') {
           that.setData({
             isFavorited: true,
-            favorite_img_url: '../../images/收藏red.png'
+            favorite_img_url: '/images/shoucangred.png'
           })
         } else {
           that.setData({
             isFavorited: false,
-            favorite_img_url: '../../images/收藏.png'
+            favorite_img_url: '/images/shoucang.png'
           })
         }
       }
@@ -188,7 +188,7 @@ Page({
       success(res) {
         that.setData({
           isFavorited: true,
-          favorite_img_url: '../../images/收藏red.png'
+          favorite_img_url: '/images/shoucangred.png'
         })
       }
     })
@@ -212,7 +212,7 @@ Page({
       success(res) {
         that.setData({
           isFavorited: false,
-          favorite_img_url: '../../images/收藏.png'
+          favorite_img_url: '../../images/shoucang.png'
         })
       }
     })

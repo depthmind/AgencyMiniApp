@@ -29,6 +29,7 @@ Page({
         })
         wx.request({ //查到联系人列表
           url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAgnecyContactByAgencyId.do',
+          //url: 'http://localhost:8080/Agency/agency/findAgnecyContactByAgencyId.do',
           data: {
             agencyId: agencyId
           },
@@ -55,7 +56,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**
@@ -177,6 +178,40 @@ Page({
     console.log(e)
     wx.navigateTo({
       url: '/pages/agencyDetail/agencyDetail?id=' + e.currentTarget.dataset.cid,
+    })
+  },
+
+  delete: function (e) {
+    console.log(e)
+    var that = this
+    var brandId = e.currentTarget.dataset.id
+    that.setData({
+      deletedBrandId: brandId
+    })
+    wx.showModal({
+      title: '提示',
+      content: '是否删除？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/agency/deleteAgencyContact.do',
+            //url: 'http://localhost:8080/Agency/agency/deleteAgencyContact.do',
+            data: {
+              id: brandId
+            },
+            success(res) {
+              that.onLoad()
+            }
+          })
+        }
+      }
+    })
+  },
+
+  editContact: function (e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/editContact/editContact?id=' + id,
     })
   }
 })

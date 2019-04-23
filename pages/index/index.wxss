@@ -232,8 +232,8 @@ display: inline-block;
 }
 
 .content-item .phone{
-  width:36px;
-  height: 36px;
+  width:46px;
+  height: 46px;
   position: absolute;
   right: 10px;
 }
@@ -279,10 +279,10 @@ display: inline-block;
   color:#999;
 }
 .agencylist .phone{
-  width:36px;
-  height: 36px;
+  width:46px;
+  height: 46px;
   position: absolute;
-  top:17px;
+  top:7px;
   right: 10px;
 }
 

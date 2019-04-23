@@ -1,6 +1,6 @@
 <view>
   <view>
-    <image src="../../images/partner.jpg"></image>
+    <image src="/images/partner.jpg"></image>
     <view>欢迎加入<text style="color:#e6424b;">代理商供货信息</text>，请填写申请信息</view>
   </view>
 
@@ -9,17 +9,17 @@
     <button bindtap='introduceAgency'>邀请代理商入驻</button>
     <view style="margin: 15px 0;">我的收益</view>
     <view class="shouyi" bindtap='redirctToCommission' style=" border-right: 1px dotted #ed0d3c;">
-      <image src="../../images/佣金.png"></image>
+      <image src="/images/佣金.png"></image>
       <view>分销佣金</view>
       <text style="color: #ecd644;">0元</text>
     </view>
     <view class="shouyi" bindtap='redirctToMyTeam' style=" border-right: 1px dotted #ed0d3c;">
-      <image src="../../images/团队.png"></image>
+      <image src="/images/团队.png"></image>
       <view>我的团队</view>
       <text style="color: #ff2e05;">0人</text>
     </view>
     <view class="shouyi" bindtap='redirctToCashWithdrawalDetail'>
-      <image src="../../images/明细.png"></image>
+      <image src="/images/明细.png"></image>
       <view>提现明细</view>
       <text style="color: #41c6fe;">0笔</text>
     </view>

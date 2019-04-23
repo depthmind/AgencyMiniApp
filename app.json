@@ -39,7 +39,8 @@
     "pages/seriesCategoryList/seriesCategoryList",
     "pages/updateAgencyDescription/updateAgencyDescription",
     "pages/goodsEdit/goodsEdit",
-    "pages/editBrandCategory/editBrandCategory"
+    "pages/editBrandCategory/editBrandCategory",
+    "pages/editContact/editContact"
   ],
   "permission": {
     "scope.userLocation": {

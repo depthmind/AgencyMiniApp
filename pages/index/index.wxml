@@ -20,7 +20,7 @@
     <view class='header'>
       <view class="location" bindtap='{{isCooperation==true?"changeLocation":""}}'>
         <text class='location-text'>{{currentArea}}</text>
-        <image class='location-pull' mode='widthFix' src='../../images/pull.png'/>
+        <image class='location-pull' mode='widthFix' src='/images/pull.png'/>
       </view>
       <view class='search' bindtap='navigateToSearchPage'>
         <icon class="searchcion" size='35rpx' type='search'></icon>

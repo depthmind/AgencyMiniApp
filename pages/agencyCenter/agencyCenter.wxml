@@ -18,19 +18,19 @@
     </view> -->
     <view class="panel-myorder">
       <view class="title">我的订单</view>
-      <view class="order-tab">
+      <view class="order-tab" bindtap='daifukuan'>
         <image src="{{orderImage1}}"></image>
         <view>待付款</view>
       </view>
-      <view class="order-tab">
+      <view class="order-tab" bindtap='daifahuo'>
         <image src="{{orderImage2}}"></image>
         <view>待发货</view>
       </view>
-      <view class="order-tab">
+      <view class="order-tab" bindtap='yiwancheng'>
         <image src="{{orderImage4}}"></image>
         <view>已完成</view>
       </view>
-      <view class="order-tab">
+      <view class="order-tab" bindtap='shouhou'>
         <image src="{{orderImage5}}"></image>
         <view>售后</view>
       </view>
@@ -38,23 +38,23 @@
   </view>
   <view class="panel-yue">
     <view class="title">我的余额</view>
-    <view class="item">
+    <view class="item" bindtap='jinrishouyi'>
       <view>今日收益</view>
       <text>0</text>
     </view>
-    <view class="item">
+    <view class="item" bindtap='zuorishouyi'>
       <view>昨日收益</view>
       <text>0</text>
     </view>
-    <view class="item">
+    <view class="item" bindtap='zongshouyi'>
       <view>总收益</view>
       <text>0</text>
     </view>
-    <view class="item">
+    <view class="item" bindtap='ketixian'>
       <view>可体现</view>
       <text>0</text>
     </view>
-    <button>提现</button>
+    <button bindtap='tixian'>提现</button>
   </view>
 
   <view class="panel-yue">
@@ -74,7 +74,7 @@
   </view>
 
   <view class="promote">
-    <view class="title">广告位购买</view>
+    <view class="title">广告位购买(暂未开放)</view>
     <view class="weui-cell" bindtap='agencySignin'>
       <!-- <view class="weui-cell-hd">
         <image class="media-box-thumb" src="../../images/商家列表.png"></image>

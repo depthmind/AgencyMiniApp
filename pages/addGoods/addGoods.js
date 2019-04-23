@@ -206,14 +206,14 @@ formSubmit: function (e) {
     that.showModal("请填写商品名称")
     return;
   }
-  if (data.price == '') {
-    that.showModal("请填写价格")
-    return;
-  }
-  if (data.stock == '') {
-    that.showModal("请填写商品数量")
-    return;
-  }
+  // if (data.price == '') {
+  //   that.showModal("请填写价格")
+  //   return;
+  // }
+  // if (data.stock == '') {
+  //   that.showModal("请填写商品数量")
+  //   return;
+  // }
   if (data.goodsDescription == '') {
     that.showModal("请填写商品介绍")
     return;

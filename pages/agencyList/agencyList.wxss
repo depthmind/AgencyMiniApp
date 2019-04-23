@@ -23,8 +23,8 @@
 	color:#999;
 }
 .agencylist .phone{
-	width:32px;
-	height: 32px;
+	width:46px;
+	height: 46px;
 	position: absolute;
 	top:20px;
 	right: 10px;

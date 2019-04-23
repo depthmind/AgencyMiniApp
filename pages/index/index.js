@@ -67,7 +67,7 @@ Page({
   onShow: function() {
     var that = this
     that.setData({
-      isNotAuthorized: app.globalData.isNotAuthorized
+      isNotAuthorized: false
     })
     if (this.data.changeLocationFlag) {
       this.setData({

@@ -37,11 +37,11 @@
             <text class='label'>商品名称</text> 
             <input name="goodsName" placeholder="商品名称"></input>
         </view>
-        <view class='form-item'>
+        <view class='form-item' style='display:none;'>
             <text class='label'>商品价格</text> 
             <input name="price" placeholder="商品价格"></input>
         </view>
-        <view class='form-item'>
+        <view class='form-item' style='display:none;'>
             <text class='label'>商品数量</text> 
             <input name="stock" placeholder="商品数量"></input>
         </view>

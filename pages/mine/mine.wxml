@@ -28,28 +28,28 @@
     </view> -->
     <view class="weui-cell" bindtap='publishList'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/信息.png"></image>
+        <image class="media-box-thumb" src="/images/xinxi.png"></image>
       </view>
       <view class="weui-cell-bd">我的帖子</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='myFavorite'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/收藏.png"></image>
+        <image class="media-box-thumb" src="/images/shoucang.png"></image>
       </view>
       <view class="weui-cell-bd">我的收藏</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='agencySignin'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/商家列表.png"></image>
+        <image class="media-box-thumb" src="/images/shangjialiebiao.png"></image>
       </view>
       <view class="weui-cell-bd">商家入驻</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='openAgencyCenter'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/商家认证.png"></image>
+        <image class="media-box-thumb" src="/images/shangjiarenzhen.png"></image>
       </view>
       <view class="weui-cell-bd">商家入口</view>
       <span class="weui-cell-ft"></span>
@@ -70,21 +70,21 @@
     </view> -->
     <view class="weui-cell" bindtap='openContact'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/联系.png"></image>
+        <image class="media-box-thumb" src="/images/lianxi.png"></image>
       </view>
       <view class="weui-cell-bd">联系我们</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='help'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/帮助.png"></image>
+        <image class="media-box-thumb" src="/images/bangzhu.png"></image>
       </view>
       <view class="weui-cell-bd">帮助中心</view>
       <span class="weui-cell-ft"></span>
     </view>
     <view class="weui-cell" bindtap='aboutUs'>
       <view class="weui-cell-hd">
-        <image class="media-box-thumb" src="../../images/关于我们.png"></image>
+        <image class="media-box-thumb" src="/images/guanyuwomen.png"></image>
       </view>
       <view class="weui-cell-bd">关于我们</view>
       <span class="weui-cell-ft"></span>

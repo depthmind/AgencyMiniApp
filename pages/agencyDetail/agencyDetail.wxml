@@ -50,7 +50,7 @@
                 </navigator>
                 <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="switchTab" url="/pages/index/index">
                     <view>
-                        <image src="../../images/首页.png"></image>
+                        <image src="/images/shouye.png"></image>
                         <text>首页</text>
                     </view>
                 </navigator>
@@ -68,8 +68,8 @@
                 </view>
                 <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="navigate" url="/pages/agencyCategory/agencyCategory?agencyId={{agencyId}}&mobilephone={{agency.mobilephone}}">
                     <view>
-                        <image src="../../images/fenlei.png"></image>
-                        <text>分类</text>
+                        <image src="/images/fenlei.png"></image>
+                        <text>产品分类</text>
                     </view>
                 </navigator>
             </view>
