@@ -180,17 +180,33 @@ Page({
   },
 
   openGoods: function (e) {
-    console.log(e)
-    var goodsId = e.currentTarget.dataset.goodsId
+    var that = this
+    var favoriteId = e.currentTarget.dataset.id
+    var goodsArr = that.data.favoriteGoods
+    var goods
+    for (var i = 0; i < goodsArr.length; i++) {
+      if (goodsArr[i].favoriteId == favoriteId) {
+        goods = goodsArr[i]
+      }
+    }
+    
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?goodsId=' + goodsId,
+      url: '../goodsDetail/goodsDetail?goodsId=' + goods.id,
     })
   },
 
   openAgency: function (e) {
-    console.log(e)
+    var that = this
+    var favoriteId = e.currentTarget.dataset.id
+    var agencyArr = that.data.favoriteAgency
+    var agency
+    for (var i = 0; i < agencyArr.length; i++) {
+      if (agencyArr[i].favoriteId == favoriteId) {
+        agency = agencyArr[i]
+      }
+    }
     wx.navigateTo({
-      url: '/pages/agencyDetail/agencyDetail?id=' + e.currentTarget.dataset.cid,
+      url: '/pages/agencyDetail/agencyDetail?id=' + agency.id,
     })
   },
 

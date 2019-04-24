@@ -16,7 +16,7 @@
                         <text class="name">姓名：{{item.contactName}}</text>
                         <text class="address">电话：{{item.mobilephone}}</text>
                         <text class="address">负责区域：{{item.area}}</text>
-                        <text style='width: 80rpx; height: 80rpx; overflow: hidden; position: absolute; right:56rpx; border: 0; top: 20rpx; font-size: 16px' data-id='{{item.id}}' bindtap='delete'>删除</text>
+                        <text style='width: 80rpx; height: 80rpx; overflow: hidden; position: absolute; right:56rpx; border: 0; top: 20rpx; font-size: 16px' data-id='{{item.id}}' catchtap='delete'>删除</text>
                   </view>
                 </scroll-view>
             </swiper-item>

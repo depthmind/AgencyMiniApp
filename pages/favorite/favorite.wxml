@@ -12,79 +12,23 @@
         <swiper bindchange="swiperChange" class="h-100" current="{{swiper_current}}" duration="300">
             <swiper-item>
                 <scroll-view bindscrolltolower="goodsScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
-                    <!-- <view class="goods-list">
-                        <navigator class="goods-item" openType="navigate" url="/pages/goods/goods?id={{item.goods_id}}" wx:for="{{favoriteGoods}}" wx:key="{{item.id}}">
-                            <image class="goods-pic" mode="aspectFill" src="{{item.thumbnail}}"></image>
-                            <view class="goods-info">
-                                <text class="goods-name">{{item.goodsName}}</text>
-                                <text class="goods-price">￥{{item.price}}</text>
-                            </view>
-                        </navigator>
-                    </view>
-                    <view class="no-content" wx:if="{{!topic.is_loading&&(!topic.list||topic.list.length==0)}}">
-
-                        暂无收藏的商品
-
-                    </view>
-                    <view class="loading-more {{topic.is_loading?'active':''}}">
-                        <image src="{{__wxapp_img.system.loading.url}}"></image>
-                    </view> -->
-                  <view class='agencylist' wx:for="{{favoriteGoods}}" wx:key="{{item.id}}" bindtap='openGoods'           data-goods-id='{{item.id}}'>
+                  <view class='agencylist' wx:for="{{favoriteGoods}}" wx:key="{{item.favoriteId}}" bindtap='openGoods'           data-id='{{item.favoriteId}}'>
                         <image class="itemimage" src='{{item.thumbnail}}'></image>
                         <text class="name">{{item.goodsName}}</text>
                         <text class="address">￥{{item.price}}</text>
-                        <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
+                        <view catchtap='delete' data-id='{{item.favoriteId}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
                   </view>
                 </scroll-view>
             </swiper-item>
+            
             <swiper-item>
                 <scroll-view bindscrolltolower="topicScrollBottom" class="h-100" lowerThreshold="1" scrollY="true">
-                    <!-- <view class="list">
-                        <block wx:for="{{topic.list}}" wx:key="{{item.id}}">
-                            <navigator class="item layout-0" url="/pages/topic/topic?id={{item.id}}" wx:if="{{item.layout==0}}">
-                                <view class="flex-row">
-                                    <view class="flex-grow-1 flex-col">
-                                        <view class="flex-grow-1">
-                                            <view class="title">{{item.title}}</view>
-                                        </view>
-                                        <view class="flex-grow-0 read-count">{{item.read_count}}</view>
-                                    </view>
-                                    <view class="flex-grow-0" style="position: relative">
-                                        <image class="cover-pic" mode="aspectFill" src="{{item.cover_pic}}"></image>
-                                        <view class="goods-count" wx:if="{{item.goods_count}}">{{item.goods_count}}
-
-                                        </view>
-                                    </view>
-                                </view>
-                            </navigator>
-                            <navigator class="item layout-1" url="/pages/topic/topic?id={{item.id}}" wx:if="{{item.layout==1}}">
-                                <view class="title" style="font-weight: 600;font-size: 12pt">{{item.title}}</view>
-                                <image class="cover-pic" mode="aspectFill" src="{{item.cover_pic}}"></image>
-                                <view class="flex-row">
-                                    <view class="flex-grow-1 read-count">{{item.read_count}}</view>
-                                    <view class="flex-grow-0 goods-count" wx:if="{{item.goods_count}}">
-
-                                        {{item.goods_count}}
-
-                                    </view>
-                                </view>
-                            </navigator>
-                        </block>
-                    </view>
-                    <view class="no-content" wx:if="{{!topic.is_loading&&(!topic.list||topic.list.length==0)}}">
-
-                        暂无收藏的专题
-
-                    </view>
-                    <view class="loading-more {{topic.is_loading?'active':''}}">
-                        <image src="{{__wxapp_img.system.loading.url}}"></image>
-                    </view> -->
-                  <view class="agencylist" wx:for="{{favoriteAgency}}" wx:key="{{item.id}}" bindtap="openAgency" data-cid="{{item.id}}">
+                  <view class="agencylist" wx:for="{{favoriteAgency}}" wx:key="{{item.favoriteId}}" bindtap="openAgency" data-id="{{item.favoriteId}}">
                     <image class="itemimage" src='{{item.logoImagePath}}'></image>
                     <image class="phone" src='{{phoneImage}}'></image>
                     <text class="name">{{item.agencyName}}</text>
                     <text class="address">{{item.address}}</text>
-                    <view catchtap='delete' data-id='{{item.id}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
+                    <view catchtap='delete' data-id='{{item.favoriteId}}' style="float: right; margin: 0; position: absolute; right: 14px; top: 10px; border: 1rpx; border-radius: 10rpx; font-size: 16px; box-shadow: 0 0 3px #dedede;">删除</view>
                   </view>
                 </scroll-view>
             </swiper-item>

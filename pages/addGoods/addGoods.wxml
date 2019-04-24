@@ -47,7 +47,7 @@
         </view>
         <view class='form-item'>
           <text class='textarea-label'>商品介绍</text>
-          <textarea name="goodsDescription" style='height:172px;' placeholder='请描述商品介绍'></textarea>
+          <textarea name="goodsDescription" style='height:172px;' placeholder='请描述商品介绍' maxlength="1000"></textarea>
         </view>
         <view class='form-item'>
             <text class='label'>关于发货</text> 
