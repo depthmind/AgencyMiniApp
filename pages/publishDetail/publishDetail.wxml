@@ -9,8 +9,8 @@
   </view>
   <!-- 内容描述 -->
   <view>
-    <label class='title'>内容描述</label>
-    <view class='title'>{{publishContent.description}}</view>
+    <view class="section-title">图文详情</view>
+    <text class='description'>{{publishContent.description}}</text>
   </view>
   <view>
     <view wx:for="{{imagesArr}}">

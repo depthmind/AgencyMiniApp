@@ -128,11 +128,11 @@ Page({
       }));
   },
   goodsScrollBottom: function () {
-    var a = this;
-    a.loadGoodsList({
-      loadmore: !0,
-      page: a.data.goods.page + 1
-    });
+    // var a = this;
+    // a.loadGoodsList({
+    //   loadmore: !0,
+    //   page: a.data.goods.page + 1
+    // });
   },
   loadTopicList: function (o) {
     var i = this;

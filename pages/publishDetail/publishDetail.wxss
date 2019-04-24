@@ -20,3 +20,25 @@
 	font-weight: bold;
 	margin: 8px 0;
 }
+
+.section-title{
+  color: #e6424b;
+	text-align: center;
+	font-size: 32rpx;
+	margin: 0 0 20px;
+}
+
+.contacts{
+	font-size: 36rpx;
+	line-height: 60rpx;
+  display: flex;
+  justify-content: center;
+  color: #f39800;
+}
+
+.description{
+	font-size: 34rpx;
+	line-height: 60rpx;
+  width: 80%;
+	color: #000;
+}

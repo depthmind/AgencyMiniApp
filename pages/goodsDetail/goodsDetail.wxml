@@ -9,8 +9,8 @@
   </view>
   <view style="background: #fff; margin: 0 -40rpx 0px -40rpx; padding: 20rpx 40rpx;">
     <view class="section-title">商品介绍</view>
-    <view class='description'>{{goodsDescription}}</view>
-    <view class="section-title">商品图文</view>
+    <text class='description'>{{goodsDescription}}</text>
+    <view class="section-title" style='display:none;'>商品图文</view>
     <view wx:for="{{goodsPicArr}}">
       <image mode='widthFix' style="width: 112%; height: 375px; margin-left: -20px; display:block;" src='{{goodsPicArr[index]}}'></image>
     </view>

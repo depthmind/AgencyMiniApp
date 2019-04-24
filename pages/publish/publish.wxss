@@ -148,3 +148,10 @@ input-holder {
   color: #ec5300;
   text-align: center;
 }
+
+.description{
+	font-size: 34rpx;
+	line-height: 60rpx;
+  width: 80%;
+	color: #000;
+}

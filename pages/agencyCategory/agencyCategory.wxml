@@ -25,8 +25,10 @@
           <text class="address">{{item.address}}</text>
         </view>
     </scroll-view>
+    
 </view>
-
+<view style='visibility:hidden;'>------</view>
+<view style='visibility:hidden;'>------</view>
 <view class="flex-row bar-bottom">
             <view class="flex-grow-0 flex-row">
                 <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="redirect" url="/mch/shop/shop?mch_id={{goods.mch.id}}" wx:if="{{goods.mch}}">

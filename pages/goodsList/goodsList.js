@@ -26,8 +26,12 @@ Page({
         if (res.data) {
           for (var i = 0; i < res.data.length; i++) {
             var images = res.data[i].goodsPic
-            var imagesArr = images.split(',')
-            res.data[i].thumbnail = imagesArr[0]
+            if (images && images.indexOf(',') > -1) {
+              var imagesArr = images.split(',')
+              res.data[i].thumbnail = imagesArr[0]
+            } else {
+              res.data[i].thumbnail = images
+            }
           }
         }
         that.setData({

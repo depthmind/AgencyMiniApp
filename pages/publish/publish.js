@@ -264,6 +264,7 @@ Page({
       that.showModal("请填写详细地址")
       return;
     }
+    description = description.replace(new RegExp(ranges.join('|'), 'g'), '')
     if (data.switch) {
       isTop = 1
     }
