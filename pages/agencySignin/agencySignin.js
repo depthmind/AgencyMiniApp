@@ -150,6 +150,18 @@ Page({
       title: '代理商入驻',
     })
     var that = this
+    wx.request({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/parameter/findParameter.do',
+      data: {
+        paraDomain: 'signin.notice'
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          signinNotice: res.data[0].value
+        })
+      }
+    })
     var longitude = wx.getStorageSync("longitude")
     var latitude = wx.getStorageSync("latitude")
     var markers = [{
@@ -239,7 +251,8 @@ Page({
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
         that.setData({
-          wechatImagePath: tempFilePaths
+          wechatImagePath: tempFilePaths,
+          wechatImagePathSubmit: tempFilePaths
         })
       }
     })
@@ -305,6 +318,12 @@ Page({
     var temp = that.data.tempFilePaths
     var data = e.detail.value
     that.validation(data)
+    wx.showToast({
+      title: '拼命加载中',
+      image: '/images/loading.png',
+      duration: 3000,
+      mask: true
+    })
     //选中区域
     var selectedArea = that.data.arr
     var area = ''
@@ -390,15 +409,15 @@ Page({
                                   wx.showToast({
                                     title: '保存代理商成功',
                                   })
+                                  wx.redirectTo({
+                                    url: '/pages/agencyCenter/agencyCenter',
+                                  })
                                 },
                                 fail(res) {
                                   wx.showToast({
                                     title: res.errMsg,
                                   })
                                 }
-                              })
-                              wx.redirectTo({
-                                url: '/pages/agencyCenter/agencyCenter',
                               })
                               console.log(res)
                             },
@@ -747,5 +766,59 @@ Page({
     this.setData({
       showModal: true
     });
-  }
+  },
+
+  uploadDIY(filePaths, successUp, failUp, i, length) {
+    var that = this
+    wx.uploadFile({
+      url: 'https://www.caoxianyoushun.com:8443/Agency/upfile',
+      filePath: filePaths[i],
+      name: 'fileData',
+      success: (resp) => {
+        console.log(resp)
+        var images = that.data.images
+        if (images) {
+          images = images + ',' + resp.data
+        } else {
+          images = resp.data
+        }
+        that.setData({
+          images: images
+        })
+        wx.setStorageSync('images', images)
+        successUp++;
+      },
+      fail: (res) => {
+        failUp++;
+      },
+      complete: () => {
+        i++;
+        if (i == length) {
+          var parameter = that.data.parameter + '&images=' + encodeURIComponent(that.data.images)
+          wx.request({
+            url: 'https://www.caoxianyoushun.com:8443/Agency/publish/savePublishContent.do?' + parameter,
+            //url: 'http://localhost:8080/Agency/publish/savePublishContent.do?' + parameter,
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+              wx.removeStorage({ //清楚图片路径缓存
+                key: 'images',
+                success: function (res) { },
+              })
+              that.setData({
+                uploadImagePath: ''
+              })
+              wx.redirectTo({
+                url: '/pages/publishSuccess/publishSuccess',
+              })
+            }
+          })
+        }
+        else {  //递归调用uploadDIY函数
+          this.uploadDIY(filePaths, successUp, failUp, i, length);
+        }
+      },
+    });
+  },
 })

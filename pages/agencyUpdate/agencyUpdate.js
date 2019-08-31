@@ -137,6 +137,12 @@ Page({
   },
 
   formSubmit: function (e) {
+    wx.showToast({
+      title: '拼命加载中',
+      image: '/images/loading.png',
+      duration: 3000,
+      mask: true
+    })
     var formId = e.detail.formId
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId

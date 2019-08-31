@@ -18,45 +18,55 @@
 <view wx:else class="container_index">
   <view class='exceptProduct'>
     <view class='header'>
-      <view class="location" bindtap='{{isCooperation==true?"changeLocation":""}}'>
+
+      <!-- location begin -->
+      <!-- <view class="location" bindtap='{{isCooperation==true?"changeLocation":""}}'>
         <text class='location-text'>{{currentArea}}</text>
         <image class='location-pull' mode='widthFix' src='/images/pull.png'/>
-      </view>
+      </view> -->
+      <!-- location end -->
+
       <view class='search' bindtap='navigateToSearchPage'>
         <icon class="searchcion" size='35rpx' type='search'></icon>
         <input class='searchInput' placeholder=' 请输入关键字' placeholder-class='searchInputText'></input>
       </view>
     </view>
+
+    <!-- banner begin -->
     <view style='display:flex;justify-content: center; margin: 0px 0;'>
       <view class='swiper-view'>
-        <swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
-          <block wx:for="{{ads}}" wx:for-index="index" wx:key="index">
+        <swiper indicator-dots='true' indicator-color='rgba(0, 0, 0, .3)' indicator-active-color='#DC143C' class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
+          <block wx:for="{{banner}}" wx:for-index="index" wx:key="index">
             <swiper-item class="swiper-item" bindtap="get" data-id="{{item.id}}">
-              <image src='{{item.logoImagePath}}' class='u-img-slide' mode='aspectFill'></image>
+              <image src='{{item.picUrl}}' class='u-img-slide' mode='aspectFill'></image>
               <!-- <view class='u-text-slide'>{{item.agencyName}}</view> -->
             </swiper-item>
           </block>
         </swiper>
       </view>
     </view>
+    <!-- banner end -->
   </view>
-  <view style="padding: 40rpx 0; background: #fff; margin: 0 0 10px;">
+  
+  <!-- <view style="padding: 40rpx 0; background: #fff; margin: 0 0 10px;">
     <view style="padding: 0 40rpx 20rpx; line-height: 1; color: #da4062;"><image style="width: 40rpx; height: 30rpx; float: left; margin: 0 10rpx 0 0;"  src="{{labaImage}}"></image>{{notice}}</view>
     <view class='flexRowContainer'>
       <view class='flexRowSon'><image bindtap='redirctToPartner' style="width: 330rpx; height: 154rpx;"  src="{{adsImage1}}"></image></view>
       <view class='flexRowSon'><image bindtap='redirctToAgencyList' style="width: 330rpx; height: 154rpx;"  src="{{adsImage2}}"></image></view>
     </view>
-  </view>
-
-  <!-- <view style='display:flex;justify-content:center;font-size: 32rpx; padding: 30rpx 0 0; background: #fff; color: #da4062; font-weight: bold;'>推荐产品</view>
-  <view class='products'>
-    <view bindtap='openGoods' class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}" data-goods-id='{{item.agencyId}}'>
-      <image class='image' src='{{item.goodsPic[0]}}'></image>
-      <view class='name'>{{item.goodsName}}</view>
-      <view class="content"> {{item.agencyName}}</view>
-    </view>
-    <view class='reflesh' bindtap='getRecommends'>换一批</view>
   </view> -->
+
+  <!-- 推荐产品 begin -->
+  <view style='display:flex;justify-content:center;font-size: 32rpx; padding: 30rpx 0 0; background: #fff; color: #da4062; font-weight: bold;'>为你推荐</view>
+  <view class='products'>
+    <view bindtap='openGoods' class='product-item' wx:for="{{recommends}}" wx:key="{{recommends.id}}" data-goods-id='{{item.id}}'>
+      <image class='image' src='{{item.headPic}}'></image>
+      <view class="content"> {{item.productName}}</view>
+      <view class='name'>¥{{item.price}}</view>
+    </view>
+  </view>
+  <view class='reflesh' bindtap='getRecommends'>换一批</view>
+  <!-- 推荐产品 end -->
 
   <!-- 暂时先放供应商列表 -->
   <view>

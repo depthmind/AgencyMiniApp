@@ -1,6 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const operatePlatformUrl = app.globalData.operatePlatformUrl
+const entNum = app.globalData.entNum
+
 
 Page({
   data: {
@@ -18,7 +21,7 @@ Page({
     currentCity: "",
     currentArea: "",
     isCooperation: true,
-    ads: [],
+    banner: [],
     agencyList: [],
     recommends: [],
     tabs: [],
@@ -27,10 +30,8 @@ Page({
     publishList: [],
     currentLatitude: 39.90469,
     currentLongitude: 116.40717,
-    //adsImage1: '/images/ad1.jpg',
-    //adsImage2: '/images/agency-list.jpg',
-    adsImage1: '/images/dailishangruzhu.jpg',
-    adsImage2: '/images/dailishangliebiao.jpg',
+    bannerImage1: '/images/dailishangruzhu.jpg',
+    bannerImage2: '/images/dailishangliebiao.jpg',
     labaImage: '/images/laba.jpg',
     phoneImage: '/images/phone.jpg',
   },
@@ -57,7 +58,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '代理商中心',
     })
-    that.agencyList()
     //that.login()
   },
 
@@ -81,7 +81,6 @@ Page({
         changeLocationFlag: false
       })
       that.init()
-      that.agencyList()
     }
   },
 
@@ -116,7 +115,7 @@ Page({
    */
   onReachBottom: function() {
     //根据tab类型加载内容
-    this.getContents()
+    //this.getRecommends()
   },
 
   /**
@@ -168,22 +167,16 @@ Page({
 
 
   //获取轮播图信息
-  getAds: function(e) {
+  getBanner: function(e) {
     var that = this
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/agency/findAdAgency.do',
+      url: operatePlatformUrl + 'api/banner/list',
       data: {
-        offset: this.data.adOffset,
-        rows: 4,
-        province: that.data.currentProvince,
-        city: that.data.currentCity,
-        area: that.data.currentArea
+        entNum: entNum 
       },
-      success(adRes) {
-        console.log("adRes")
-        console.log(adRes)
+      success(res) {
         that.setData({
-          ads: adRes.data
+          banner: res.data
         })
       }
     })
@@ -193,14 +186,12 @@ Page({
   getRecommends: function() {
     var that = this
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/getGoods.do',
+      url: operatePlatformUrl + 'api/product/list',
       data: {
         isTop: 1,
         offset: this.data.recommendOffset,
         rows: 4,
-        province: that.data.currentProvince,
-        city: that.data.currentCity,
-        area: that.data.currentArea
+        entNum: entNum
       },
       success(recommendRes) {
         console.log("recommendRes")
@@ -551,10 +542,13 @@ Page({
     //   publishOffset: that.data.publishOffset + that.data.rows
     // })
     //获取轮播图
-    that.getAds()
+    that.getBanner()
 
     //获取推荐
     that.getRecommends()
+
+    //获取代理商列表
+    that.agencyList()
 
 
     //获取scroll-view-tabs

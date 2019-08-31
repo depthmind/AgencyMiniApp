@@ -1,4 +1,7 @@
 const favoriteType = '1' //1代表收藏的是商品
+const app = getApp()
+const operatePlatformUrl = app.globalData.operatePlatformUrl
+const entNum = app.globalData.entNum
 Page({
 
   /**
@@ -8,6 +11,10 @@ Page({
     goodsId: '',
     isFavorited: false,
     inFavorited: false, //是否收藏过
+    indicatorDots: true,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000,
   },
 
   /**
@@ -20,8 +27,10 @@ Page({
     var openId = userInfo.openId
     var unionId = userInfo.unionId
     wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
-      //url: 'http://localhost:8080/Agency/goods/findGoodsById.do?goodsId=' + goodsId,
+      url: operatePlatformUrl + 'api/product/detail',
+      data: {
+        id: goodsId
+      },
       success(res) {
         var data = res.data
         var agencyId = data.agencyId
@@ -29,13 +38,13 @@ Page({
         var city = data.city
         var goodsDescription = data.goodsDescription
         var goodsName = data.goodsName
-        var goodsPic = data.goodsPic
+        var goodsPic = data.descriptionImage
         var stock = data.stock
         //var goodsPic = 'http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg,http://www.caoxianyoushun.com/Agency/attachment/upload/15523977802fedd15a624c4e70bc0682.jpg'
         var goodsPicArr = []
         var firstPic = ''
         if (goodsPic) {
-          goodsPicArr = goodsPic.split(',')
+          goodsPicArr = goodsPic.split(';')
           firstPic = goodsPicArr[0]
         }
         that.setData({

@@ -270,6 +270,12 @@ Page({
       that.showModal("请填写商品介绍")
       return;
     }
+    wx.showToast({
+      title: '拼命加载中',
+      image: '/images/loading.png',
+      duration: 3000,
+      mask: true
+    })
     var oneLevelCategory = that.data.choosedOneLevelCategory
     var secondLevelCategory = that.data.choosedSecondLevelCategory
     var brandCategory = that.data.choosedBrandCategory

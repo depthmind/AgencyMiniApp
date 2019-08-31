@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/productDetail/productDetail",
     "pages/agencyCenter/agencyCenter",
     "pages/addGoods/addGoods",
     "pages/goodsList/goodsList",

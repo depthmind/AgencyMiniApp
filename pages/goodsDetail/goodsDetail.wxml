@@ -1,14 +1,40 @@
 <view style="position: relative; padding-bottom: 50px;">
+
+<!--商品幻灯片-->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" class="banner" duration="{{duration}}" circular="{{duration}}">
+  <block wx:for="{{goodsPicArr}}" wx:key="goods_info">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" mode="aspectFill" data-src='{{item}}' bindtap="previewImage"/>
+    </swiper-item>
+  </block>
+</swiper>
+<!--商品幻灯片 end-->
+
+<!--商品名称 begin-->
+<view class="info-price clear">
+  <view class='price'>￥{{goods.price}} </view>
+  <view class='fenxiang'>
+      <view class='fxbtn' open-type="share">
+        <view style='height:20px;margin-top:8px;'><image src='/images/share.png' mode="aspectFill" ></image></view>
+        <view>分享</view>
+      </view>
+  </view>
+</view>
+<!--商品名称 end-->
+
+<view class="info-title">
+    <text>{{goods.productName}}</text>
+</view>
+
 <!-- 头部 -->
-  <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
+  <!-- <view style="background: #fff; margin: 0 -40rpx 10px -40rpx; padding: 20rpx 40rpx;">
   <image class="itemimage" src='{{firstPic}}'></image>
-    <view class="title">名称：{{goods.goodsName}}</view>
+    <view class="title">名称：{{goods.productName}}</view>
     <view class="price" style='visibility:hidden;'>价格：￥{{goods.price}}</view>
     <view class="stock" style='visibility:hidden;'>库存：{{goods.stock}}</view>
-    
-  </view>
+  </view> -->
   <view style="background: #fff; margin: 0 -40rpx 0px -40rpx; padding: 20rpx 40rpx;">
-    <view class="section-title">商品介绍</view>
+    <view class="section-title">商品详情</view>
     <text class='description'>{{goodsDescription}}</text>
     <view class="section-title" style='display:none;'>商品图文</view>
     <view wx:for="{{goodsPicArr}}">
@@ -46,8 +72,8 @@
                 </view>
             </view>
             <view class="flex-grow-1 flex-row">
-            <view bindtap="backToAgencyDetail" data-mobilephone='{{agency.mobilephone}}' class="flex-grow-1 flex-y-center flex-x-center buy-now">一键拨号</view>
-                <!-- <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view> -->
-                <!-- <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view> -->
+            <!-- <view bindtap="backToAgencyDetail" data-mobilephone='{{agency.mobilephone}}' class="flex-grow-1 flex-y-center flex-x-center buy-now">一键拨号</view> -->
+                <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view>
+                <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view>
             </view>
         </view>

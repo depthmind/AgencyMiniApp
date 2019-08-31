@@ -93,6 +93,12 @@ Page({
       })
       return;
     }
+    wx.showToast({
+      title: '拼命加载中',
+      image: '/images/loading.png',
+      duration: 3000,
+      mask: true
+    })
     wx.request({ //保存formId发送模板消息时使用
       url: 'https://www.caoxianyoushun.com:8443/Agency/template/saveFormIdForTemplate',
       data: {

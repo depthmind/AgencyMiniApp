@@ -65,7 +65,7 @@ Page({
   },
 
   makePhoneCall: function (e) {
-    var mobilephone = ''
+    var mobilephone = '13573036637'
     wx.makePhoneCall({
       phoneNumber: mobilephone,
     })
