@@ -191,4 +191,4 @@
 .flex{ display: -webkit-box;display: -webkit-flex;  display: -ms-flexbox; display: flex; width: 100%;}
 .flex>.sub{ -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; overflow: hidden;}
 
-.info-title{ background: #fff; padding:10px 15px;font-size: 15px;}
+.info-title{ background: #fff; padding:10px 15px;font-size: 12px;}

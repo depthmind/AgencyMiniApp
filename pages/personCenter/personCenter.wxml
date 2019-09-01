@@ -1,0 +1,54 @@
+<view class="order-block">
+            <navigator class="my-order" url="/pages/order/order?status=-1">我的订单</navigator>
+            <view class="flex-row">
+                <view class="flex-grow-1">
+                    <navigator class="nav-item" url="/pages/order/order?status=0">
+                        <view>
+                            <image src="{{orders.status_0.icon}}"></image>
+                        </view>
+                        <view>{{orders.status_0.text?orders.status_0.text:'待付款'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.status_0&&order_count.status_0>0}}">
+                            {{order_count.status_0}}
+                        </view>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1">
+                    <navigator class="nav-item" url="/pages/order/order?status=1">
+                        <view>
+                            <image src="{{orders.status_1.icon}}"></image>
+                        </view>
+                        <view>{{orders.status_1.text?orders.status_1.text:'待发货'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.status_1&&order_count.status_1>0}}">
+                            {{order_count.status_1}}
+                        </view>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1">
+                    <navigator class="nav-item" url="/pages/order/order?status=2">
+                        <view>
+                            <image src="{{orders.status_2.icon}}"></image>
+                        </view>
+                        <view>{{orders.status_2.text?orders.status_2.text:'待收货'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.status_2&&order_count.status_2>0}}">
+                            {{order_count.status_2}}
+                        </view>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1">
+                    <navigator class="nav-item" url="/pages/order/order?status=3">
+                        <view>
+                            <image src="{{orders.status_3.icon}}"></image>
+                        </view>
+                        <view>{{orders.status_3.text?orders.status_3.text:'已完成'}}</view>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1">
+                    <navigator class="nav-item" url="/pages/order/order?status=4">
+                        <view>
+                            <image src="{{orders.status_4.icon}}"></image>
+                        </view>
+                        <view>{{orders.status_4.text?orders.status_4.text:'售后'}}</view>
+                    </navigator>
+                </view>
+            </view>
+        </view>

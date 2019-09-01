@@ -41,7 +41,9 @@
     "pages/updateAgencyDescription/updateAgencyDescription",
     "pages/goodsEdit/goodsEdit",
     "pages/editBrandCategory/editBrandCategory",
-    "pages/editContact/editContact"
+    "pages/editContact/editContact",
+    "pages/shoppingCart/shoppingCart",
+    "pages/personCenter/personCenter"
   ],
   "permission": {
     "scope.userLocation": {
@@ -57,19 +59,19 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/publish/publish",
+        "pagePath": "pages/agencyCategory/agencyCategory",
         "iconPath": "images/发布.png",
         "selectedIconPath": "images/发布red.png",
-        "text": "发布"
+        "text": "分类"
       },
       {
-        "pagePath": "pages/agencyList/agencyList",
+        "pagePath": "pages/shoppingCart/shoppingCart",
         "iconPath": "images/商家列表.png",
         "selectedIconPath": "images/商家列表red.png",
-        "text": "代理商"
+        "text": "购物车"
       },
       {
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/personCenter/personCenter",
         "iconPath": "images/个人中心.png",
         "selectedIconPath": "images/个人中心red.png",
         "text": "我的"

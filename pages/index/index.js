@@ -194,14 +194,14 @@ Page({
         entNum: entNum
       },
       success(recommendRes) {
-        console.log("recommendRes")
-        console.log(recommendRes)
         var recommends = recommendRes.data
         if (recommends.length > 0 || that.data.recommendOffset == 0) {  //判断offset，防止一条数据都没有陷入死循环
           for (var i = 0; i < recommends.length; i++) {
             if (recommends[i].goodsPic != undefined) {
               recommends[i].goodsPic = recommends[i].goodsPic.split(",")
             }
+
+            recommends[i].productName = recommends[i].productName.substring(0, 25);
           }
           that.setData({
             recommends: recommends

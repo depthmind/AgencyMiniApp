@@ -1,4 +1,6 @@
 var app = getApp();
+const operatePlatformUrl = app.globalData.operatePlatformUrl
+const entNum = app.globalData.entNum
 Page({
   data: {
     // types: null,
@@ -19,10 +21,9 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var openId = userInfo.openId
     wx.request({ //查询可选择的品牌分类
-      url: 'https://www.caoxianyoushun.com:8443/Agency/brand/findBrandCategoryByAgencyId.do',
-      //url: 'http://localhost:8080/Agency/brand/findBrandCategoryByAgencyId.do',
+      url: operatePlatformUrl + '/api/category/left',
       data: {
-        agencyId: agencyId
+        entNum: entNum
       },
       success(res) {
         console.log(res)

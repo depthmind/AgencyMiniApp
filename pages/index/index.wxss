@@ -172,6 +172,7 @@ display: inline-block;
   color: #999;
   margin: 0 0 10rpx 0;
   font-weight: normal;
+  font-size: 12px;
 }
 .reflesh{
   text-align: center;
