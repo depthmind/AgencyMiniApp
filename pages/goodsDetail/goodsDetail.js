@@ -2,6 +2,10 @@ const favoriteType = '1' //1代表收藏的是商品
 const app = getApp()
 const operatePlatformUrl = app.globalData.operatePlatformUrl
 const entNum = app.globalData.entNum
+var selectIndex;//选择的大规格key
+var attrIndex;//选择的小规格的key
+var selectIndexArray = [];//选择属性名字的数组
+var selectAttrid = [];//选择的属性id
 Page({
 
   /**
@@ -15,6 +19,22 @@ Page({
     autoplay: false,
     interval: 5000,
     duration: 1000,
+
+    //swiper相关
+    circular: true,
+    //选择的规格
+    num: 1,//初始数量
+    amount: 0,//初始金额
+    minusStatus: 'disabled', // 使用data数据对象设置样式名
+    choose_modal: "none", // 规格数量框
+    buttom_modal: "inline",
+    flag: 0,//点选规格时来源 0：规格点 1：立即购买 2：加入购物车
+    //规格数据
+    spec: [],
+    selectName: "",//已选的属性名字
+    selectAttrid: [],//选择的属性id
+    //商品信息
+    goods_info: {},
   },
 
   /**
@@ -55,34 +75,6 @@ Page({
           firstPic: firstPic,
           goodsDescription: goodsDescription
         })
-      }
-    })
-    wx.request({
-      url: 'https://www.caoxianyoushun.com:8443/Agency/favorite/findFavorite.do',
-      data: {
-        openId: openId,
-        type: favoriteType,
-        favoriteId: goodsId
-      },
-      success(res) {
-        console.log(res)
-        if (res.data) {
-          that.setData({
-            inFavorited: true,
-          })
-        }
-        var favorite = res.data
-        if (favorite && favorite.status == '1') {
-          that.setData({
-            isFavorited: true,
-            favorite_img_url: '/images/shoucangred.png'
-          })
-        } else {
-          that.setData({
-            isFavorited: false,
-            favorite_img_url: '/images/shoucang.png'
-          })
-        }
       }
     })
   },
@@ -179,7 +171,7 @@ Page({
       success(res) {
         that.setData({
           isFavorited: false,
-          favorite_img_url: '../../images/shoucang.png'
+          favorite_img_url: '/images/shoucang.png'
         })
       }
     })
@@ -189,5 +181,163 @@ Page({
     wx.navigateBack({
       delta: 2
     })
-  }
+  },
+
+  modal_none: function () {
+    this.setData({
+      choose_modal: "none",
+      bottom_modal: "",
+    });
+    selectIndexArray = [];
+    selectAttrid = [];
+  },
+
+  //弹出
+  modal_show: function (e) {
+    var flag = e.currentTarget.dataset.flag;
+    var that = this;
+    wx.request({
+      url: operatePlatformUrl + 'api/product/productitem',
+      data:{
+        productId: 6,
+      },
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          spec: res.data
+        })
+        that.init_attr();
+      }
+    })
+    that.setData({
+      flag: flag,
+      choose_modal: "block",
+      bottom_modal: "none",
+    });
+  },
+
+  clickAttr: function (e) {
+    // console.log(e);return;
+    var selectIndex = e.currentTarget.dataset.selectIndex;
+    var attrIndex = e.currentTarget.dataset.attrIndex;
+    var spec = this.data.spec;
+    var count = spec[selectIndex].child.length;
+    // console.log(count); return;
+    for (var i = 0; i < count; i++) {
+      spec[selectIndex].child[i].isSelect = false;
+    }
+    spec[selectIndex].child[attrIndex].isSelect = true;
+
+    var name = spec[selectIndex].child[attrIndex].name;//点击属性的名称
+    var attrid = spec[selectIndex].child[attrIndex].id;
+    // //点击过，修改属性
+    var selectName = "";
+    //点击过，修改属性
+    selectIndexArray[selectIndex].value = name;
+    selectAttrid[selectIndex] = attrid;
+    var selectIndexArraySize = selectIndexArray.length;
+    //将数组的所有属性名拼接起来
+    for (var i = 0; i < selectIndexArraySize; i++) {
+      selectName += ' "' + selectIndexArray[i].value + '" ';
+    }
+    console.log(selectName);
+    this.setData({
+      spec: spec,//变换选择框
+      selectName: selectName,
+      selectAttrid: selectAttrid
+    });
+    this.getProductItemDetail();
+  },
+
+  /* 点击减号 */
+  bindMinus: function () {
+    var num = this.data.num;
+    // 如果大于1时，才可以减
+    if (num > 1) {
+      num--;
+    }
+    // 只有大于一件的时候，才能normal状态，否则disable状态
+    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+    this.change_spec();
+    this.change_price();
+  },
+  bindPlus: function () {
+    var num = this.data.num;
+    // 不作过多考虑自增1
+    num++;
+    // 只有大于一件的时候，才能normal状态，否则disable状态
+    var minusStatus = num < 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+    //this.change_spec();
+    //this.change_price();
+  },
+  /* 输入框事件 */
+  bindManual: function (e) {
+    var num = e.detail.value;
+    if (isNaN(num)) {
+      num = 1;
+    }
+    // 将数值与状态写回
+    this.setData({
+      num: parseInt(num)
+    });
+    //this.change_spec();
+    //this.change_price();
+  },
+
+  //初始化规格选择
+  init_attr: function () {
+    //初始化规格选择
+    var name = "";
+    var spec = this.data.spec;
+    var size = spec.length;
+    for (var i = 0; i < size; i++) {
+      selectIndexArray.push({ key: i, value: spec[i].child[0].name });
+      selectAttrid.push(spec[i].child[0].id)
+      name += ' "' + selectIndexArray[i].value + '" ';
+    }
+    var selectName = this.data.selectName;
+    selectName = name;
+    this.getProductItemDetail();
+    this.setData({
+      selectName: selectName,
+      selectAttrid: selectAttrid
+    });
+  },
+
+  addCart: function () {
+    var that = this;
+    var num = that.data.num; //购买数量
+    var attribute_one = selectAttrid[0];
+    var attribute_two = selectAttrid[1];
+    console.log(selectAttrid)
+  },
+
+  getProductItemDetail: function () {
+    var attribute_one = selectAttrid[0];
+    var attribute_two = selectAttrid[1];
+    var that = this
+    wx.request({
+      url: operatePlatformUrl + '/api/product/getProductItemDetail',
+      data: {
+        attributeOne: attribute_one,
+        attributeTwo: attribute_two
+      },
+      success (res) {
+        console.log(res.data)
+        that.setData({
+          productItem: res.data
+        })
+      }
+    })
+  },
 })

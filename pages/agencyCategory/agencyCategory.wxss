@@ -180,3 +180,37 @@
     -ms-grid-row-align: flex-end;
     align-items: flex-end;
 }
+
+
+
+#right{
+  position:absolute;
+  right:0;
+  width:75%;
+  height:90%;
+}
+.img-banner{
+  height:150rpx;
+  width:100%;
+}
+.goods-list{
+  display:flex;
+  flex-wrap:wrap;
+  margin-top:30rpx;
+}
+.goods-title{
+  width:100%;
+  font-size:15px;
+  font-weight:bold;
+  padding-left:10rpx;
+}
+.goods{
+  width:150rpx;
+  font-size:14px;
+  margin:15rpx;
+  text-align:center;
+}
+.img{
+  width:140rpx;
+  height:140rpx;
+}

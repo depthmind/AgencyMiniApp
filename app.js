@@ -86,7 +86,7 @@ App({
     isNotAuthorized: null,
     openId: null,
     userBetSites: null,
-    operatePlatformUrl: "http://localhost:6022/",
+    operatePlatformUrl: "http://192.168.2.146:6022/",
     entNum: "20190831001"
   }
 })

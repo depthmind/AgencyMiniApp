@@ -1,29 +1,32 @@
 <view class="section">
     <!-- 左侧类型 -->
     <scroll-view scroll-y="true" class="left">
-        <view wx:for="{{types}}" wx:key="typeId" data-id="{{item.id}}" bindtap="tapType" class="{{item.id == brandId ? 'active' : ''}}" style="font-size:33rpx">
+        <view wx:for="{{types}}" wx:key="typeId" data-id="{{item.id}}" bindtap="tapType" class="{{item.id == leftCategoryId ? 'active' : ''}}" style="font-size:33rpx">
             {{item.leftCategoryName}}
         </view>
     </scroll-view>
 
     <!-- 右侧数据 -->
 
-    <scroll-view scroll-y="true" class="right">
-        <!-- <view class="typeTree">
-            <view  class="brand" wx:for="{{typeTree}}" wx:for-item="data">
-                <navigator url="../listdetail/listdetail?cat_id={{data.id}}" wx:key="typeId" class="item">
-                    <image src="{{data.bz_1}}"></image>
-                    <text>{{data.name}}</text>
-                </navigator>
-            </view>
-        </view> -->
+    <!-- <scroll-view scroll-y="true" class="right">
         <view class="agencylist" wx:for="{{goodses}}" wx:key="{{item.id}}" bindtap="openGoods" data-goods-id="{{item.id}}">
           <image class="itemimage" src='{{item.thumbnail}}'></image>
           <text class="name">{{item.goodsName}}</text>
-          <!-- <text class="name">价格：￥{{item.price}}元</text>
-          <text class="name">库存：{{item.stock}}</text> -->
           <text class="address">{{item.address}}</text>
         </view>
-    </scroll-view>
+    </scroll-view> -->
+
+    <scroll-view id="right" scroll-y="true" scroll-top="{{scrollTop}}">
+    <!--顶部图片-->
+    <view class="goods-banner">
+      <image class="img-banner" src="{{childrenArray.showImageUrl}}" wx:if="{{childrenArray.showImageUrl}}" mode="scaleToFill"></image>
+    </view>
+    
+    <view wx:for="{{goodses}}" class="goods" wx:key="unique" bindtap="ToSearchResult" id="{{item.rightCategoryName}}" >
+      <image class="img" src="{{item.categoryImage}}"></image>
+      <text>{{item.rightCategoryName}}</text>
+    </view>
+ 
+  </scroll-view>
     
 </view>

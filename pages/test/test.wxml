@@ -1,0 +1,118 @@
+<scroll-view class="container" style='height:{{noScrollHeight}};overflow:hidden;margin-bottom:100rpx;'>
+  <view>
+    <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{goods.imageList}}" wx:key="unique">
+        <image src="{{item.imageUrl}}" background-size="cover" mode='scaleToFill'></image>
+      </swiper-item>
+    </swiper>
+    <!-- 收藏 -->
+    <view class="l-collect" bindtap="closeAttrOrCollect" hidden='true'>
+      <image class="icon" src="{{ collectBackImage }}"></image>
+    </view>
+    <view class="goods-info">
+      <view class="c">
+        <text class="num">库存{{goods.numCurrent}}{{goods.unit}}</text>
+        <view class="price_share">
+          <view class="price">
+            <text class="pricel">￥{{goods.price}}</text>
+            <text class="priceMart">￥{{goods.priceMart}}</text>
+          </view>
+          <button class='btnShare' open-type='share'>
+            <view class="share">
+              <image class="img" src="/static/images/icon_share .png" />
+              <text class="txt">分享</text>
+            </view>
+          </button>
+        </view>
+        <text class="name">商品名称：{{goods.name}}</text>
+      </view>
+    </view>
+    <view class="coupon-manage" bindtap='openCoupon' wx:if="{{couponList.length>0}}">
+      <view class="txt">领券</view>
+      <image class="img" src="/static/images/address_right.png"></image> 
+    </view>
+    <view class="goods-introduction">
+      <text class="txt">商品简介</text>
+      <!-- 宽度不变，高度自动变化，保持原图宽高比不变 -->
+      <image class="img" wx:for="{{nodes}}" src="{{item.source}}" mode="widthFix" wx:key="unique" />
+    </view>
+  </view>
+  <view class="bottom-btn" wx:if="{{!openAttr}}">
+    <!-- 首页 -->
+    <view class="l l-index" bindtap="goIndex">
+      <image class="icon" src="/static/images/icon_index.png"></image>
+    </view>
+    <!-- 客服 -->
+    <view class="l l-service">
+      <!-- <button class="kf_button" open-type="contact" session-from="weapp">
+        <image class="kf_image" src="/static/images/detail_kefu.png"></image>
+      </button> -->
+      <view class="df_1 l_h15">
+        <contact-button size="27" class='pos' session-from="weapp"></contact-button>
+        <image class="icon_kf" src="/static/images/detail_kefu.png"></image>
+      </view>
+    </view>
+    <!-- 购物车 -->
+    <view class="l l-cart">
+      <view class="box">
+        <text wx:if="{{cartGoodsCount>0}}" class="cart-count">{{cartGoodsCount}}</text>
+        <image bindtap="openCartPage" class="shopcar" src="/static/images/icon_shopcar.png"></image>
+      </view>
+    </view>
+    <view class="c" bindtap="addToCart">添加购物车</view>
+    <view hidden='true' class="r" bindtap="addFast">购买</view>
+  </view>
+  <!-- 选择规格属性 -->
+  <view wx:if="{{openAttr}}" class="animation-element-wrapper">
+    <view class="blank" bindtap='closePop' />
+    <view class="attr-pop">
+      <view class="img-info">
+        <image class="img" src="{{selectedImg}}"></image>
+        <view class="info">
+          <view class="c">
+            <view class="p">￥{{selectedPrice}}</view>
+            <view class="s">库存{{selectedNumCurrent}}{{goods.unit}}</view>
+            <view class="a">{{checkedSpecText}}</view>
+          </view>
+        </view>
+        <image class="imgClose" src="/static/images/icon_close.png" bindtap='closePop'></image>
+      </view>
+      <!-- 规格 -->
+      <scroll-view class="spec-con" scroll-y='true'>
+        <view class="spec-item" wx:for="{{attributeList}}" wx:key="name">
+          <view class="name">{{item.name}}</view>
+          <view class="values">
+            <view class="value {{vitem.checked?'selected':''}}" bindtap="clickSkuValue" wx:for-item="vitem" wx:for="{{item.valueList}}" wx:key="id" data-value-id="{{vitem.id}}" data-value="{{item.name}}">
+              {{vitem.value}}
+            </view>
+          </view>
+        </view>
+        <!-- 数量 -->
+        <view class="number-item">
+          <view class="name">数量</view>
+          <view class="selnum">
+            <view class="cut" bindtap="cutNumber">-</view>
+            <!-- 数字键盘有点问题  so先disabled-->
+            <input value="{{number}}" class="number" type="number" confirm-type='done' disabled='true' bindconfirm='confirmNum' />
+            <view class="add" bindtap="addNumber">+</view>
+          </view>
+        </view>
+      </scroll-view>
+      <!-- 确定  #E64340-->
+      <button class="btnConfirm" type='warn' bindtap="btnConfirm"> 确定 </button>
+    </view>
+  </view>
+  <view wx:if="{{openCoupon}}" class="animation-element-wrapper">
+    <view class="blank" bindtap='closeCoupon'/>
+    <view class="coupon-pop">
+      <view class="coupon-info">
+        <image class="imgClose" src="/static/images/icon_close.png" bindtap='closeCoupon'></image>
+        <view class="txtHeader">优惠券</view>
+      </view>
+      <view class='txtBody'>可领取优惠券</view>
+      <scroll-view class="coupon-con" scroll-y='true'>
+        <couponListView is-hidden="{{isHidden}}" coupon-list="{{couponList}}" />
+      </scroll-view>
+    </view>
+  </view>
+</scroll-view>

@@ -192,3 +192,207 @@
 .flex>.sub{ -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; overflow: hidden;}
 
 .info-title{ background: #fff; padding:10px 15px;font-size: 12px;}
+
+
+
+/*蒙版 */
+.mask{
+width: 750rpx;
+height: 100%;
+background: #C0C0C0;
+z-index: 10;
+position: fixed;
+top: 0;
+opacity: 0.8;
+}
+/*选择规格层面*/
+.choose{
+display: none;
+flex-direction: row;
+align-items: center;
+background-color: #fff;
+position: fixed;
+bottom: 0;
+right: 0;
+/* border: 1px solid #f44336; */
+z-index: 100;
+width: 750rpx;
+box-sizing: border-box;
+}
+/*知道从来点击来时候 */
+.choose .modal_button{
+flex-direction: row;
+background-color: #C62127;
+position: inherit;
+bottom: 0;
+z-index: 100;
+width: 750rpx;
+height: 106rpx;
+line-height:106rpx;
+color: #fff;
+text-align:center;
+margin:0 auto;
+}
+/*不知道从哪点进来时候*/
+.choose .modal_button_two{
+flex-direction: row;
+align-items: center;
+float: left;
+background-color: #fff;
+position: inherit;
+bottom: 0;
+right: 0;
+z-index: 10;
+width: 100%;
+height: 50px;
+}
+.choose .modal_button_two button{
+width: 50%;
+float: left;
+color: #fff;
+border-radius: 0px;
+}
+.choose .modal_button_two .modal_cart{
+background: #FFB03F;
+}
+.choose .modal_button_two .modal_buy{
+background: #f44336;
+}
+
+/* */
+.choose .spec_img_container{
+height:100px;
+border-bottom: 2px solid #F5F5F5;
+position: relative;
+}
+.choose .spec_img_container image{
+width: 200rpx;
+height: 200rpx;
+position: absolute;
+top:-40rpx;
+left: 20rpx;
+border: 2px #F5F5F5 solid;
+border-radius: 5px;
+}
+.choose .spec_img_container .amount{
+width: 400rpx;
+color: red;
+position: absolute;
+top: 80rpx;
+left:240rpx;
+}
+.choose .spec_img_container .clear{
+position:absolute;
+top:20rpx;
+right:20rpx;
+}
+.choose .spec_view_container{
+width: 100%;
+}
+.choose .spec_view_container .modal_de_select{
+font-size: 28rpx;
+color: #808080;
+margin-left: 20rpx;
+margin-top:10rpx;
+}
+.choose .spec_view_container .modal_spec{
+margin-left:20rpx;
+margin-top:10rpx;
+font-size:28rpx;
+}
+.choose .spec_view_container .modal_spec_name{
+margin-left:5rpx;
+margin-top:10rpx;
+font-size:28rpx;
+color:#8B0000;
+}
+/* .choose .spec_view_container .modal_spec_name::after{
+content: "";
+clear: both;
+display: block;
+overflow: hidden;
+} */
+/* .choose .spec_view_container .radio-group{
+padding:18rpx;
+} */
+.choose .spec_view_container .modal_spec_item_{
+  width: 750rpx;
+  display: inline-block;
+  width:fit-content;
+width:-webkit-fit-content;
+width:-moz-fit-content;
+min-width: 80rpx;
+max-width: 400rpx;
+height: 50rpx;
+line-height: 50rpx;
+border: 2rpx #707070 solid;
+margin-left:20rpx;
+margin-top:20rpx;
+border-radius: 10rpx;
+text-align: center;
+}
+.choose .spec_view_container .modal_spec_item_active{
+width: 750rpx;
+display: inline-block;
+width:fit-content;
+width:-webkit-fit-content;
+width:-moz-fit-content;
+min-width: 80rpx;
+max-width: 400rpx;
+height: 50rpx;
+line-height: 50rpx;
+/* border: 2rpx red solid; */
+margin-left:20rpx;
+margin-top:20rpx;
+border-radius: 10rpx;
+text-align: center;
+background: #C62127;
+color: #fff;
+}
+.choose .buy_num {
+margin-top:40rpx;
+margin-bottom: 120rpx;
+font-size: 28rpx;
+}
+.choose .buy_num .font_num{
+margin-left: 20rpx;
+}
+/*主容器*/
+.choose .buy_num .stepper {
+  width: 200rpx;
+  height: 62rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 3px;
+  margin-left:40rpx;
+  margin-top:20rpx;
+}
+
+/*加号和减号*/
+.choose .buy_num .stepper text {
+  width: 58rpx;
+  line-height: 62rpx;
+  text-align: center;
+  float: left;
+}
+
+/*数值*/
+.choose .buy_num .stepper input {
+  width: 80rpx;
+  height: 62rpx;
+  float: left;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 32rpx;
+  border-left: 2rpx solid #ccc;
+  border-right: 2rpx solid #ccc;
+}
+
+/*普通样式*/
+.choose .buy_num .stepper .normal{
+  color: black;
+}
+/*禁用样式*/
+.choose .buy_num .stepper .disabled{
+  color: #ccc;
+}
+

@@ -51,12 +51,6 @@ Page({
   },
 
   onShow() {
-    wx.showToast({
-      title: '加载中',
-      icon: "loading",
-      duration: 1000
-    })
-
     // 价格方法
     this.count_price();
   },

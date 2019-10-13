@@ -31,15 +31,14 @@ Page({
           types: res.data,
           brandCategorysArr: res.data
         })
-        var brandId = res.data[0].id
+        var leftCategoryId = res.data[0].id
         that.setData({
-          brandId: brandId
+          leftCategoryId: leftCategoryId
         });
         wx.request({
-          url: 'https://www.caoxianyoushun.com:8443/Agency/goods/findGoodsByBrandId.do',
+          url: operatePlatformUrl + '/api/category/right',
           data: {
-            brandCategory: brandId,
-            agencyId: agencyId
+            leftCategoryId: leftCategoryId
           },
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -48,9 +47,8 @@ Page({
             console.log(res)
             if (res.data) {
               for (var i = 0; i < res.data.length; i++) {
-                var images = res.data[i].goodsPic
-                var imagesArr = images.split(',')
-                res.data[i].thumbnail = imagesArr[0]
+                var images = res.data[i].categoryImage
+                res.data[i].thumbnail = images
               }
             }
             that.setData({

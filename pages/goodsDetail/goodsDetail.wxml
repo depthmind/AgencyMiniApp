@@ -44,17 +44,11 @@
   <!-- <view class="booking">立即购买</view> -->
 </view>
 
-<view class="flex-row bar-bottom">
+<view class="flex-row bar-bottom" style="display:{{bottom_modal}}">
             <view class="flex-grow-0 flex-row">
-                <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="redirect" url="/mch/shop/shop?mch_id={{goods.mch.id}}" wx:if="{{goods.mch}}">
-                    <view>
-                        <image src="{{__wxapp_img.store.store.url}}"></image>
-                        <text>店铺</text>
-                    </view>
-                </navigator>
                 <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" openType="switchTab" url="/pages/index/index">
                     <view>
-                        <image src="/images/首页.png"></image>
+                        <image src="/images/shouye.png"></image>
                         <text>首页</text>
                     </view>
                 </navigator>
@@ -73,7 +67,44 @@
             </view>
             <view class="flex-grow-1 flex-row">
             <!-- <view bindtap="backToAgencyDetail" data-mobilephone='{{agency.mobilephone}}' class="flex-grow-1 flex-y-center flex-x-center buy-now">一键拨号</view> -->
-                <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view>
-                <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view>
+                <view bindtap='modal_show' data-flag="1" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view>
+                <view bindtap='modal_show' data-flag="2" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view>
             </view>
         </view>
+
+<!--属性规格选择栏-->
+<view class='mask' style="display:{{choose_modal}}"></view>
+<view class="choose" style="display:{{choose_modal}}">
+<view class="spec_img_container">
+<image src="{{default_spe_img}}"></image>
+<view class="amount">￥{{productItem.price}}</view>
+<icon class="clear" type='clear' bindtap="modal_none"></icon>
+</view>
+<!--选择开始 -->
+<view class="spec_view_container">
+<view class="modal_de_select">{{productItem.productItemName}}</view>
+<view class="modal_spec">
+<block wx:for="{{spec}}" wx:for-index="group_idx">
+  <view class="modal_spec_name">{{item.name}}：</view>
+    <view class='modal_spec_group'>
+    <block wx:for="{{item.child}}">
+      <view class="modal_spec_item_{{item.isSelect ? 'active' : ''}}" data-select-index="{{group_idx}}" data-attr-index="{{index}}" data-attr-id="{{item.id}}" bindtap='clickAttr'>{{item.name}}</view>
+    </block>
+    </view>
+</block>
+</view>
+</view>
+<!--选择结束 -->
+<view class="buy_num">
+<view class="font_num">购买数量：</view>
+<view class="stepper">
+<!-- 减号 -->
+<text class="{{minusStatus}}" bindtap="bindMinus">-</text>
+<!-- 数值 -->
+<input type="number" bindchange="bindManual" value="{{num}}" />
+<!-- 加号 -->
+<text class="normal" bindtap="bindPlus">+</text>
+</view>
+</view>
+<view class="modal_button" bindtap="addCart">确认</view>
+</view>

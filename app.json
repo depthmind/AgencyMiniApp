@@ -43,7 +43,10 @@
     "pages/editBrandCategory/editBrandCategory",
     "pages/editContact/editContact",
     "pages/shoppingCart/shoppingCart",
-    "pages/personCenter/personCenter"
+    "pages/personCenter/personCenter",
+    "pages/orderList/orderList",
+    "pages/test/test",
+    "pages/marker/marker"
   ],
   "permission": {
     "scope.userLocation": {
@@ -54,26 +57,26 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/首页.png",
-        "selectedIconPath": "images/首页red.png",
+        "iconPath": "images/shouye.png",
+        "selectedIconPath": "images/shouyered.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/agencyCategory/agencyCategory",
-        "iconPath": "images/发布.png",
-        "selectedIconPath": "images/发布red.png",
+        "iconPath": "images/fenlei.png",
+        "selectedIconPath": "images/fenleired.png",
         "text": "分类"
       },
       {
         "pagePath": "pages/shoppingCart/shoppingCart",
-        "iconPath": "images/商家列表.png",
-        "selectedIconPath": "images/商家列表red.png",
+        "iconPath": "images/gouwuche.png",
+        "selectedIconPath": "images/gouwuchered.png",
         "text": "购物车"
       },
       {
         "pagePath": "pages/personCenter/personCenter",
-        "iconPath": "images/个人中心.png",
-        "selectedIconPath": "images/个人中心red.png",
+        "iconPath": "images/gerenzhongxin.png",
+        "selectedIconPath": "images/gerenzhongxinred.png",
         "text": "我的"
       }
     ]

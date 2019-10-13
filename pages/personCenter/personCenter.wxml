@@ -1,54 +1,101 @@
 <view class="order-block">
-            <navigator class="my-order" url="/pages/order/order?status=-1">我的订单</navigator>
+            <!-- <navigator class="my-order" url="/pages/orderList/orderList?status=-1">我的订单</navigator> -->
+  <view class="mine-top">
+    <open-data class="avatar" type="userAvatarUrl"></open-data> 
+    <open-data class="username" type="userNickName" lang="zh_CN"></open-data>
+  </view>
+
             <view class="flex-row">
                 <view class="flex-grow-1">
-                    <navigator class="nav-item" url="/pages/order/order?status=0">
+                    <navigator class="nav-item" url="/pages/orderList/orderList?status=1">
                         <view>
-                            <image src="{{orders.status_0.icon}}"></image>
+                            <image src="/images/daifukuan.png"></image>
                         </view>
                         <view>{{orders.status_0.text?orders.status_0.text:'待付款'}}</view>
-                        <view class="num-icon" wx:if="{{order_count.status_0&&order_count.status_0>0}}">
-                            {{order_count.status_0}}
+                        <view class="num-icon" wx:if="{{order_count.unpaidCount&&order_count.unpaidCount>0}}">
+                            {{order_count.unpaidCount}}
                         </view>
                     </navigator>
                 </view>
                 <view class="flex-grow-1">
-                    <navigator class="nav-item" url="/pages/order/order?status=1">
+                    <navigator class="nav-item" url="/pages/orderList/orderList?status=2">
                         <view>
-                            <image src="{{orders.status_1.icon}}"></image>
+                            <image src="/images/daifahuo.png"></image>
                         </view>
-                        <view>{{orders.status_1.text?orders.status_1.text:'待发货'}}</view>
-                        <view class="num-icon" wx:if="{{order_count.status_1&&order_count.status_1>0}}">
-                            {{order_count.status_1}}
+                        <view>{{orders.status_1.text?orders.status_1.text:'待收货'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.packageCount&&order_count.packageCount>0}}">
+                            {{order_count.packageCount}}
                         </view>
                     </navigator>
                 </view>
                 <view class="flex-grow-1">
-                    <navigator class="nav-item" url="/pages/order/order?status=2">
+                    <navigator class="nav-item" url="/pages/orderList/orderList?status=3">
                         <view>
-                            <image src="{{orders.status_2.icon}}"></image>
+                            <image src="/images/yiwancheng.png"></image>
                         </view>
-                        <view>{{orders.status_2.text?orders.status_2.text:'待收货'}}</view>
-                        <view class="num-icon" wx:if="{{order_count.status_2&&order_count.status_2>0}}">
-                            {{order_count.status_2}}
+                        <view>{{orders.status_2.text?orders.status_2.text:'已完成'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.transportCount&&order_count.transportCount>0}}">
+                            {{order_count.transportCount}}
                         </view>
                     </navigator>
                 </view>
                 <view class="flex-grow-1">
-                    <navigator class="nav-item" url="/pages/order/order?status=3">
+                    <navigator class="nav-item" url="/pages/orderList/orderList?status=4">
                         <view>
-                            <image src="{{orders.status_3.icon}}"></image>
+                            <image src="/images/shouhou.png"></image>
                         </view>
-                        <view>{{orders.status_3.text?orders.status_3.text:'已完成'}}</view>
+                        <view>{{orders.status_3.text?orders.status_3.text:'售后'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.completeCount&&order_count.completeCount>0}}">
+                            {{order_count.completeCount}}
+                        </view>
                     </navigator>
                 </view>
                 <view class="flex-grow-1">
-                    <navigator class="nav-item" url="/pages/order/order?status=4">
+                    <navigator class="nav-item" url="/pages/orderList/orderList?status=5">
                         <view>
-                            <image src="{{orders.status_4.icon}}"></image>
+                            <image src="/images/quanbudingdan.png"></image>
                         </view>
-                        <view>{{orders.status_4.text?orders.status_4.text:'售后'}}</view>
+                        <view>{{orders.status_4.text?orders.status_4.text:'全部'}}</view>
+                        <view class="num-icon" wx:if="{{order_count.serviceCount&&order_count.serviceCount>0}}">
+                            {{order_count.serviceCount}}
+                        </view>
                     </navigator>
                 </view>
             </view>
         </view>
+
+<view class="weui-cell" bindtap='myFavorite'>
+      <view class="weui-cell-hd">
+        <image class="media-box-thumb" src="/images/shoucang.png"></image>
+      </view>
+      <view class="weui-cell-bd">我的收藏</view>
+      <span class="weui-cell-ft"></span>
+</view>
+<view class="weui-cell" bindtap='myFavorite'>
+  <view class="weui-cell-hd">
+    <image class="media-box-thumb" src="/images/shouhuodizhi.png"></image>
+  </view>
+  <view class="weui-cell-bd">地址管理</view>
+  <span class="weui-cell-ft"></span>
+</view>
+<view class="weui-cell" bindtap='openContact'>
+    <view class="weui-cell-hd">
+      <image class="media-box-thumb" src="/images/lianxi.png"></image>
+    </view>
+    <view class="weui-cell-bd">联系我们</view>
+    <span class="weui-cell-ft"></span>
+</view>
+<view class="weui-cell" bindtap='help'>
+      <view class="weui-cell-hd">
+        <image class="media-box-thumb" src="/images/bangzhu.png"></image>
+      </view>
+      <view class="weui-cell-bd">帮助中心</view>
+      <span class="weui-cell-ft"></span>
+</view>
+<view class="weui-cell" bindtap='aboutUs'>
+  <view class="weui-cell-hd">
+    <image class="media-box-thumb" src="/images/guanyuwomen.png"></image>
+  </view>
+  <view class="weui-cell-bd">关于我们</view>
+  <span class="weui-cell-ft"></span>
+</view>
